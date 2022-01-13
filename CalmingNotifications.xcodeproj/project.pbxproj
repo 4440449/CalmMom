@@ -9,21 +9,29 @@
 /* Begin PBXBuildFile section */
 		50A1CB87278CCC63000F9BFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A1CB86278CCC63000F9BFC /* AppDelegate.swift */; };
 		50A1CB89278CCC63000F9BFC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A1CB88278CCC63000F9BFC /* SceneDelegate.swift */; };
-		50A1CB8B278CCC63000F9BFC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A1CB8A278CCC63000F9BFC /* ViewController.swift */; };
-		50A1CB8E278CCC63000F9BFC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50A1CB8C278CCC63000F9BFC /* Main.storyboard */; };
+		50A1CB8B278CCC63000F9BFC /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A1CB8A278CCC63000F9BFC /* CustomViewController.swift */; };
 		50A1CB90278CCC6F000F9BFC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50A1CB8F278CCC6F000F9BFC /* Assets.xcassets */; };
 		50A1CB93278CCC6F000F9BFC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50A1CB91278CCC6F000F9BFC /* LaunchScreen.storyboard */; };
+		50A1CB9B278CF04B000F9BFC /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A1CB9A278CF04B000F9BFC /* CustomCollectionViewCell.swift */; };
+		50A1CB9D278D03B0000F9BFC /* CustomUICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A1CB9C278D03B0000F9BFC /* CustomUICollectionView.swift */; };
+		50A1CB9F278F63B0000F9BFC /* CustomTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A1CB9E278F63B0000F9BFC /* CustomTabBarViewController.swift */; };
+		50A1CBA1278F6C50000F9BFC /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A1CBA0278F6C50000F9BFC /* SecondViewController.swift */; };
+		50A1CBA3278F6C92000F9BFC /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A1CBA2278F6C92000F9BFC /* MenuViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		50A1CB83278CCC63000F9BFC /* CalmingNotifications.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalmingNotifications.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50A1CB86278CCC63000F9BFC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		50A1CB88278CCC63000F9BFC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		50A1CB8A278CCC63000F9BFC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		50A1CB8D278CCC63000F9BFC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		50A1CB8A278CCC63000F9BFC /* CustomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewController.swift; sourceTree = "<group>"; };
 		50A1CB8F278CCC6F000F9BFC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50A1CB92278CCC6F000F9BFC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		50A1CB94278CCC6F000F9BFC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		50A1CB9A278CF04B000F9BFC /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
+		50A1CB9C278D03B0000F9BFC /* CustomUICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUICollectionView.swift; sourceTree = "<group>"; };
+		50A1CB9E278F63B0000F9BFC /* CustomTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarViewController.swift; sourceTree = "<group>"; };
+		50A1CBA0278F6C50000F9BFC /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		50A1CBA2278F6C92000F9BFC /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +66,12 @@
 			children = (
 				50A1CB86278CCC63000F9BFC /* AppDelegate.swift */,
 				50A1CB88278CCC63000F9BFC /* SceneDelegate.swift */,
-				50A1CB8A278CCC63000F9BFC /* ViewController.swift */,
-				50A1CB8C278CCC63000F9BFC /* Main.storyboard */,
+				50A1CB8A278CCC63000F9BFC /* CustomViewController.swift */,
+				50A1CB9E278F63B0000F9BFC /* CustomTabBarViewController.swift */,
+				50A1CBA0278F6C50000F9BFC /* SecondViewController.swift */,
+				50A1CBA2278F6C92000F9BFC /* MenuViewController.swift */,
+				50A1CB9C278D03B0000F9BFC /* CustomUICollectionView.swift */,
+				50A1CB9A278CF04B000F9BFC /* CustomCollectionViewCell.swift */,
 				50A1CB8F278CCC6F000F9BFC /* Assets.xcassets */,
 				50A1CB91278CCC6F000F9BFC /* LaunchScreen.storyboard */,
 				50A1CB94278CCC6F000F9BFC /* Info.plist */,
@@ -127,7 +139,6 @@
 			files = (
 				50A1CB93278CCC6F000F9BFC /* LaunchScreen.storyboard in Resources */,
 				50A1CB90278CCC6F000F9BFC /* Assets.xcassets in Resources */,
-				50A1CB8E278CCC63000F9BFC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +149,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50A1CB8B278CCC63000F9BFC /* ViewController.swift in Sources */,
+				50A1CB8B278CCC63000F9BFC /* CustomViewController.swift in Sources */,
 				50A1CB87278CCC63000F9BFC /* AppDelegate.swift in Sources */,
+				50A1CB9F278F63B0000F9BFC /* CustomTabBarViewController.swift in Sources */,
+				50A1CB9D278D03B0000F9BFC /* CustomUICollectionView.swift in Sources */,
+				50A1CBA1278F6C50000F9BFC /* SecondViewController.swift in Sources */,
 				50A1CB89278CCC63000F9BFC /* SceneDelegate.swift in Sources */,
+				50A1CB9B278CF04B000F9BFC /* CustomCollectionViewCell.swift in Sources */,
+				50A1CBA3278F6C92000F9BFC /* MenuViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		50A1CB8C278CCC63000F9BFC /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				50A1CB8D278CCC63000F9BFC /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		50A1CB91278CCC6F000F9BFC /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -294,7 +302,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.maximi4.CalmingNotifications;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -312,7 +320,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.maximi4.CalmingNotifications;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
