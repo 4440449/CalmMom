@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainViewController_CN.swift
 //  CalmingNotifications
 //
 //  Created by Max on 10.01.2022.
@@ -9,13 +9,29 @@
 import UIKit
 
 
-class CustomViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class MainViewController_CN: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    private let viewModel: MainViewModelProtocol_CN
+    
+    init(viewModel: MainViewModelProtocol_CN,
+         nibName nibNameOrNil: String?,
+         bundle nibBundleOrNil: Bundle?) {
+        self.viewModel = viewModel
+        super.init(nibName: nibNameOrNil,
+                   bundle: nibBundleOrNil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     private lazy var collectionView: UICollectionView = {
-        let collection = CustomUICollectionView(frame: view.bounds, collectionViewLayout: setupCollectionViewLayout())
-        collection.register(CustomCollectionViewCell.self, forCellWithReuseIdentifier: CustomCollectionViewCell.identifier)
+        let collection = MainUICollectionView_CN(frame: view.bounds, collectionViewLayout: setupCollectionViewLayout())
+        collection.register(MainCollectionViewCell_CN.self, forCellWithReuseIdentifier: MainCollectionViewCell_CN.identifier)
         collection.dataSource = self
         collection.delegate = self
+        collection.alwaysBounceVertical = false // не работает почему то отключение вертикал скрола
+        
         return collection
     }()
     
@@ -37,6 +53,7 @@ class CustomViewController: UIViewController, UICollectionViewDataSource, UIColl
         tabBarItem = UITabBarItem(title: nil,
                             image: UIImage(systemName: "house"),
                             selectedImage: UIImage(systemName: "house.fill"))
+        viewModel.viewDidLoad()
     }
     
     override func viewDidLayoutSubviews() {
@@ -68,6 +85,7 @@ class CustomViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .paging
+        
         return UICollectionViewCompositionalLayout(section: section)
     }
     
@@ -78,7 +96,7 @@ class CustomViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCollectionViewCell.identifier, for: indexPath) as? CustomCollectionViewCell else { fatalError() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell_CN.identifier, for: indexPath) as? MainCollectionViewCell_CN else { fatalError() }
         return cell
     }
     
@@ -86,7 +104,8 @@ class CustomViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     
     @objc private func menuButtonTapped() {
-        tabBarController?.show(MenuViewController(), sender: nil)
+        viewModel.menuButtonTapped()
+//        tabBarController?.show(CN_MenuViewController(), sender: nil)
         
     }
     

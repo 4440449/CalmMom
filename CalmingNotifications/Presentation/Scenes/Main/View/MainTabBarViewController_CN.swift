@@ -1,5 +1,5 @@
 //
-//  CustomTabBarViewController.swift
+//  MainTabBarViewController_CN.swift
 //  CalmingNotifications
 //
 //  Created by Max on 12.01.2022.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomTabBarViewController: UITabBarController {
+class MainTabBarViewController_CN: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()

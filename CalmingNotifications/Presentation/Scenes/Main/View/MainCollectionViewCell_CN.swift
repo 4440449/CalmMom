@@ -1,5 +1,5 @@
 //
-//  CustomCollectionViewCell.swift
+//  MainCollectionViewCell_CN.swift
 //  CalmingNotifications
 //
 //  Created by Max on 11.01.2022.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-class CustomCollectionViewCell: UICollectionViewCell {
+class MainCollectionViewCell_CN: UICollectionViewCell {
     
-    static let identifier = String(describing: CustomCollectionViewCell.self)
+    static let identifier = String(describing: MainCollectionViewCell_CN.self)
     
     private var logoLabel: UILabel = {
         let label = UILabel()

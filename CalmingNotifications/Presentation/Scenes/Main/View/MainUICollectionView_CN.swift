@@ -1,5 +1,5 @@
 //
-//  CustomUICollectionView.swift
+//  MainUICollectionView_CN.swift
 //  CalmingNotifications
 //
 //  Created by Max on 11.01.2022.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomUICollectionView: UICollectionView {
+class MainUICollectionView_CN: UICollectionView {
 
     
     

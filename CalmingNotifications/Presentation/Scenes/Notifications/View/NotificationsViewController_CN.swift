@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  NotificationsViewController_CN.swift
 //  CalmingNotifications
 //
 //  Created by Max on 12.01.2022.
@@ -8,8 +8,23 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class NotificationsViewController_CN: UIViewController {
 
+    private let viewModel: NotificationsViewModelProtocol_CN
+    
+    init(viewModel: NotificationsViewModelProtocol_CN,
+         nibName nibNameOrNil: String?,
+         bundle nibBundleOrNil: Bundle?) {
+        self.viewModel = viewModel
+        super.init(nibName: nibNameOrNil,
+                   bundle: nibBundleOrNil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
     private lazy var notifView: UIView = {
         let notView = UIView()
         notView.backgroundColor = .systemGray
