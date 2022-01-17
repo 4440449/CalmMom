@@ -9,7 +9,7 @@
 import UIKit
 
 class MainUICollectionView_CN: UICollectionView {
-
+    
     
     
     override init(frame: CGRect,
@@ -18,16 +18,17 @@ class MainUICollectionView_CN: UICollectionView {
         backgroundColor = .systemPink
         
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     
     private func setupCollectionView() {
-//        logoLabel = UILabel(frame: <#T##CGRect#>)
+        //        collection.contentInsetAdjustmentBehavior = .never
+        //        collection.alwaysBounceVertical = false
     }
     
-   
-
+    
+    
 }

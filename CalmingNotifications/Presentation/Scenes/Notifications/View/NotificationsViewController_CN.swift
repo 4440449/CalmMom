@@ -9,7 +9,7 @@
 import UIKit
 
 class NotificationsViewController_CN: UIViewController {
-
+    
     private let viewModel: NotificationsViewModelProtocol_CN
     
     init(viewModel: NotificationsViewModelProtocol_CN,
@@ -18,6 +18,9 @@ class NotificationsViewController_CN: UIViewController {
         self.viewModel = viewModel
         super.init(nibName: nibNameOrNil,
                    bundle: nibBundleOrNil)
+        tabBarItem = UITabBarItem(title: nil,
+                                  image: UIImage(systemName: "bell"),
+                                  selectedImage: UIImage(systemName: "bell.fill"))
     }
     
     required init?(coder: NSCoder) {
@@ -34,17 +37,17 @@ class NotificationsViewController_CN: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemPink
-        setupTabBarAppearance()
+        view.backgroundColor = .systemTeal
+        //        setupTabBarAppearance()
         view.addSubview(notifView)
         setupNotifViewLayout()
     }
     
-    private func setupTabBarAppearance() {
-        tabBarItem = UITabBarItem(title: nil,
-        image: UIImage(systemName: "bell"),
-        selectedImage: UIImage(systemName: "bell.fill"))
-    }
+    //    private func setupTabBarAppearance() {
+    //        tabBarItem = UITabBarItem(title: nil,
+    //        image: UIImage(systemName: "bell"),
+    //        selectedImage: UIImage(systemName: "bell.fill"))
+    //    }
     
     private func setupNotifViewLayout() {
         notifView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -52,6 +55,6 @@ class NotificationsViewController_CN: UIViewController {
         notifView.widthAnchor.constraint(equalToConstant: 300).isActive = true
         notifView.heightAnchor.constraint(equalToConstant: 200).isActive = true
     }
-
- 
+    
+    
 }

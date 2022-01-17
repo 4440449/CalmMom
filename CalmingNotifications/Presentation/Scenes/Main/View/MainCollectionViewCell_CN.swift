@@ -12,6 +12,15 @@ class MainCollectionViewCell_CN: UICollectionViewCell {
     
     static let identifier = String(describing: MainCollectionViewCell_CN.self)
     
+    
+    private var logoLabel2: UILabel = {
+        let label = UILabel()
+        label.text = "Mom's Exhale"
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     private var logoLabel: UILabel = {
         let label = UILabel()
         label.text = "Mom's Exhale"
@@ -33,23 +42,23 @@ class MainCollectionViewCell_CN: UICollectionViewCell {
         let button = UIButton()
         button.setImage(UIImage(systemName: "heart"), for: .normal)
         button.tintColor = .systemRed
-//        button.addGestureRecognizer(tapGest)
+        //        button.addGestureRecognizer(tapGest)
         button.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
-//    let tapGest = UITapGestureRecognizer(target: CustomViewController.self, action: #selector(likeButtonTapped))
-//    init(y: Int) {
-//        self.y = y
-//        super.init(frame: .zero)
-//    }
+    //    let tapGest = UITapGestureRecognizer(target: CustomViewController.self, action: #selector(likeButtonTapped))
+    //    init(y: Int) {
+    //        self.y = y
+    //        super.init(frame: .zero)
+    //    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         contentView.backgroundColor = .systemYellow
-        [logoLabel, quoteLabel, likeButton].forEach { self.contentView.addSubview($0) }
+        [logoLabel2, logoLabel, quoteLabel, likeButton].forEach { self.contentView.addSubview($0) }
         setupLayout()
     }
     
@@ -62,6 +71,11 @@ class MainCollectionViewCell_CN: UICollectionViewCell {
     }
     
     private func setupLayout() {
+        
+        logoLabel2.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+        logoLabel2.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
+        logoLabel2.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -60).isActive = true
+        
         
         logoLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
         logoLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
@@ -78,7 +92,7 @@ class MainCollectionViewCell_CN: UICollectionViewCell {
     }
     
     
-   
+    
     
     @objc func likeButtonTapped() {
         likeButton.setImage(UIImage(systemName: "heart.fill"), for: .selected)

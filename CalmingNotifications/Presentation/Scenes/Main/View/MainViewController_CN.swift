@@ -19,6 +19,9 @@ class MainViewController_CN: UIViewController, UICollectionViewDataSource, UICol
         self.viewModel = viewModel
         super.init(nibName: nibNameOrNil,
                    bundle: nibBundleOrNil)
+        tabBarItem = UITabBarItem(title: nil,
+                                  image: UIImage(systemName: "house"),
+                                  selectedImage: UIImage(systemName: "house.fill"))
     }
     
     required init?(coder: NSCoder) {
@@ -28,10 +31,10 @@ class MainViewController_CN: UIViewController, UICollectionViewDataSource, UICol
     private lazy var collectionView: UICollectionView = {
         let collection = MainUICollectionView_CN(frame: view.bounds, collectionViewLayout: setupCollectionViewLayout())
         collection.register(MainCollectionViewCell_CN.self, forCellWithReuseIdentifier: MainCollectionViewCell_CN.identifier)
+        collection.contentInsetAdjustmentBehavior = .never
+        collection.alwaysBounceVertical = false
         collection.dataSource = self
         collection.delegate = self
-        collection.alwaysBounceVertical = false // не работает почему то отключение вертикал скрола
-        
         return collection
     }()
     
@@ -50,9 +53,9 @@ class MainViewController_CN: UIViewController, UICollectionViewDataSource, UICol
         view.addSubview(collectionView)
         view.addSubview(menuButton)
         setupMenuButtonLayout()
-        tabBarItem = UITabBarItem(title: nil,
-                            image: UIImage(systemName: "house"),
-                            selectedImage: UIImage(systemName: "house.fill"))
+        //        tabBarItem = UITabBarItem(title: nil,
+        //                                  image: UIImage(systemName: "house"),
+        //                                  selectedImage: UIImage(systemName: "house.fill"))
         viewModel.viewDidLoad()
     }
     
@@ -74,14 +77,12 @@ class MainViewController_CN: UIViewController, UICollectionViewDataSource, UICol
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                               heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = .init(top: 1, leading: 1, bottom: 1, trailing: 1)
-        
+//        item.contentInsets = .init(top: 1, leading: 1, bottom: 1, trailing: 1)
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                                heightDimension: .fractionalHeight(1))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                        subitems: [item])
-        
         
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .paging
@@ -101,11 +102,9 @@ class MainViewController_CN: UIViewController, UICollectionViewDataSource, UICol
     }
     
     
-    
-    
     @objc private func menuButtonTapped() {
         viewModel.menuButtonTapped()
-//        tabBarController?.show(CN_MenuViewController(), sender: nil)
+        //        tabBarController?.show(CN_MenuViewController(), sender: nil)
         
     }
     
