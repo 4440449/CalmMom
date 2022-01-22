@@ -17,6 +17,9 @@
 		50A1CB9F278F63B0000F9BFC /* MainTabBarViewController_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A1CB9E278F63B0000F9BFC /* MainTabBarViewController_CN.swift */; };
 		50A1CBA1278F6C50000F9BFC /* NotificationsViewController_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A1CBA0278F6C50000F9BFC /* NotificationsViewController_CN.swift */; };
 		50A1CBA3278F6C92000F9BFC /* MenuViewController_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A1CBA2278F6C92000F9BFC /* MenuViewController_CN.swift */; };
+		94057F1E27973A32009B5A2B /* NotificationsCollectionViewCell_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94057F1D27973A32009B5A2B /* NotificationsCollectionViewCell_CN.swift */; };
+		94057F2027975249009B5A2B /* NotificationsCollectionHeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94057F1F27975249009B5A2B /* NotificationsCollectionHeaderReusableView.swift */; };
+		94800868279631B500D34D4B /* LocalNotificationService_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94800867279631B500D34D4B /* LocalNotificationService_CN.swift */; };
 		94EFC9A327923C5500CC6B47 /* MainViewModel_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EFC9A227923C5500CC6B47 /* MainViewModel_CN.swift */; };
 		94EFC9A627923D6F00CC6B47 /* QuoteCard_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EFC9A527923D6F00CC6B47 /* QuoteCard_CN.swift */; };
 		94EFC9AA27923E5600CC6B47 /* QuoteCardGateway_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EFC9A927923E5600CC6B47 /* QuoteCardGateway_CN.swift */; };
@@ -52,6 +55,9 @@
 		50A1CB9E278F63B0000F9BFC /* MainTabBarViewController_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController_CN.swift; sourceTree = "<group>"; };
 		50A1CBA0278F6C50000F9BFC /* NotificationsViewController_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController_CN.swift; sourceTree = "<group>"; };
 		50A1CBA2278F6C92000F9BFC /* MenuViewController_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController_CN.swift; sourceTree = "<group>"; };
+		94057F1D27973A32009B5A2B /* NotificationsCollectionViewCell_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsCollectionViewCell_CN.swift; sourceTree = "<group>"; };
+		94057F1F27975249009B5A2B /* NotificationsCollectionHeaderReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsCollectionHeaderReusableView.swift; sourceTree = "<group>"; };
+		94800867279631B500D34D4B /* LocalNotificationService_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationService_CN.swift; sourceTree = "<group>"; };
 		94EFC9A227923C5500CC6B47 /* MainViewModel_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel_CN.swift; sourceTree = "<group>"; };
 		94EFC9A527923D6F00CC6B47 /* QuoteCard_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCard_CN.swift; sourceTree = "<group>"; };
 		94EFC9A927923E5600CC6B47 /* QuoteCardGateway_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCardGateway_CN.swift; sourceTree = "<group>"; };
@@ -106,6 +112,7 @@
 			children = (
 				50A1CB86278CCC63000F9BFC /* AppDelegate.swift */,
 				50A1CB88278CCC63000F9BFC /* SceneDelegate.swift */,
+				94800867279631B500D34D4B /* LocalNotificationService_CN.swift */,
 				94EFC9A427923D5200CC6B47 /* Domain */,
 				94EFC9AB27923F5400CC6B47 /* Data */,
 				94EFC99D279239D500CC6B47 /* Presentation */,
@@ -191,6 +198,8 @@
 			isa = PBXGroup;
 			children = (
 				50A1CBA0278F6C50000F9BFC /* NotificationsViewController_CN.swift */,
+				94057F1F27975249009B5A2B /* NotificationsCollectionHeaderReusableView.swift */,
+				94057F1D27973A32009B5A2B /* NotificationsCollectionViewCell_CN.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -473,13 +482,16 @@
 				94EFC9B82792473E00CC6B47 /* MainSceneConfigurator_CN.swift in Sources */,
 				94EFC9D227924EF500CC6B47 /* NotificationSceneConfigurator_CN.swift in Sources */,
 				94EFC9D8279252AD00CC6B47 /* MenuViewModel_CN.swift in Sources */,
+				94057F1E27973A32009B5A2B /* NotificationsCollectionViewCell_CN.swift in Sources */,
 				94EFC9D42792500F00CC6B47 /* SceneConfigurator_CN.swift in Sources */,
+				94057F2027975249009B5A2B /* NotificationsCollectionHeaderReusableView.swift in Sources */,
 				94EFC9DB279252F100CC6B47 /* MenuRouter_CN.swift in Sources */,
 				50A1CB9D278D03B0000F9BFC /* MainUICollectionView_CN.swift in Sources */,
 				50A1CBA1278F6C50000F9BFC /* NotificationsViewController_CN.swift in Sources */,
 				94EFC9C427924D7C00CC6B47 /* Notification_CN.swift in Sources */,
 				94EFC9A627923D6F00CC6B47 /* QuoteCard_CN.swift in Sources */,
 				94EFC9BF27924C0F00CC6B47 /* NotificationsViewModel_CN.swift in Sources */,
+				94800868279631B500D34D4B /* LocalNotificationService_CN.swift in Sources */,
 				50A1CB89278CCC63000F9BFC /* SceneDelegate.swift in Sources */,
 				94EFC9CD27924EA200CC6B47 /* NotificationNetworkRepository_CN.swift in Sources */,
 				50A1CB9B278CF04B000F9BFC /* MainCollectionViewCell_CN.swift in Sources */,

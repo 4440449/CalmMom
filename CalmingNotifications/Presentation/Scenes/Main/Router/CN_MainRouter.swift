@@ -16,7 +16,7 @@ protocol MainRouterProtocol_CN {
 
 final class CN_MainRouter: MainRouterProtocol_CN {
     
-    private let navigationContainer: UIViewController
+    private weak var navigationContainer: UIViewController?
     
     init(navigationContainer: UIViewController) {
         self.navigationContainer = navigationContainer
@@ -27,5 +27,9 @@ final class CN_MainRouter: MainRouterProtocol_CN {
             return
         }
         navContainer.show(MenuSceneConfigurator_CN.configure(navigationContainer: navContainer), sender: nil)
+    }
+    
+    deinit {
+        print("CN_MainRouter")
     }
 }

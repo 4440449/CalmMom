@@ -9,7 +9,7 @@
 import UIKit
 
 
-class MainViewController_CN: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class MainViewController_CN: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     private let viewModel: MainViewModelProtocol_CN
     
@@ -19,9 +19,6 @@ class MainViewController_CN: UIViewController, UICollectionViewDataSource, UICol
         self.viewModel = viewModel
         super.init(nibName: nibNameOrNil,
                    bundle: nibBundleOrNil)
-        tabBarItem = UITabBarItem(title: nil,
-                                  image: UIImage(systemName: "house"),
-                                  selectedImage: UIImage(systemName: "house.fill"))
     }
     
     required init?(coder: NSCoder) {
@@ -29,8 +26,10 @@ class MainViewController_CN: UIViewController, UICollectionViewDataSource, UICol
     }
     
     private lazy var collectionView: UICollectionView = {
-        let collection = MainUICollectionView_CN(frame: view.bounds, collectionViewLayout: setupCollectionViewLayout())
-        collection.register(MainCollectionViewCell_CN.self, forCellWithReuseIdentifier: MainCollectionViewCell_CN.identifier)
+        let collection = MainUICollectionView_CN(frame: view.bounds,
+                                                 collectionViewLayout: setupCollectionViewLayout())
+        collection.register(MainCollectionViewCell_CN.self,
+                            forCellWithReuseIdentifier: MainCollectionViewCell_CN.identifier)
         collection.contentInsetAdjustmentBehavior = .never
         collection.alwaysBounceVertical = false
         collection.dataSource = self
@@ -64,6 +63,23 @@ class MainViewController_CN: UIViewController, UICollectionViewDataSource, UICol
         print("viewDidLayoutSubviews")
     }
     
+    private func setupCollectionViewLayout() -> UICollectionViewCompositionalLayout {
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                                  heightDimension: .fractionalHeight(1))
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+    //        item.contentInsets = .init(top: 1, leading: 1, bottom: 1, trailing: 1)
+    
+            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                                   heightDimension: .fractionalHeight(1))
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+                                                           subitems: [item])
+    
+            let section = NSCollectionLayoutSection(group: group)
+            section.orthogonalScrollingBehavior = .paging
+    
+            return UICollectionViewCompositionalLayout(section: section)
+        }
+    
     
     private func setupMenuButtonLayout() {
         menuButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
@@ -73,22 +89,7 @@ class MainViewController_CN: UIViewController, UICollectionViewDataSource, UICol
     }
     
     
-    private func setupCollectionViewLayout() -> UICollectionViewCompositionalLayout {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                              heightDimension: .fractionalHeight(1))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-//        item.contentInsets = .init(top: 1, leading: 1, bottom: 1, trailing: 1)
-        
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                               heightDimension: .fractionalHeight(1))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
-                                                       subitems: [item])
-        
-        let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .paging
-        
-        return UICollectionViewCompositionalLayout(section: section)
-    }
+//
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -111,4 +112,3 @@ class MainViewController_CN: UIViewController, UICollectionViewDataSource, UICol
     
     
 }
-

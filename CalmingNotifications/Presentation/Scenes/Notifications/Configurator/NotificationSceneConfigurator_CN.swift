@@ -18,8 +18,10 @@ final class NotificationSceneConfigurator_CN: SceneConfiguratorProtocol_CN {
         let repo = NotificationRepository_CN(network: network,
                                              localStorage: localStorage)
         let router = NotificationsRouter_CN(navigationContainer: navigationContainer)
+        let localNotificationService = LocalNotificationService_CN()
         let viewModel = NotificationsViewModel_CN(notificationRepository: repo,
-                                                  router: router)
+                                                  router: router,
+                                                  localNotificationService: localNotificationService)
         let view = NotificationsViewController_CN(viewModel: viewModel,
                                                   nibName: nil,
                                                   bundle: nil)
