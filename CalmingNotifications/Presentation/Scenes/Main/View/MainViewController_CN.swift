@@ -9,7 +9,9 @@
 import UIKit
 
 
-class MainViewController_CN: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class MainViewController_CN: UIViewController,
+                             UICollectionViewDataSource,
+                             UICollectionViewDelegate {
     
     private let viewModel: MainViewModelProtocol_CN
     

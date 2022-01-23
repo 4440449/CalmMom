@@ -48,6 +48,7 @@ class NotificationsViewController_CN: UIViewController,
         collection.showsVerticalScrollIndicator = false
         collection.alwaysBounceVertical = true
         collection.backgroundColor = .systemBackground
+        collection.contentInset.bottom = 40
         return collection
     }()
     
@@ -62,13 +63,13 @@ class NotificationsViewController_CN: UIViewController,
     
     // MARK: - State
     
-    private var selectIndex = -1
+    private var selectedIndex = -1
     
     
     //MARK: - Layout
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height = (selectIndex == indexPath.row) ? collectionView.bounds.height / 3 : collectionView.bounds.height / 11
+        let height = (selectedIndex == indexPath.row) ? collectionView.bounds.height / 3 : collectionView.bounds.height / 11
         return CGSize(width: collectionView.bounds.width - 60,
                       height: height)
     }
@@ -93,34 +94,34 @@ class NotificationsViewController_CN: UIViewController,
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //TODO: Управление вьюхами ячеек через VM! Убрать даун каст
         guard let targetCell = collectionView.cellForItem(at: indexPath) as? NotificationsCollectionViewCell_CN else { return }
-        
-        switch selectIndex {
-        case _ where selectIndex == -1 :
+        switch selectedIndex {
+        case _ where selectedIndex == -1 :
             // Ячейка закрыта ==> раскрываю, устанавливаю вьюхи
-            targetCell.setupViews()
-            selectIndex = indexPath.row
-            collectionView.performBatchUpdates(nil, completion: nil)
-            
-        case _ where selectIndex == indexPath.row :
+            targetCell.animateAddingDynamicViews()
+            selectedIndex = indexPath.row
+//            collectionView.performBatchUpdates(nil, completion: nil)
+        case _ where selectedIndex == indexPath.row :
             // Тап на ту же ячейку ==> ячейка открыта ==> закрываю, удалаяю вьюхи, обнуляю индекс
-            targetCell.removeViews()
-            selectIndex = -1
-            collectionView.performBatchUpdates(nil, completion: nil)
-            
-        case _ where selectIndex != indexPath.row :
+            targetCell.animateRemovingDynamicViews()
+            selectedIndex = -1
+//            collectionView.performBatchUpdates(nil, completion: nil)
+        case _ where selectedIndex != indexPath.row :
             // Ячейка не закрыта, условие '== -1' проверено выше ==> тап на другую закрытую ячейку ==> закрываю текущую открытую, удаляю вьюхи ==> открываю новую по index, устанавливаю вьюхи
-            guard let closingCell = collectionView.cellForItem(at: IndexPath(row: selectIndex, section: 0)) as? NotificationsCollectionViewCell_CN else { return }
-            closingCell.removeViews()
-            targetCell.setupViews()
-            selectIndex = indexPath.row
-            collectionView.performBatchUpdates(nil, completion: nil)
-            
+            guard let closingCell = collectionView.cellForItem(at: IndexPath(row: selectedIndex, section: 0)) as? NotificationsCollectionViewCell_CN else { return }
+            closingCell.animateRemovingDynamicViews()
+            targetCell.animateAddingDynamicViews()
+            selectedIndex = indexPath.row
         default: return
+        }
+        collectionView.performBatchUpdates(nil) { _ in
+            self.collectionView.scrollToItem(at: indexPath,
+                                             at: .centeredVertically,
+                                             animated: true)
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
