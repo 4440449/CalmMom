@@ -11,7 +11,7 @@ import Foundation
 
 struct Notification_CN {
     let id: String
-    let time: DateComponents
+    var time: DateComponents
 }
 
 

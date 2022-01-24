@@ -12,11 +12,7 @@ class NotificationsCollectionHeaderReusableView: UICollectionReusableView {
     
     static let identifier = String(describing: NotificationsCollectionHeaderReusableView.self)
     
-    private let viewModel: NotificationsHeaderViewModelProtocol_CN
-    
-    init(frame: CGRect,
-         viewModel: NotificationsHeaderViewModelProtocol_CN) {
-        self.viewModel = viewModel
+    override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubview(title)
         self.addSubview(addNewNotificationButton)

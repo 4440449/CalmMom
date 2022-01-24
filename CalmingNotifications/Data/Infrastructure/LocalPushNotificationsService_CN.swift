@@ -10,21 +10,21 @@ import UserNotifications
 import Foundation
 
 
-protocol LocalPushNotificationServiceProtocol_CN {
+protocol LocalPushNotificationsServiceProtocol_CN {
     // Collection interface
-    func addNewNotification(at time: Date) //async throws
     func fetchNotifications() async -> [UNNotificationRequest]
+    func addNewNotification(at time: Date) async throws
     // Cell interface
     func changeNotification(with identifier: String, new time: Date) async throws
-    func removeNotification(with identifire: String) async
+    func removeNotification(with identifire: String) async throws
 }
 
 
-final class LocalPushNotificationService_CN: LocalPushNotificationServiceProtocol_CN {
-  
+final class LocalPushNotificationsService_CN: LocalPushNotificationsServiceProtocol_CN {
+    
     private let center = UNUserNotificationCenter.current()
     
-    func addNewNotification(at time: Date) {
+    func addNewNotification(at time: Date) async throws {
         let content: UNMutableNotificationContent = {
             let cont = UNMutableNotificationContent()
             cont.title = "Moms' Exhale"
@@ -43,28 +43,33 @@ final class LocalPushNotificationService_CN: LocalPushNotificationServiceProtoco
         print("components = \(components)")
         print("trigger = \(trigger)")
         print("request = \(request)")
-        center.add(request) { error in
-            print("Error adding notification, error description --> \(error)")
-        }
-        
+        try await center.add(request)
     }
     
     func fetchNotifications() async -> [UNNotificationRequest] {
-        let notif = await center.pendingNotificationRequests()
-        return notif
+        let n = await center.pendingNotificationRequests()
+//        let notif = await center.pendingNotificationRequests()
+        return n
     }
     
-    func removeNotification(with identifire: String) async {
+    func removeNotification(with identifire: String) async throws {
         center.removePendingNotificationRequests(withIdentifiers: [identifire])
+        let result = await fetchNotifications()
+        try result.forEach {
+            if $0.identifier == identifire {
+                throw NotificationMapperError.failureRemoving("Removing notification error! Request with identifier --> \(identifire) not deleted")
+            } else {
+                return
+            }
+        }
     }
     
     func changeNotification(with identifier: String, new time: Date) async throws {
-        await removeNotification(with: identifier)
-        // await
-        addNewNotification(at: time)
+        try await removeNotification(with: identifier)
+        try await addNewNotification(at: time)
     }
     
-
+    
     
     
 }

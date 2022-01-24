@@ -58,10 +58,20 @@ class NotificationsViewController_CN: UIViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(collectionView)
+        setupObservers()
     }
     
     
-    // MARK: - State
+    // MARK: - Input data flow
+    
+    private func setupObservers() {
+        viewModel.notifications.subscribe(observer: self) { [weak self] _ in
+            self?.collectionView.reloadData()
+        }
+    }
+    
+    
+    // MARK: - Private state
     
     private var selectedIndex = -1
     
@@ -86,6 +96,20 @@ class NotificationsViewController_CN: UIViewController,
         guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: NotificationsCollectionHeaderReusableView.identifier, for: indexPath) as? NotificationsCollectionHeaderReusableView else { fatalError() }
         //        header.setupLayoutViews()
         return header
+    }
+    
+    
+    //MARK: - Data source
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 7
+//        return viewModel.numberOfItems()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NotificationsCollectionViewCell_CN.identifier, for: indexPath) as? NotificationsCollectionViewCell_CN else { fatalError() }
+//        cell.titleButton.titleLabel?.text = viewModel.notifications.value[indexPath.row].time.description
+        return cell
     }
     
     
@@ -119,16 +143,7 @@ class NotificationsViewController_CN: UIViewController,
                                              animated: true)
         }
     }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NotificationsCollectionViewCell_CN.identifier, for: indexPath) as? NotificationsCollectionViewCell_CN else { fatalError() }
-        return cell
-    }
-    
+
     
     deinit {
         print("deinit NotificationsViewController_CN")

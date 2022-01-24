@@ -14,6 +14,7 @@ final class QuoteCardRepository_CN: QuoteCardGateway_CN {
     private let network: QuoteCardNetworkRepositoryProtocol_CN
     private let localStorage: QuoteCardPersistenceRepositoryProtocol_CN
     
+    
     init(network: QuoteCardNetworkRepositoryProtocol_CN,
          localStorage: QuoteCardPersistenceRepositoryProtocol_CN) {
         self.network = network

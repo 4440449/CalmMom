@@ -15,13 +15,17 @@ final class NotificationSceneConfigurator_CN: SceneConfiguratorProtocol_CN {
         
         let network = NotificationNetworkRepository_CN()
         let localStorage = NotificationPersistenceRepository_CN()
+        let dtoMapper = LocalPushNotificationsDTOMapper_CN()
+        let localPushNotificationsService = LocalPushNotificationsService_CN()
         let repo = NotificationRepository_CN(network: network,
-                                             localStorage: localStorage)
+                                             localStorage: localStorage,
+                                             localPushNotificatiosnService: localPushNotificationsService,
+                                             dtoMapper: dtoMapper)
         let router = NotificationsRouter_CN(navigationContainer: navigationContainer)
-        let localNotificationService = LocalPushNotificationService_CN()
+        let errorHandler = NotificationsErrorHandler_CN()
         let viewModel = NotificationsViewModel_CN(notificationRepository: repo,
                                                   router: router,
-                                                  localPushNotificationService: localNotificationService)
+                                                  errorHandler: errorHandler)
         let view = NotificationsViewController_CN(viewModel: viewModel,
                                                   nibName: nil,
                                                   bundle: nil)

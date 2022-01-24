@@ -12,7 +12,14 @@ import UIKit
 class NotificationsCollectionViewCell_CN: UICollectionViewCell {
     
     static let identifier = String(describing: NotificationsCollectionViewCell_CN.self)
-//    private let viewModel: NotificationsCollectionCellViewModelProtocol_CN
+    
+    
+    // MARK: - Dependencies
+    
+//    var viewModel: NotificationsCellViewModelProtocol_CN?
+    
+    
+    // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,9 +36,9 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
     
     // MARK: - Static views prop
     
-    private var titleButton: UIButton = {
+    var titleButton: UIButton = {
         let button = UIButton()
-        button.setTitle("16:09", for: .normal)
+        button.setTitle("", for: .normal)
         button.setTitleColor(.label, for: .normal)
         button.setImage(UIImage(systemName: "bell.fill"),
                         for: .normal)

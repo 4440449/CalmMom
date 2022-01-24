@@ -25,5 +25,7 @@ extension Notification_CN {
 }
 
 enum NotificationMapperError: Error {
+    //TODO: Подумать куда вынести ошибки т.к. генерирую ошибку не только в дата маппере
     case failureMapping(String)
+    case failureRemoving(String)
 }
