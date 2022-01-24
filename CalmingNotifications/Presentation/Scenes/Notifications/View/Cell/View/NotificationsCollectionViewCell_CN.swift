@@ -12,6 +12,7 @@ import UIKit
 class NotificationsCollectionViewCell_CN: UICollectionViewCell {
     
     static let identifier = String(describing: NotificationsCollectionViewCell_CN.self)
+//    private let viewModel: NotificationsCollectionCellViewModelProtocol_CN
     
     override init(frame: CGRect) {
         super.init(frame: frame)

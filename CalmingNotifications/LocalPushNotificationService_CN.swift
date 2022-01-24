@@ -10,16 +10,21 @@ import UserNotifications
 import Foundation
 
 
-protocol LocalNotificationServiceProtocol_CN {
-    func setNotification(at time: Date)
+protocol LocalPushNotificationServiceProtocol_CN {
+    // Collection interface
+    func addNewNotification(at time: Date) //async throws
+    func fetchNotifications() async -> [UNNotificationRequest]
+    // Cell interface
+    func changeNotification(with identifier: String, new time: Date) async throws
+    func removeNotification(with identifire: String) async
 }
 
 
-final class LocalNotificationService_CN: LocalNotificationServiceProtocol_CN {
-    
+final class LocalPushNotificationService_CN: LocalPushNotificationServiceProtocol_CN {
+  
     private let center = UNUserNotificationCenter.current()
     
-    func setNotification(at time: Date) {
+    func addNewNotification(at time: Date) {
         let content: UNMutableNotificationContent = {
             let cont = UNMutableNotificationContent()
             cont.title = "Moms' Exhale"
@@ -43,4 +48,23 @@ final class LocalNotificationService_CN: LocalNotificationServiceProtocol_CN {
         }
         
     }
+    
+    func fetchNotifications() async -> [UNNotificationRequest] {
+        let notif = await center.pendingNotificationRequests()
+        return notif
+    }
+    
+    func removeNotification(with identifire: String) async {
+        center.removePendingNotificationRequests(withIdentifiers: [identifire])
+    }
+    
+    func changeNotification(with identifier: String, new time: Date) async throws {
+        await removeNotification(with: identifier)
+        // await
+        addNewNotification(at: time)
+    }
+    
+
+    
+    
 }

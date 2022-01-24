@@ -7,39 +7,75 @@
 //
 
 import Foundation
+import MommysEye
 
 
 protocol NotificationsViewModelProtocol_CN {
+    func viewDidLoad()
     func dateSelected(date: Date)
 }
 
+protocol NotificationsHeaderViewModelProtocol_CN {
+    func addNewNotification(date: Date)
+}
 
-final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN {
-    
+
+final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
+                                       NotificationsHeaderViewModelProtocol_CN {
     private let notificationRepository: NotificationGateway_CN
     private let router: NotificationsRouter_CN
-    private let localNotificationService: LocalNotificationServiceProtocol_CN
+    private let localPushNotificationService: LocalPushNotificationServiceProtocol_CN
     
     init(notificationRepository: NotificationGateway_CN,
          router: NotificationsRouter_CN,
-         localNotificationService: LocalNotificationServiceProtocol_CN) {
+         localPushNotificationService: LocalPushNotificationServiceProtocol_CN) {
         self.notificationRepository = notificationRepository
         self.router = router
-        self.localNotificationService = localNotificationService
+        self.localPushNotificationService = localPushNotificationService
     }
     
+    // MARK: - State
     
+    var notifications = Publisher(value: [Notification_CN]())
+    
+    
+    // MARK: - Private state / task
+    
+//    var task: Task<Any, Never>?
+    
+    
+    // MARK: - Collection interface
+    
+    func viewDidLoad() {
+        let notifTask = Task(priority: nil) {
+            let result = await self.localPushNotificationService.fetchNotifications()
+            var domainNotifications = [Notification_CN]()
+            // Вынести в отдельный маппер!
+            result.forEach {
+                let domainEntity = try! Notification_CN(notificationRequest: $0);
+                domainNotifications.append(domainEntity)
+            }
+            self.notifications.value = domainNotifications
+        }
+    }
 //    private var selectedDate: Date?
     
     func dateSelected(date: Date) {
         print("NotificationsViewModel_CN == \(date)")
-        localNotificationService.setNotification(at: date)
+        localPushNotificationService.addNewNotification(at: date)
     }
     
-//    func saveButtonTapped() {
-//        guard let date = selectedDate else { return }
-//        localNotificationService.setNotification(at: date)
-//    }
+
+    
+    
+    // MARK: - Header interface
+    
+    func addNewNotification(date: Date) {
+        let task = Task.init(priority: nil) {
+            self.localPushNotificationService.addNewNotification(at: date)
+        }
+    }
+    
     
     deinit {
         print("deinit NotificationsViewModel_CN")

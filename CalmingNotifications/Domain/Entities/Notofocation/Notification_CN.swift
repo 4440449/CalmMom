@@ -6,6 +6,13 @@
 //  Copyright © 2022 Max. All rights reserved.
 //
 
+import Foundation
+
+
 struct Notification_CN {
-    
+    let id: String
+    let time: DateComponents
 }
+
+
+

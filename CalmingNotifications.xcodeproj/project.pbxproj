@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,7 +19,12 @@
 		50A1CBA3278F6C92000F9BFC /* MenuViewController_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A1CBA2278F6C92000F9BFC /* MenuViewController_CN.swift */; };
 		94057F1E27973A32009B5A2B /* NotificationsCollectionViewCell_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94057F1D27973A32009B5A2B /* NotificationsCollectionViewCell_CN.swift */; };
 		94057F2027975249009B5A2B /* NotificationsCollectionHeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94057F1F27975249009B5A2B /* NotificationsCollectionHeaderReusableView.swift */; };
-		94800868279631B500D34D4B /* LocalNotificationService_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94800867279631B500D34D4B /* LocalNotificationService_CN.swift */; };
+		947850EE279E174200F1EEAC /* NotificationsCollectionCellViewModelProtocol_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947850ED279E174200F1EEAC /* NotificationsCollectionCellViewModelProtocol_CN.swift */; };
+		947850F3279E2B3600F1EEAC /* BabyNet in Frameworks */ = {isa = PBXBuildFile; productRef = 947850F2279E2B3600F1EEAC /* BabyNet */; };
+		947850F6279E2B4A00F1EEAC /* MommysEye in Frameworks */ = {isa = PBXBuildFile; productRef = 947850F5279E2B4A00F1EEAC /* MommysEye */; };
+		947850F8279E2F7000F1EEAC /* LocalPushNotificationServiceDTOMapperWrapper_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947850F7279E2F7000F1EEAC /* LocalPushNotificationServiceDTOMapperWrapper_CN.swift */; };
+		947850FB279E355500F1EEAC /* NotificationExtension_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947850FA279E355500F1EEAC /* NotificationExtension_CN.swift */; };
+		94800868279631B500D34D4B /* LocalPushNotificationService_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94800867279631B500D34D4B /* LocalPushNotificationService_CN.swift */; };
 		94EFC9A327923C5500CC6B47 /* MainViewModel_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EFC9A227923C5500CC6B47 /* MainViewModel_CN.swift */; };
 		94EFC9A627923D6F00CC6B47 /* QuoteCard_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EFC9A527923D6F00CC6B47 /* QuoteCard_CN.swift */; };
 		94EFC9AA27923E5600CC6B47 /* QuoteCardGateway_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EFC9A927923E5600CC6B47 /* QuoteCardGateway_CN.swift */; };
@@ -57,7 +62,10 @@
 		50A1CBA2278F6C92000F9BFC /* MenuViewController_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController_CN.swift; sourceTree = "<group>"; };
 		94057F1D27973A32009B5A2B /* NotificationsCollectionViewCell_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsCollectionViewCell_CN.swift; sourceTree = "<group>"; };
 		94057F1F27975249009B5A2B /* NotificationsCollectionHeaderReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsCollectionHeaderReusableView.swift; sourceTree = "<group>"; };
-		94800867279631B500D34D4B /* LocalNotificationService_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationService_CN.swift; sourceTree = "<group>"; };
+		947850ED279E174200F1EEAC /* NotificationsCollectionCellViewModelProtocol_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsCollectionCellViewModelProtocol_CN.swift; sourceTree = "<group>"; };
+		947850F7279E2F7000F1EEAC /* LocalPushNotificationServiceDTOMapperWrapper_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPushNotificationServiceDTOMapperWrapper_CN.swift; sourceTree = "<group>"; };
+		947850FA279E355500F1EEAC /* NotificationExtension_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtension_CN.swift; sourceTree = "<group>"; };
+		94800867279631B500D34D4B /* LocalPushNotificationService_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPushNotificationService_CN.swift; sourceTree = "<group>"; };
 		94EFC9A227923C5500CC6B47 /* MainViewModel_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel_CN.swift; sourceTree = "<group>"; };
 		94EFC9A527923D6F00CC6B47 /* QuoteCard_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCard_CN.swift; sourceTree = "<group>"; };
 		94EFC9A927923E5600CC6B47 /* QuoteCardGateway_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCardGateway_CN.swift; sourceTree = "<group>"; };
@@ -85,6 +93,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				947850F6279E2B4A00F1EEAC /* MommysEye in Frameworks */,
+				947850F3279E2B3600F1EEAC /* BabyNet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,7 +122,8 @@
 			children = (
 				50A1CB86278CCC63000F9BFC /* AppDelegate.swift */,
 				50A1CB88278CCC63000F9BFC /* SceneDelegate.swift */,
-				94800867279631B500D34D4B /* LocalNotificationService_CN.swift */,
+				94800867279631B500D34D4B /* LocalPushNotificationService_CN.swift */,
+				947850F7279E2F7000F1EEAC /* LocalPushNotificationServiceDTOMapperWrapper_CN.swift */,
 				94EFC9A427923D5200CC6B47 /* Domain */,
 				94EFC9AB27923F5400CC6B47 /* Data */,
 				94EFC99D279239D500CC6B47 /* Presentation */,
@@ -121,6 +132,39 @@
 				50A1CB94278CCC6F000F9BFC /* Info.plist */,
 			);
 			path = CalmingNotifications;
+			sourceTree = "<group>";
+		};
+		947850EC279E166900F1EEAC /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				947850EF279E174900F1EEAC /* View */,
+				947850F0279E175000F1EEAC /* ViewModel */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		947850EF279E174900F1EEAC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				94057F1D27973A32009B5A2B /* NotificationsCollectionViewCell_CN.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		947850F0279E175000F1EEAC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				947850ED279E174200F1EEAC /* NotificationsCollectionCellViewModelProtocol_CN.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		947850F9279E353C00F1EEAC /* Gateway */ = {
+			isa = PBXGroup;
+			children = (
+				94EFC9C527924D9800CC6B47 /* NotificationGateway_CN.swift */,
+			);
+			path = Gateway;
 			sourceTree = "<group>";
 		};
 		94A4AD192794F58F00F1F5DF /* TabBar */ = {
@@ -199,7 +243,7 @@
 			children = (
 				50A1CBA0278F6C50000F9BFC /* NotificationsViewController_CN.swift */,
 				94057F1F27975249009B5A2B /* NotificationsCollectionHeaderReusableView.swift */,
-				94057F1D27973A32009B5A2B /* NotificationsCollectionViewCell_CN.swift */,
+				947850EC279E166900F1EEAC /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -325,7 +369,8 @@
 			isa = PBXGroup;
 			children = (
 				94EFC9C327924D7C00CC6B47 /* Notification_CN.swift */,
-				94EFC9C527924D9800CC6B47 /* NotificationGateway_CN.swift */,
+				947850FA279E355500F1EEAC /* NotificationExtension_CN.swift */,
+				947850F9279E353C00F1EEAC /* Gateway */,
 			);
 			path = Notofocation;
 			sourceTree = "<group>";
@@ -412,6 +457,10 @@
 			dependencies = (
 			);
 			name = CalmingNotifications;
+			packageProductDependencies = (
+				947850F2279E2B3600F1EEAC /* BabyNet */,
+				947850F5279E2B4A00F1EEAC /* MommysEye */,
+			);
 			productName = CalmingNotifications;
 			productReference = 50A1CB83278CCC63000F9BFC /* CalmingNotifications.app */;
 			productType = "com.apple.product-type.application";
@@ -440,6 +489,10 @@
 				Base,
 			);
 			mainGroup = 50A1CB7A278CCC63000F9BFC;
+			packageReferences = (
+				947850F1279E2B3600F1EEAC /* XCRemoteSwiftPackageReference "BabyNet" */,
+				947850F4279E2B4A00F1EEAC /* XCRemoteSwiftPackageReference "MommysEye" */,
+			);
 			productRefGroup = 50A1CB84278CCC63000F9BFC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -475,9 +528,11 @@
 				50A1CB9F278F63B0000F9BFC /* MainTabBarViewController_CN.swift in Sources */,
 				94EFC9AD27923F7C00CC6B47 /* QuoteCardRepository_CN.swift in Sources */,
 				94EFC9A327923C5500CC6B47 /* MainViewModel_CN.swift in Sources */,
+				947850EE279E174200F1EEAC /* NotificationsCollectionCellViewModelProtocol_CN.swift in Sources */,
 				94EFC9DE2792535600CC6B47 /* MenuSceneConfigurator_CN.swift in Sources */,
 				94EFC9CF27924ECB00CC6B47 /* NotificationPersistenceRepository_CN.swift in Sources */,
 				94EFC9C127924CF600CC6B47 /* NotificationsRouter_CN.swift in Sources */,
+				947850FB279E355500F1EEAC /* NotificationExtension_CN.swift in Sources */,
 				94EFC9C627924D9800CC6B47 /* NotificationGateway_CN.swift in Sources */,
 				94EFC9B82792473E00CC6B47 /* MainSceneConfigurator_CN.swift in Sources */,
 				94EFC9D227924EF500CC6B47 /* NotificationSceneConfigurator_CN.swift in Sources */,
@@ -491,11 +546,12 @@
 				94EFC9C427924D7C00CC6B47 /* Notification_CN.swift in Sources */,
 				94EFC9A627923D6F00CC6B47 /* QuoteCard_CN.swift in Sources */,
 				94EFC9BF27924C0F00CC6B47 /* NotificationsViewModel_CN.swift in Sources */,
-				94800868279631B500D34D4B /* LocalNotificationService_CN.swift in Sources */,
+				94800868279631B500D34D4B /* LocalPushNotificationService_CN.swift in Sources */,
 				50A1CB89278CCC63000F9BFC /* SceneDelegate.swift in Sources */,
 				94EFC9CD27924EA200CC6B47 /* NotificationNetworkRepository_CN.swift in Sources */,
 				50A1CB9B278CF04B000F9BFC /* MainCollectionViewCell_CN.swift in Sources */,
 				94EFC9B32792409100CC6B47 /* QuoteCardNetworkRepository.swift in Sources */,
+				947850F8279E2F7000F1EEAC /* LocalPushNotificationServiceDTOMapperWrapper_CN.swift in Sources */,
 				50A1CBA3278F6C92000F9BFC /* MenuViewController_CN.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -690,6 +746,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		947850F1279E2B3600F1EEAC /* XCRemoteSwiftPackageReference "BabyNet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:4440449/BabyNet.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		947850F4279E2B4A00F1EEAC /* XCRemoteSwiftPackageReference "MommysEye" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:4440449/MommysEye.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		947850F2279E2B3600F1EEAC /* BabyNet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 947850F1279E2B3600F1EEAC /* XCRemoteSwiftPackageReference "BabyNet" */;
+			productName = BabyNet;
+		};
+		947850F5279E2B4A00F1EEAC /* MommysEye */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 947850F4279E2B4A00F1EEAC /* XCRemoteSwiftPackageReference "MommysEye" */;
+			productName = MommysEye;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 50A1CB7B278CCC63000F9BFC /* Project object */;
 }
