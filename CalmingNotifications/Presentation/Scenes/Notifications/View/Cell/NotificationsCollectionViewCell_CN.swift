@@ -49,7 +49,7 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
     
     // MARK: - Dynamic views prop
     
-    private var datePicker: UIDatePicker = {
+     var datePicker: UIDatePicker = {
         let picker = UIDatePicker()
         if #available(iOS 14.0, *) {
             picker.preferredDatePickerStyle = .wheels

@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class NotificationsCollectionHeaderReusableView: UICollectionReusableView {
     
     static let identifier = String(describing: NotificationsCollectionHeaderReusableView.self)

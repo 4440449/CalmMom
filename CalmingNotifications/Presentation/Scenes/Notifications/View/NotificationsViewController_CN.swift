@@ -59,6 +59,7 @@ class NotificationsViewController_CN: UIViewController,
         super.viewDidLoad()
         view.addSubview(collectionView)
         setupObservers()
+        viewModel.viewDidLoad()
     }
     
     
@@ -102,16 +103,20 @@ class NotificationsViewController_CN: UIViewController,
     //MARK: - Data source
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 7
-//        return viewModel.numberOfItems()
+        return viewModel.notifications.value.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NotificationsCollectionViewCell_CN.identifier, for: indexPath) as? NotificationsCollectionViewCell_CN else { fatalError() }
-//        cell.titleButton.titleLabel?.text = viewModel.notifications.value[indexPath.row].time.description
+        
+        let calendar = Calendar.current
+        guard let time = calendar.date(from: viewModel.notifications.value[indexPath.row].time) else { return cell }
+        let formattedTime = time.hh_mm()
+        cell.datePicker.date = time
+        cell.titleButton.setTitle(formattedTime, for: .normal)
         return cell
     }
-    
+      
     
     //MARK: - Delegate
     
@@ -123,12 +128,11 @@ class NotificationsViewController_CN: UIViewController,
             // Ячейка закрыта ==> раскрываю, устанавливаю вьюхи
             targetCell.animateAddingDynamicViews()
             selectedIndex = indexPath.row
-//            collectionView.performBatchUpdates(nil, completion: nil)
         case _ where selectedIndex == indexPath.row :
             // Тап на ту же ячейку ==> ячейка открыта ==> закрываю, удалаяю вьюхи, обнуляю индекс
             targetCell.animateRemovingDynamicViews()
             selectedIndex = -1
-//            collectionView.performBatchUpdates(nil, completion: nil)
+            //            collectionView.performBatchUpdates(nil, completion: nil)
         case _ where selectedIndex != indexPath.row :
             // Ячейка не закрыта, условие '== -1' проверено выше ==> тап на другую закрытую ячейку ==> закрываю текущую открытую, удаляю вьюхи ==> открываю новую по index, устанавливаю вьюхи
             guard let closingCell = collectionView.cellForItem(at: IndexPath(row: selectedIndex, section: 0)) as? NotificationsCollectionViewCell_CN else { return }
@@ -143,10 +147,22 @@ class NotificationsViewController_CN: UIViewController,
                                              animated: true)
         }
     }
-
+    
     
     deinit {
         print("deinit NotificationsViewController_CN")
     }
     
+}
+
+
+
+extension Date {
+    func hh_mm() -> String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ru_RU")
+        formatter.timeStyle = .short
+        let formatDate = formatter.string(from: self)
+        return formatDate
+    }
 }

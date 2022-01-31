@@ -57,14 +57,15 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
     
     // MARK: - Private state / Task
     
-    private var task: Task<(), Never>? { willSet { self.task?.cancel() } }
+    private var task: Task<(), Never>?
+    //{ willSet { print("willSet task cancel"); self.task?.cancel() } }
     
     
     // MARK: - Collection interface
     
     func viewDidLoad() {
+        //            self.isLoading = .loading
         task = Task(priority: nil) {
-//            self.isLoading = .loading
             do {
                 let result = try await self.notificationRepository.fetch()
                 self.notifications.value = result

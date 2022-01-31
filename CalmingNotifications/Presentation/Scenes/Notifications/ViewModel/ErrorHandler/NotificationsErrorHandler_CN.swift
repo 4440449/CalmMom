@@ -17,6 +17,7 @@ protocol NotificationsErrorHandlerProtocol_CN {
 final class NotificationsErrorHandler_CN: NotificationsErrorHandlerProtocol_CN {
     
     func handle(error: Error) -> String {
+        print("error notif --> \(error)")
         return ""
     }
 }
