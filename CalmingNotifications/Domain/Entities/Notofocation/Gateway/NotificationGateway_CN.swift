@@ -12,9 +12,8 @@ import Foundation
 protocol NotificationGateway_CN {
     
     func fetch() async throws -> [Notification_CN]
-    func addNew(at time: Date) async throws
+    func addNew(at time: Date) async throws -> [Notification_CN]
     // Cell interface
-    func change(with identifier: String, new time: Date) async throws
-    func remove(with identifire: String) async throws
-    
+    func change(with identifier: String, new time: Date) async throws -> [Notification_CN]
+    func remove(with identifire: String) async throws -> [Notification_CN]
 }

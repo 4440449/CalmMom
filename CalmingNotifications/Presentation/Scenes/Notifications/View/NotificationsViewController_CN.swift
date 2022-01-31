@@ -67,7 +67,16 @@ class NotificationsViewController_CN: UIViewController,
     
     private func setupObservers() {
         viewModel.notifications.subscribe(observer: self) { [weak self] _ in
+            
+//            self?.collectionView.reloadData()
+            guard let strongSelf = self else { return }
+//            guard let targetCell = strongSelf.collectionView.cellForItem(at: IndexPath(row: strongSelf.selectedIndex, section: 0)) as? NotificationsCollectionViewCell_CN else { return }
+//            targetCell.animateRemovingDynamicViews()
+            self?.selectedIndex = -1
             self?.collectionView.reloadData()
+//            self?.collectionView.performBatchUpdates(nil, completion: nil)
+
+//            strongSelf.collectionView.delegate?.collectionView?(strongSelf.collectionView, didSelectItemAt: IndexPath(row: strongSelf.selectedIndex, section: 0))
         }
     }
     
@@ -96,6 +105,8 @@ class NotificationsViewController_CN: UIViewController,
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: NotificationsCollectionHeaderReusableView.identifier, for: indexPath) as? NotificationsCollectionHeaderReusableView else { fatalError() }
         //        header.setupLayoutViews()
+        header.setupDependencies(viewModel: viewModel)
+        
         return header
     }
     
@@ -108,12 +119,8 @@ class NotificationsViewController_CN: UIViewController,
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NotificationsCollectionViewCell_CN.identifier, for: indexPath) as? NotificationsCollectionViewCell_CN else { fatalError() }
-        
-        let calendar = Calendar.current
-        guard let time = calendar.date(from: viewModel.notifications.value[indexPath.row].time) else { return cell }
-        let formattedTime = time.hh_mm()
-        cell.datePicker.date = time
-        cell.titleButton.setTitle(formattedTime, for: .normal)
+        cell.setupDependencies(viewModel: viewModel, index: indexPath.row)
+        cell.reloadData(dateComponents: viewModel.notifications.value[indexPath.row].time)
         return cell
     }
       

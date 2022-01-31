@@ -11,7 +11,22 @@ import UIKit
 
 class NotificationsCollectionHeaderReusableView: UICollectionReusableView {
     
+    // MARK: - Static
+    
     static let identifier = String(describing: NotificationsCollectionHeaderReusableView.self)
+    
+    
+    // MARK: - Dependencies
+    
+    private var viewModel: NotificationsHeaderViewModelProtocol_CN?
+    
+    func setupDependencies<VM>(viewModel: VM) {
+        guard let vm = viewModel as? NotificationsHeaderViewModelProtocol_CN else { return }
+        self.viewModel = vm
+    }
+    
+    
+    // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,6 +38,9 @@ class NotificationsCollectionHeaderReusableView: UICollectionReusableView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
+    // MARK: - UI
     
     private var title: UILabel = {
         let label = UILabel()
@@ -41,19 +59,22 @@ class NotificationsCollectionHeaderReusableView: UICollectionReusableView {
         button.addTarget(self, action: #selector(addNewNotificationAction), for: .touchUpInside)
         return button
     }()
- 
-    
-    @objc private func addNewNotificationAction() {
-        print("addNewNotificationAction")
-    }
     
     func setupLayoutViews() {
         title.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         title.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-
+        
         addNewNotificationButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
         addNewNotificationButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
     }
+    
+    
+    // MARK: - Actions
+    
+    @objc private func addNewNotificationAction() {
+        viewModel?.addNewNotificationButtonTapped(date: Date())
+    }
+    
     
 }
 

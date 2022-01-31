@@ -16,7 +16,14 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
     
     // MARK: - Dependencies
     
-//    var viewModel: NotificationsCellViewModelProtocol_CN?
+    var viewModel: NotificationsCellViewModelProtocol_CN?
+    var index: Int?
+    
+    func setupDependencies<VM>(viewModel: VM, index: Int) {
+        guard let vm = viewModel as? NotificationsCellViewModelProtocol_CN else { return }
+        self.viewModel = vm
+        self.index = index
+    }
     
     
     // MARK: - Init
@@ -68,9 +75,32 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
         button.setTitleColor(.label, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.alpha = 0
-        //        button.addTarget(self, action: #selector(addNotificationButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         return button
     }()
+    
+    private var deleteButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "trash.fill"),
+                        for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.alpha = 0
+        button.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc func saveButtonTapped() {
+        guard let index = index else { return }
+        viewModel?.saveButtonTapped(cellWithIndex: index, new: datePicker.date)
+    }
+    
+    
+    @objc func deleteButtonTapped() {
+        guard let index = index else { return }
+        viewModel?.deleteButtonTapped(cellWithIndex: index)
+    }
+    
+    
     
     
     // MARK: - Cell's UI
@@ -102,10 +132,12 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
     func animateAddingDynamicViews() {
         contentView.addSubview(datePicker)
         contentView.addSubview(saveButton)
+        contentView.addSubview(deleteButton)
         setupDynamicViewsLayout()
         UIView.animate(withDuration: 0.4, delay: 0.05, options: .curveEaseIn) {
             self.datePicker.alpha = 1
             self.saveButton.alpha = 1
+            self.deleteButton.alpha = 1
         }
     }
     
@@ -113,8 +145,10 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
         UIView.animate(withDuration: 0.13, delay: 0, options: .curveLinear) {
             self.datePicker.alpha = 0
             self.saveButton.alpha = 0
+            self.deleteButton.alpha = 0
         } completion: { _ in
             self.saveButton.removeFromSuperview()
+            self.deleteButton.removeFromSuperview()
             self.datePicker.removeFromSuperview()
         }
     }
@@ -129,12 +163,39 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
              
              saveButton.topAnchor.constraint(equalTo: contentView.topAnchor,
                                              constant: 10),
-             saveButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,
+             saveButton.trailingAnchor.constraint(equalTo: deleteButton.leadingAnchor,
                                                   constant: -20),
-             saveButton.heightAnchor.constraint(equalToConstant: (contentView.bounds.height / 2.5))] )
+             saveButton.heightAnchor.constraint(equalToConstant: (contentView.bounds.height / 2.5)),
+             deleteButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+             deleteButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+             deleteButton.heightAnchor.constraint(equalToConstant: contentView.bounds.height / 2.5)
+            ] )
         // Bottom
         //        saveButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         //        saveButton.topAnchor.constraint(equalTo: datePicker.bottomAnchor, constant: 10).isActive = true
     }
     // Top
+    
+    func reloadData(dateComponents: DateComponents) {
+        let calendar = Calendar.current
+        guard let time = calendar.date(from: dateComponents) else { return }
+        let formattedTime = time.hh_mm()
+        datePicker.date = time
+        titleButton.setTitle(" \(formattedTime)", for: .normal)
+        //
+        animateRemovingDynamicViews2()
+    }
+    
+    
+    func animateRemovingDynamicViews2() {
+        UIView.animate(withDuration: 0, delay: 0, options: .curveLinear) {
+            self.datePicker.alpha = 0
+            self.saveButton.alpha = 0
+            self.deleteButton.alpha = 0
+        } completion: { _ in
+            self.saveButton.removeFromSuperview()
+            self.deleteButton.removeFromSuperview()
+            self.datePicker.removeFromSuperview()
+        }
+    }
 }

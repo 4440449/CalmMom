@@ -35,16 +35,22 @@ final class NotificationRepository_CN: NotificationGateway_CN {
         return domainEntities
     }
     
-    func addNew(at time: Date) async throws {
+    func addNew(at time: Date) async throws -> [Notification_CN] {
         try await localPushNotificationsService.addNewNotification(at: time)
+        let result = try await fetch()
+        return result
     }
     
-    func change(with identifier: String, new time: Date) async throws {
+    func change(with identifier: String, new time: Date) async throws -> [Notification_CN] {
         try await localPushNotificationsService.changeNotification(with: identifier, new: time)
+        let result = try await fetch()
+        return result
     }
     
-    func remove(with identifire: String) async throws {
+    func remove(with identifire: String) async throws -> [Notification_CN] {
         try await localPushNotificationsService.removeNotification(with: identifire)
+        let result = try await fetch()
+        return result
     }
     
     

@@ -12,7 +12,7 @@ import MommysEye
 
 protocol NotificationsViewModelProtocol_CN {
     func viewDidLoad()
-    func numberOfItems() -> Int
+//    func numberOfItems() -> Int
     
     var notifications: Publisher<[Notification_CN]> { get }
     var error: Publisher<String> { get }
@@ -24,6 +24,7 @@ protocol NotificationsHeaderViewModelProtocol_CN {
 }
 
 protocol NotificationsCellViewModelProtocol_CN {
+    var notifications: Publisher<[Notification_CN]> { get }
     func saveButtonTapped(cellWithIndex index: Int, new time: Date)
     func deleteButtonTapped(cellWithIndex index: Int)
 }
@@ -57,8 +58,7 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
     
     // MARK: - Private state / Task
     
-    private var task: Task<(), Never>?
-    //{ willSet { print("willSet task cancel"); self.task?.cancel() } }
+    private var task: Task<(), Never>? { willSet { self.task?.cancel() } }
     
     
     // MARK: - Collection interface
@@ -83,9 +83,9 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
         
     }
     
-    func numberOfItems() -> Int {
-        return notifications.value.count
-    }
+//    func numberOfItems() -> Int {
+//        return notifications.value.count
+//    }
     
     
     // MARK: - Header interface
@@ -93,7 +93,8 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
     func addNewNotificationButtonTapped(date: Date) {
         task = Task(priority: nil) {
             do {
-                try await self.notificationRepository.addNew(at: date)
+                let result = try await self.notificationRepository.addNew(at: date)
+                self.notifications.value = result
             } catch let error {
                 self.error.value = self.errorHandler.handle(error: error)
             }
@@ -104,12 +105,14 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
     // MARK: - Cell interface
     
     func saveButtonTapped(cellWithIndex index: Int, new time: Date) {
+//        time !== current.time
         task = Task(priority: nil) {
             do {
-                try await self.notificationRepository.change(with: notifications.value[index].id, new: time)
-                let calendar = Calendar.current
-                let newTime = calendar.dateComponents([.hour, .minute], from: time)
-                self.notifications.value[index].time = newTime
+                let result = try await self.notificationRepository.change(with: notifications.value[index].id, new: time)
+                self.notifications.value = result
+//                let calendar = Calendar.current
+//                let newTime = calendar.dateComponents([.hour, .minute], from: time)
+//                self.notifications.value[index].time = newTime
             } catch let error {
                 self.error.value = self.errorHandler.handle(error: error)
             }
@@ -119,8 +122,9 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
     func deleteButtonTapped(cellWithIndex index: Int) {
         task = Task(priority: nil) {
             do {
-                try await notificationRepository.remove(with: self.notifications.value[index].id)
-                self.notifications.value.remove(at: index)
+                let result = try await notificationRepository.remove(with: self.notifications.value[index].id)
+                self.notifications.value = result
+//                self.notifications.value.remove(at: index)
             } catch let error {
                 self.error.value = self.errorHandler.handle(error: error)
             }

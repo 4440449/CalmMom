@@ -47,9 +47,9 @@ final class LocalPushNotificationsService_CN: LocalPushNotificationsServiceProto
     }
     
     func fetchNotifications() async -> [UNNotificationRequest] {
-        let n = await center.pendingNotificationRequests()
+        let result = await center.pendingNotificationRequests()
 //        let notif = await center.pendingNotificationRequests()
-        return n
+        return result
     }
     
     func removeNotification(with identifire: String) async throws {
