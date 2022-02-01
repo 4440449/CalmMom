@@ -54,7 +54,7 @@ class NotificationsViewController_CN: UIViewController,
     
     private lazy var activity: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView()
-        indicator.center = self.collectionView.center
+        indicator.center = view.center
         indicator.hidesWhenStopped = true
         indicator.style = .large
         indicator.color = .systemGray
@@ -67,7 +67,7 @@ class NotificationsViewController_CN: UIViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(collectionView)
-        collectionView.addSubview(activity)
+        view.addSubview(activity)
         setupObservers()
         viewModel.viewDidLoad()
     }
