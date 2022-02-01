@@ -11,10 +11,8 @@ import Foundation
 
 
 protocol LocalPushNotificationsServiceProtocol_CN {
-    // Collection interface
     func fetchNotifications() async -> [UNNotificationRequest]
     func addNewNotification(at time: Date) async throws
-    // Cell interface
     func changeNotification(with identifier: String, new time: Date) async throws
     func removeNotification(with identifire: String) async throws
 }
@@ -23,6 +21,13 @@ protocol LocalPushNotificationsServiceProtocol_CN {
 final class LocalPushNotificationsService_CN: LocalPushNotificationsServiceProtocol_CN {
     
     private let center = UNUserNotificationCenter.current()
+    
+    
+    func fetchNotifications() async -> [UNNotificationRequest] {
+        let result = await center.pendingNotificationRequests()
+        return result
+    }
+    
     
     func addNewNotification(at time: Date) async throws {
         let content: UNMutableNotificationContent = {
@@ -33,25 +38,19 @@ final class LocalPushNotificationsService_CN: LocalPushNotificationsServiceProto
             return cont
         }()
         
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([.hour, .minute], from: time)
+        let components = Calendar.current.dateComponents([.hour, .minute], from: time)
         let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: true)
         let request = UNNotificationRequest(identifier: String(describing: components),
                                             content: content,
                                             trigger: trigger)
-        print("calendar = \(calendar)")
-        print("components = \(components)")
-        print("trigger = \(trigger)")
-        print("request = \(request)")
+//        print("calendar = \(calendar)")
+//        print("components = \(components)")
+//        print("trigger = \(trigger)")
+//        print("request = \(request.identifier)")
         try await center.add(request)
     }
     
-    func fetchNotifications() async -> [UNNotificationRequest] {
-        let result = await center.pendingNotificationRequests()
-//        let notif = await center.pendingNotificationRequests()
-        return result
-    }
-    
+  
     func removeNotification(with identifire: String) async throws {
         center.removePendingNotificationRequests(withIdentifiers: [identifire])
         let result = await fetchNotifications()
@@ -64,12 +63,10 @@ final class LocalPushNotificationsService_CN: LocalPushNotificationsServiceProto
         }
     }
     
+    
     func changeNotification(with identifier: String, new time: Date) async throws {
         try await removeNotification(with: identifier)
         try await addNewNotification(at: time)
     }
-    
-    
-    
     
 }

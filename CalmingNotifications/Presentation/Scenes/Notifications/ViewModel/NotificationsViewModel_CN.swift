@@ -12,11 +12,9 @@ import MommysEye
 
 protocol NotificationsViewModelProtocol_CN {
     func viewDidLoad()
-//    func numberOfItems() -> Int
-    
     var notifications: Publisher<[Notification_CN]> { get }
+    var isLoading: Publisher<Loading_CN> { get }
     var error: Publisher<String> { get }
-    //    func dateSelected(date: Date)
 }
 
 protocol NotificationsHeaderViewModelProtocol_CN {
@@ -24,7 +22,6 @@ protocol NotificationsHeaderViewModelProtocol_CN {
 }
 
 protocol NotificationsCellViewModelProtocol_CN {
-    var notifications: Publisher<[Notification_CN]> { get }
     func saveButtonTapped(cellWithIndex index: Int, new time: Date)
     func deleteButtonTapped(cellWithIndex index: Int)
 }
@@ -52,8 +49,8 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
     // MARK: - State / Observable
     
     var notifications = Publisher(value: [Notification_CN]())
+    var isLoading = Publisher(value: Loading_CN.false)
     var error = Publisher(value: "")
-//    var isLoading: IsLoading
     
     
     // MARK: - Private state / Task
@@ -64,7 +61,7 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
     // MARK: - Collection interface
     
     func viewDidLoad() {
-        //            self.isLoading = .loading
+        isLoading.value = .true
         task = Task(priority: nil) {
             do {
                 let result = try await self.notificationRepository.fetch()
@@ -72,25 +69,15 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
             } catch let error {
                 self.error.value = self.errorHandler.handle(error: error)
             }
-//            self.isLoading = .notLoading
+            self.isLoading.value = .false
         }
     }
-    
-    //    private var selectedDate: Date?
-    
-    func dateSelected(date: Date) {
-        print("NotificationsViewModel_CN == \(date)")
-        
-    }
-    
-//    func numberOfItems() -> Int {
-//        return notifications.value.count
-//    }
-    
+
     
     // MARK: - Header interface
     
     func addNewNotificationButtonTapped(date: Date) {
+        isLoading.value = .true
         task = Task(priority: nil) {
             do {
                 let result = try await self.notificationRepository.addNew(at: date)
@@ -98,6 +85,7 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
             } catch let error {
                 self.error.value = self.errorHandler.handle(error: error)
             }
+            self.isLoading.value = .false
         }
     }
     
@@ -105,29 +93,28 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
     // MARK: - Cell interface
     
     func saveButtonTapped(cellWithIndex index: Int, new time: Date) {
-//        time !== current.time
+        isLoading.value = .true
         task = Task(priority: nil) {
             do {
                 let result = try await self.notificationRepository.change(with: notifications.value[index].id, new: time)
                 self.notifications.value = result
-//                let calendar = Calendar.current
-//                let newTime = calendar.dateComponents([.hour, .minute], from: time)
-//                self.notifications.value[index].time = newTime
             } catch let error {
                 self.error.value = self.errorHandler.handle(error: error)
             }
+            self.isLoading.value = .false
         }
     }
     
     func deleteButtonTapped(cellWithIndex index: Int) {
+        isLoading.value = .true
         task = Task(priority: nil) {
             do {
                 let result = try await notificationRepository.remove(with: self.notifications.value[index].id)
                 self.notifications.value = result
-//                self.notifications.value.remove(at: index)
             } catch let error {
                 self.error.value = self.errorHandler.handle(error: error)
             }
+            self.isLoading.value = .false
         }
     }
     

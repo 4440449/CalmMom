@@ -52,13 +52,17 @@ class NotificationsCollectionHeaderReusableView: UICollectionReusableView {
     
     private var addNewNotificationButton: UIButton = {
         let button = UIButton()
-        button.tintColor = .black
+        button.tintColor = .label
         button.setImage(UIImage(systemName: "plus"), for: .normal)
         button.layer.cornerRadius = 20
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(addNewNotificationAction), for: .touchUpInside)
+        button.addTarget(self, action: #selector(addNewNotificationButtonTapped), for: .touchUpInside)
         return button
     }()
+    
+    @objc private func addNewNotificationButtonTapped() {
+        viewModel?.addNewNotificationButtonTapped(date: Date())
+    }
     
     func setupLayoutViews() {
         title.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
@@ -66,13 +70,6 @@ class NotificationsCollectionHeaderReusableView: UICollectionReusableView {
         
         addNewNotificationButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
         addNewNotificationButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-    }
-    
-    
-    // MARK: - Actions
-    
-    @objc private func addNewNotificationAction() {
-        viewModel?.addNewNotificationButtonTapped(date: Date())
     }
     
     

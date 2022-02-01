@@ -24,6 +24,7 @@
 		947850F8279E2F7000F1EEAC /* LocalPushNotificationServiceDTOMapperWrapper_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947850F7279E2F7000F1EEAC /* LocalPushNotificationServiceDTOMapperWrapper_CN.swift */; };
 		947850FB279E355500F1EEAC /* NotificationExtension_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947850FA279E355500F1EEAC /* NotificationExtension_CN.swift */; };
 		947850FD279ECD7D00F1EEAC /* NotificationsErrorHandler_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947850FC279ECD7D00F1EEAC /* NotificationsErrorHandler_CN.swift */; };
+		9478510227A9929700F1EEAC /* LoaderState_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9478510127A9929700F1EEAC /* LoaderState_CN.swift */; };
 		94800868279631B500D34D4B /* LocalPushNotificationsService_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94800867279631B500D34D4B /* LocalPushNotificationsService_CN.swift */; };
 		94EFC9A327923C5500CC6B47 /* MainViewModel_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EFC9A227923C5500CC6B47 /* MainViewModel_CN.swift */; };
 		94EFC9A627923D6F00CC6B47 /* QuoteCard_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EFC9A527923D6F00CC6B47 /* QuoteCard_CN.swift */; };
@@ -65,6 +66,7 @@
 		947850F7279E2F7000F1EEAC /* LocalPushNotificationServiceDTOMapperWrapper_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPushNotificationServiceDTOMapperWrapper_CN.swift; sourceTree = "<group>"; };
 		947850FA279E355500F1EEAC /* NotificationExtension_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtension_CN.swift; sourceTree = "<group>"; };
 		947850FC279ECD7D00F1EEAC /* NotificationsErrorHandler_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsErrorHandler_CN.swift; sourceTree = "<group>"; };
+		9478510127A9929700F1EEAC /* LoaderState_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderState_CN.swift; sourceTree = "<group>"; };
 		94800867279631B500D34D4B /* LocalPushNotificationsService_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPushNotificationsService_CN.swift; sourceTree = "<group>"; };
 		94EFC9A227923C5500CC6B47 /* MainViewModel_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel_CN.swift; sourceTree = "<group>"; };
 		94EFC9A527923D6F00CC6B47 /* QuoteCard_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCard_CN.swift; sourceTree = "<group>"; };
@@ -173,6 +175,14 @@
 			path = Header;
 			sourceTree = "<group>";
 		};
+		9478510327A992C000F1EEAC /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				9478510127A9929700F1EEAC /* LoaderState_CN.swift */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
 		94A4AD192794F58F00F1F5DF /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -220,6 +230,7 @@
 				94A4AD192794F58F00F1F5DF /* TabBar */,
 				94EFC9992792398400CC6B47 /* Main */,
 				94EFC99A279239B000CC6B47 /* Notifications */,
+				9478510327A992C000F1EEAC /* Infrastructure */,
 				94EFC99B279239BD00CC6B47 /* Menu */,
 			);
 			path = Scenes;
@@ -299,8 +310,8 @@
 		94EFC9AB27923F5400CC6B47 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				947850FF279ECFB500F1EEAC /* Infrastructure */,
 				94EFC9AE2792403E00CC6B47 /* Gateways */,
+				947850FF279ECFB500F1EEAC /* Infrastructure */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -534,6 +545,7 @@
 				94EFC9AA27923E5600CC6B47 /* QuoteCardGateway_CN.swift in Sources */,
 				94EFC9BC27924B3900CC6B47 /* CN_MainRouter.swift in Sources */,
 				50A1CB9F278F63B0000F9BFC /* MainTabBarViewController_CN.swift in Sources */,
+				9478510227A9929700F1EEAC /* LoaderState_CN.swift in Sources */,
 				94EFC9AD27923F7C00CC6B47 /* QuoteCardRepository_CN.swift in Sources */,
 				947850FD279ECD7D00F1EEAC /* NotificationsErrorHandler_CN.swift in Sources */,
 				94EFC9A327923C5500CC6B47 /* MainViewModel_CN.swift in Sources */,

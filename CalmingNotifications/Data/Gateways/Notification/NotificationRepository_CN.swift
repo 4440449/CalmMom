@@ -14,7 +14,7 @@ final class NotificationRepository_CN: NotificationGateway_CN {
     private let network: NotificationNetworkRepositoryProtocol_CN
     private let localStorage: NotificationPersistenceRepositoryProtocol_CN
     private let localPushNotificationsService: LocalPushNotificationsServiceProtocol_CN
-    private let dtoMapper: LocalPushNotificationsDTOMapperProtocol_CN
+//    private let dtoMapper: LocalPushNotificationsDTOMapperProtocol_CN
     
     init(network: NotificationNetworkRepositoryProtocol_CN,
          localStorage: NotificationPersistenceRepositoryProtocol_CN,
@@ -23,15 +23,17 @@ final class NotificationRepository_CN: NotificationGateway_CN {
         self.network = network
         self.localStorage = localStorage
         self.localPushNotificationsService = localPushNotificatiosnService
-        self.dtoMapper = dtoMapper
+//        self.dtoMapper = dtoMapper
     }
     
     
     func fetch() async throws -> [Notification_CN] {
+        sleep(2)
         let request = await localPushNotificationsService.fetchNotifications()
         var domainEntities = [Notification_CN]()
         try request.forEach { try domainEntities.append(Notification_CN(notificationRequest: $0))
         }
+        domainEntities.sort { $0.time < $1.time }
         return domainEntities
     }
     

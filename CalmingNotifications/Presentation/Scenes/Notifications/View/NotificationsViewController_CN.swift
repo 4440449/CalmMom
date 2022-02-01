@@ -52,12 +52,22 @@ class NotificationsViewController_CN: UIViewController,
         return collection
     }()
     
+    private lazy var activity: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.center = self.collectionView.center
+        indicator.hidesWhenStopped = true
+        indicator.style = .large
+        indicator.color = .systemGray
+        return indicator
+    }()
+    
     
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(collectionView)
+        collectionView.addSubview(activity)
         setupObservers()
         viewModel.viewDidLoad()
     }
@@ -67,16 +77,21 @@ class NotificationsViewController_CN: UIViewController,
     
     private func setupObservers() {
         viewModel.notifications.subscribe(observer: self) { [weak self] _ in
-            
-//            self?.collectionView.reloadData()
             guard let strongSelf = self else { return }
-//            guard let targetCell = strongSelf.collectionView.cellForItem(at: IndexPath(row: strongSelf.selectedIndex, section: 0)) as? NotificationsCollectionViewCell_CN else { return }
-//            targetCell.animateRemovingDynamicViews()
-            self?.selectedIndex = -1
-            self?.collectionView.reloadData()
-//            self?.collectionView.performBatchUpdates(nil, completion: nil)
-
-//            strongSelf.collectionView.delegate?.collectionView?(strongSelf.collectionView, didSelectItemAt: IndexPath(row: strongSelf.selectedIndex, section: 0))
+            strongSelf.selectedIndex = -1
+            UIView.transition(with: strongSelf.collectionView,
+                              duration: 0.3,
+                              options: .transitionCrossDissolve,
+                              animations: {
+                strongSelf.collectionView.reloadData()
+            })
+        }
+        
+        viewModel.isLoading.subscribe(observer: self) { [weak self] isLoading in
+            switch isLoading {
+            case .true: self?.activity.startAnimating()
+            case .false: self?.activity.stopAnimating()
+            }
         }
     }
     
@@ -104,9 +119,7 @@ class NotificationsViewController_CN: UIViewController,
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: NotificationsCollectionHeaderReusableView.identifier, for: indexPath) as? NotificationsCollectionHeaderReusableView else { fatalError() }
-        //        header.setupLayoutViews()
         header.setupDependencies(viewModel: viewModel)
-        
         return header
     }
     
@@ -120,7 +133,7 @@ class NotificationsViewController_CN: UIViewController,
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NotificationsCollectionViewCell_CN.identifier, for: indexPath) as? NotificationsCollectionViewCell_CN else { fatalError() }
         cell.setupDependencies(viewModel: viewModel, index: indexPath.row)
-        cell.reloadData(dateComponents: viewModel.notifications.value[indexPath.row].time)
+        cell.reloadData(date: viewModel.notifications.value[indexPath.row].time)
         return cell
     }
       
@@ -155,7 +168,6 @@ class NotificationsViewController_CN: UIViewController,
         }
     }
     
-    
     deinit {
         print("deinit NotificationsViewController_CN")
     }
@@ -163,13 +175,3 @@ class NotificationsViewController_CN: UIViewController,
 }
 
 
-
-extension Date {
-    func hh_mm() -> String {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "ru_RU")
-        formatter.timeStyle = .short
-        let formatDate = formatter.string(from: self)
-        return formatDate
-    }
-}
