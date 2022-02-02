@@ -8,5 +8,5 @@
 
 protocol QuoteCardGateway_CN {
     
-    func fetch() async -> QuoteCard_CN
+    func fetch() async -> [QuoteCard_CN]
 }

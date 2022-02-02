@@ -6,8 +6,9 @@
 //  Copyright © 2022 Max. All rights reserved.
 //
 
+import UIKit
 
 struct QuoteCard_CN {
     let quote: String
-    let imagePath: String
+    let image: UIImage
 }

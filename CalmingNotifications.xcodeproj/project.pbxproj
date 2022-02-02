@@ -13,7 +13,6 @@
 		50A1CB90278CCC6F000F9BFC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50A1CB8F278CCC6F000F9BFC /* Assets.xcassets */; };
 		50A1CB93278CCC6F000F9BFC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50A1CB91278CCC6F000F9BFC /* LaunchScreen.storyboard */; };
 		50A1CB9B278CF04B000F9BFC /* MainCollectionViewCell_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A1CB9A278CF04B000F9BFC /* MainCollectionViewCell_CN.swift */; };
-		50A1CB9D278D03B0000F9BFC /* MainUICollectionView_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A1CB9C278D03B0000F9BFC /* MainUICollectionView_CN.swift */; };
 		50A1CB9F278F63B0000F9BFC /* MainTabBarViewController_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A1CB9E278F63B0000F9BFC /* MainTabBarViewController_CN.swift */; };
 		50A1CBA1278F6C50000F9BFC /* NotificationsViewController_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A1CBA0278F6C50000F9BFC /* NotificationsViewController_CN.swift */; };
 		50A1CBA3278F6C92000F9BFC /* MenuViewController_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A1CBA2278F6C92000F9BFC /* MenuViewController_CN.swift */; };
@@ -57,7 +56,6 @@
 		50A1CB92278CCC6F000F9BFC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		50A1CB94278CCC6F000F9BFC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50A1CB9A278CF04B000F9BFC /* MainCollectionViewCell_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell_CN.swift; sourceTree = "<group>"; };
-		50A1CB9C278D03B0000F9BFC /* MainUICollectionView_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainUICollectionView_CN.swift; sourceTree = "<group>"; };
 		50A1CB9E278F63B0000F9BFC /* MainTabBarViewController_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController_CN.swift; sourceTree = "<group>"; };
 		50A1CBA0278F6C50000F9BFC /* NotificationsViewController_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController_CN.swift; sourceTree = "<group>"; };
 		50A1CBA2278F6C92000F9BFC /* MenuViewController_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController_CN.swift; sourceTree = "<group>"; };
@@ -249,7 +247,6 @@
 			isa = PBXGroup;
 			children = (
 				50A1CB8A278CCC63000F9BFC /* MainViewController_CN.swift */,
-				50A1CB9C278D03B0000F9BFC /* MainUICollectionView_CN.swift */,
 				50A1CB9A278CF04B000F9BFC /* MainCollectionViewCell_CN.swift */,
 			);
 			path = View;
@@ -561,7 +558,6 @@
 				94EFC9D42792500F00CC6B47 /* SceneConfigurator_CN.swift in Sources */,
 				94057F2027975249009B5A2B /* NotificationsCollectionHeaderReusableView.swift in Sources */,
 				94EFC9DB279252F100CC6B47 /* MenuRouter_CN.swift in Sources */,
-				50A1CB9D278D03B0000F9BFC /* MainUICollectionView_CN.swift in Sources */,
 				50A1CBA1278F6C50000F9BFC /* NotificationsViewController_CN.swift in Sources */,
 				94EFC9C427924D7C00CC6B47 /* Notification_CN.swift in Sources */,
 				94EFC9A627923D6F00CC6B47 /* QuoteCard_CN.swift in Sources */,

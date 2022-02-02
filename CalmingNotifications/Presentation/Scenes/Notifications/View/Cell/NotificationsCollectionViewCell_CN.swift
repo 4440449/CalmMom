@@ -23,6 +23,9 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
     
     private var index: Int?
     
+    
+    // MARK: - Cell's setup
+    
     func setupDependencies<VM>(viewModel: VM, index: Int) {
         guard let vm = viewModel as? NotificationsCellViewModelProtocol_CN else { return }
         self.viewModel = vm
@@ -43,6 +46,8 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    // MARK: - UI -
     
     // MARK: - Static views prop
     
@@ -115,7 +120,7 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
         contentView.layer.cornerRadius = 15
         contentView.backgroundColor = .systemBackground
         
-        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowColor = UIColor.label.cgColor
         self.layer.shadowRadius = 7
         self.layer.shadowOpacity = 0.1
         self.layer.shadowOffset = CGSize(width: 0, height: 10)
@@ -187,7 +192,6 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
     }
     
 }
-
 
 
 

@@ -32,37 +32,7 @@ class NotificationsViewController_CN: UIViewController,
     }
     
     
-    // MARK: - Views
-    
-    private lazy var collectionView: UICollectionView = {
-        let collection = UICollectionView(frame: view.bounds,
-                                          collectionViewLayout: UICollectionViewFlowLayout())
-        collection.register(NotificationsCollectionViewCell_CN.self,
-                            forCellWithReuseIdentifier: NotificationsCollectionViewCell_CN.identifier)
-        collection.register(NotificationsCollectionHeaderReusableView.self,
-                            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                            withReuseIdentifier: NotificationsCollectionHeaderReusableView.identifier)
-        collection.dataSource = self
-        collection.delegate = self
-        //        collection.contentInsetAdjustmentBehavior = .never
-        collection.showsVerticalScrollIndicator = false
-        collection.alwaysBounceVertical = true
-        collection.backgroundColor = .systemBackground
-        collection.contentInset.bottom = 40
-        return collection
-    }()
-    
-    private lazy var activity: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView()
-        indicator.center = view.center
-        indicator.hidesWhenStopped = true
-        indicator.style = .large
-        indicator.color = .systemGray
-        return indicator
-    }()
-    
-    
-    // MARK: - View lifecycle
+    // MARK: - View's lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,20 +71,36 @@ class NotificationsViewController_CN: UIViewController,
     private var selectedIndex = -1
     
     
-    //MARK: - Layout
+    // MARK: - UI -
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height = (selectedIndex == indexPath.row) ? collectionView.bounds.height / 3 : collectionView.bounds.height / 11
-        return CGSize(width: collectionView.bounds.width - 60,
-                      height: height)
-    }
+    private lazy var collectionView: UICollectionView = {
+        let collection = UICollectionView(frame: view.bounds,
+                                          collectionViewLayout: UICollectionViewFlowLayout())
+        collection.register(NotificationsCollectionViewCell_CN.self,
+                            forCellWithReuseIdentifier: NotificationsCollectionViewCell_CN.identifier)
+        collection.register(NotificationsCollectionHeaderReusableView.self,
+                            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                            withReuseIdentifier: NotificationsCollectionHeaderReusableView.identifier)
+        collection.dataSource = self
+        collection.delegate = self
+        //        collection.contentInsetAdjustmentBehavior = .never
+        collection.showsVerticalScrollIndicator = false
+        collection.alwaysBounceVertical = true
+        collection.backgroundColor = .systemBackground
+        collection.contentInset.bottom = 40
+        return collection
+    }()
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.bounds.width - 60,
-                      height: collectionView.bounds.height / 11)
-    }
+    private lazy var activity: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.center = view.center
+        indicator.hidesWhenStopped = true
+        indicator.style = .large
+        indicator.color = .systemGray
+        return indicator
+    }()
     
-    
+ 
     //MARK: - Header
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -167,6 +153,21 @@ class NotificationsViewController_CN: UIViewController,
                                              animated: true)
         }
     }
+    
+    
+    //MARK: - Layout
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let height = (selectedIndex == indexPath.row) ? collectionView.bounds.height / 3 : collectionView.bounds.height / 11
+        return CGSize(width: collectionView.bounds.width - 60,
+                      height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.bounds.width - 60,
+                      height: collectionView.bounds.height / 11)
+    }
+    
     
     deinit {
         print("deinit NotificationsViewController_CN")

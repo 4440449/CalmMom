@@ -20,9 +20,13 @@ protocol LocalPushNotificationsServiceProtocol_CN {
 
 final class LocalPushNotificationsService_CN: LocalPushNotificationsServiceProtocol_CN {
     
+    // MARK: - Dependencies
+
     private let center = UNUserNotificationCenter.current()
     
     
+    // MARK: - Interface
+
     func fetchNotifications() async -> [UNNotificationRequest] {
         let result = await center.pendingNotificationRequests()
         return result
@@ -38,15 +42,13 @@ final class LocalPushNotificationsService_CN: LocalPushNotificationsServiceProto
             return cont
         }()
         
-        let components = Calendar.current.dateComponents([.hour, .minute], from: time)
-        let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: true)
+        let components = Calendar.current.dateComponents([.hour, .minute],
+                                                         from: time)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: components,
+                                                    repeats: true)
         let request = UNNotificationRequest(identifier: String(describing: components),
                                             content: content,
                                             trigger: trigger)
-//        print("calendar = \(calendar)")
-//        print("components = \(components)")
-//        print("trigger = \(trigger)")
-//        print("request = \(request.identifier)")
         try await center.add(request)
     }
     
@@ -56,7 +58,7 @@ final class LocalPushNotificationsService_CN: LocalPushNotificationsServiceProto
         let result = await fetchNotifications()
         try result.forEach {
             if $0.identifier == identifire {
-                throw NotificationMapperError.failureRemoving("Removing notification error! Request with identifier --> \(identifire) not deleted")
+                throw LocalPushNotificationCenterError.failureRemoving("Removing notification error! Request with identifier --> \(identifire) not deleted")
             } else {
                 return
             }
@@ -69,4 +71,12 @@ final class LocalPushNotificationsService_CN: LocalPushNotificationsServiceProto
         try await addNewNotification(at: time)
     }
     
+}
+
+
+// MARK: - Errors
+
+enum LocalPushNotificationCenterError: Error {
+    case failureRemoving(String)
+    case failureMapping(String)
 }

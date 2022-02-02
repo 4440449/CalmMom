@@ -13,8 +13,13 @@ class MainViewController_CN: UIViewController,
                              UICollectionViewDataSource,
                              UICollectionViewDelegate {
     
+    // MARK: - Dependencies
+    
     private let viewModel: MainViewModelProtocol_CN
     
+    
+    // MARK: - Init
+
     init(viewModel: MainViewModelProtocol_CN,
          nibName nibNameOrNil: String?,
          bundle nibBundleOrNil: Bundle?) {
@@ -27,9 +32,45 @@ class MainViewController_CN: UIViewController,
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    // MARK: - View's lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.addSubview(collectionView)
+        view.addSubview(menuButton)
+        view.addSubview(activity)
+        setupLayout()
+        setupObservers()
+        viewModel.viewDidLoad()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        print("viewDidLayoutSubviews")
+    }
+    
+    
+    // MARK: - Input data flow
+    
+    private func setupObservers() {
+        viewModel.quoteCard.subscribe(observer: self) { [weak self] _ in
+            self?.collectionView.reloadData()
+        }
+        
+        viewModel.isLoading.subscribe(observer: self) { [weak self] isLoading in
+            switch isLoading {
+            case .true: self?.activity.startAnimating()
+            case .false: self?.activity.stopAnimating()
+            }
+        }
+    }
+    
+    // MARK: - UI -
+    
     private lazy var collectionView: UICollectionView = {
-        let collection = MainUICollectionView_CN(frame: view.bounds,
-                                                 collectionViewLayout: setupCollectionViewLayout())
+        let collection = UICollectionView(frame: view.bounds,
+                                          collectionViewLayout: setupCollectionViewLayout())
         collection.register(MainCollectionViewCell_CN.self,
                             forCellWithReuseIdentifier: MainCollectionViewCell_CN.identifier)
         collection.contentInsetAdjustmentBehavior = .never
@@ -45,25 +86,45 @@ class MainViewController_CN: UIViewController,
         button.setImage(UIImage(systemName: "ellipsis"), for: .normal)
         button.layer.cornerRadius = 20
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(menuButtonTapped), for: .touchUpInside)
+        button.addTarget(self,
+                         action: #selector(menuButtonTapped),
+                         for: .touchUpInside)
         return button
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.addSubview(collectionView)
-        view.addSubview(menuButton)
-        setupMenuButtonLayout()
-        //        tabBarItem = UITabBarItem(title: nil,
-        //                                  image: UIImage(systemName: "house"),
-        //                                  selectedImage: UIImage(systemName: "house.fill"))
-        viewModel.viewDidLoad()
+    @objc private func menuButtonTapped() {
+        viewModel.menuButtonTapped()
+        //        tabBarController?.show(CN_MenuViewController(), sender: nil)
+        
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        print("viewDidLayoutSubviews")
+    private lazy var activity: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.center = view.center
+        indicator.hidesWhenStopped = true
+        indicator.style = .large
+        indicator.color = .systemGray
+        return indicator
+    }()
+    
+    
+    //MARK: - Data source
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel.quoteCard.value.count
     }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell_CN.identifier, for: indexPath) as? MainCollectionViewCell_CN else { fatalError() }
+        cell.setupDependencies(viewModel: viewModel, index: indexPath.row)
+        cell.fillContent(quote: viewModel.quoteCard.value[indexPath.row].quote,
+                         image: viewModel.quoteCard.value[indexPath.row].image)
+       
+        return cell
+    }
+    
+    
+    //MARK: - Layout
     
     private func setupCollectionViewLayout() -> UICollectionViewCompositionalLayout {
             let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
@@ -83,34 +144,11 @@ class MainViewController_CN: UIViewController,
         }
     
     
-    private func setupMenuButtonLayout() {
+    private func setupLayout() {
         menuButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
         menuButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         menuButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
         menuButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
-    
-    
-//
-    
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
-    }
-    
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell_CN.identifier, for: indexPath) as? MainCollectionViewCell_CN else { fatalError() }
-        return cell
-    }
-    
-    
-    @objc private func menuButtonTapped() {
-        viewModel.menuButtonTapped()
-        //        tabBarController?.show(CN_MenuViewController(), sender: nil)
-        
-    }
-    
-    
-    
+      
 }

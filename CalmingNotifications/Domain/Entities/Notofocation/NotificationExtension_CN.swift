@@ -18,30 +18,8 @@ extension Notification_CN {
               let hour = trigger.dateComponents.hour,
               let minute = trigger.dateComponents.minute,
               let date = Calendar.current.date(from: DateComponents(hour: hour, minute: minute)) else {
-                  throw NotificationMapperError.failureMapping("Error to domain entity mapping! Invalid UNNotificationRequest.trigger --> \(notificationRequest.trigger.debugDescription)")
+                  throw LocalPushNotificationCenterError.failureMapping("Error to domain entity mapping! Invalid UNNotificationRequest.trigger --> \(notificationRequest.trigger.debugDescription)")
               }
         self.time = date
     }
 }
-
-enum NotificationMapperError: Error {
-    //TODO: Подумать куда вынести ошибки т.к. генерирую ошибку не только в дата маппере
-    case failureMapping(String)
-    case failureRemoving(String)
-}
-
-
-
-//extension Notification_CN {
-//    init(notificationRequest: UNNotificationRequest) throws {
-//        self.id = notificationRequest.identifier
-//
-//        guard let calendar = notificationRequest.trigger as? UNCalendarNotificationTrigger,
-//              let hour = calendar.dateComponents.hour,
-//              let minute = calendar.dateComponents.minute else {
-//                  throw NotificationMapperError.failureMapping("Error to domain entity mapping! Invalid UNNotificationRequest.trigger --> \(notificationRequest.trigger.debugDescription)")
-//              }
-//        let components = DateComponents(hour: hour, minute: minute)
-//        self.time = components
-//    }
-//}
