@@ -10,7 +10,7 @@ import UIKit
 
 
 protocol MainRouterProtocol_CN {
-    func showActivity(with content: QuoteCard_CN)
+    func showActivity(with content: UIImage)
     func move()
 }
 
@@ -29,11 +29,11 @@ final class CN_MainRouter: MainRouterProtocol_CN {
         navContainer.show(MenuSceneConfigurator_CN.configure(navigationContainer: navContainer), sender: nil)
     }
     
-    func showActivity(with content: QuoteCard_CN) {
+    func showActivity(with content: UIImage) {
         guard let navContainer = navigationContainer as? UITabBarController else {
             return
         }
-        let activityVC = UIActivityViewController(activityItems: [content.image],
+        let activityVC = UIActivityViewController(activityItems: [content],
                                                 applicationActivities: nil)
         navContainer.show(activityVC, sender: nil)
     }

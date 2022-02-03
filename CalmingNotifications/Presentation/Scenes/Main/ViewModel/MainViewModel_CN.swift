@@ -77,8 +77,50 @@ final class MainViewModel_CN: MainViewModelProtocol_CN,
     }
     
     func shareButtonTapped(cellWithIndex index: Int) {
-        router.showActivity(with: quoteCard.value[index])
+        let quoteCard = quoteCard.value[index]
+        guard let image = textToImage(drawText: quoteCard.quote,
+                                      inImage: quoteCard.image) else {
+            return
+        }
+        router.showActivity(with: image)
     }
     
     
+    // MARK: - Private
+    
+    private func textToImage(drawText text: String,
+                             inImage image: UIImage) -> UIImage? {
+        let textColor = UIColor.white
+        let textFont = UIFont(name: "Helvetica Bold", size: 18)!
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .center
+//        paragraphStyle.lineBreakMode = .byTruncatingTail
+        let scale = UIScreen.main.scale
+        UIGraphicsBeginImageContextWithOptions(image.size,
+                                               false,
+                                               scale)
+        let textFontAttributes: [NSAttributedString.Key : Any] = [
+            .font: textFont,
+            .foregroundColor: textColor,
+            .paragraphStyle: paragraphStyle
+            ]
+        image.draw(in: CGRect(origin: CGPoint.zero,
+                              size: image.size))
+        let offset: CGFloat = 20
+        let point = CGPoint(x: offset,
+                            y: image.size.height / 2)
+        let size = CGSize(width: image.size.width - (offset * 2),
+                          height: image.size.height)
+        let rect = CGRect(origin: point,
+                          size: size)
+        text.draw(in: rect,
+                  withAttributes: textFontAttributes)
+        guard let newImage = UIGraphicsGetImageFromCurrentImageContext() else {
+            return nil
+        }
+        UIGraphicsEndImageContext()
+        return newImage
+    }
+    
 }
+

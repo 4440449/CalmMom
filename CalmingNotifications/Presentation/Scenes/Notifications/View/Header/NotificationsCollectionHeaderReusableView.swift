@@ -50,13 +50,15 @@ class NotificationsCollectionHeaderReusableView: UICollectionReusableView {
         return label
     }()
     
-    private var addNewNotificationButton: UIButton = {
+    private lazy var addNewNotificationButton: UIButton = {
         let button = UIButton()
         button.tintColor = .label
         button.setImage(UIImage(systemName: "plus"), for: .normal)
         button.layer.cornerRadius = 20
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(addNewNotificationButtonTapped), for: .touchUpInside)
+        button.addTarget(self,
+                         action: #selector(addNewNotificationButtonTapped),
+                         for: .touchUpInside)
         return button
     }()
     
@@ -71,7 +73,6 @@ class NotificationsCollectionHeaderReusableView: UICollectionReusableView {
         addNewNotificationButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
         addNewNotificationButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
     }
-    
     
 }
 

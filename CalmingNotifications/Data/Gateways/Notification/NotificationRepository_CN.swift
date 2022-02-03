@@ -28,7 +28,7 @@ final class NotificationRepository_CN: NotificationGateway_CN {
     
     
     func fetch() async throws -> [Notification_CN] {
-        //sleep(2)
+//        sleep(2)
         let request = await localPushNotificationsService.fetchNotifications()
         var domainEntities = [Notification_CN]()
         try request.forEach { try domainEntities.append(Notification_CN(notificationRequest: $0))

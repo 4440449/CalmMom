@@ -58,8 +58,13 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
         button.setImage(UIImage(systemName: "bell.fill"),
                         for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
+//        button.addTarget(self, action: #selector(titleButtonTapped), for: .touchUpInside)
         return button
     }()
+    
+//    @objc private func titleButtonTapped() {
+//        print(#function)
+//    }
     
     
     // MARK: - Dynamic views prop
@@ -71,36 +76,38 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
         }
         picker.datePickerMode = .time
         picker.locale = Locale(identifier: "ru_RU")
-        picker.date = Date()
         picker.translatesAutoresizingMaskIntoConstraints = false
         picker.alpha = 0
         return picker
     }()
     
     
-    private var saveButton: UIButton = {
+    private lazy var saveButton: UIButton = {
         let button = UIButton()
         button.setTitle("Сохранить", for: .normal)
         button.setTitleColor(.label, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.alpha = 0
+        button.isUserInteractionEnabled = true
         button.addTarget(self,
                          action: #selector(saveButtonTapped),
                          for: .touchUpInside)
         return button
     }()
     
-    @objc func saveButtonTapped() {
+    @objc private func saveButtonTapped() {
+        print("tap save")
         guard let index = index else { return }
         viewModel?.saveButtonTapped(cellWithIndex: index, new: datePicker.date)
     }
     
     
-    private var deleteButton: UIButton = {
+    private lazy var deleteButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "trash.fill"),
                         for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.isUserInteractionEnabled = true
         button.alpha = 0
         button.addTarget(self,
                          action: #selector(deleteButtonTapped),
@@ -108,7 +115,8 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
         return button
     }()
     
-    @objc func deleteButtonTapped() {
+    @objc private func deleteButtonTapped() {
+        print("tap delete")
         guard let index = index else { return }
         viewModel?.deleteButtonTapped(cellWithIndex: index)
     }
@@ -152,8 +160,9 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
         }
     }
     
-    func animateRemovingDynamicViews() {
-        UIView.animate(withDuration: 0.13, delay: 0, options: .curveLinear) {
+    func animateRemovingDynamicViews(duration: TimeInterval) {
+        UIView.animate(withDuration: duration, delay: 0, options: .curveLinear) {
+//            UIView.animate(withDuration: 0.13, delay: 0, options: .curveLinear) {
             self.datePicker.alpha = 0
             self.saveButton.alpha = 0
             self.deleteButton.alpha = 0
@@ -171,7 +180,7 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
              datePicker.widthAnchor.constraint(equalToConstant: (contentView.bounds.width / 1.3)),
              datePicker.heightAnchor.constraint(equalToConstant: (contentView.bounds.height * 2.3)),
              datePicker.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-             
+
              saveButton.topAnchor.constraint(equalTo: contentView.topAnchor,
                                              constant: 10),
              saveButton.trailingAnchor.constraint(equalTo: deleteButton.leadingAnchor,
@@ -186,9 +195,9 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
 
     
     func reloadData(date: Date) {
-        datePicker.date = date
+        animateRemovingDynamicViews(duration: 0.0)
         titleButton.setTitle(" \(date.hh_mm())", for: .normal)
-        animateRemovingDynamicViews()
+        datePicker.date = date
     }
     
 }

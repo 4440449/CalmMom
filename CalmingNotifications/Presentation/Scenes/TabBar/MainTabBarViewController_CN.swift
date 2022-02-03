@@ -32,8 +32,7 @@ final class MainTabBarViewController_CN: UITabBarController {
     private func setupTabBarUI() {
         tabBar.backgroundImage = UIImage()
         tabBar.shadowImage = UIImage()
-//        tabBar.clipsToBounds = true
-        
+        tabBar.clipsToBounds = true
     }
     
     

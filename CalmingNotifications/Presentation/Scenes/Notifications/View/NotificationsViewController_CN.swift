@@ -49,12 +49,15 @@ class NotificationsViewController_CN: UIViewController,
         viewModel.notifications.subscribe(observer: self) { [weak self] _ in
             guard let strongSelf = self else { return }
             strongSelf.selectedIndex = -1
-            UIView.transition(with: strongSelf.collectionView,
-                              duration: 0.3,
-                              options: .transitionCrossDissolve,
-                              animations: {
-                strongSelf.collectionView.reloadData()
-            })
+            strongSelf.collectionView.reloadData()
+            
+//            UIView.transition(with: strongSelf.collectionView,
+//                              duration: 0.3,
+//                              options: .transitionCrossDissolve,
+//                              animations: {
+//                strongSelf.collectionView.reloadData()
+////                strongSelf.collectionView.performBatchUpdates(nil, completion: nil)
+//            })
         }
         
         viewModel.isLoading.subscribe(observer: self) { [weak self] isLoading in
@@ -136,13 +139,12 @@ class NotificationsViewController_CN: UIViewController,
             selectedIndex = indexPath.row
         case _ where selectedIndex == indexPath.row :
             // Тап на ту же ячейку ==> ячейка открыта ==> закрываю, удалаяю вьюхи, обнуляю индекс
-            targetCell.animateRemovingDynamicViews()
+            targetCell.animateRemovingDynamicViews(duration: 0.13)
             selectedIndex = -1
-            //            collectionView.performBatchUpdates(nil, completion: nil)
         case _ where selectedIndex != indexPath.row :
             // Ячейка не закрыта, условие '== -1' проверено выше ==> тап на другую закрытую ячейку ==> закрываю текущую открытую, удаляю вьюхи ==> открываю новую по index, устанавливаю вьюхи
             guard let closingCell = collectionView.cellForItem(at: IndexPath(row: selectedIndex, section: 0)) as? NotificationsCollectionViewCell_CN else { return }
-            closingCell.animateRemovingDynamicViews()
+            closingCell.animateRemovingDynamicViews(duration: 0.13)
             targetCell.animateAddingDynamicViews()
             selectedIndex = indexPath.row
         default: return

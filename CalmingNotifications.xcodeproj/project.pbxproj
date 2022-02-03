@@ -32,7 +32,7 @@
 		94EFC9B32792409100CC6B47 /* QuoteCardNetworkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EFC9B22792409100CC6B47 /* QuoteCardNetworkRepository.swift */; };
 		94EFC9B5279240B900CC6B47 /* QuoteCardPersistenceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EFC9B4279240B900CC6B47 /* QuoteCardPersistenceRepository.swift */; };
 		94EFC9B82792473E00CC6B47 /* MainSceneConfigurator_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EFC9B72792473E00CC6B47 /* MainSceneConfigurator_CN.swift */; };
-		94EFC9BC27924B3900CC6B47 /* CN_MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EFC9BB27924B3900CC6B47 /* CN_MainRouter.swift */; };
+		94EFC9BC27924B3900CC6B47 /* MainRouter_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EFC9BB27924B3900CC6B47 /* MainRouter_CN.swift */; };
 		94EFC9BF27924C0F00CC6B47 /* NotificationsViewModel_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EFC9BE27924C0F00CC6B47 /* NotificationsViewModel_CN.swift */; };
 		94EFC9C127924CF600CC6B47 /* NotificationsRouter_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EFC9C027924CF600CC6B47 /* NotificationsRouter_CN.swift */; };
 		94EFC9C427924D7C00CC6B47 /* Notification_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EFC9C327924D7C00CC6B47 /* Notification_CN.swift */; };
@@ -73,7 +73,7 @@
 		94EFC9B22792409100CC6B47 /* QuoteCardNetworkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCardNetworkRepository.swift; sourceTree = "<group>"; };
 		94EFC9B4279240B900CC6B47 /* QuoteCardPersistenceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCardPersistenceRepository.swift; sourceTree = "<group>"; };
 		94EFC9B72792473E00CC6B47 /* MainSceneConfigurator_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSceneConfigurator_CN.swift; sourceTree = "<group>"; };
-		94EFC9BB27924B3900CC6B47 /* CN_MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CN_MainRouter.swift; sourceTree = "<group>"; };
+		94EFC9BB27924B3900CC6B47 /* MainRouter_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter_CN.swift; sourceTree = "<group>"; };
 		94EFC9BE27924C0F00CC6B47 /* NotificationsViewModel_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel_CN.swift; sourceTree = "<group>"; };
 		94EFC9C027924CF600CC6B47 /* NotificationsRouter_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsRouter_CN.swift; sourceTree = "<group>"; };
 		94EFC9C327924D7C00CC6B47 /* Notification_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification_CN.swift; sourceTree = "<group>"; };
@@ -130,6 +130,14 @@
 				50A1CB94278CCC6F000F9BFC /* Info.plist */,
 			);
 			path = CalmingNotifications;
+			sourceTree = "<group>";
+		};
+		9441818327AC45F100AD9FDD /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				50A1CB9A278CF04B000F9BFC /* MainCollectionViewCell_CN.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		947850EC279E166900F1EEAC /* Cell */ = {
@@ -247,7 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				50A1CB8A278CCC63000F9BFC /* MainViewController_CN.swift */,
-				50A1CB9A278CF04B000F9BFC /* MainCollectionViewCell_CN.swift */,
+				9441818327AC45F100AD9FDD /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -368,7 +376,7 @@
 		94EFC9BA27924B0900CC6B47 /* Router */ = {
 			isa = PBXGroup;
 			children = (
-				94EFC9BB27924B3900CC6B47 /* CN_MainRouter.swift */,
+				94EFC9BB27924B3900CC6B47 /* MainRouter_CN.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -540,7 +548,7 @@
 				50A1CB8B278CCC63000F9BFC /* MainViewController_CN.swift in Sources */,
 				50A1CB87278CCC63000F9BFC /* AppDelegate.swift in Sources */,
 				94EFC9AA27923E5600CC6B47 /* QuoteCardGateway_CN.swift in Sources */,
-				94EFC9BC27924B3900CC6B47 /* CN_MainRouter.swift in Sources */,
+				94EFC9BC27924B3900CC6B47 /* MainRouter_CN.swift in Sources */,
 				50A1CB9F278F63B0000F9BFC /* MainTabBarViewController_CN.swift in Sources */,
 				9478510227A9929700F1EEAC /* LoaderState_CN.swift in Sources */,
 				94EFC9AD27923F7C00CC6B47 /* QuoteCardRepository_CN.swift in Sources */,
