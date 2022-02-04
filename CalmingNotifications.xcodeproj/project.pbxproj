@@ -18,6 +18,10 @@
 		50A1CBA3278F6C92000F9BFC /* MenuViewController_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A1CBA2278F6C92000F9BFC /* MenuViewController_CN.swift */; };
 		94057F1E27973A32009B5A2B /* NotificationsCollectionViewCell_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94057F1D27973A32009B5A2B /* NotificationsCollectionViewCell_CN.swift */; };
 		94057F2027975249009B5A2B /* NotificationsCollectionHeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94057F1F27975249009B5A2B /* NotificationsCollectionHeaderReusableView.swift */; };
+		9441818627AD83B300AD9FDD /* SplashViewController_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9441818527AD83B300AD9FDD /* SplashViewController_CN.swift */; };
+		9441818A27AD83F500AD9FDD /* SplashViewModel_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9441818927AD83F500AD9FDD /* SplashViewModel_CN.swift */; };
+		9441818D27AD842B00AD9FDD /* SplashRouter_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9441818C27AD842B00AD9FDD /* SplashRouter_CN.swift */; };
+		9441819027AD848000AD9FDD /* SplashSceneConfigurator_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9441818F27AD848000AD9FDD /* SplashSceneConfigurator_CN.swift */; };
 		947850F3279E2B3600F1EEAC /* BabyNet in Frameworks */ = {isa = PBXBuildFile; productRef = 947850F2279E2B3600F1EEAC /* BabyNet */; };
 		947850F6279E2B4A00F1EEAC /* MommysEye in Frameworks */ = {isa = PBXBuildFile; productRef = 947850F5279E2B4A00F1EEAC /* MommysEye */; };
 		947850F8279E2F7000F1EEAC /* LocalPushNotificationServiceDTOMapperWrapper_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947850F7279E2F7000F1EEAC /* LocalPushNotificationServiceDTOMapperWrapper_CN.swift */; };
@@ -61,6 +65,10 @@
 		50A1CBA2278F6C92000F9BFC /* MenuViewController_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController_CN.swift; sourceTree = "<group>"; };
 		94057F1D27973A32009B5A2B /* NotificationsCollectionViewCell_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsCollectionViewCell_CN.swift; sourceTree = "<group>"; };
 		94057F1F27975249009B5A2B /* NotificationsCollectionHeaderReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsCollectionHeaderReusableView.swift; sourceTree = "<group>"; };
+		9441818527AD83B300AD9FDD /* SplashViewController_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController_CN.swift; sourceTree = "<group>"; };
+		9441818927AD83F500AD9FDD /* SplashViewModel_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel_CN.swift; sourceTree = "<group>"; };
+		9441818C27AD842B00AD9FDD /* SplashRouter_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashRouter_CN.swift; sourceTree = "<group>"; };
+		9441818F27AD848000AD9FDD /* SplashSceneConfigurator_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashSceneConfigurator_CN.swift; sourceTree = "<group>"; };
 		947850F7279E2F7000F1EEAC /* LocalPushNotificationServiceDTOMapperWrapper_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPushNotificationServiceDTOMapperWrapper_CN.swift; sourceTree = "<group>"; };
 		947850FA279E355500F1EEAC /* NotificationExtension_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtension_CN.swift; sourceTree = "<group>"; };
 		947850FC279ECD7D00F1EEAC /* NotificationsErrorHandler_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsErrorHandler_CN.swift; sourceTree = "<group>"; };
@@ -138,6 +146,49 @@
 				50A1CB9A278CF04B000F9BFC /* MainCollectionViewCell_CN.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		9441818427AD837300AD9FDD /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				9441818E27AD843600AD9FDD /* Configurator */,
+				9441818727AD83BB00AD9FDD /* View */,
+				9441818827AD83D300AD9FDD /* ViewModel */,
+				9441818B27AD841100AD9FDD /* Router */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		9441818727AD83BB00AD9FDD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9441818527AD83B300AD9FDD /* SplashViewController_CN.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9441818827AD83D300AD9FDD /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9441818927AD83F500AD9FDD /* SplashViewModel_CN.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9441818B27AD841100AD9FDD /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				9441818C27AD842B00AD9FDD /* SplashRouter_CN.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		9441818E27AD843600AD9FDD /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				9441818F27AD848000AD9FDD /* SplashSceneConfigurator_CN.swift */,
+			);
+			path = Configurator;
 			sourceTree = "<group>";
 		};
 		947850EC279E166900F1EEAC /* Cell */ = {
@@ -233,6 +284,7 @@
 		94EFC99C279239CC00CC6B47 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				9441818427AD837300AD9FDD /* Splash */,
 				94A4AD192794F58F00F1F5DF /* TabBar */,
 				94EFC9992792398400CC6B47 /* Main */,
 				94EFC99A279239B000CC6B47 /* Notifications */,
@@ -549,6 +601,7 @@
 				50A1CB87278CCC63000F9BFC /* AppDelegate.swift in Sources */,
 				94EFC9AA27923E5600CC6B47 /* QuoteCardGateway_CN.swift in Sources */,
 				94EFC9BC27924B3900CC6B47 /* MainRouter_CN.swift in Sources */,
+				9441818D27AD842B00AD9FDD /* SplashRouter_CN.swift in Sources */,
 				50A1CB9F278F63B0000F9BFC /* MainTabBarViewController_CN.swift in Sources */,
 				9478510227A9929700F1EEAC /* LoaderState_CN.swift in Sources */,
 				94EFC9AD27923F7C00CC6B47 /* QuoteCardRepository_CN.swift in Sources */,
@@ -561,7 +614,10 @@
 				94EFC9C627924D9800CC6B47 /* NotificationGateway_CN.swift in Sources */,
 				94EFC9B82792473E00CC6B47 /* MainSceneConfigurator_CN.swift in Sources */,
 				94EFC9D227924EF500CC6B47 /* NotificationSceneConfigurator_CN.swift in Sources */,
+				9441818A27AD83F500AD9FDD /* SplashViewModel_CN.swift in Sources */,
 				94EFC9D8279252AD00CC6B47 /* MenuViewModel_CN.swift in Sources */,
+				9441818627AD83B300AD9FDD /* SplashViewController_CN.swift in Sources */,
+				9441819027AD848000AD9FDD /* SplashSceneConfigurator_CN.swift in Sources */,
 				94057F1E27973A32009B5A2B /* NotificationsCollectionViewCell_CN.swift in Sources */,
 				94EFC9D42792500F00CC6B47 /* SceneConfigurator_CN.swift in Sources */,
 				94057F2027975249009B5A2B /* NotificationsCollectionHeaderReusableView.swift in Sources */,

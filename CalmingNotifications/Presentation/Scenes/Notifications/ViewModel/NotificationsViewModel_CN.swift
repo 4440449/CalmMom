@@ -40,10 +40,12 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
     
     init(notificationRepository: NotificationGateway_CN,
          router: NotificationsRouterProtocol_CN,
-         errorHandler: NotificationsErrorHandlerProtocol_CN) {
+         errorHandler: NotificationsErrorHandlerProtocol_CN,
+         quotes: [String]) {
         self.notificationRepository = notificationRepository
         self.router = router
         self.errorHandler = errorHandler
+        self.quotes = quotes
     }
     
     // MARK: - State / Observable
@@ -56,6 +58,7 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
     // MARK: - Private state / Task
     
     private var task: Task<(), Never>? { willSet { self.task?.cancel() } }
+    private var quotes = [String]()
     
     
     // MARK: - Collection interface
@@ -80,7 +83,8 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
         isLoading.value = .true
         task = Task(priority: nil) {
             do {
-                let result = try await self.notificationRepository.addNew(at: date)
+                guard let rndmQuote = self.quotes.randomElement() else { return }
+                let result = try await self.notificationRepository.addNew(at: date, quote: rndmQuote)
                 self.notifications.value = result
             } catch let error {
                 self.error.value = self.errorHandler.handle(error: error)

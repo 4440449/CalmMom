@@ -37,8 +37,8 @@ final class NotificationRepository_CN: NotificationGateway_CN {
         return domainEntities
     }
     
-    func addNew(at time: Date) async throws -> [Notification_CN] {
-        try await localPushNotificationsService.addNewNotification(at: time)
+    func addNew(at time: Date, quote: String) async throws -> [Notification_CN] {
+        try await localPushNotificationsService.addNewNotification(at: time, quote: quote)
         let result = try await fetch()
         return result
     }

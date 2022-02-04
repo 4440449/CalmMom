@@ -11,7 +11,8 @@ import UIKit
 
 final class NotificationSceneConfigurator_CN: SceneConfiguratorProtocol_CN {
     
-    static func configure(navigationContainer: UIViewController) -> UIViewController {
+    static func configure(navigationContainer: UIViewController,
+                          quotes: [String]) -> UIViewController {
         
         let network = NotificationNetworkRepository_CN()
         let localStorage = NotificationPersistenceRepository_CN()
@@ -25,7 +26,8 @@ final class NotificationSceneConfigurator_CN: SceneConfiguratorProtocol_CN {
         let errorHandler = NotificationsErrorHandler_CN()
         let viewModel = NotificationsViewModel_CN(notificationRepository: repo,
                                                   router: router,
-                                                  errorHandler: errorHandler)
+                                                  errorHandler: errorHandler,
+                                                  quotes: quotes)
         let view = NotificationsViewController_CN(viewModel: viewModel,
                                                   nibName: nil,
                                                   bundle: nil)

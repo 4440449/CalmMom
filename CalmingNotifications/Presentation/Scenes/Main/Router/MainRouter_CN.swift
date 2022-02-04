@@ -1,5 +1,5 @@
 //
-//  MainRouterProtocol_CN.swift
+//  MainRouter_CN.swift
 //  CalmingNotifications
 //
 //  Created by Maxim on 15.01.2022.
@@ -10,18 +10,23 @@ import UIKit
 
 
 protocol MainRouterProtocol_CN {
-    func showActivity(with content: UIImage)
     func move()
+    func showActivity(with content: UIImage)
 }
 
-final class CN_MainRouter: MainRouterProtocol_CN {
+final class MainRouter_CN: MainRouterProtocol_CN {
     
+    // MARK: - Dependencies
+
     private weak var navigationContainer: UIViewController?
     
     init(navigationContainer: UIViewController) {
         self.navigationContainer = navigationContainer
     }
     
+    
+    // MARK: - Interface
+
     func move() {
         guard let navContainer = navigationContainer as? UITabBarController else {
             return

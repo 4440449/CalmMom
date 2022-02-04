@@ -41,8 +41,8 @@ final class QuoteCardRepository_CN: QuoteCardGateway_CN {
     
     // MARK: - Interface impl
     
-    func fetch() async -> [QuoteCard_CN] {
-        //sleep(1)
+    func fetch() async -> [QuoteCard_CN] { // throw if Empty!!
+        sleep(1)
         var cards = [QuoteCard_CN]()
         for i in 0...10 {
             let card = QuoteCard_CN(quote: quotes[i],

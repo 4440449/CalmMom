@@ -54,7 +54,7 @@ class MainViewController_CN: UIViewController,
     // MARK: - Input data flow
     
     private func setupObservers() {
-        viewModel.quoteCard.subscribe(observer: self) { [weak self] _ in
+        viewModel.quoteCards.subscribe(observer: self) { [weak self] _ in
             self?.collectionView.reloadData()
         }
         
@@ -82,7 +82,7 @@ class MainViewController_CN: UIViewController,
     
     private var menuButton: UIButton = {
         let button = UIButton()
-        button.tintColor = .black
+        button.tintColor = .label
         button.setImage(UIImage(systemName: "ellipsis"), for: .normal)
         button.layer.cornerRadius = 20
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -111,14 +111,14 @@ class MainViewController_CN: UIViewController,
     //MARK: - Data source
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.quoteCard.value.count
+        return viewModel.quoteCards.value.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell_CN.identifier, for: indexPath) as? MainCollectionViewCell_CN else { fatalError() }
         cell.setupDependencies(viewModel: viewModel, index: indexPath.row)
-        cell.fillContent(quote: viewModel.quoteCard.value[indexPath.row].quote,
-                         image: viewModel.quoteCard.value[indexPath.row].image)
+        cell.fillContent(quote: viewModel.quoteCards.value[indexPath.row].quote,
+                         image: viewModel.quoteCards.value[indexPath.row].image)
        
         return cell
     }

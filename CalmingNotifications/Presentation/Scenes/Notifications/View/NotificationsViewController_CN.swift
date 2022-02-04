@@ -89,7 +89,12 @@ class NotificationsViewController_CN: UIViewController,
         //        collection.contentInsetAdjustmentBehavior = .never
         collection.showsVerticalScrollIndicator = false
         collection.alwaysBounceVertical = true
-        collection.backgroundColor = .systemBackground
+//        collection.backgroundColor = #colorLiteral(red: 0.1630089879, green: 0.1772029698, blue: 0.1960217357, alpha: 1)
+        collection.backgroundColor = UIColor(red: 0.16,
+                                             green: 0.18,
+                                             blue: 0.20,
+                                             alpha: 1.00)
+//            .systemBackground
         collection.contentInset.bottom = 40
         return collection
     }()

@@ -12,13 +12,14 @@ import Foundation
 
 protocol LocalPushNotificationsServiceProtocol_CN {
     func fetchNotifications() async -> [UNNotificationRequest]
-    func addNewNotification(at time: Date) async throws
+    func addNewNotification(at time: Date, quote: String) async throws
     func changeNotification(with identifier: String, new time: Date) async throws
-    func removeNotification(with identifire: String) async throws
+    func removeNotification(with identifier: String) async throws
 }
 
 
 final class LocalPushNotificationsService_CN: LocalPushNotificationsServiceProtocol_CN {
+    
     
     // MARK: - Dependencies
 
@@ -33,17 +34,12 @@ final class LocalPushNotificationsService_CN: LocalPushNotificationsServiceProto
     }
     
     
-    func addNewNotification(at time: Date) async throws {
-        let content: UNMutableNotificationContent = {
-            let cont = UNMutableNotificationContent()
-            cont.title = "Moms' Exhale"
-            cont.body = "Закрой глаза.. Глубойкий вдох - выдох.. Ты съела все мороженое. Остановись.."
-            cont.sound = .default
-            return cont
-        }()
-        
-        let components = Calendar.current.dateComponents([.hour, .minute],
-                                                         from: time)
+    func addNewNotification(at time: Date, quote: String) async throws {
+        let content = UNMutableNotificationContent()
+        content.body = quote
+        content.sound = .default
+//            cont.title = "Moms' Exhale"
+        let components = Calendar.current.dateComponents([.hour, .minute], from: time)
         let trigger = UNCalendarNotificationTrigger(dateMatching: components,
                                                     repeats: true)
         let request = UNNotificationRequest(identifier: String(describing: components),
@@ -53,12 +49,12 @@ final class LocalPushNotificationsService_CN: LocalPushNotificationsServiceProto
     }
     
   
-    func removeNotification(with identifire: String) async throws {
-        center.removePendingNotificationRequests(withIdentifiers: [identifire])
+    func removeNotification(with identifier: String) async throws {
+        center.removePendingNotificationRequests(withIdentifiers: [identifier])
         let result = await fetchNotifications()
         try result.forEach {
-            if $0.identifier == identifire {
-                throw LocalPushNotificationCenterError.failureRemoving("Removing notification error! Request with identifier --> \(identifire) not deleted")
+            if $0.identifier == identifier {
+                throw LocalPushNotificationCenterError.failureRemoving("Removing notification error! Request with identifier --> \(identifier) not deleted")
             } else {
                 return
             }
@@ -67,8 +63,13 @@ final class LocalPushNotificationsService_CN: LocalPushNotificationsServiceProto
     
     
     func changeNotification(with identifier: String, new time: Date) async throws {
+        let notifications = await center.pendingNotificationRequests()
+        let notification = notifications.filter { $0.identifier == identifier }
+        guard let quote = notification.first?.content.body else {
+            throw LocalPushNotificationCenterError.failureFetching("Request with identifier --> '\(identifier)' not found ::: Fetched identifiers == \(notifications.map { $0.identifier })")
+        }
         try await removeNotification(with: identifier)
-        try await addNewNotification(at: time)
+        try await addNewNotification(at: time, quote: quote)
     }
     
 }
@@ -79,4 +80,8 @@ final class LocalPushNotificationsService_CN: LocalPushNotificationsServiceProto
 enum LocalPushNotificationCenterError: Error {
     case failureRemoving(String)
     case failureMapping(String)
+    case failureFetching(String)
 }
+
+
+//"Закрой глаза.. Глубойкий вдох - выдох.. Ты съела все мороженое. Остановись.."

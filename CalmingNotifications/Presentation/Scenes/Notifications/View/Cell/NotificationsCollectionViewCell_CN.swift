@@ -96,7 +96,6 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
     }()
     
     @objc private func saveButtonTapped() {
-        print("tap save")
         guard let index = index else { return }
         viewModel?.saveButtonTapped(cellWithIndex: index, new: datePicker.date)
     }
@@ -116,7 +115,6 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
     }()
     
     @objc private func deleteButtonTapped() {
-        print("tap delete")
         guard let index = index else { return }
         viewModel?.deleteButtonTapped(cellWithIndex: index)
     }
@@ -196,7 +194,8 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
     
     func reloadData(date: Date) {
         animateRemovingDynamicViews(duration: 0.0)
-        titleButton.setTitle(" \(date.hh_mm())", for: .normal)
+        titleButton.setTitle(" \(date.hh_mm())",
+                             for: .normal)
         datePicker.date = date
     }
     

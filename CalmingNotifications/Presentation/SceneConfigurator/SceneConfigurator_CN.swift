@@ -11,5 +11,5 @@ import UIKit
 
 protocol SceneConfiguratorProtocol_CN {
     
-    static func configure(navigationContainer: UIViewController) -> UIViewController
+    //static func configure(navigationContainer: UIViewController) -> UIViewController
 }
