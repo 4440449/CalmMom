@@ -13,12 +13,15 @@ import MommysEye
 protocol NotificationsViewModelProtocol_CN {
     func viewDidLoad()
     var notifications: Publisher<[Notification_CN]> { get }
+    var pushNotificationSettingsStatus: Publisher<Bool> { get }
     var isLoading: Publisher<Loading_CN> { get }
     var error: Publisher<String> { get }
 }
 
 protocol NotificationsHeaderViewModelProtocol_CN {
+    var pushNotificationSettingsStatus: Publisher<Bool> { get }
     func addNewNotificationButtonTapped(date: Date)
+    
 }
 
 protocol NotificationsCellViewModelProtocol_CN {
@@ -51,6 +54,7 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
     // MARK: - State / Observable
     
     var notifications = Publisher(value: [Notification_CN]())
+    var pushNotificationSettingsStatus = Publisher(value: true)
     var isLoading = Publisher(value: Loading_CN.false)
     var error = Publisher(value: "")
     
@@ -66,6 +70,7 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
     func viewDidLoad() {
         isLoading.value = .true
         task = Task(priority: nil) {
+            await self.setPushNotificationSettingsStatus()
             do {
                 let result = try await self.notificationRepository.fetch()
                 self.notifications.value = result
@@ -120,6 +125,11 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
             }
             self.isLoading.value = .false
         }
+    }
+    
+    private func setPushNotificationSettingsStatus() async {
+        let result = await notificationRepository.getAuthorizationStatus()
+        pushNotificationSettingsStatus.value = result
     }
     
     

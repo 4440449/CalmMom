@@ -15,6 +15,7 @@ protocol LocalPushNotificationsServiceProtocol_CN {
     func addNewNotification(at time: Date, quote: String) async throws
     func changeNotification(with identifier: String, new time: Date) async throws
     func removeNotification(with identifier: String) async throws
+    func getAuthorizationStatus() async -> Bool
 }
 
 
@@ -72,6 +73,22 @@ final class LocalPushNotificationsService_CN: LocalPushNotificationsServiceProto
         try await addNewNotification(at: time, quote: quote)
     }
     
+    
+    func getAuthorizationStatus() async -> Bool {
+        return await withCheckedContinuation { continuation in
+            var status = false
+            center.getNotificationSettings { settings in
+                if settings.authorizationStatus == .authorized,
+                   (settings.alertSetting == .enabled || settings.lockScreenSetting == .enabled || settings.notificationCenterSetting == .enabled) {
+                    status = true
+                } else {
+                    status = false
+                }
+                continuation.resume(returning: status)
+            }
+        }
+    }
+    
 }
 
 
@@ -85,3 +102,11 @@ enum LocalPushNotificationCenterError: Error {
 
 
 //"Закрой глаза.. Глубойкий вдох - выдох.. Ты съела все мороженое. Остановись.."
+
+
+//print("alertSetting == \(settings.alertSetting.rawValue)")
+//print("lockScreenSetting == \(settings.lockScreenSetting.rawValue)")
+//print("notificationCenterSetting == \(settings.notificationCenterSetting.rawValue)")
+//
+//print("badgeSetting == \(settings.badgeSetting.rawValue)") // налкейки
+//print("soundSetting == \(settings.soundSetting.rawValue)") // звук

@@ -60,6 +60,10 @@ class NotificationsViewController_CN: UIViewController,
 //            })
         }
         
+        viewModel.pushNotificationSettingsStatus.subscribe(observer: self) { [weak self] _ in
+            self?.collectionView.reloadData()
+        }
+        
         viewModel.isLoading.subscribe(observer: self) { [weak self] isLoading in
             switch isLoading {
             case .true: self?.activity.startAnimating()
@@ -114,6 +118,7 @@ class NotificationsViewController_CN: UIViewController,
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: NotificationsCollectionHeaderReusableView.identifier, for: indexPath) as? NotificationsCollectionHeaderReusableView else { fatalError() }
         header.setupDependencies(viewModel: viewModel)
+        header.managePushNotificationsWarning(isAuthorized: viewModel.pushNotificationSettingsStatus.value)
         return header
     }
     
@@ -171,8 +176,10 @@ class NotificationsViewController_CN: UIViewController,
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        
+        let height = viewModel.pushNotificationSettingsStatus.value ? collectionView.bounds.height / 11 : collectionView.bounds.height / 7
         return CGSize(width: collectionView.bounds.width - 60,
-                      height: collectionView.bounds.height / 11)
+                      height: height)
     }
     
     

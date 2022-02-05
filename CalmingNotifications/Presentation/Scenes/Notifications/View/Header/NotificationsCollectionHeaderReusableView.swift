@@ -32,7 +32,9 @@ class NotificationsCollectionHeaderReusableView: UICollectionReusableView {
         super.init(frame: frame)
         self.addSubview(title)
         self.addSubview(addNewNotificationButton)
+        
         setupLayoutViews()
+//        self.backgroundColor = .red
     }
     
     required init?(coder: NSCoder) {
@@ -66,12 +68,55 @@ class NotificationsCollectionHeaderReusableView: UICollectionReusableView {
         viewModel?.addNewNotificationButtonTapped(date: Date())
     }
     
-    func setupLayoutViews() {
-        title.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        title.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+    private var notificationStatus: UIButton = {
+        let button = UIButton()
+        button.setTitle("Уведомления отключены. Разрешите их получение в настройках", for: .normal)
+        button.titleLabel?.lineBreakMode = .byWordWrapping
+//        button.semanticContentAttribute = .forceRightToLeft
+        button.setTitleColor(.label, for: .normal)
+//        button.setImage(UIImage(systemName: "gearshape.fill"),
+//                        for: .normal)
         
+        button.scalesLargeContentImage = true
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(notificationStatusButtonTapped), for: .touchUpInside)
+//        button.backgroundColor = .green
+        return button
+    }()
+    
+    @objc func notificationStatusButtonTapped() {
+        print("notif button tapped")
+        if let appSettings = URL(string: UIApplication.openSettingsURLString), UIApplication.shared.canOpenURL(appSettings) {
+            UIApplication.shared.open(appSettings)
+        }
+    }
+    
+    
+    func setupLayoutViews() {
+//        title.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        title.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
+        title.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+
         addNewNotificationButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
-        addNewNotificationButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        addNewNotificationButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
+//        addNewNotificationButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        
+//        notificationStatus.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
+//        notificationStatus.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 20).isActive = true
+//        notificationStatus.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
+//        notificationStatus.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true
+//        notificationStatus.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+    }
+    
+    func managePushNotificationsWarning(isAuthorized: Bool) {
+        if !isAuthorized {
+            self.addSubview(notificationStatus)
+            notificationStatus.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
+            notificationStatus.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 20).isActive = true
+            notificationStatus.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
+        } else {
+            notificationStatus.removeFromSuperview()
+        }
     }
     
 }

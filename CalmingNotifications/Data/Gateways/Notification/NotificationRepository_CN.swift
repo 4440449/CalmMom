@@ -10,7 +10,7 @@ import Foundation
 
 
 final class NotificationRepository_CN: NotificationGateway_CN {
-    
+     
     private let network: NotificationNetworkRepositoryProtocol_CN
     private let localStorage: NotificationPersistenceRepositoryProtocol_CN
     private let localPushNotificationsService: LocalPushNotificationsServiceProtocol_CN
@@ -26,6 +26,10 @@ final class NotificationRepository_CN: NotificationGateway_CN {
 //        self.dtoMapper = dtoMapper
     }
     
+    
+    func getAuthorizationStatus() async -> Bool {
+        return await localPushNotificationsService.getAuthorizationStatus()
+    }
     
     func fetch() async throws -> [Notification_CN] {
 //        sleep(2)
