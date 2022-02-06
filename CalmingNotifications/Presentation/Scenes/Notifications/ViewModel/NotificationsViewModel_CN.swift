@@ -12,14 +12,14 @@ import MommysEye
 
 protocol NotificationsViewModelProtocol_CN {
     func viewDidLoad()
+    func sceneWillEnterForeground()
     var notifications: Publisher<[Notification_CN]> { get }
-    var pushNotificationSettingsStatus: Publisher<Bool> { get }
+    var pushNotificationAuthStatus: Publisher<PushNotificationsAuthStatus> { get }
     var isLoading: Publisher<Loading_CN> { get }
     var error: Publisher<String> { get }
 }
 
 protocol NotificationsHeaderViewModelProtocol_CN {
-    var pushNotificationSettingsStatus: Publisher<Bool> { get }
     func addNewNotificationButtonTapped(date: Date)
     
 }
@@ -33,7 +33,6 @@ protocol NotificationsCellViewModelProtocol_CN {
 final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
                                        NotificationsHeaderViewModelProtocol_CN,
                                        NotificationsCellViewModelProtocol_CN {
-    
     
     // MARK: - Dependencies
     
@@ -54,7 +53,7 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
     // MARK: - State / Observable
     
     var notifications = Publisher(value: [Notification_CN]())
-    var pushNotificationSettingsStatus = Publisher(value: true)
+    var pushNotificationAuthStatus = Publisher(value: PushNotificationsAuthStatus.authorized)
     var isLoading = Publisher(value: Loading_CN.false)
     var error = Publisher(value: "")
     
@@ -68,17 +67,11 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
     // MARK: - Collection interface
     
     func viewDidLoad() {
-        isLoading.value = .true
-        task = Task(priority: nil) {
-            await self.setPushNotificationSettingsStatus()
-            do {
-                let result = try await self.notificationRepository.fetch()
-                self.notifications.value = result
-            } catch let error {
-                self.error.value = self.errorHandler.handle(error: error)
-            }
-            self.isLoading.value = .false
-        }
+        loadData()
+    }
+    
+    func sceneWillEnterForeground() {
+        loadData()
     }
 
     
@@ -127,11 +120,31 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
         }
     }
     
-    private func setPushNotificationSettingsStatus() async {
-        let result = await notificationRepository.getAuthorizationStatus()
-        pushNotificationSettingsStatus.value = result
-    }
     
+    // MARK: - Private
+
+    private func loadData() {
+        isLoading.value = .true
+        task = Task(priority: nil) {
+            let authStatus = await self.notificationRepository.getAuthorizationStatus()
+            guard authStatus == .authorized else {
+                self.notifications.value = []
+                self.pushNotificationAuthStatus.value = authStatus
+                self.isLoading.value = .false
+                return
+            }
+            self.pushNotificationAuthStatus.value = authStatus
+            do {
+                let result = try await self.notificationRepository.fetch()
+                self.notifications.value = result
+            } catch let error {
+                self.error.value = self.errorHandler.handle(error: error)
+            }
+            let result = await self.notificationRepository.getAuthorizationStatus()
+            self.pushNotificationAuthStatus.value = result
+            self.isLoading.value = .false
+        }
+    }
     
     deinit {
         print("deinit NotificationsViewModel_CN")

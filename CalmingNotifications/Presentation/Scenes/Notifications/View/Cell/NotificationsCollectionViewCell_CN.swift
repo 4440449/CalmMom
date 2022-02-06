@@ -58,18 +58,13 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
         button.setImage(UIImage(systemName: "bell.fill"),
                         for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
-//        button.addTarget(self, action: #selector(titleButtonTapped), for: .touchUpInside)
         return button
     }()
-    
-//    @objc private func titleButtonTapped() {
-//        print(#function)
-//    }
     
     
     // MARK: - Dynamic views prop
     
-     private var datePicker: UIDatePicker = {
+    private var datePicker: UIDatePicker = {
         let picker = UIDatePicker()
         if #available(iOS 14.0, *) {
             picker.preferredDatePickerStyle = .wheels
@@ -119,17 +114,26 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
         viewModel?.deleteButtonTapped(cellWithIndex: index)
     }
     
-        
+    
     // MARK: - Cell's UI
     
     private func setupCellAppearance() {
+        contentView.backgroundColor = UIColor(red: 0.16,
+                                              green: 0.18,
+                                              blue: 0.20,
+                                              alpha: 1.00)
         contentView.layer.cornerRadius = 15
-        contentView.backgroundColor = .systemBackground
+        contentView.layer.shadowColor = UIColor.label.cgColor
+        contentView.layer.shadowRadius = 20
+        contentView.layer.shadowOpacity = 0.05
+        contentView.layer.shadowOffset = CGSize(width: -10, height: -10)
+        contentView.layer.shouldRasterize = true
+        contentView.layer.rasterizationScale = UIScreen.main.scale
         
-        self.layer.shadowColor = UIColor.label.cgColor
+        self.layer.shadowColor = UIColor.systemBackground.cgColor
         self.layer.shadowRadius = 7
-        self.layer.shadowOpacity = 0.1
-        self.layer.shadowOffset = CGSize(width: 0, height: 10)
+        self.layer.shadowOpacity = 0.3
+        self.layer.shadowOffset = CGSize(width: 10, height: 10)
         self.layer.shouldRasterize = true
         self.layer.rasterizationScale = UIScreen.main.scale
     }
@@ -160,7 +164,6 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
     
     func animateRemovingDynamicViews(duration: TimeInterval) {
         UIView.animate(withDuration: duration, delay: 0, options: .curveLinear) {
-//            UIView.animate(withDuration: 0.13, delay: 0, options: .curveLinear) {
             self.datePicker.alpha = 0
             self.saveButton.alpha = 0
             self.deleteButton.alpha = 0
@@ -178,7 +181,7 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
              datePicker.widthAnchor.constraint(equalToConstant: (contentView.bounds.width / 1.3)),
              datePicker.heightAnchor.constraint(equalToConstant: (contentView.bounds.height * 2.3)),
              datePicker.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-
+             
              saveButton.topAnchor.constraint(equalTo: contentView.topAnchor,
                                              constant: 10),
              saveButton.trailingAnchor.constraint(equalTo: deleteButton.leadingAnchor,
@@ -190,7 +193,6 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
             ]
         )
     }
-
     
     func reloadData(date: Date) {
         animateRemovingDynamicViews(duration: 0.0)

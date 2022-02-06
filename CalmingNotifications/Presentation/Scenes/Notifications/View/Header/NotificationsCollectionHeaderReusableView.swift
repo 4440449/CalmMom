@@ -34,7 +34,6 @@ class NotificationsCollectionHeaderReusableView: UICollectionReusableView {
         self.addSubview(addNewNotificationButton)
         
         setupLayoutViews()
-//        self.backgroundColor = .red
     }
     
     required init?(coder: NSCoder) {
@@ -52,7 +51,7 @@ class NotificationsCollectionHeaderReusableView: UICollectionReusableView {
         return label
     }()
     
-    private lazy var addNewNotificationButton: UIButton = {
+    private var addNewNotificationButton: UIButton = {
         let button = UIButton()
         button.tintColor = .label
         button.setImage(UIImage(systemName: "plus"), for: .normal)
@@ -70,23 +69,24 @@ class NotificationsCollectionHeaderReusableView: UICollectionReusableView {
     
     private var notificationStatus: UIButton = {
         let button = UIButton()
-        button.setTitle("Уведомления отключены. Разрешите их получение в настройках", for: .normal)
+        let text = "Уведомления отключены. Разрешите их получение в настройках"
+        let atrText = NSMutableAttributedString(string: text,
+                                               attributes: [:])
+        atrText.addAttributes([.foregroundColor : UIColor.systemBlue,
+                               .underlineStyle: NSUnderlineStyle.single.rawValue],
+                              range: NSRange(location: 48, length: 10))
+        button.setAttributedTitle(atrText, for: .normal)
         button.titleLabel?.lineBreakMode = .byWordWrapping
-//        button.semanticContentAttribute = .forceRightToLeft
-        button.setTitleColor(.label, for: .normal)
-//        button.setImage(UIImage(systemName: "gearshape.fill"),
-//                        for: .normal)
-        
-        button.scalesLargeContentImage = true
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(notificationStatusButtonTapped), for: .touchUpInside)
-//        button.backgroundColor = .green
+        button.addTarget(self,
+                         action: #selector(notificationStatusButtonTapped),
+                         for: .touchUpInside)
         return button
     }()
     
     @objc func notificationStatusButtonTapped() {
-        print("notif button tapped")
-        if let appSettings = URL(string: UIApplication.openSettingsURLString), UIApplication.shared.canOpenURL(appSettings) {
+        if let appSettings = URL(string: UIApplication.openSettingsURLString),
+            UIApplication.shared.canOpenURL(appSettings) {
             UIApplication.shared.open(appSettings)
         }
     }
@@ -100,20 +100,14 @@ class NotificationsCollectionHeaderReusableView: UICollectionReusableView {
         addNewNotificationButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
         addNewNotificationButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
 //        addNewNotificationButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        
-//        notificationStatus.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
-//        notificationStatus.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 20).isActive = true
-//        notificationStatus.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
-//        notificationStatus.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true
-//        notificationStatus.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
     }
     
-    func managePushNotificationsWarning(isAuthorized: Bool) {
-        if !isAuthorized {
+    func managePushNotificationsWarning(isAuthorized: PushNotificationsAuthStatus) {
+        if isAuthorized == .notAuthorized {
             self.addSubview(notificationStatus)
-            notificationStatus.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
+            notificationStatus.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30).isActive = true
+            notificationStatus.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30).isActive = true
             notificationStatus.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 20).isActive = true
-            notificationStatus.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
         } else {
             notificationStatus.removeFromSuperview()
         }

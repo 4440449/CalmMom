@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import MommysEye
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    let sceneState = Publisher(value: SceneState.background)
 
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -37,11 +39,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
- 
+        sceneState.value = .foreground
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
-    
+        sceneState.value = .background
     }
 
 }

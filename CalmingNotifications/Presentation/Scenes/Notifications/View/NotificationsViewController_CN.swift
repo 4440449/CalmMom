@@ -46,11 +46,20 @@ class NotificationsViewController_CN: UIViewController,
     // MARK: - Input data flow
     
     private func setupObservers() {
+        if let sceneDelegate =
+            UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
+            sceneDelegate.sceneState.subscribe(observer: self) { [weak self] sceneState in
+                switch sceneState {
+                case .foreground: self?.viewModel.sceneWillEnterForeground()
+                case .background: return
+                }
+            }
+        }
+        
         viewModel.notifications.subscribe(observer: self) { [weak self] _ in
             guard let strongSelf = self else { return }
             strongSelf.selectedIndex = -1
             strongSelf.collectionView.reloadData()
-            
 //            UIView.transition(with: strongSelf.collectionView,
 //                              duration: 0.3,
 //                              options: .transitionCrossDissolve,
@@ -60,7 +69,7 @@ class NotificationsViewController_CN: UIViewController,
 //            })
         }
         
-        viewModel.pushNotificationSettingsStatus.subscribe(observer: self) { [weak self] _ in
+        viewModel.pushNotificationAuthStatus.subscribe(observer: self) { [weak self] _ in
             self?.collectionView.reloadData()
         }
         
@@ -93,7 +102,6 @@ class NotificationsViewController_CN: UIViewController,
         //        collection.contentInsetAdjustmentBehavior = .never
         collection.showsVerticalScrollIndicator = false
         collection.alwaysBounceVertical = true
-//        collection.backgroundColor = #colorLiteral(red: 0.1630089879, green: 0.1772029698, blue: 0.1960217357, alpha: 1)
         collection.backgroundColor = UIColor(red: 0.16,
                                              green: 0.18,
                                              blue: 0.20,
@@ -118,7 +126,7 @@ class NotificationsViewController_CN: UIViewController,
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: NotificationsCollectionHeaderReusableView.identifier, for: indexPath) as? NotificationsCollectionHeaderReusableView else { fatalError() }
         header.setupDependencies(viewModel: viewModel)
-        header.managePushNotificationsWarning(isAuthorized: viewModel.pushNotificationSettingsStatus.value)
+        header.managePushNotificationsWarning(isAuthorized: viewModel.pushNotificationAuthStatus.value)
         return header
     }
     
@@ -177,9 +185,13 @@ class NotificationsViewController_CN: UIViewController,
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         
-        let height = viewModel.pushNotificationSettingsStatus.value ? collectionView.bounds.height / 11 : collectionView.bounds.height / 7
+        let height = viewModel.pushNotificationAuthStatus.value == .authorized ? collectionView.bounds.height / 11 : collectionView.bounds.height / 7
         return CGSize(width: collectionView.bounds.width - 60,
                       height: height)
+    }
+  
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return CGFloat(20)
     }
     
     
