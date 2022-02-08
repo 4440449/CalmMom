@@ -43,11 +43,6 @@ class NotificationsViewController_CN: UIViewController,
         viewModel.viewDidLoad()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        print("viewDidLayoutSubviews")
-    }
-    
     
     // MARK: - Input data flow
     
@@ -143,7 +138,7 @@ class NotificationsViewController_CN: UIViewController,
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NotificationsCollectionViewCell_CN.identifier, for: indexPath) as? NotificationsCollectionViewCell_CN else { fatalError() }
         cell.setupDependencies(viewModel: viewModel, index: indexPath.row)
-        cell.reloadData(date: viewModel.notifications.value[indexPath.row].time)
+        cell.reloadData(time: viewModel.notifications.value[indexPath.row].time)
         cell.manageInterfaceStyle()
         return cell
     }
@@ -152,10 +147,9 @@ class NotificationsViewController_CN: UIViewController,
     //MARK: - Delegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //TODO: Управление вьюхами ячеек через VM! Убрать даун каст
         guard let targetCell = collectionView.cellForItem(at: indexPath) as? NotificationsCollectionViewCell_CN else { return }
-        let date = viewModel.notifications.value[indexPath.row].time
-        targetCell.resetDatePicker(date: date)
+        let time = viewModel.notifications.value[indexPath.row].time
+        targetCell.resetDatePickerTime(time)
         switch selectedIndex {
         case _ where selectedIndex == -1 :
             // Ячейка закрыта ==> раскрываю, устанавливаю вьюхи
@@ -200,6 +194,8 @@ class NotificationsViewController_CN: UIViewController,
         return CGFloat(20)
     }
     
+    
+    // MARK: - Dark/Light mode management
     
     private func manageInterfaceStyle() {
         let interfaceStyle = traitCollection.userInterfaceStyle

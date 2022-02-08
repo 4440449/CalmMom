@@ -49,17 +49,17 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
     
     // MARK: - Input data flow
     
-    func reloadData(date: Date) {
+    func reloadData(time: Date) {
         animateRemovingDynamicViews(duration: 0.0)
-        titleButton.setTitle(" \(date.hh_mm())", for: .normal)
-//        resetDatePicker(date: date)
-        datePicker.date = date
+        titleButton.setTitle(" \(time.hh_mm())", for: .normal)
+        resetDatePickerTime(time)
+//        datePicker.date = date
     }
     
-//    func resetDatePicker(date: Date) {
-//        datePicker.date = Date()
-//        datePicker.date = date
-//    }
+    func resetDatePickerTime(_ time: Date) {
+        datePicker.date = Date()
+        datePicker.date = time
+    }
     
     // MARK: - UI -
     
@@ -204,7 +204,7 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
     }
     
     
-  // MARK: - Manage Dark/Light mode
+  // MARK: - Dark/Light mode management
     
     func manageInterfaceStyle() {
         let interfaceStyle = traitCollection.userInterfaceStyle
@@ -245,9 +245,6 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
     }
     
 }
-
-
-
 
 
 
