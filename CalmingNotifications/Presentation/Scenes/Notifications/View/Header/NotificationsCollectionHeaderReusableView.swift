@@ -31,9 +31,7 @@ class NotificationsCollectionHeaderReusableView: UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubview(title)
-        self.addSubview(addNewNotificationButton)
-        
-        setupLayoutViews()
+        setupLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -41,7 +39,7 @@ class NotificationsCollectionHeaderReusableView: UICollectionReusableView {
     }
     
     
-    // MARK: - UI
+    // MARK: - UI -
     
     private var title: UILabel = {
         let label = UILabel()
@@ -92,26 +90,49 @@ class NotificationsCollectionHeaderReusableView: UICollectionReusableView {
     }
     
     
-    func setupLayoutViews() {
-//        title.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+    // MARK: - Layout
+    
+    func setupLayout() {
         title.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
         title.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-
-        addNewNotificationButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
-        addNewNotificationButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
-//        addNewNotificationButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
     }
     
-    func managePushNotificationsWarning(isAuthorized: PushNotificationsAuthStatus) {
-        if isAuthorized == .notAuthorized {
-            self.addSubview(notificationStatus)
-            notificationStatus.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30).isActive = true
-            notificationStatus.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30).isActive = true
-            notificationStatus.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 20).isActive = true
-        } else {
-            notificationStatus.removeFromSuperview()
+    
+    // MARK: - Push notifications auth mode management
+    
+    func manageAuthStatusMode(isAuthorized: PushNotificationsAuthStatus) {
+        switch isAuthorized {
+        case .authorized:
+            showAddNewButton()
+            hideWarning()
+        case .notAuthorized:
+            hideAddNewButon()
+            showWarning()
         }
     }
+    
+    private func showAddNewButton() {
+        self.addSubview(addNewNotificationButton)
+        addNewNotificationButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
+        addNewNotificationButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
+    }
+    
+    private func hideAddNewButon() {
+        addNewNotificationButton.removeFromSuperview()
+    }
+    
+    
+    private func showWarning() {
+        self.addSubview(notificationStatus)
+        notificationStatus.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30).isActive = true
+        notificationStatus.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30).isActive = true
+        notificationStatus.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 20).isActive = true
+    }
+    
+    private func hideWarning() {
+        notificationStatus.removeFromSuperview()
+    }
+    
     
 }
 

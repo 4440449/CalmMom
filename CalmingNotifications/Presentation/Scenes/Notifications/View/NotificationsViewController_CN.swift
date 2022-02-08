@@ -124,7 +124,7 @@ class NotificationsViewController_CN: UIViewController,
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: NotificationsCollectionHeaderReusableView.identifier, for: indexPath) as? NotificationsCollectionHeaderReusableView else { fatalError() }
         header.setupDependencies(viewModel: viewModel)
-        header.managePushNotificationsWarning(isAuthorized: viewModel.pushNotificationAuthStatus.value)
+        header.manageAuthStatusMode(isAuthorized: viewModel.pushNotificationAuthStatus.value)
         return header
     }
     
