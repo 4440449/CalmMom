@@ -94,8 +94,6 @@ class MainViewController_CN: UIViewController,
     
     @objc private func menuButtonTapped() {
         viewModel.menuButtonTapped()
-        //        tabBarController?.show(CN_MenuViewController(), sender: nil)
-        
     }
     
     private lazy var activity: UIActivityIndicatorView = {

@@ -20,6 +20,9 @@ final class MainRouter_CN: MainRouterProtocol_CN {
 
     private weak var navigationContainer: UIViewController?
     
+    
+    // MARK: - Init
+    
     init(navigationContainer: UIViewController) {
         self.navigationContainer = navigationContainer
     }
@@ -31,7 +34,11 @@ final class MainRouter_CN: MainRouterProtocol_CN {
         guard let navContainer = navigationContainer as? UITabBarController else {
             return
         }
-        navContainer.show(MenuSceneConfigurator_CN.configure(navigationContainer: navContainer), sender: nil)
+//        navContainer.show(MenuSceneConfigurator_CN.configure(navigationContainer: navContainer), sender: nil)
+//        navContainer.show(FavoritesSceneConfigurator_CN.configure(navigationContainer: navContainer), sender: nil)
+        navContainer.present(FavoritesSceneConfigurator_CN.configure(navigationContainer: navContainer),
+                             animated: true,
+                             completion: nil)
     }
     
     func showActivity(with content: UIImage) {

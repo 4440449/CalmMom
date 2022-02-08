@@ -8,7 +8,10 @@
 
 import UIKit
 
+
 struct QuoteCard_CN {
     let quote: String
     let image: UIImage
+    var id: UUID = UUID()
+    var isFavorite: Bool = false
 }

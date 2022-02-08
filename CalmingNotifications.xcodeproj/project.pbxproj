@@ -25,6 +25,16 @@
 		946B13E527AF398E00AF3BBB /* SceneState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B13E427AF398E00AF3BBB /* SceneState.swift */; };
 		946B13E727B0014C00AF3BBB /* PushNotificationsAuthStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B13E627B0014C00AF3BBB /* PushNotificationsAuthStatus.swift */; };
 		946B13E927B1D5F000AF3BBB /* NotificationSceneColors_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B13E827B1D5F000AF3BBB /* NotificationSceneColors_CN.swift */; };
+		946B13F027B2BE8800AF3BBB /* FavoritesSceneConfigurator_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B13EF27B2BE8800AF3BBB /* FavoritesSceneConfigurator_CN.swift */; };
+		946B13F227B2BEA300AF3BBB /* FavoritesViewController_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B13F127B2BEA300AF3BBB /* FavoritesViewController_CN.swift */; };
+		946B13F427B2BEE100AF3BBB /* FavoritesViewModel_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B13F327B2BEE100AF3BBB /* FavoritesViewModel_CN.swift */; };
+		946B13F627B2BEF200AF3BBB /* FavoritesRouter_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B13F527B2BEF200AF3BBB /* FavoritesRouter_CN.swift */; };
+		946B13F827B2C1A100AF3BBB /* FavoritesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B13F727B2C1A100AF3BBB /* FavoritesCollectionViewCell.swift */; };
+		946B13FE27B2D5D800AF3BBB /* CoreDataStack_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B13FD27B2D5D800AF3BBB /* CoreDataStack_CN.swift */; };
+		946B140227B2D73E00AF3BBB /* CalmingNotifications.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 946B140027B2D73E00AF3BBB /* CalmingNotifications.xcdatamodeld */; };
+		946B140A27B2F77500AF3BBB /* QuoteCardDBEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B140827B2F77500AF3BBB /* QuoteCardDBEntity+CoreDataClass.swift */; };
+		946B140B27B2F77500AF3BBB /* QuoteCardDBEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B140927B2F77500AF3BBB /* QuoteCardDBEntity+CoreDataProperties.swift */; };
+		946B140D27B3045B00AF3BBB /* FavoritesErrorHandler_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B140C27B3045B00AF3BBB /* FavoritesErrorHandler_CN.swift */; };
 		947850F3279E2B3600F1EEAC /* BabyNet in Frameworks */ = {isa = PBXBuildFile; productRef = 947850F2279E2B3600F1EEAC /* BabyNet */; };
 		947850F6279E2B4A00F1EEAC /* MommysEye in Frameworks */ = {isa = PBXBuildFile; productRef = 947850F5279E2B4A00F1EEAC /* MommysEye */; };
 		947850F8279E2F7000F1EEAC /* LocalPushNotificationServiceDTOMapperWrapper_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947850F7279E2F7000F1EEAC /* LocalPushNotificationServiceDTOMapperWrapper_CN.swift */; };
@@ -75,6 +85,16 @@
 		946B13E427AF398E00AF3BBB /* SceneState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneState.swift; sourceTree = "<group>"; };
 		946B13E627B0014C00AF3BBB /* PushNotificationsAuthStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationsAuthStatus.swift; sourceTree = "<group>"; };
 		946B13E827B1D5F000AF3BBB /* NotificationSceneColors_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSceneColors_CN.swift; sourceTree = "<group>"; };
+		946B13EF27B2BE8800AF3BBB /* FavoritesSceneConfigurator_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesSceneConfigurator_CN.swift; sourceTree = "<group>"; };
+		946B13F127B2BEA300AF3BBB /* FavoritesViewController_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController_CN.swift; sourceTree = "<group>"; };
+		946B13F327B2BEE100AF3BBB /* FavoritesViewModel_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel_CN.swift; sourceTree = "<group>"; };
+		946B13F527B2BEF200AF3BBB /* FavoritesRouter_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesRouter_CN.swift; sourceTree = "<group>"; };
+		946B13F727B2C1A100AF3BBB /* FavoritesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCollectionViewCell.swift; sourceTree = "<group>"; };
+		946B13FD27B2D5D800AF3BBB /* CoreDataStack_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack_CN.swift; sourceTree = "<group>"; };
+		946B140127B2D73E00AF3BBB /* CalmingNotifications.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CalmingNotifications.xcdatamodel; sourceTree = "<group>"; };
+		946B140827B2F77500AF3BBB /* QuoteCardDBEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuoteCardDBEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		946B140927B2F77500AF3BBB /* QuoteCardDBEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuoteCardDBEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		946B140C27B3045B00AF3BBB /* FavoritesErrorHandler_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesErrorHandler_CN.swift; sourceTree = "<group>"; };
 		947850F7279E2F7000F1EEAC /* LocalPushNotificationServiceDTOMapperWrapper_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPushNotificationServiceDTOMapperWrapper_CN.swift; sourceTree = "<group>"; };
 		947850FA279E355500F1EEAC /* NotificationExtension_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtension_CN.swift; sourceTree = "<group>"; };
 		947850FC279ECD7D00F1EEAC /* NotificationsErrorHandler_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsErrorHandler_CN.swift; sourceTree = "<group>"; };
@@ -197,6 +217,95 @@
 			path = Configurator;
 			sourceTree = "<group>";
 		};
+		946B13EA27B2BE2800AF3BBB /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				946B13EC27B2BE4700AF3BBB /* Configurator */,
+				946B13EB27B2BE4200AF3BBB /* View */,
+				946B13ED27B2BE4E00AF3BBB /* ViewModel */,
+				946B13EE27B2BE5400AF3BBB /* Router */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
+		946B13EB27B2BE4200AF3BBB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				946B13F127B2BEA300AF3BBB /* FavoritesViewController_CN.swift */,
+				946B13F927B2C1AE00AF3BBB /* Cell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		946B13EC27B2BE4700AF3BBB /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				946B13EF27B2BE8800AF3BBB /* FavoritesSceneConfigurator_CN.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
+		946B13ED27B2BE4E00AF3BBB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				946B13F327B2BEE100AF3BBB /* FavoritesViewModel_CN.swift */,
+				946B140C27B3045B00AF3BBB /* FavoritesErrorHandler_CN.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		946B13EE27B2BE5400AF3BBB /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				946B13F527B2BEF200AF3BBB /* FavoritesRouter_CN.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		946B13F927B2C1AE00AF3BBB /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				946B13F727B2C1A100AF3BBB /* FavoritesCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		946B13FB27B2D58400AF3BBB /* LocalPushNotifications */ = {
+			isa = PBXGroup;
+			children = (
+				94800867279631B500D34D4B /* LocalPushNotificationsService_CN.swift */,
+				947850F7279E2F7000F1EEAC /* LocalPushNotificationServiceDTOMapperWrapper_CN.swift */,
+			);
+			path = LocalPushNotifications;
+			sourceTree = "<group>";
+		};
+		946B13FC27B2D59E00AF3BBB /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				946B13FD27B2D5D800AF3BBB /* CoreDataStack_CN.swift */,
+				946B13FF27B2D69E00AF3BBB /* Entities */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		946B13FF27B2D69E00AF3BBB /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				946B140027B2D73E00AF3BBB /* CalmingNotifications.xcdatamodeld */,
+				946B140327B2D75C00AF3BBB /* QuoteCardDBEntity */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		946B140327B2D75C00AF3BBB /* QuoteCardDBEntity */ = {
+			isa = PBXGroup;
+			children = (
+				946B140827B2F77500AF3BBB /* QuoteCardDBEntity+CoreDataClass.swift */,
+				946B140927B2F77500AF3BBB /* QuoteCardDBEntity+CoreDataProperties.swift */,
+			);
+			path = QuoteCardDBEntity;
+			sourceTree = "<group>";
+		};
 		947850EC279E166900F1EEAC /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -224,8 +333,8 @@
 		947850FF279ECFB500F1EEAC /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
-				94800867279631B500D34D4B /* LocalPushNotificationsService_CN.swift */,
-				947850F7279E2F7000F1EEAC /* LocalPushNotificationServiceDTOMapperWrapper_CN.swift */,
+				946B13FC27B2D59E00AF3BBB /* CoreData */,
+				946B13FB27B2D58400AF3BBB /* LocalPushNotifications */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -297,8 +406,9 @@
 				94A4AD192794F58F00F1F5DF /* TabBar */,
 				94EFC9992792398400CC6B47 /* Main */,
 				94EFC99A279239B000CC6B47 /* Notifications */,
-				9478510327A992C000F1EEAC /* Infrastructure */,
 				94EFC99B279239BD00CC6B47 /* Menu */,
+				946B13EA27B2BE2800AF3BBB /* Favorites */,
+				9478510327A992C000F1EEAC /* Infrastructure */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -610,6 +720,8 @@
 				50A1CB8B278CCC63000F9BFC /* MainViewController_CN.swift in Sources */,
 				50A1CB87278CCC63000F9BFC /* AppDelegate.swift in Sources */,
 				94EFC9AA27923E5600CC6B47 /* QuoteCardGateway_CN.swift in Sources */,
+				946B13F227B2BEA300AF3BBB /* FavoritesViewController_CN.swift in Sources */,
+				946B13F027B2BE8800AF3BBB /* FavoritesSceneConfigurator_CN.swift in Sources */,
 				94EFC9BC27924B3900CC6B47 /* MainRouter_CN.swift in Sources */,
 				9441818D27AD842B00AD9FDD /* SplashRouter_CN.swift in Sources */,
 				50A1CB9F278F63B0000F9BFC /* MainTabBarViewController_CN.swift in Sources */,
@@ -623,16 +735,22 @@
 				94EFC9C127924CF600CC6B47 /* NotificationsRouter_CN.swift in Sources */,
 				947850FB279E355500F1EEAC /* NotificationExtension_CN.swift in Sources */,
 				94EFC9C627924D9800CC6B47 /* NotificationGateway_CN.swift in Sources */,
+				946B13F427B2BEE100AF3BBB /* FavoritesViewModel_CN.swift in Sources */,
 				94EFC9B82792473E00CC6B47 /* MainSceneConfigurator_CN.swift in Sources */,
+				946B13FE27B2D5D800AF3BBB /* CoreDataStack_CN.swift in Sources */,
 				94EFC9D227924EF500CC6B47 /* NotificationSceneConfigurator_CN.swift in Sources */,
 				9441818A27AD83F500AD9FDD /* SplashViewModel_CN.swift in Sources */,
 				94EFC9D8279252AD00CC6B47 /* MenuViewModel_CN.swift in Sources */,
 				9441818627AD83B300AD9FDD /* SplashViewController_CN.swift in Sources */,
 				9441819027AD848000AD9FDD /* SplashSceneConfigurator_CN.swift in Sources */,
+				946B140B27B2F77500AF3BBB /* QuoteCardDBEntity+CoreDataProperties.swift in Sources */,
+				946B140D27B3045B00AF3BBB /* FavoritesErrorHandler_CN.swift in Sources */,
 				94057F1E27973A32009B5A2B /* NotificationsCollectionViewCell_CN.swift in Sources */,
 				94EFC9D42792500F00CC6B47 /* SceneConfigurator_CN.swift in Sources */,
 				94057F2027975249009B5A2B /* NotificationsCollectionHeaderReusableView.swift in Sources */,
 				946B13E527AF398E00AF3BBB /* SceneState.swift in Sources */,
+				946B140A27B2F77500AF3BBB /* QuoteCardDBEntity+CoreDataClass.swift in Sources */,
+				946B13F827B2C1A100AF3BBB /* FavoritesCollectionViewCell.swift in Sources */,
 				94EFC9DB279252F100CC6B47 /* MenuRouter_CN.swift in Sources */,
 				50A1CBA1278F6C50000F9BFC /* NotificationsViewController_CN.swift in Sources */,
 				94EFC9C427924D7C00CC6B47 /* Notification_CN.swift in Sources */,
@@ -641,7 +759,9 @@
 				94800868279631B500D34D4B /* LocalPushNotificationsService_CN.swift in Sources */,
 				50A1CB89278CCC63000F9BFC /* SceneDelegate.swift in Sources */,
 				94EFC9CD27924EA200CC6B47 /* NotificationNetworkRepository_CN.swift in Sources */,
+				946B140227B2D73E00AF3BBB /* CalmingNotifications.xcdatamodeld in Sources */,
 				50A1CB9B278CF04B000F9BFC /* MainCollectionViewCell_CN.swift in Sources */,
+				946B13F627B2BEF200AF3BBB /* FavoritesRouter_CN.swift in Sources */,
 				94EFC9B32792409100CC6B47 /* QuoteCardNetworkRepository.swift in Sources */,
 				947850F8279E2F7000F1EEAC /* LocalPushNotificationServiceDTOMapperWrapper_CN.swift in Sources */,
 				50A1CBA3278F6C92000F9BFC /* MenuViewController_CN.swift in Sources */,
@@ -870,6 +990,19 @@
 			productName = MommysEye;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		946B140027B2D73E00AF3BBB /* CalmingNotifications.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				946B140127B2D73E00AF3BBB /* CalmingNotifications.xcdatamodel */,
+			);
+			currentVersion = 946B140127B2D73E00AF3BBB /* CalmingNotifications.xcdatamodel */;
+			path = CalmingNotifications.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 50A1CB7B278CCC63000F9BFC /* Project object */;
 }

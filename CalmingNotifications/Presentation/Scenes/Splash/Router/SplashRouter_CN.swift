@@ -31,4 +31,8 @@ final class SplashRouter_CN: SplashRouterProtocol_CN {
         }
     }
     
+    deinit {
+        print("SplashRouter_CN is deinit -------- ")
+    }
+    
 }

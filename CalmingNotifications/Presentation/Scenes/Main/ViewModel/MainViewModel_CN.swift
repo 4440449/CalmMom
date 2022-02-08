@@ -28,15 +28,15 @@ final class MainViewModel_CN: MainViewModelProtocol_CN,
     
     // MARK: - Dependencies
     
-//    private let quoteCardRepository: QuoteCardGateway_CN
+    private let quoteCardRepository: QuoteCardGateway_CN
     private let router: MainRouterProtocol_CN
     
     init(
-//        quoteCardRepository: QuoteCardGateway_CN,
+        quoteCardRepository: QuoteCardGateway_CN,
          router: MainRouterProtocol_CN,
          quoteCards: [QuoteCard_CN]) {
-//        self.quoteCardRepository = quoteCardRepository
-             self.quoteCards.value = quoteCards
+        self.quoteCardRepository = quoteCardRepository
+        self.quoteCards.value = quoteCards
         self.router = router
     }
     
@@ -74,6 +74,18 @@ final class MainViewModel_CN: MainViewModelProtocol_CN,
     
     func likeButtonTapped(cellWithIndex index: Int) {
 //        UIImageWriteToSavedPhotosAlbum(quoteCard.value[index].image, nil, nil, nil)
+        quoteTask = Task {
+            do {
+                let quoteCard = self.quoteCards.value[index]
+                try await self.quoteCardRepository.saveFavorite(quoteCard)
+            } catch let error {
+                print("error == \(error)")
+//                let errorMessage = self.errorHandler.handle(error)
+//                self.error.value = errorMessage
+            }
+        }
+        
+        
     }
     
     func shareButtonTapped(cellWithIndex index: Int) {

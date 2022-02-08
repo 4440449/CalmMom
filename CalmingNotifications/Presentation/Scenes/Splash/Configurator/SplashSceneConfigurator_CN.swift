@@ -24,5 +24,9 @@ final class SplashSceneConfigurator_CN: SceneConfiguratorProtocol_CN {
                                            bundle: nil)
         return view
     }
+    
+    deinit {
+        print("SplashSceneConfigurator_CN is deinit -------- ")
+    }
         
 }

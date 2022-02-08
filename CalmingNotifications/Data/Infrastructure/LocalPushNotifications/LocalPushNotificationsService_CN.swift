@@ -92,6 +92,21 @@ final class LocalPushNotificationsService_CN: LocalPushNotificationsServiceProto
 }
 
 
+// MARK: - Parse to domain entity extension
+
+extension UNNotificationRequest {
+    func parseToDomain() throws -> Notification_CN {
+        guard let trigger = self.trigger as? UNCalendarNotificationTrigger,
+              let hour = trigger.dateComponents.hour,
+              let minute = trigger.dateComponents.minute,
+              let time = Calendar.current.date(from: DateComponents(hour: hour, minute: minute)) else {
+                  throw LocalPushNotificationCenterError.failureMapping("Invalid UNNotificationRequest.trigger --> \(self.trigger.debugDescription)")
+              }
+        return .init(id: self.identifier, time: time)
+    }
+}
+
+
 // MARK: - Errors
 
 enum LocalPushNotificationCenterError: Error {
@@ -99,6 +114,7 @@ enum LocalPushNotificationCenterError: Error {
     case failureMapping(String)
     case failureFetching(String)
 }
+
 
 
 //"Закрой глаза.. Глубойкий вдох - выдох.. Ты съела все мороженое. Остановись.."

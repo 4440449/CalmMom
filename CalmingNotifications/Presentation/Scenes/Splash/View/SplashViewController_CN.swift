@@ -61,4 +61,7 @@ class SplashViewController_CN: UIViewController {
         return indicator
     }()
 
+    deinit {
+        print("SplashViewController_CN is deinit -------- ")
+    }
 }

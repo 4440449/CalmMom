@@ -39,7 +39,8 @@ final class QuoteCardRepository_CN: QuoteCardGateway_CN {
         self.localStorage = localStorage
     }
     
-    // MARK: - Interface impl
+    
+    // MARK: - Interface
     
     func fetch() async -> [QuoteCard_CN] { // throw if Empty!!
         sleep(1)
@@ -50,5 +51,18 @@ final class QuoteCardRepository_CN: QuoteCardGateway_CN {
             cards.append(card)
         }
         return cards
+    }
+    
+    func fetchFavorites() async throws -> [QuoteCard_CN] {
+        let result = try await localStorage.fetchFavorites()
+        return result
+    }
+    
+    func saveFavorite(_ quoteCard: QuoteCard_CN) async throws {
+        try await localStorage.saveFavorite(quoteCard)
+    }
+    
+    deinit {
+        print("QuoteCardRepository_CN is deinit -------- ")
     }
 }

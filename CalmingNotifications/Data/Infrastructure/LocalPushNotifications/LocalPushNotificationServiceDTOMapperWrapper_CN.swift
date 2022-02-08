@@ -19,8 +19,8 @@ final class LocalPushNotificationsDTOMapper_CN: LocalPushNotificationsDTOMapperP
 
     func convert(notificationRequest: [UNNotificationRequest]) throws -> [Notification_CN] {
         var domainEntities = [Notification_CN]()
-        try notificationRequest.forEach {
-            let domain = try Notification_CN(notificationRequest: $0)
+        try notificationRequest.forEach { let domain = try $0.parseToDomain()
+//            let domain = try Notification_CN(notificationRequest: $0)
             domainEntities.append(domain)
         }
         return domainEntities

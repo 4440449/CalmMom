@@ -58,5 +58,8 @@ final class SplashViewModel_CN: SplashViewModelProtocol_CN {
         router.startMainFlow(quoteCards: quoteCards)
     }
     
+    deinit {
+        print("SplashViewModel_CN is deinit -------- ")
+    }
     
 }

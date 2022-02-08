@@ -19,5 +19,9 @@ final class QuoteCardNetworkRepository: QuoteCardNetworkRepositoryProtocol_CN {
     
     
     
-    // MARK: - Interface impl
+    // MARK: - Interface
+    
+    deinit {
+        print("QuoteCardNetworkRepository is deinit -------- ")
+    }
 }

@@ -33,10 +33,10 @@ final class NotificationRepository_CN: NotificationGateway_CN {
     
     func fetch() async throws -> [Notification_CN] {
 //        sleep(2)
-        let request = await localPushNotificationsService.fetchNotifications()
+        // TODO: Перенести маппинг на уровень ниже?
+        let requests = await localPushNotificationsService.fetchNotifications()
         var domainEntities = [Notification_CN]()
-        try request.forEach { try domainEntities.append(Notification_CN(notificationRequest: $0))
-        }
+        try requests.forEach { try domainEntities.append($0.parseToDomain()) }
         domainEntities.sort { $0.time < $1.time }
         return domainEntities
     }
