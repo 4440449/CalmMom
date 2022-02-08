@@ -82,7 +82,7 @@ class MainViewController_CN: UIViewController,
     
     private var menuButton: UIButton = {
         let button = UIButton()
-        button.tintColor = .label
+        button.tintColor = .white
         button.setImage(UIImage(systemName: "ellipsis"), for: .normal)
         button.layer.cornerRadius = 20
         button.translatesAutoresizingMaskIntoConstraints = false

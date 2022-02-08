@@ -61,6 +61,8 @@ final class MainTabBarViewController_CN: UITabBarController {
     // MARK: - UI -
     
     private func setupTabBarUI() {
+        tabBar.tintColor = .white
+        tabBar.barTintColor = .white
         tabBar.backgroundImage = UIImage()
         tabBar.shadowImage = UIImage()
         tabBar.clipsToBounds = true

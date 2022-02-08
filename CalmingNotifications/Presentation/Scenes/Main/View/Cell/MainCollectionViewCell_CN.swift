@@ -63,6 +63,7 @@ class MainCollectionViewCell_CN: UICollectionViewCell {
     
     private var quoteLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .white
         label.numberOfLines = 10
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -88,7 +89,7 @@ class MainCollectionViewCell_CN: UICollectionViewCell {
     private lazy var shareButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "square.and.arrow.down"), for: .normal)
-        button.tintColor = .label
+        button.tintColor = .white
         button.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
