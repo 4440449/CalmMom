@@ -24,6 +24,7 @@
 		9441819027AD848000AD9FDD /* SplashSceneConfigurator_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9441818F27AD848000AD9FDD /* SplashSceneConfigurator_CN.swift */; };
 		946B13E527AF398E00AF3BBB /* SceneState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B13E427AF398E00AF3BBB /* SceneState.swift */; };
 		946B13E727B0014C00AF3BBB /* PushNotificationsAuthStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B13E627B0014C00AF3BBB /* PushNotificationsAuthStatus.swift */; };
+		946B13E927B1D5F000AF3BBB /* NotificationSceneColors_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B13E827B1D5F000AF3BBB /* NotificationSceneColors_CN.swift */; };
 		947850F3279E2B3600F1EEAC /* BabyNet in Frameworks */ = {isa = PBXBuildFile; productRef = 947850F2279E2B3600F1EEAC /* BabyNet */; };
 		947850F6279E2B4A00F1EEAC /* MommysEye in Frameworks */ = {isa = PBXBuildFile; productRef = 947850F5279E2B4A00F1EEAC /* MommysEye */; };
 		947850F8279E2F7000F1EEAC /* LocalPushNotificationServiceDTOMapperWrapper_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947850F7279E2F7000F1EEAC /* LocalPushNotificationServiceDTOMapperWrapper_CN.swift */; };
@@ -73,6 +74,7 @@
 		9441818F27AD848000AD9FDD /* SplashSceneConfigurator_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashSceneConfigurator_CN.swift; sourceTree = "<group>"; };
 		946B13E427AF398E00AF3BBB /* SceneState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneState.swift; sourceTree = "<group>"; };
 		946B13E627B0014C00AF3BBB /* PushNotificationsAuthStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationsAuthStatus.swift; sourceTree = "<group>"; };
+		946B13E827B1D5F000AF3BBB /* NotificationSceneColors_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSceneColors_CN.swift; sourceTree = "<group>"; };
 		947850F7279E2F7000F1EEAC /* LocalPushNotificationServiceDTOMapperWrapper_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPushNotificationServiceDTOMapperWrapper_CN.swift; sourceTree = "<group>"; };
 		947850FA279E355500F1EEAC /* NotificationExtension_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtension_CN.swift; sourceTree = "<group>"; };
 		947850FC279ECD7D00F1EEAC /* NotificationsErrorHandler_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsErrorHandler_CN.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 				94EFC99F279239E900CC6B47 /* View */,
 				94EFC9B927924AE700CC6B47 /* ViewModel */,
 				94EFC9BD27924BDE00CC6B47 /* Router */,
+				946B13E827B1D5F000AF3BBB /* NotificationSceneColors_CN.swift */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -602,6 +605,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				94EFC9B5279240B900CC6B47 /* QuoteCardPersistenceRepository.swift in Sources */,
+				946B13E927B1D5F000AF3BBB /* NotificationSceneColors_CN.swift in Sources */,
 				94EFC9C927924E1900CC6B47 /* NotificationRepository_CN.swift in Sources */,
 				50A1CB8B278CCC63000F9BFC /* MainViewController_CN.swift in Sources */,
 				50A1CB87278CCC63000F9BFC /* AppDelegate.swift in Sources */,

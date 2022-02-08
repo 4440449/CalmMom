@@ -47,6 +47,20 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
     }
     
     
+    // MARK: - Input data flow
+    
+    func reloadData(date: Date) {
+        animateRemovingDynamicViews(duration: 0.0)
+        titleButton.setTitle(" \(date.hh_mm())", for: .normal)
+//        resetDatePicker(date: date)
+        datePicker.date = date
+    }
+    
+//    func resetDatePicker(date: Date) {
+//        datePicker.date = Date()
+//        datePicker.date = date
+//    }
+    
     // MARK: - UI -
     
     // MARK: - Static views prop
@@ -118,24 +132,19 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
     // MARK: - Cell's UI
     
     private func setupCellAppearance() {
-        contentView.backgroundColor = UIColor(red: 0.16,
-                                              green: 0.18,
-                                              blue: 0.20,
-                                              alpha: 1.00)
         contentView.layer.cornerRadius = 15
-        contentView.layer.shadowColor = UIColor.label.cgColor
-        contentView.layer.shadowRadius = 20
-        contentView.layer.shadowOpacity = 0.05
+        
+        contentView.layer.shadowColor = UIColor.white.cgColor
         contentView.layer.shadowOffset = CGSize(width: -10, height: -10)
         contentView.layer.shouldRasterize = true
         contentView.layer.rasterizationScale = UIScreen.main.scale
-        
-        self.layer.shadowColor = UIColor.systemBackground.cgColor
-        self.layer.shadowRadius = 7
-        self.layer.shadowOpacity = 0.3
+
+        self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOffset = CGSize(width: 10, height: 10)
         self.layer.shouldRasterize = true
         self.layer.rasterizationScale = UIScreen.main.scale
+        
+        manageInterfaceStyle()
     }
     
     private func setupStaticViewsLayout() {
@@ -194,14 +203,52 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
         )
     }
     
-    func reloadData(date: Date) {
-        animateRemovingDynamicViews(duration: 0.0)
-        titleButton.setTitle(" \(date.hh_mm())",
-                             for: .normal)
-        datePicker.date = date
+    
+  // MARK: - Manage Dark/Light mode
+    
+    func manageInterfaceStyle() {
+        let interfaceStyle = traitCollection.userInterfaceStyle
+        contentView.backgroundColor = .clear
+        switch interfaceStyle {
+        case .light: setupLightMode()
+        case .dark: setupDarkMode()
+        default: return
+        }
+    }
+
+    private func setupLightMode() {
+        let lightColor = NotificationSceneColors_CN.light.color()
+        guard contentView.backgroundColor != lightColor else { return }
+        contentView.backgroundColor = lightColor
+        setupLightModeCellShadows()
+    }
+    
+    private func setupDarkMode() {
+        let darkColor = NotificationSceneColors_CN.dark.color()
+        guard contentView.backgroundColor != darkColor else { return }
+        contentView.backgroundColor = darkColor
+        setupDarkModeCellShadows()
+    }
+    
+    private func setupLightModeCellShadows() {
+        contentView.layer.shadowRadius = 15
+        contentView.layer.shadowOpacity = 0.8
+        self.layer.shadowRadius = 7
+        self.layer.shadowOpacity = 0.15
+    }
+    
+    private func setupDarkModeCellShadows() {
+        contentView.layer.shadowRadius = 15
+        contentView.layer.shadowOpacity = 0.1
+        self.layer.shadowRadius = 12
+        self.layer.shadowOpacity = 0.5
     }
     
 }
+
+
+
+
 
 
 

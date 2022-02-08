@@ -38,8 +38,14 @@ class NotificationsViewController_CN: UIViewController,
         super.viewDidLoad()
         view.addSubview(collectionView)
         view.addSubview(activity)
+        manageInterfaceStyle()
         setupObservers()
         viewModel.viewDidLoad()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        print("viewDidLayoutSubviews")
     }
     
     
@@ -50,7 +56,9 @@ class NotificationsViewController_CN: UIViewController,
             UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
             sceneDelegate.sceneState.subscribe(observer: self) { [weak self] sceneState in
                 switch sceneState {
-                case .foreground: self?.viewModel.sceneWillEnterForeground()
+                case .foreground:
+                    self?.manageInterfaceStyle()
+                    self?.viewModel.sceneWillEnterForeground()
                 case .background: return
                 }
             }
@@ -102,11 +110,6 @@ class NotificationsViewController_CN: UIViewController,
         //        collection.contentInsetAdjustmentBehavior = .never
         collection.showsVerticalScrollIndicator = false
         collection.alwaysBounceVertical = true
-        collection.backgroundColor = UIColor(red: 0.16,
-                                             green: 0.18,
-                                             blue: 0.20,
-                                             alpha: 1.00)
-//            .systemBackground
         collection.contentInset.bottom = 40
         return collection
     }()
@@ -141,6 +144,7 @@ class NotificationsViewController_CN: UIViewController,
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NotificationsCollectionViewCell_CN.identifier, for: indexPath) as? NotificationsCollectionViewCell_CN else { fatalError() }
         cell.setupDependencies(viewModel: viewModel, index: indexPath.row)
         cell.reloadData(date: viewModel.notifications.value[indexPath.row].time)
+        cell.manageInterfaceStyle()
         return cell
     }
       
@@ -150,6 +154,8 @@ class NotificationsViewController_CN: UIViewController,
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //TODO: Управление вьюхами ячеек через VM! Убрать даун каст
         guard let targetCell = collectionView.cellForItem(at: indexPath) as? NotificationsCollectionViewCell_CN else { return }
+        let date = viewModel.notifications.value[indexPath.row].time
+        targetCell.resetDatePicker(date: date)
         switch selectedIndex {
         case _ where selectedIndex == -1 :
             // Ячейка закрыта ==> раскрываю, устанавливаю вьюхи
@@ -192,6 +198,31 @@ class NotificationsViewController_CN: UIViewController,
   
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return CGFloat(20)
+    }
+    
+    
+    private func manageInterfaceStyle() {
+        let interfaceStyle = traitCollection.userInterfaceStyle
+        switch interfaceStyle {
+        case .light:
+            setupLightMode()
+        case .dark:
+            setupDarkMode()
+        default:
+            return
+        }
+    }
+
+    private func setupLightMode() {
+        let lightColor = NotificationSceneColors_CN.light.color()
+        guard collectionView.backgroundColor != lightColor else { return }
+        collectionView.backgroundColor = lightColor
+    }
+    
+    private func setupDarkMode() {
+        let darkColor = NotificationSceneColors_CN.dark.color()
+        guard collectionView.backgroundColor != darkColor else { return }
+        collectionView.backgroundColor = darkColor
     }
     
     
