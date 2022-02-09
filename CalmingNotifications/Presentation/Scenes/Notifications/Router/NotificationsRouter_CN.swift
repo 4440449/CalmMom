@@ -16,9 +16,12 @@ protocol NotificationsRouterProtocol_CN {
 final class NotificationsRouter_CN: NotificationsRouterProtocol_CN {
     
     private weak var navigationContainer: UIViewController?
+    private let repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN
     
-    init(navigationContainer: UIViewController) {
+    init(navigationContainer: UIViewController,
+         repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN) {
         self.navigationContainer = navigationContainer
+        self.repositoryDIContainer = repositoryDIContainer
     }
     
     func move() {

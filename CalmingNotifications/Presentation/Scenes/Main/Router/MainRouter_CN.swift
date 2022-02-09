@@ -19,12 +19,15 @@ final class MainRouter_CN: MainRouterProtocol_CN {
     // MARK: - Dependencies
 
     private weak var navigationContainer: UIViewController?
+    private let repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN
     
     
     // MARK: - Init
     
-    init(navigationContainer: UIViewController) {
+    init(navigationContainer: UIViewController,
+         repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN) {
         self.navigationContainer = navigationContainer
+        self.repositoryDIContainer = repositoryDIContainer
     }
     
     
@@ -36,7 +39,7 @@ final class MainRouter_CN: MainRouterProtocol_CN {
         }
 //        navContainer.show(MenuSceneConfigurator_CN.configure(navigationContainer: navContainer), sender: nil)
 //        navContainer.show(FavoritesSceneConfigurator_CN.configure(navigationContainer: navContainer), sender: nil)
-        navContainer.present(FavoritesSceneConfigurator_CN.configure(navigationContainer: navContainer),
+        navContainer.present(FavoritesSceneConfigurator_CN.configure(navigationContainer: navContainer, repositoryDIContainer: repositoryDIContainer),
                              animated: true,
                              completion: nil)
     }

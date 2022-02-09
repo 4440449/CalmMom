@@ -11,12 +11,13 @@ import UIKit
 
 final class SplashSceneConfigurator_CN: SceneConfiguratorProtocol_CN {
     
-    static func configure() -> UIViewController {
-        let network = QuoteCardNetworkRepository()
-        let localStorage = QuoteCardPersistenceRepository()
-        let repo = QuoteCardRepository_CN(network: network,
-                                       localStorage: localStorage)
-        let router = SplashRouter_CN()
+    static func configure(repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN) -> UIViewController {
+//        let network = QuoteCardNetworkRepository()
+//        let localStorage = QuoteCardPersistenceRepository()
+//        let repo = QuoteCardRepository_CN(network: network,
+//                                       localStorage: localStorage)
+        let repo = repositoryDIContainer.quoteCard
+        let router = SplashRouter_CN(repositoryDIContainer: repositoryDIContainer)
         let viewModel = SplashViewModel_CN(quoteCardRepository: repo,
                                            router: router)
         let view = SplashViewController_CN(viewModel: viewModel,

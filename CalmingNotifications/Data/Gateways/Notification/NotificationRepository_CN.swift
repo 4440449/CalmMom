@@ -18,8 +18,9 @@ final class NotificationRepository_CN: NotificationGateway_CN {
     
     init(network: NotificationNetworkRepositoryProtocol_CN,
          localStorage: NotificationPersistenceRepositoryProtocol_CN,
-         localPushNotificatiosnService: LocalPushNotificationsServiceProtocol_CN,
-         dtoMapper: LocalPushNotificationsDTOMapperProtocol_CN) {
+         localPushNotificatiosnService: LocalPushNotificationsServiceProtocol_CN
+//         dtoMapper: LocalPushNotificationsDTOMapperProtocol_CN
+    ) {
         self.network = network
         self.localStorage = localStorage
         self.localPushNotificationsService = localPushNotificatiosnService

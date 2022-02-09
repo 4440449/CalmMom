@@ -18,17 +18,33 @@ protocol SplashRouterProtocol_CN {
 
 final class SplashRouter_CN: SplashRouterProtocol_CN {
     
+    // MARK: - Dependencies
+
+    private let repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN
+    
+    
+    // MARK: - Init
+
+    init(repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN) {
+        self.repositoryDIContainer = repositoryDIContainer
+    }
+    
+    
+    // MARK: - Interface
+
     func startMainFlow(quoteCards: [QuoteCard_CN]) {
         DispatchQueue.main.async {
-            let tabBarVC = MainTabBarViewController_CN(quoteCards: quoteCards,
-                                                       nibName: nil,
-                                                       bundle: nil)
+//            let tabBarVC = MainTabBarViewController_CN(quoteCards: quoteCards,
+//                                                       nibName: nil,
+//                                                       bundle: nil)
+            let vc = MainTabBarConfigurator_CN.configure(quoteCards: quoteCards, repositoryDIContainer: self.repositoryDIContainer)
             if let sceneDelegate =
                 UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
-                sceneDelegate.window?.rootViewController = tabBarVC
+                sceneDelegate.window?.rootViewController = vc
                 sceneDelegate.window?.makeKeyAndVisible() // надо?
             }
         }
+        
     }
     
     deinit {

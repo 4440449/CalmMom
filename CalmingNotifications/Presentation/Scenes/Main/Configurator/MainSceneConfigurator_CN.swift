@@ -12,12 +12,14 @@ import UIKit
 final class MainSceneConfigurator_CN: SceneConfiguratorProtocol_CN {
     
     static func configure(navigationContainer: UIViewController,
+                          repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN,
                           quoteCards: [QuoteCard_CN]) -> UIViewController {
-        let network = QuoteCardNetworkRepository()
-        let localStorage = QuoteCardPersistenceRepository()
-        let repo = QuoteCardRepository_CN(network: network,
-                                       localStorage: localStorage)
-        let router = MainRouter_CN(navigationContainer: navigationContainer)
+//        let network = QuoteCardNetworkRepository()
+//        let localStorage = QuoteCardPersistenceRepository()
+//        let repo = QuoteCardRepository_CN(network: network,
+//                                       localStorage: localStorage)
+        let repo = repositoryDIContainer.quoteCard
+        let router = MainRouter_CN(navigationContainer: navigationContainer, repositoryDIContainer: repositoryDIContainer)
         let viewModel = MainViewModel_CN(
             quoteCardRepository: repo,
             router: router, quoteCards: quoteCards)

@@ -19,10 +19,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        let splashVC = SplashSceneConfigurator_CN.configure()
+        let quoteCardRepository = GatewaysRepositoryDIContainer_CN.createQuoteCardRepository()
+        let notificationRepository = GatewaysRepositoryDIContainer_CN.createNotificationRepository()
+        let repositoryDIContainer = GatewaysRepositoryDIContainer_CN(quoteCard: quoteCardRepository, notification: notificationRepository)
+        let splashVC = SplashSceneConfigurator_CN.configure(repositoryDIContainer: repositoryDIContainer)
         window?.rootViewController = splashVC
-//        let tabBarVC = MainTabBarViewController_CN()
-//        window?.rootViewController = tabBarVC
         window?.makeKeyAndVisible()
     }
 
@@ -40,10 +41,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func sceneWillEnterForeground(_ scene: UIScene) {
         sceneState.value = .foreground
+        print("foregr UIApplication.shared.applicationState == \(UIApplication.shared.applicationState.rawValue)")
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
         sceneState.value = .background
+        print("backr UIApplication.shared.applicationState == \(UIApplication.shared.applicationState.rawValue)")
     }
 
 }

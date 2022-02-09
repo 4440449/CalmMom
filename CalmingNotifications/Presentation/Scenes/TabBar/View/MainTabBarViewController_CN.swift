@@ -13,40 +13,44 @@ final class MainTabBarViewController_CN: UITabBarController {
     
     // MARK: - Dependencies
 
-    private let quoteCards: [QuoteCard_CN]
+//    private let quoteCards: [QuoteCard_CN]
     
     
     // MARK: - Init
     
-    init(quoteCards: [QuoteCard_CN],
-                  nibName nibNameOrNil: String?,
-                  bundle nibBundleOrNil: Bundle?) {
-        self.quoteCards = quoteCards
-        super.init(nibName: nibNameOrNil,
-                   bundle: nibBundleOrNil)
-    }
+//    init(
+////        quoteCards: [QuoteCard_CN],
+//                  nibName nibNameOrNil: String?,
+//                  bundle nibBundleOrNil: Bundle?) {
+////        self.quoteCards = quoteCards
+//        super.init(nibName: nibNameOrNil,
+//                   bundle: nibBundleOrNil)
+//    }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
     
     
     // MARK: - View's lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTabBarVC()
+//        setupTabBarVC()
         setupTabBarUI()
     }
     
     
     // MARK: - Private setup
 
-    private func setupTabBarVC() {
+    func setupTabBarVC(quoteCards: [QuoteCard_CN],
+                       quotes: [String],
+                       repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN) {
         let mainVC = MainSceneConfigurator_CN.configure(navigationContainer: self,
+                                                        repositoryDIContainer: repositoryDIContainer,
                                                         quoteCards: quoteCards)
-        let quotes = quoteCards.map { $0.quote }
         let notificationVC = NotificationSceneConfigurator_CN.configure(navigationContainer: self,
+                                                       repositoryDIContainer: repositoryDIContainer,
                                                        quotes: quotes)
         mainVC.tabBarItem = UITabBarItem(title: nil,
                                          image: UIImage(systemName: "house"),
