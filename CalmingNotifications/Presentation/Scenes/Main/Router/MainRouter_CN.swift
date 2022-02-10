@@ -10,14 +10,15 @@ import UIKit
 
 
 protocol MainRouterProtocol_CN {
-    func move()
+    func menuButtonTapped()
     func showActivity(with content: UIImage)
 }
+
 
 final class MainRouter_CN: MainRouterProtocol_CN {
     
     // MARK: - Dependencies
-
+    
     private weak var navigationContainer: UIViewController?
     private let repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN
     
@@ -32,18 +33,19 @@ final class MainRouter_CN: MainRouterProtocol_CN {
     
     
     // MARK: - Interface
-
-    func move() {
+    
+    func menuButtonTapped() {
         guard let navContainer = navigationContainer else { return }
-        navContainer.present(FavoritesSceneConfigurator_CN.configure(navigationContainer: navContainer, repositoryDIContainer: repositoryDIContainer),
-                             animated: true,
-                             completion: nil)
+        let menuVC = MenuSceneConfigurator_CN.configure(navigationContainer: navContainer, repositoryDIContainer: repositoryDIContainer)
+        navContainer.present(menuVC, animated: true, completion: nil)
+//        let favoritesVC = FavoritesSceneConfigurator_CN.configure(navigationContainer: navContainer, repositoryDIContainer: repositoryDIContainer)
+//        navContainer.present(favoritesVC, animated: true, completion: nil)
     }
     
     func showActivity(with content: UIImage) {
         guard let navContainer = navigationContainer else { return }
         let activityVC = UIActivityViewController(activityItems: [content],
-                                                applicationActivities: nil)
+                                                  applicationActivities: nil)
         navContainer.show(activityVC, sender: nil)
     }
     

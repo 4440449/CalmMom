@@ -208,7 +208,7 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
     
     func manageInterfaceStyle() {
         let interfaceStyle = traitCollection.userInterfaceStyle
-        contentView.backgroundColor = .clear
+//        contentView.backgroundColor = .clear
         switch interfaceStyle {
         case .light: setupLightMode()
         case .dark: setupDarkMode()

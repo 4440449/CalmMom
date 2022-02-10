@@ -49,7 +49,7 @@ class NotificationsCollectionHeaderReusableView: UICollectionReusableView {
         return label
     }()
     
-    private var addNewNotificationButton: UIButton = {
+    private lazy var addNewNotificationButton: UIButton = {
         let button = UIButton()
         button.tintColor = .label
         button.setImage(UIImage(systemName: "plus"), for: .normal)

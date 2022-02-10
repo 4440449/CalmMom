@@ -37,6 +37,8 @@
 		946B140D27B3045B00AF3BBB /* FavoritesErrorHandler_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B140C27B3045B00AF3BBB /* FavoritesErrorHandler_CN.swift */; };
 		946B141027B459CA00AF3BBB /* GatewaysRepositoryDIContainer_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B140F27B459CA00AF3BBB /* GatewaysRepositoryDIContainer_CN.swift */; };
 		946B141427B470A000AF3BBB /* MainTabBarConfigurator_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B141327B470A000AF3BBB /* MainTabBarConfigurator_CN.swift */; };
+		946B141827B5C41600AF3BBB /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B141727B5C41600AF3BBB /* MenuCollectionViewCell.swift */; };
+		946B141B27B5C9FC00AF3BBB /* MenuItem_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B141A27B5C9FC00AF3BBB /* MenuItem_CN.swift */; };
 		947850F3279E2B3600F1EEAC /* BabyNet in Frameworks */ = {isa = PBXBuildFile; productRef = 947850F2279E2B3600F1EEAC /* BabyNet */; };
 		947850F6279E2B4A00F1EEAC /* MommysEye in Frameworks */ = {isa = PBXBuildFile; productRef = 947850F5279E2B4A00F1EEAC /* MommysEye */; };
 		947850F8279E2F7000F1EEAC /* LocalPushNotificationServiceDTOMapperWrapper_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947850F7279E2F7000F1EEAC /* LocalPushNotificationServiceDTOMapperWrapper_CN.swift */; };
@@ -99,6 +101,8 @@
 		946B140C27B3045B00AF3BBB /* FavoritesErrorHandler_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesErrorHandler_CN.swift; sourceTree = "<group>"; };
 		946B140F27B459CA00AF3BBB /* GatewaysRepositoryDIContainer_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GatewaysRepositoryDIContainer_CN.swift; sourceTree = "<group>"; };
 		946B141327B470A000AF3BBB /* MainTabBarConfigurator_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarConfigurator_CN.swift; sourceTree = "<group>"; };
+		946B141727B5C41600AF3BBB /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
+		946B141A27B5C9FC00AF3BBB /* MenuItem_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem_CN.swift; sourceTree = "<group>"; };
 		947850F7279E2F7000F1EEAC /* LocalPushNotificationServiceDTOMapperWrapper_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPushNotificationServiceDTOMapperWrapper_CN.swift; sourceTree = "<group>"; };
 		947850FA279E355500F1EEAC /* NotificationExtension_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtension_CN.swift; sourceTree = "<group>"; };
 		947850FC279ECD7D00F1EEAC /* NotificationsErrorHandler_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsErrorHandler_CN.swift; sourceTree = "<group>"; };
@@ -334,6 +338,22 @@
 			path = Configurator;
 			sourceTree = "<group>";
 		};
+		946B141627B5C3FE00AF3BBB /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				946B141727B5C41600AF3BBB /* MenuCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		946B141927B5C9CD00AF3BBB /* MenuItem */ = {
+			isa = PBXGroup;
+			children = (
+				946B141A27B5C9FC00AF3BBB /* MenuItem_CN.swift */,
+			);
+			path = MenuItem;
+			sourceTree = "<group>";
+		};
 		947850EC279E166900F1EEAC /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -474,6 +494,7 @@
 			isa = PBXGroup;
 			children = (
 				50A1CBA2278F6C92000F9BFC /* MenuViewController_CN.swift */,
+				946B141627B5C3FE00AF3BBB /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -499,6 +520,7 @@
 			children = (
 				94EFC9C227924D6600CC6B47 /* Notofocation */,
 				94EFC9A827923E4800CC6B47 /* QuoteCard */,
+				946B141927B5C9CD00AF3BBB /* MenuItem */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -768,11 +790,13 @@
 				94EFC9C627924D9800CC6B47 /* NotificationGateway_CN.swift in Sources */,
 				946B13F427B2BEE100AF3BBB /* FavoritesViewModel_CN.swift in Sources */,
 				94EFC9B82792473E00CC6B47 /* MainSceneConfigurator_CN.swift in Sources */,
+				946B141B27B5C9FC00AF3BBB /* MenuItem_CN.swift in Sources */,
 				946B13FE27B2D5D800AF3BBB /* CoreDataStack_CN.swift in Sources */,
 				946B141427B470A000AF3BBB /* MainTabBarConfigurator_CN.swift in Sources */,
 				94EFC9D227924EF500CC6B47 /* NotificationSceneConfigurator_CN.swift in Sources */,
 				9441818A27AD83F500AD9FDD /* SplashViewModel_CN.swift in Sources */,
 				94EFC9D8279252AD00CC6B47 /* MenuViewModel_CN.swift in Sources */,
+				946B141827B5C41600AF3BBB /* MenuCollectionViewCell.swift in Sources */,
 				9441818627AD83B300AD9FDD /* SplashViewController_CN.swift in Sources */,
 				9441819027AD848000AD9FDD /* SplashSceneConfigurator_CN.swift in Sources */,
 				946B140B27B2F77500AF3BBB /* QuoteCardDBEntity+CoreDataProperties.swift in Sources */,

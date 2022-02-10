@@ -68,7 +68,7 @@ final class MainViewModel_CN: MainViewModelProtocol_CN,
     }
     
     func menuButtonTapped() {
-        router.move()
+        router.menuButtonTapped()
     }
     
     
@@ -100,6 +100,7 @@ final class MainViewModel_CN: MainViewModelProtocol_CN,
     
     // MARK: - Private
     
+    // To extension UIImage
     private func textToImage(drawText text: String,
                              inImage image: UIImage) -> UIImage? {
         print("image.size == \(image.size)")
