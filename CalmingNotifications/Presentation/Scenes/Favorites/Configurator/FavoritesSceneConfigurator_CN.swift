@@ -12,10 +12,6 @@ import UIKit
 final class FavoritesSceneConfigurator_CN: SceneConfiguratorProtocol_CN {
     
     static func configure(navigationContainer: UIViewController, repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN) -> UIViewController {
-//        let network = QuoteCardNetworkRepository()
-//        let localStorage = QuoteCardPersistenceRepository()
-//        let repo = QuoteCardRepository_CN(network: network,
-//                                          localStorage: localStorage)
         let repo = repositoryDIContainer.quoteCard
         let errorHandler = FavoritesErrorHandler_CN()
         let router = FavoritesRouter_CN(navigationContainer: navigationContainer)

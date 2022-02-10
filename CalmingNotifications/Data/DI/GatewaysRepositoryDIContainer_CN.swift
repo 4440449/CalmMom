@@ -6,13 +6,6 @@
 //  Copyright © 2022 Max. All rights reserved.
 //
 
-//protocol QuoteCardRepositoryDIContainer_CN {
-//    var quoteCardRepository: QuoteCardGateway_CN { get }
-//}
-//
-//protocol NotificationsRepositoryDIContainer_CN {
-//    var notificationsRepository: NotificationGateway_CN { get }
-//}
 
 protocol GatewaysRepositoryDIContainerProtocol_CN {
     var quoteCard: QuoteCardGateway_CN { get }
@@ -22,15 +15,23 @@ protocol GatewaysRepositoryDIContainerProtocol_CN {
 
 final class GatewaysRepositoryDIContainer_CN: GatewaysRepositoryDIContainerProtocol_CN {
     
+    // MARK: - Dependencies
+
     let quoteCard: QuoteCardGateway_CN
     let notification: NotificationGateway_CN
     
+    
+    // MARK: - Init / External injection
+
     init(quoteCard: QuoteCardGateway_CN,
          notification: NotificationGateway_CN) {
         self.quoteCard = quoteCard
         self.notification = notification
     }
     
+    
+    // MARK: - Default internal injection
+
     static func createQuoteCardRepository() -> QuoteCardGateway_CN {
         let network = QuoteCardNetworkRepository()
         let localStorage = QuoteCardPersistenceRepository()

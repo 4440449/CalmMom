@@ -32,10 +32,10 @@ extension QuoteCardDBEntity : Identifiable {
 extension QuoteCardDBEntity {
     
     func parseToDBEntity(domain: QuoteCard_CN) throws {
-        guard let pngData = domain.image.pngData() else {
+        guard let jpegData = domain.image.jpegData(compressionQuality: 1) else {
             throw QuoteCardLocalStorageError.failureToDBEntityMapping("Failure PNG representation data --> \(domain.image)")
         }
-        image = pngData
+        image = jpegData
         quote = domain.quote
         id = domain.id
         isFavorite = domain.isFavorite
@@ -44,14 +44,26 @@ extension QuoteCardDBEntity {
     func parseToDomainEntity() throws -> QuoteCard_CN  {
         guard let data = self.image,
               let image = UIImage(data: data),
+              let scaleImage = image.scale(toSize: CGSize(width: 414, height: 896)),
               let quote = self.quote,
               let id = self.id else {
                   throw QuoteCardLocalStorageError.failureToDomainEntityMapping("Invalid entity data --> \(self.debugDescription)")
               }
         return .init(quote: quote,
-                     image: image,
+                     image: scaleImage,
                      id: id,
                      isFavorite: self.isFavorite)
     }
     
+}
+
+
+extension UIImage {
+    func scale(toSize: CGSize) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(toSize, false, 0.0)
+        self.draw(in: CGRect(origin: .zero, size: toSize))
+        guard let newImage = UIGraphicsGetImageFromCurrentImageContext() else { return nil }
+        UIGraphicsEndImageContext()
+        return newImage
+    }
 }

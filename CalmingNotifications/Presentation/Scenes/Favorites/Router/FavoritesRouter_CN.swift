@@ -14,7 +14,6 @@ protocol FavoritesRouterProtocol_CN {
 }
 
 
-
 final class FavoritesRouter_CN: FavoritesRouterProtocol_CN {
     
     // MARK: - Dependencies

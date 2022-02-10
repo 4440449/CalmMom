@@ -102,6 +102,8 @@ final class MainViewModel_CN: MainViewModelProtocol_CN,
     
     private func textToImage(drawText text: String,
                              inImage image: UIImage) -> UIImage? {
+        print("image.size == \(image.size)")
+        print("UIScreen.main.bounds == \(UIScreen.main.bounds)")
         let textColor = UIColor.white
         let textFont = UIFont(name: "Helvetica Bold", size: 18)!
         let paragraphStyle = NSMutableParagraphStyle()

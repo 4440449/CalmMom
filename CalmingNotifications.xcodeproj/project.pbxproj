@@ -310,12 +310,12 @@
 			path = QuoteCardDBEntity;
 			sourceTree = "<group>";
 		};
-		946B140E27B4599800AF3BBB /* GatewaysRepositoryDIContainer */ = {
+		946B140E27B4599800AF3BBB /* DI */ = {
 			isa = PBXGroup;
 			children = (
 				946B140F27B459CA00AF3BBB /* GatewaysRepositoryDIContainer_CN.swift */,
 			);
-			path = GatewaysRepositoryDIContainer;
+			path = DI;
 			sourceTree = "<group>";
 		};
 		946B141127B4707000AF3BBB /* View */ = {
@@ -381,6 +381,7 @@
 				9478510127A9929700F1EEAC /* LoaderState_CN.swift */,
 				946B13E427AF398E00AF3BBB /* SceneState.swift */,
 				946B13E627B0014C00AF3BBB /* PushNotificationsAuthStatus.swift */,
+				946B13E827B1D5F000AF3BBB /* NotificationSceneColors_CN.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -412,7 +413,6 @@
 				94EFC99F279239E900CC6B47 /* View */,
 				94EFC9B927924AE700CC6B47 /* ViewModel */,
 				94EFC9BD27924BDE00CC6B47 /* Router */,
-				946B13E827B1D5F000AF3BBB /* NotificationSceneColors_CN.swift */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -515,7 +515,7 @@
 		94EFC9AB27923F5400CC6B47 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				946B140E27B4599800AF3BBB /* GatewaysRepositoryDIContainer */,
+				946B140E27B4599800AF3BBB /* DI */,
 				94EFC9AE2792403E00CC6B47 /* Gateways */,
 				947850FF279ECFB500F1EEAC /* Infrastructure */,
 			);

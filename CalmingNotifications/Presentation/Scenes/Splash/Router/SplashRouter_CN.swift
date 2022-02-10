@@ -15,7 +15,6 @@ protocol SplashRouterProtocol_CN {
 }
 
 
-
 final class SplashRouter_CN: SplashRouterProtocol_CN {
     
     // MARK: - Dependencies
@@ -34,9 +33,6 @@ final class SplashRouter_CN: SplashRouterProtocol_CN {
 
     func startMainFlow(quoteCards: [QuoteCard_CN]) {
         DispatchQueue.main.async {
-//            let tabBarVC = MainTabBarViewController_CN(quoteCards: quoteCards,
-//                                                       nibName: nil,
-//                                                       bundle: nil)
             let vc = MainTabBarConfigurator_CN.configure(quoteCards: quoteCards, repositoryDIContainer: self.repositoryDIContainer)
             if let sceneDelegate =
                 UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
@@ -44,7 +40,6 @@ final class SplashRouter_CN: SplashRouterProtocol_CN {
                 sceneDelegate.window?.makeKeyAndVisible() // надо?
             }
         }
-        
     }
     
     deinit {

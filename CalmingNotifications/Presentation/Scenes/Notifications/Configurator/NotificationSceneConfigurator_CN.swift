@@ -14,13 +14,6 @@ final class NotificationSceneConfigurator_CN: SceneConfiguratorProtocol_CN {
     static func configure(navigationContainer: UIViewController,
                           repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN,
                           quotes: [String]) -> UIViewController {
-        
-//        let network = NotificationNetworkRepository_CN()
-//        let localStorage = NotificationPersistenceRepository_CN()
-//        let localPushNotificationsService = LocalPushNotificationsService_CN()
-//        let repo = NotificationRepository_CN(network: network,
-//                                             localStorage: localStorage,
-//                                             localPushNotificatiosnService: localPushNotificationsService)
         let repo = repositoryDIContainer.notification
         let router = NotificationsRouter_CN(navigationContainer: navigationContainer,
                                             repositoryDIContainer: repositoryDIContainer)

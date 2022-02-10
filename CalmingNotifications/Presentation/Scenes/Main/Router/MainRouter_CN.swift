@@ -34,20 +34,14 @@ final class MainRouter_CN: MainRouterProtocol_CN {
     // MARK: - Interface
 
     func move() {
-        guard let navContainer = navigationContainer as? UITabBarController else {
-            return
-        }
-//        navContainer.show(MenuSceneConfigurator_CN.configure(navigationContainer: navContainer), sender: nil)
-//        navContainer.show(FavoritesSceneConfigurator_CN.configure(navigationContainer: navContainer), sender: nil)
+        guard let navContainer = navigationContainer else { return }
         navContainer.present(FavoritesSceneConfigurator_CN.configure(navigationContainer: navContainer, repositoryDIContainer: repositoryDIContainer),
                              animated: true,
                              completion: nil)
     }
     
     func showActivity(with content: UIImage) {
-        guard let navContainer = navigationContainer as? UITabBarController else {
-            return
-        }
+        guard let navContainer = navigationContainer else { return }
         let activityVC = UIActivityViewController(activityItems: [content],
                                                 applicationActivities: nil)
         navContainer.show(activityVC, sender: nil)
