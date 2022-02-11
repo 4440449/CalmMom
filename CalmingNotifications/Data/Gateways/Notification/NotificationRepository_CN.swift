@@ -28,7 +28,7 @@ final class NotificationRepository_CN: NotificationGateway_CN {
     }
     
     
-    func getAuthorizationStatus() async -> PushNotificationsAuthStatus {
+    func getAuthorizationStatus() async -> PushNotificationsAuthStatus_CN {
         return await localPushNotificationsService.getAuthorizationStatus()
     }
     

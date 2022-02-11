@@ -9,7 +9,7 @@
 import UIKit
 
 
-enum NotificationSceneColors_CN {
+enum AppColors_CN {
     case light
     case dark
     

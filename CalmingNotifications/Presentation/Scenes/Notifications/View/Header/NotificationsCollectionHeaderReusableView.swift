@@ -100,7 +100,7 @@ class NotificationsCollectionHeaderReusableView: UICollectionReusableView {
     
     // MARK: - Push notifications auth mode management
     
-    func manageAuthStatusMode(isAuthorized: PushNotificationsAuthStatus) {
+    func manageAuthStatusMode(isAuthorized: PushNotificationsAuthStatus_CN) {
         switch isAuthorized {
         case .authorized:
             showAddNewButton()

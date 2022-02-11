@@ -1,5 +1,5 @@
 //
-//  PushNotificationsAuthStatus.swift
+//  PushNotificationsAuthStatus_CN.swift
 //  CalmingNotifications
 //
 //  Created by Maxim on 06.02.2022.
@@ -9,7 +9,7 @@
 import Foundation
 
 
-enum PushNotificationsAuthStatus {
+enum PushNotificationsAuthStatus_CN {
     case authorized
     case notAuthorized
 }

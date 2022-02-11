@@ -38,7 +38,9 @@ class NotificationsViewController_CN: UIViewController,
         super.viewDidLoad()
         view.addSubview(collectionView)
         view.addSubview(activity)
-        manageInterfaceStyle()
+        collectionView.manageInterfaceStyleBackgroundColor(
+            light: AppColors_CN.light.color(),
+            dark: AppColors_CN.dark.color() )
         setupObservers()
 //        setNeedsStatusBarAppearanceUpdate()
         viewModel.viewDidLoad()
@@ -53,7 +55,9 @@ class NotificationsViewController_CN: UIViewController,
             sceneDelegate.sceneState.subscribe(observer: self) { [weak self] sceneState in
                 switch sceneState {
                 case .foreground:
-                    self?.manageInterfaceStyle()
+                    self?.collectionView.manageInterfaceStyleBackgroundColor(
+                        light: AppColors_CN.light.color(),
+                        dark: AppColors_CN.dark.color() )
                     self?.viewModel.sceneWillEnterForeground()
                 case .background: return
                 }
@@ -61,9 +65,9 @@ class NotificationsViewController_CN: UIViewController,
         }
         
         viewModel.notifications.subscribe(observer: self) { [weak self] _ in
-            guard let strongSelf = self else { return }
-            strongSelf.selectedIndex = -1
-            strongSelf.collectionView.reloadData()
+//            guard let strongSelf = self else { return }
+            self?.selectedIndex = -1
+            self?.collectionView.reloadData()
 //            UIView.transition(with: strongSelf.collectionView,
 //                              duration: 0.3,
 //                              options: .transitionCrossDissolve,
@@ -148,7 +152,7 @@ class NotificationsViewController_CN: UIViewController,
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NotificationsCollectionViewCell_CN.identifier, for: indexPath) as? NotificationsCollectionViewCell_CN else { fatalError() }
         cell.setupDependencies(viewModel: viewModel, index: indexPath.row)
         cell.reloadData(time: viewModel.notifications.value[indexPath.row].time)
-        cell.manageInterfaceStyle()
+//        cell.manageInterfaceStyle()
         return cell
     }
       
@@ -219,13 +223,13 @@ class NotificationsViewController_CN: UIViewController,
     }
 
     private func setupLightMode() {
-        let lightColor = NotificationSceneColors_CN.light.color()
+        let lightColor = AppColors_CN.light.color()
         guard collectionView.backgroundColor != lightColor else { return }
         collectionView.backgroundColor = lightColor
     }
     
     private func setupDarkMode() {
-        let darkColor = NotificationSceneColors_CN.dark.color()
+        let darkColor = AppColors_CN.dark.color()
         guard collectionView.backgroundColor != darkColor else { return }
         collectionView.backgroundColor = darkColor
     }

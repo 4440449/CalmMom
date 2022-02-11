@@ -23,8 +23,8 @@
 		9441818D27AD842B00AD9FDD /* SplashRouter_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9441818C27AD842B00AD9FDD /* SplashRouter_CN.swift */; };
 		9441819027AD848000AD9FDD /* SplashSceneConfigurator_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9441818F27AD848000AD9FDD /* SplashSceneConfigurator_CN.swift */; };
 		946B13E527AF398E00AF3BBB /* SceneState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B13E427AF398E00AF3BBB /* SceneState.swift */; };
-		946B13E727B0014C00AF3BBB /* PushNotificationsAuthStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B13E627B0014C00AF3BBB /* PushNotificationsAuthStatus.swift */; };
-		946B13E927B1D5F000AF3BBB /* NotificationSceneColors_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B13E827B1D5F000AF3BBB /* NotificationSceneColors_CN.swift */; };
+		946B13E727B0014C00AF3BBB /* PushNotificationsAuthStatus_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B13E627B0014C00AF3BBB /* PushNotificationsAuthStatus_CN.swift */; };
+		946B13E927B1D5F000AF3BBB /* AppColors_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B13E827B1D5F000AF3BBB /* AppColors_CN.swift */; };
 		946B13F027B2BE8800AF3BBB /* FavoritesSceneConfigurator_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B13EF27B2BE8800AF3BBB /* FavoritesSceneConfigurator_CN.swift */; };
 		946B13F227B2BEA300AF3BBB /* FavoritesViewController_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B13F127B2BEA300AF3BBB /* FavoritesViewController_CN.swift */; };
 		946B13F427B2BEE100AF3BBB /* FavoritesViewModel_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B13F327B2BEE100AF3BBB /* FavoritesViewModel_CN.swift */; };
@@ -39,6 +39,8 @@
 		946B141427B470A000AF3BBB /* MainTabBarConfigurator_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B141327B470A000AF3BBB /* MainTabBarConfigurator_CN.swift */; };
 		946B141827B5C41600AF3BBB /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B141727B5C41600AF3BBB /* MenuCollectionViewCell.swift */; };
 		946B141B27B5C9FC00AF3BBB /* MenuItem_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B141A27B5C9FC00AF3BBB /* MenuItem_CN.swift */; };
+		946B141E27B6DD8A00AF3BBB /* InterfaceStyleManagement_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B141D27B6DD8A00AF3BBB /* InterfaceStyleManagement_CN.swift */; };
+		946B142027B6F93E00AF3BBB /* DateFormatter_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B141F27B6F93E00AF3BBB /* DateFormatter_CN.swift */; };
 		947850F3279E2B3600F1EEAC /* BabyNet in Frameworks */ = {isa = PBXBuildFile; productRef = 947850F2279E2B3600F1EEAC /* BabyNet */; };
 		947850F6279E2B4A00F1EEAC /* MommysEye in Frameworks */ = {isa = PBXBuildFile; productRef = 947850F5279E2B4A00F1EEAC /* MommysEye */; };
 		947850F8279E2F7000F1EEAC /* LocalPushNotificationServiceDTOMapperWrapper_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947850F7279E2F7000F1EEAC /* LocalPushNotificationServiceDTOMapperWrapper_CN.swift */; };
@@ -87,8 +89,8 @@
 		9441818C27AD842B00AD9FDD /* SplashRouter_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashRouter_CN.swift; sourceTree = "<group>"; };
 		9441818F27AD848000AD9FDD /* SplashSceneConfigurator_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashSceneConfigurator_CN.swift; sourceTree = "<group>"; };
 		946B13E427AF398E00AF3BBB /* SceneState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneState.swift; sourceTree = "<group>"; };
-		946B13E627B0014C00AF3BBB /* PushNotificationsAuthStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationsAuthStatus.swift; sourceTree = "<group>"; };
-		946B13E827B1D5F000AF3BBB /* NotificationSceneColors_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSceneColors_CN.swift; sourceTree = "<group>"; };
+		946B13E627B0014C00AF3BBB /* PushNotificationsAuthStatus_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationsAuthStatus_CN.swift; sourceTree = "<group>"; };
+		946B13E827B1D5F000AF3BBB /* AppColors_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors_CN.swift; sourceTree = "<group>"; };
 		946B13EF27B2BE8800AF3BBB /* FavoritesSceneConfigurator_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesSceneConfigurator_CN.swift; sourceTree = "<group>"; };
 		946B13F127B2BEA300AF3BBB /* FavoritesViewController_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController_CN.swift; sourceTree = "<group>"; };
 		946B13F327B2BEE100AF3BBB /* FavoritesViewModel_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel_CN.swift; sourceTree = "<group>"; };
@@ -103,6 +105,8 @@
 		946B141327B470A000AF3BBB /* MainTabBarConfigurator_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarConfigurator_CN.swift; sourceTree = "<group>"; };
 		946B141727B5C41600AF3BBB /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		946B141A27B5C9FC00AF3BBB /* MenuItem_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem_CN.swift; sourceTree = "<group>"; };
+		946B141D27B6DD8A00AF3BBB /* InterfaceStyleManagement_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceStyleManagement_CN.swift; sourceTree = "<group>"; };
+		946B141F27B6F93E00AF3BBB /* DateFormatter_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter_CN.swift; sourceTree = "<group>"; };
 		947850F7279E2F7000F1EEAC /* LocalPushNotificationServiceDTOMapperWrapper_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPushNotificationServiceDTOMapperWrapper_CN.swift; sourceTree = "<group>"; };
 		947850FA279E355500F1EEAC /* NotificationExtension_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtension_CN.swift; sourceTree = "<group>"; };
 		947850FC279ECD7D00F1EEAC /* NotificationsErrorHandler_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsErrorHandler_CN.swift; sourceTree = "<group>"; };
@@ -406,10 +410,12 @@
 		9478510327A992C000F1EEAC /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
-				9478510127A9929700F1EEAC /* LoaderState_CN.swift */,
 				946B13E427AF398E00AF3BBB /* SceneState.swift */,
-				946B13E627B0014C00AF3BBB /* PushNotificationsAuthStatus.swift */,
-				946B13E827B1D5F000AF3BBB /* NotificationSceneColors_CN.swift */,
+				9478510127A9929700F1EEAC /* LoaderState_CN.swift */,
+				946B141F27B6F93E00AF3BBB /* DateFormatter_CN.swift */,
+				946B13E627B0014C00AF3BBB /* PushNotificationsAuthStatus_CN.swift */,
+				946B13E827B1D5F000AF3BBB /* AppColors_CN.swift */,
+				946B141D27B6DD8A00AF3BBB /* InterfaceStyleManagement_CN.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -775,7 +781,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				94EFC9B5279240B900CC6B47 /* QuoteCardPersistenceRepository.swift in Sources */,
-				946B13E927B1D5F000AF3BBB /* NotificationSceneColors_CN.swift in Sources */,
+				946B13E927B1D5F000AF3BBB /* AppColors_CN.swift in Sources */,
 				94EFC9C927924E1900CC6B47 /* NotificationRepository_CN.swift in Sources */,
 				50A1CB8B278CCC63000F9BFC /* MainViewController_CN.swift in Sources */,
 				946B141027B459CA00AF3BBB /* GatewaysRepositoryDIContainer_CN.swift in Sources */,
@@ -787,7 +793,7 @@
 				9441818D27AD842B00AD9FDD /* SplashRouter_CN.swift in Sources */,
 				50A1CB9F278F63B0000F9BFC /* MainTabBarViewController_CN.swift in Sources */,
 				9478510227A9929700F1EEAC /* LoaderState_CN.swift in Sources */,
-				946B13E727B0014C00AF3BBB /* PushNotificationsAuthStatus.swift in Sources */,
+				946B13E727B0014C00AF3BBB /* PushNotificationsAuthStatus_CN.swift in Sources */,
 				94EFC9AD27923F7C00CC6B47 /* QuoteCardRepository_CN.swift in Sources */,
 				947850FD279ECD7D00F1EEAC /* NotificationsErrorHandler_CN.swift in Sources */,
 				94EFC9A327923C5500CC6B47 /* MainViewModel_CN.swift in Sources */,
@@ -801,6 +807,7 @@
 				946B141B27B5C9FC00AF3BBB /* MenuItem_CN.swift in Sources */,
 				946B13FE27B2D5D800AF3BBB /* CoreDataStack_CN.swift in Sources */,
 				946B141427B470A000AF3BBB /* MainTabBarConfigurator_CN.swift in Sources */,
+				946B142027B6F93E00AF3BBB /* DateFormatter_CN.swift in Sources */,
 				94EFC9D227924EF500CC6B47 /* NotificationSceneConfigurator_CN.swift in Sources */,
 				9441818A27AD83F500AD9FDD /* SplashViewModel_CN.swift in Sources */,
 				94EFC9D8279252AD00CC6B47 /* MenuViewModel_CN.swift in Sources */,
@@ -815,6 +822,7 @@
 				946B13E527AF398E00AF3BBB /* SceneState.swift in Sources */,
 				946B140A27B2F77500AF3BBB /* QuoteCardDBEntity+CoreDataClass.swift in Sources */,
 				946B13F827B2C1A100AF3BBB /* FavoritesCollectionViewCell.swift in Sources */,
+				946B141E27B6DD8A00AF3BBB /* InterfaceStyleManagement_CN.swift in Sources */,
 				94EFC9DB279252F100CC6B47 /* MenuRouter_CN.swift in Sources */,
 				50A1CBA1278F6C50000F9BFC /* NotificationsViewController_CN.swift in Sources */,
 				94EFC9C427924D7C00CC6B47 /* Notification_CN.swift in Sources */,

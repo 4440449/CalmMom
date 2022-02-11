@@ -18,8 +18,9 @@ class MenuCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.addSubview(title)
-        setupCellAppearance()
+        setupAppearance()
         setupLayout()
+        setupObservers()
     }
     
     required init?(coder: NSCoder) {
@@ -27,8 +28,32 @@ class MenuCollectionViewCell: UICollectionViewCell {
     }
     
     
+    // MARK: - Input data flow
+    
+    private func setupObservers() {
+        if let sceneDelegate =
+            UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
+            sceneDelegate.sceneState.subscribe(observer: self) { [weak self] sceneState in
+                guard let strongSelf = self else { return }
+                switch sceneState {
+                case .foreground:
+                    strongSelf.contentView.manageInterfaceStyleBackgroundColor(
+                        light: AppColors_CN.light.color(),
+                        dark: AppColors_CN.dark.color() )
+                    strongSelf.contentView.manageInterfaceStyleShadows(
+                        light: .init(radius: 15, opacity: 0.8),
+                        dark: .init(radius: 15, opacity: 0.1) )
+                    strongSelf.manageInterfaceStyleShadows(
+                        light: .init(radius: 7, opacity: 0.15),
+                        dark: .init(radius: 12, opacity: 0.5) )
+                case .background: return
+                }
+            }
+        }
+    }
+    
     // MARK: - UI -
-
+    
     private var title: UILabel = {
         let label = UILabel()
         label.text = "Mom's Exhale"
@@ -41,70 +66,34 @@ class MenuCollectionViewCell: UICollectionViewCell {
         title.text = text
     }
     
-    
-    private func setupCellAppearance() {
+    private func setupAppearance() {
         contentView.layer.cornerRadius = 15
-        
-        contentView.layer.shadowColor = UIColor.white.cgColor
-        contentView.layer.shadowOffset = CGSize(width: -10, height: -10)
-        contentView.layer.shouldRasterize = true
-        contentView.layer.rasterizationScale = UIScreen.main.scale
-
-        self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOffset = CGSize(width: 10, height: 10)
-        self.layer.shouldRasterize = true
-        self.layer.rasterizationScale = UIScreen.main.scale
-        
-        manageInterfaceStyle()
+        contentView.manageInterfaceStyleBackgroundColor(
+            light: AppColors_CN.light.color(),
+            dark: AppColors_CN.dark.color() )
+        contentView.setupShadows(color: .white,
+                                 offset: CGSize(width: -10, height: -10),
+                                 rasterize: true)
+        contentView.manageInterfaceStyleShadows(
+            light: .init(radius: 15, opacity: 0.8),
+            dark: .init(radius: 15, opacity: 0.1) )
+        self.setupShadows(color: .black,
+                          offset: CGSize(width: 10, height: 10),
+                          rasterize: true)
+        self.manageInterfaceStyleShadows(
+            light: .init(radius: 7, opacity: 0.15),
+            dark: .init(radius: 12, opacity: 0.5) )
     }
     
     
     // MARK: - Layout
-
+    
     private func setupLayout() {
         title.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         title.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
     }
     
-    
-    // MARK: - Dark/Light mode management
-      
-      func manageInterfaceStyle() {
-          let interfaceStyle = traitCollection.userInterfaceStyle
-//          contentView.backgroundColor = .clear
-          switch interfaceStyle {
-          case .light: setupLightMode()
-          case .dark: setupDarkMode()
-          default: return
-          }
-      }
-
-      private func setupLightMode() {
-          let lightColor = NotificationSceneColors_CN.light.color()
-          guard contentView.backgroundColor != lightColor else { return }
-          contentView.backgroundColor = lightColor
-          setupLightModeCellShadows()
-      }
-      
-      private func setupDarkMode() {
-          let darkColor = NotificationSceneColors_CN.dark.color()
-          guard contentView.backgroundColor != darkColor else { return }
-          contentView.backgroundColor = darkColor
-          setupDarkModeCellShadows()
-      }
-      
-      private func setupLightModeCellShadows() {
-          contentView.layer.shadowRadius = 15
-          contentView.layer.shadowOpacity = 0.8
-          self.layer.shadowRadius = 7
-          self.layer.shadowOpacity = 0.15
-      }
-      
-      private func setupDarkModeCellShadows() {
-          contentView.layer.shadowRadius = 15
-          contentView.layer.shadowOpacity = 0.1
-          self.layer.shadowRadius = 12
-          self.layer.shadowOpacity = 0.5
-      }
-    
 }
+
+
+

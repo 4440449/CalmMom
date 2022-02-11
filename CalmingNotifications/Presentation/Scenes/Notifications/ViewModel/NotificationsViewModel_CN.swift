@@ -14,7 +14,7 @@ protocol NotificationsViewModelProtocol_CN {
     func viewDidLoad()
     func sceneWillEnterForeground()
     var notifications: Publisher<[Notification_CN]> { get }
-    var pushNotificationAuthStatus: Publisher<PushNotificationsAuthStatus> { get }
+    var pushNotificationAuthStatus: Publisher<PushNotificationsAuthStatus_CN> { get }
     var isLoading: Publisher<Loading_CN> { get }
     var error: Publisher<String> { get }
 }
@@ -53,7 +53,7 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
     // MARK: - State / Observable
     
     var notifications = Publisher(value: [Notification_CN]())
-    var pushNotificationAuthStatus = Publisher(value: PushNotificationsAuthStatus.authorized)
+    var pushNotificationAuthStatus = Publisher(value: PushNotificationsAuthStatus_CN.authorized)
     var isLoading = Publisher(value: Loading_CN.false)
     var error = Publisher(value: "")
     

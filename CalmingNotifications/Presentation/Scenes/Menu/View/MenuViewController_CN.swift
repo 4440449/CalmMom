@@ -37,7 +37,9 @@ class MenuViewController_CN: UIViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(collectionView)
-        manageInterfaceStyle()
+        collectionView.manageInterfaceStyleBackgroundColor(
+            light: AppColors_CN.light.color(),
+            dark: AppColors_CN.dark.color())
         setupObservers()
         viewModel.viewDidLoad()
     }
@@ -51,8 +53,9 @@ class MenuViewController_CN: UIViewController,
             sceneDelegate.sceneState.subscribe(observer: self) { [weak self] sceneState in
                 switch sceneState {
                 case .foreground:
-                    self?.manageInterfaceStyle()
-                    self?.collectionView.reloadData()
+                    self?.collectionView.manageInterfaceStyleBackgroundColor(
+                        light: AppColors_CN.light.color(),
+                        dark: AppColors_CN.dark.color())
                 case .background: return
                 }
             }
@@ -89,9 +92,8 @@ class MenuViewController_CN: UIViewController,
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuCollectionViewCell.identifier, for: indexPath) as? MenuCollectionViewCell else { fatalError() }
-        let title = viewModel.menuItems.value[indexPath.row].title.rawValue
-        cell.setupTitleText(title)
-        cell.manageInterfaceStyle()
+        let text = viewModel.menuItems.value[indexPath.row].title.rawValue
+        cell.setupTitleText(text)
         return cell
     }
     
@@ -115,35 +117,10 @@ class MenuViewController_CN: UIViewController,
     }
     
     
-    // MARK: - Dark/Light mode management
-    
-    private func manageInterfaceStyle() {
-        let interfaceStyle = traitCollection.userInterfaceStyle
-        switch interfaceStyle {
-        case .light:
-            setupLightMode()
-        case .dark:
-            setupDarkMode()
-        default:
-            return
-        }
-    }
-
-    private func setupLightMode() {
-        let lightColor = NotificationSceneColors_CN.light.color()
-        guard collectionView.backgroundColor != lightColor else { return }
-        collectionView.backgroundColor = lightColor
-    }
-    
-    private func setupDarkMode() {
-        let darkColor = NotificationSceneColors_CN.dark.color()
-        guard collectionView.backgroundColor != darkColor else { return }
-        collectionView.backgroundColor = darkColor
-    }
-    
-    
     deinit {
         print("deinit NotificationsViewController_CN")
     }
 
 }
+
+

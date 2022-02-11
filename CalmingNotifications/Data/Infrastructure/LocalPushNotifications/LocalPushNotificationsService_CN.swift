@@ -15,7 +15,7 @@ protocol LocalPushNotificationsServiceProtocol_CN {
     func addNewNotification(at time: Date, quote: String) async throws
     func changeNotification(with identifier: String, new time: Date) async throws
     func removeNotification(with identifier: String) async throws
-    func getAuthorizationStatus() async -> PushNotificationsAuthStatus
+    func getAuthorizationStatus() async -> PushNotificationsAuthStatus_CN
 }
 
 
@@ -74,9 +74,9 @@ final class LocalPushNotificationsService_CN: LocalPushNotificationsServiceProto
     }
     
     
-    func getAuthorizationStatus() async -> PushNotificationsAuthStatus {
+    func getAuthorizationStatus() async -> PushNotificationsAuthStatus_CN {
         return await withCheckedContinuation { continuation in
-            var status = PushNotificationsAuthStatus.notAuthorized
+            var status = PushNotificationsAuthStatus_CN.notAuthorized
             center.getNotificationSettings { settings in
                 if settings.authorizationStatus == .authorized,
                    (settings.alertSetting == .enabled || settings.lockScreenSetting == .enabled || settings.notificationCenterSetting == .enabled) {

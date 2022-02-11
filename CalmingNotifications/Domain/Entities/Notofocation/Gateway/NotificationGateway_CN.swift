@@ -10,7 +10,7 @@ import Foundation
 
 
 protocol NotificationGateway_CN {
-    func getAuthorizationStatus() async -> PushNotificationsAuthStatus
+    func getAuthorizationStatus() async -> PushNotificationsAuthStatus_CN
     
     func fetch() async throws -> [Notification_CN]
     func addNew(at time: Date, quote: String) async throws -> [Notification_CN]
