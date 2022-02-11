@@ -59,5 +59,9 @@
 	</array>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Разрешите сохранять фото в галерею</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+	<key>UIStatusBarHidden</key>
+	<true/>
 </dict>
 </plist>

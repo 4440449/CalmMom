@@ -40,6 +40,7 @@ class NotificationsViewController_CN: UIViewController,
         view.addSubview(activity)
         manageInterfaceStyle()
         setupObservers()
+//        setNeedsStatusBarAppearanceUpdate()
         viewModel.viewDidLoad()
     }
     
@@ -91,6 +92,14 @@ class NotificationsViewController_CN: UIViewController,
     
     
     // MARK: - UI -
+    
+    
+//    override var prefersStatusBarHidden: Bool {
+//        return false
+//    }
+    
+    
+//    override var preferredStatusBarStyle: UIStatusBarStyle { return .default }
     
     private lazy var collectionView: UICollectionView = {
         let collection = UICollectionView(frame: view.bounds,
