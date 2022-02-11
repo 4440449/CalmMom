@@ -18,13 +18,16 @@ final class FavoritesRouter_CN: FavoritesRouterProtocol_CN {
     
     // MARK: - Dependencies
     
-    private weak var navigationContainer: UIViewController?
-    
+    private unowned var navigationContainer: UIViewController
+    private let repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN
+
     
     // MARK: - Init
     
-    init(navigationContainer: UIViewController) {
+    init(navigationContainer: UIViewController,
+         repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN) {
         self.navigationContainer = navigationContainer
+        self.repositoryDIContainer = repositoryDIContainer
     }
     
     deinit {

@@ -94,7 +94,7 @@ final class MainViewModel_CN: MainViewModelProtocol_CN,
                                                inImage: quoteCard.image) else {
             return
         }
-        router.showActivity(with: quoteCardImage)
+        router.shareButtonTapped(with: quoteCardImage)
     }
     
     

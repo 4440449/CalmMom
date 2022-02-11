@@ -18,7 +18,7 @@ final class MenuRouter_CN: MenuRouterProtocol_CN {
   
     // MARK: - Dependencies
 
-    private weak var navigationContainer: UIViewController?
+    private unowned var navigationContainer: UIViewController
     private let repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN
     
     
@@ -34,11 +34,10 @@ final class MenuRouter_CN: MenuRouterProtocol_CN {
     // MARK: - Interface
     
     func didSelect(item: MenuItem) {
-        guard let navContainer = navigationContainer else { return }
         switch item.title {
         case .favorites:
-            let favoritesVC = FavoritesSceneConfigurator_CN.configure(navigationContainer: navContainer, repositoryDIContainer: repositoryDIContainer)
-            navContainer.show(favoritesVC, sender: nil)
+            let favoritesVC = FavoritesSceneConfigurator_CN.configure(navigationContainer: navigationContainer, repositoryDIContainer: repositoryDIContainer)
+            navigationContainer.show(favoritesVC, sender: nil)
         }
     }
 

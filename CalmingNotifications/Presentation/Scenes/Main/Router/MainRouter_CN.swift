@@ -11,7 +11,7 @@ import UIKit
 
 protocol MainRouterProtocol_CN {
     func menuButtonTapped()
-    func showActivity(with content: UIImage)
+    func shareButtonTapped(with content: UIImage)
 }
 
 
@@ -19,7 +19,7 @@ final class MainRouter_CN: MainRouterProtocol_CN {
     
     // MARK: - Dependencies
     
-    private weak var navigationContainer: UIViewController?
+    private unowned var navigationContainer: UIViewController
     private let repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN
     
     
@@ -35,18 +35,16 @@ final class MainRouter_CN: MainRouterProtocol_CN {
     // MARK: - Interface
     
     func menuButtonTapped() {
-        guard let navContainer = navigationContainer else { return }
-        let menuVC = MenuSceneConfigurator_CN.configure(navigationContainer: navContainer, repositoryDIContainer: repositoryDIContainer)
-        navContainer.present(menuVC, animated: true, completion: nil)
+        let menuVC = MenuSceneConfigurator_CN.configure(navigationContainer: navigationContainer, repositoryDIContainer: repositoryDIContainer)
+        navigationContainer.present(menuVC, animated: true, completion: nil)
 //        let favoritesVC = FavoritesSceneConfigurator_CN.configure(navigationContainer: navContainer, repositoryDIContainer: repositoryDIContainer)
 //        navContainer.present(favoritesVC, animated: true, completion: nil)
     }
     
-    func showActivity(with content: UIImage) {
-        guard let navContainer = navigationContainer else { return }
+    func shareButtonTapped(with content: UIImage) {
         let activityVC = UIActivityViewController(activityItems: [content],
                                                   applicationActivities: nil)
-        navContainer.show(activityVC, sender: nil)
+        navigationContainer.show(activityVC, sender: nil)
     }
     
     deinit {
