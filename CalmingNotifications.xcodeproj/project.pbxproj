@@ -41,10 +41,12 @@
 		946B141B27B5C9FC00AF3BBB /* MenuItem_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B141A27B5C9FC00AF3BBB /* MenuItem_CN.swift */; };
 		946B141E27B6DD8A00AF3BBB /* InterfaceStyleManagement_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B141D27B6DD8A00AF3BBB /* InterfaceStyleManagement_CN.swift */; };
 		946B142027B6F93E00AF3BBB /* DateFormatter_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B141F27B6F93E00AF3BBB /* DateFormatter_CN.swift */; };
+		946B142227B6FC1200AF3BBB /* MenuItemGateway_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B142127B6FC1200AF3BBB /* MenuItemGateway_CN.swift */; };
+		946B142527B6FDAF00AF3BBB /* MenuErrorHandler_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B142427B6FDAF00AF3BBB /* MenuErrorHandler_CN.swift */; };
+		946B142827B6FF3500AF3BBB /* MenuItemRepository_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B142727B6FF3500AF3BBB /* MenuItemRepository_CN.swift */; };
 		947850F3279E2B3600F1EEAC /* BabyNet in Frameworks */ = {isa = PBXBuildFile; productRef = 947850F2279E2B3600F1EEAC /* BabyNet */; };
 		947850F6279E2B4A00F1EEAC /* MommysEye in Frameworks */ = {isa = PBXBuildFile; productRef = 947850F5279E2B4A00F1EEAC /* MommysEye */; };
 		947850F8279E2F7000F1EEAC /* LocalPushNotificationServiceDTOMapperWrapper_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947850F7279E2F7000F1EEAC /* LocalPushNotificationServiceDTOMapperWrapper_CN.swift */; };
-		947850FB279E355500F1EEAC /* NotificationExtension_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947850FA279E355500F1EEAC /* NotificationExtension_CN.swift */; };
 		947850FD279ECD7D00F1EEAC /* NotificationsErrorHandler_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947850FC279ECD7D00F1EEAC /* NotificationsErrorHandler_CN.swift */; };
 		9478510227A9929700F1EEAC /* LoaderState_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9478510127A9929700F1EEAC /* LoaderState_CN.swift */; };
 		94800868279631B500D34D4B /* LocalPushNotificationsService_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94800867279631B500D34D4B /* LocalPushNotificationsService_CN.swift */; };
@@ -107,8 +109,10 @@
 		946B141A27B5C9FC00AF3BBB /* MenuItem_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem_CN.swift; sourceTree = "<group>"; };
 		946B141D27B6DD8A00AF3BBB /* InterfaceStyleManagement_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceStyleManagement_CN.swift; sourceTree = "<group>"; };
 		946B141F27B6F93E00AF3BBB /* DateFormatter_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter_CN.swift; sourceTree = "<group>"; };
+		946B142127B6FC1200AF3BBB /* MenuItemGateway_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemGateway_CN.swift; sourceTree = "<group>"; };
+		946B142427B6FDAF00AF3BBB /* MenuErrorHandler_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuErrorHandler_CN.swift; sourceTree = "<group>"; };
+		946B142727B6FF3500AF3BBB /* MenuItemRepository_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemRepository_CN.swift; sourceTree = "<group>"; };
 		947850F7279E2F7000F1EEAC /* LocalPushNotificationServiceDTOMapperWrapper_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPushNotificationServiceDTOMapperWrapper_CN.swift; sourceTree = "<group>"; };
-		947850FA279E355500F1EEAC /* NotificationExtension_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationExtension_CN.swift; sourceTree = "<group>"; };
 		947850FC279ECD7D00F1EEAC /* NotificationsErrorHandler_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsErrorHandler_CN.swift; sourceTree = "<group>"; };
 		9478510127A9929700F1EEAC /* LoaderState_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderState_CN.swift; sourceTree = "<group>"; };
 		94800867279631B500D34D4B /* LocalPushNotificationsService_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPushNotificationsService_CN.swift; sourceTree = "<group>"; };
@@ -318,12 +322,12 @@
 			path = QuoteCardDBEntity;
 			sourceTree = "<group>";
 		};
-		946B140E27B4599800AF3BBB /* DI */ = {
+		946B140E27B4599800AF3BBB /* DIContainer */ = {
 			isa = PBXGroup;
 			children = (
 				946B140F27B459CA00AF3BBB /* GatewaysRepositoryDIContainer_CN.swift */,
 			);
-			path = DI;
+			path = DIContainer;
 			sourceTree = "<group>";
 		};
 		946B141127B4707000AF3BBB /* View */ = {
@@ -354,6 +358,7 @@
 			isa = PBXGroup;
 			children = (
 				946B141A27B5C9FC00AF3BBB /* MenuItem_CN.swift */,
+				946B142127B6FC1200AF3BBB /* MenuItemGateway_CN.swift */,
 			);
 			path = MenuItem;
 			sourceTree = "<group>";
@@ -364,6 +369,22 @@
 				946B140C27B3045B00AF3BBB /* FavoritesErrorHandler_CN.swift */,
 			);
 			path = ErrorHandler;
+			sourceTree = "<group>";
+		};
+		946B142327B6FD9900AF3BBB /* ErrorHandler */ = {
+			isa = PBXGroup;
+			children = (
+				946B142427B6FDAF00AF3BBB /* MenuErrorHandler_CN.swift */,
+			);
+			path = ErrorHandler;
+			sourceTree = "<group>";
+		};
+		946B142627B6FEE300AF3BBB /* MenuItem */ = {
+			isa = PBXGroup;
+			children = (
+				946B142727B6FF3500AF3BBB /* MenuItemRepository_CN.swift */,
+			);
+			path = MenuItem;
 			sourceTree = "<group>";
 		};
 		947850EC279E166900F1EEAC /* Cell */ = {
@@ -551,7 +572,7 @@
 		94EFC9AB27923F5400CC6B47 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				946B140E27B4599800AF3BBB /* DI */,
+				946B140E27B4599800AF3BBB /* DIContainer */,
 				94EFC9AE2792403E00CC6B47 /* Gateways */,
 				947850FF279ECFB500F1EEAC /* Infrastructure */,
 			);
@@ -563,6 +584,7 @@
 			children = (
 				94EFC9AF2792404600CC6B47 /* QuoteCard */,
 				94EFC9C727924DF800CC6B47 /* Notification */,
+				946B142627B6FEE300AF3BBB /* MenuItem */,
 			);
 			path = Gateways;
 			sourceTree = "<group>";
@@ -630,7 +652,6 @@
 			isa = PBXGroup;
 			children = (
 				94EFC9C327924D7C00CC6B47 /* Notification_CN.swift */,
-				947850FA279E355500F1EEAC /* NotificationExtension_CN.swift */,
 				947850F9279E353C00F1EEAC /* Gateway */,
 			);
 			path = Notofocation;
@@ -682,6 +703,7 @@
 			isa = PBXGroup;
 			children = (
 				94EFC9D7279252AD00CC6B47 /* MenuViewModel_CN.swift */,
+				946B142327B6FD9900AF3BBB /* ErrorHandler */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -793,6 +815,7 @@
 				9441818D27AD842B00AD9FDD /* SplashRouter_CN.swift in Sources */,
 				50A1CB9F278F63B0000F9BFC /* MainTabBarViewController_CN.swift in Sources */,
 				9478510227A9929700F1EEAC /* LoaderState_CN.swift in Sources */,
+				946B142527B6FDAF00AF3BBB /* MenuErrorHandler_CN.swift in Sources */,
 				946B13E727B0014C00AF3BBB /* PushNotificationsAuthStatus_CN.swift in Sources */,
 				94EFC9AD27923F7C00CC6B47 /* QuoteCardRepository_CN.swift in Sources */,
 				947850FD279ECD7D00F1EEAC /* NotificationsErrorHandler_CN.swift in Sources */,
@@ -800,7 +823,6 @@
 				94EFC9DE2792535600CC6B47 /* MenuSceneConfigurator_CN.swift in Sources */,
 				94EFC9CF27924ECB00CC6B47 /* NotificationPersistenceRepository_CN.swift in Sources */,
 				94EFC9C127924CF600CC6B47 /* NotificationsRouter_CN.swift in Sources */,
-				947850FB279E355500F1EEAC /* NotificationExtension_CN.swift in Sources */,
 				94EFC9C627924D9800CC6B47 /* NotificationGateway_CN.swift in Sources */,
 				946B13F427B2BEE100AF3BBB /* FavoritesViewModel_CN.swift in Sources */,
 				94EFC9B82792473E00CC6B47 /* MainSceneConfigurator_CN.swift in Sources */,
@@ -817,6 +839,7 @@
 				946B140B27B2F77500AF3BBB /* QuoteCardDBEntity+CoreDataProperties.swift in Sources */,
 				946B140D27B3045B00AF3BBB /* FavoritesErrorHandler_CN.swift in Sources */,
 				94057F1E27973A32009B5A2B /* NotificationsCollectionViewCell_CN.swift in Sources */,
+				946B142227B6FC1200AF3BBB /* MenuItemGateway_CN.swift in Sources */,
 				94EFC9D42792500F00CC6B47 /* SceneConfigurator_CN.swift in Sources */,
 				94057F2027975249009B5A2B /* NotificationsCollectionHeaderReusableView.swift in Sources */,
 				946B13E527AF398E00AF3BBB /* SceneState.swift in Sources */,
@@ -837,6 +860,7 @@
 				94EFC9B32792409100CC6B47 /* QuoteCardNetworkRepository.swift in Sources */,
 				947850F8279E2F7000F1EEAC /* LocalPushNotificationServiceDTOMapperWrapper_CN.swift in Sources */,
 				50A1CBA3278F6C92000F9BFC /* MenuViewController_CN.swift in Sources */,
+				946B142827B6FF3500AF3BBB /* MenuItemRepository_CN.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

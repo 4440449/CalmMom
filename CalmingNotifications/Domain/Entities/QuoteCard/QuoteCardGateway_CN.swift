@@ -7,7 +7,6 @@
 //
 
 protocol QuoteCardGateway_CN {
-    
     func fetch() async -> [QuoteCard_CN]
     func fetchFavorites() async throws -> [QuoteCard_CN]
     func saveFavorite(_ quoteCard: QuoteCard_CN) async throws

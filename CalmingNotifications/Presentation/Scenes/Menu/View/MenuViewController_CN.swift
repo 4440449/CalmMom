@@ -82,7 +82,7 @@ class MenuViewController_CN: UIViewController,
         collection.contentInset.top = 70
         return collection
     }()
-    
+        
     
     //MARK: - Data source
     

@@ -10,6 +10,7 @@
 protocol GatewaysRepositoryDIContainerProtocol_CN {
     var quoteCard: QuoteCardGateway_CN { get }
     var notification: NotificationGateway_CN { get }
+    var menuItem: MenuItemGateway_CN { get }
 }
 
 
@@ -19,14 +20,17 @@ final class GatewaysRepositoryDIContainer_CN: GatewaysRepositoryDIContainerProto
 
     let quoteCard: QuoteCardGateway_CN
     let notification: NotificationGateway_CN
+    let menuItem: MenuItemGateway_CN
     
     
     // MARK: - Init / External injection
 
     init(quoteCard: QuoteCardGateway_CN,
-         notification: NotificationGateway_CN) {
+         notification: NotificationGateway_CN,
+         menuItem: MenuItemGateway_CN) {
         self.quoteCard = quoteCard
         self.notification = notification
+        self.menuItem = menuItem
     }
     
     
@@ -47,6 +51,11 @@ final class GatewaysRepositoryDIContainer_CN: GatewaysRepositoryDIContainerProto
         let repo = NotificationRepository_CN(network: network,
                                              localStorage: localStorage,
                                              localPushNotificatiosnService: localPushNotificationService)
+        return repo
+    }
+    
+    static func createMenuItemRepository() -> MenuItemGateway_CN {
+        let repo = MenuItemRepository_CN()
         return repo
     }
     

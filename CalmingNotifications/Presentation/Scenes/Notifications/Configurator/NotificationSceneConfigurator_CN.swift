@@ -15,10 +15,11 @@ final class NotificationSceneConfigurator_CN: SceneConfiguratorProtocol_CN {
                           repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN,
                           quotes: [String]) -> UIViewController {
         let repo = repositoryDIContainer.notification
-        let router = NotificationsRouter_CN(navigationContainer: navigationContainer,
-                                            repositoryDIContainer: repositoryDIContainer)
+        let router = NotificationsRouter_CN(
+            navigationContainer: navigationContainer,
+            repositoryDIContainer: repositoryDIContainer )
         let errorHandler = NotificationsErrorHandler_CN()
-        let viewModel = NotificationsViewModel_CN(notificationRepository: repo,
+        let viewModel = NotificationsViewModel_CN(repository: repo,
                                                   router: router,
                                                   errorHandler: errorHandler,
                                                   quotes: quotes)

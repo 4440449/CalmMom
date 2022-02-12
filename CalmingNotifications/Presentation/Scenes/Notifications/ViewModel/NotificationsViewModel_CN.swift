@@ -11,8 +11,10 @@ import MommysEye
 
 
 protocol NotificationsViewModelProtocol_CN {
+    // MARK: Input
     func viewDidLoad()
     func sceneWillEnterForeground()
+    // MARK: Output
     var notifications: Publisher<[Notification_CN]> { get }
     var pushNotificationAuthStatus: Publisher<PushNotificationsAuthStatus_CN> { get }
     var isLoading: Publisher<Loading_CN> { get }
@@ -20,14 +22,16 @@ protocol NotificationsViewModelProtocol_CN {
 }
 
 protocol NotificationsHeaderViewModelProtocol_CN {
+    // MARK: Input
     func addNewNotificationButtonTapped(date: Date)
-    
 }
 
 protocol NotificationsCellViewModelProtocol_CN {
+    // MARK: Input
     func saveButtonTapped(cellWithIndex index: Int, new time: Date)
     func deleteButtonTapped(cellWithIndex index: Int)
 }
+
 
 
 final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
@@ -36,15 +40,15 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
     
     // MARK: - Dependencies
     
-    private let notificationRepository: NotificationGateway_CN
+    private let repository: NotificationGateway_CN
     private let router: NotificationsRouterProtocol_CN
     private let errorHandler: NotificationsErrorHandlerProtocol_CN
     
-    init(notificationRepository: NotificationGateway_CN,
+    init(repository: NotificationGateway_CN,
          router: NotificationsRouterProtocol_CN,
          errorHandler: NotificationsErrorHandlerProtocol_CN,
          quotes: [String]) {
-        self.notificationRepository = notificationRepository
+        self.repository = repository
         self.router = router
         self.errorHandler = errorHandler
         self.quotes = quotes
@@ -82,7 +86,7 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
         task = Task(priority: nil) {
             do {
                 guard let rndmQuote = self.quotes.randomElement() else { return }
-                let result = try await self.notificationRepository.addNew(at: date, quote: rndmQuote)
+                let result = try await self.repository.addNew(at: date, quote: rndmQuote)
                 self.notifications.value = result
             } catch let error {
                 self.error.value = self.errorHandler.handle(error: error)
@@ -98,7 +102,7 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
         isLoading.value = .true
         task = Task(priority: nil) {
             do {
-                let result = try await self.notificationRepository.change(with: notifications.value[index].id, new: time)
+                let result = try await self.repository.change(with: notifications.value[index].id, new: time)
                 self.notifications.value = result
             } catch let error {
                 self.error.value = self.errorHandler.handle(error: error)
@@ -111,7 +115,7 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
         isLoading.value = .true
         task = Task(priority: nil) {
             do {
-                let result = try await notificationRepository.remove(with: self.notifications.value[index].id)
+                let result = try await repository.remove(with: self.notifications.value[index].id)
                 self.notifications.value = result
             } catch let error {
                 self.error.value = self.errorHandler.handle(error: error)
@@ -126,7 +130,7 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
     private func loadData() {
         isLoading.value = .true
         task = Task(priority: nil) {
-            let authStatus = await self.notificationRepository.getAuthorizationStatus()
+            let authStatus = await self.repository.getAuthorizationStatus()
             guard authStatus == .authorized else {
                 self.notifications.value = []
                 self.pushNotificationAuthStatus.value = authStatus
@@ -135,12 +139,12 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
             }
             self.pushNotificationAuthStatus.value = authStatus
             do {
-                let result = try await self.notificationRepository.fetch()
+                let result = try await self.repository.fetch()
                 self.notifications.value = result
             } catch let error {
                 self.error.value = self.errorHandler.handle(error: error)
             }
-            let result = await self.notificationRepository.getAuthorizationStatus()
+            let result = await self.repository.getAuthorizationStatus()
             self.pushNotificationAuthStatus.value = result
             self.isLoading.value = .false
         }

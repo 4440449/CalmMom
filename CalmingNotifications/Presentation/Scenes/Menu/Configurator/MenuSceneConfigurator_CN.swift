@@ -12,9 +12,13 @@ import UIKit
 final class MenuSceneConfigurator_CN: SceneConfiguratorProtocol_CN {
     
     static func configure(navigationContainer: UIViewController, repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN) -> UIViewController {
+        let repo = repositoryDIContainer.menuItem
         let router = MenuRouter_CN(navigationContainer: navigationContainer,
                                    repositoryDIContainer: repositoryDIContainer)
-        let viewModel = MenuViewModel_CN(router: router)
+        let errorHandler = MenuErrorHandler_CN()
+        let viewModel = MenuViewModel_CN(router: router,
+                                         errorHandler: errorHandler,
+                                         repository: repo)
         let view = MenuViewController_CN(viewModel: viewModel,
                                          nibName: nil,
                                          bundle: nil)

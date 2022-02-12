@@ -36,7 +36,9 @@ final class MenuRouter_CN: MenuRouterProtocol_CN {
     func didSelect(item: MenuItem) {
         switch item.title {
         case .favorites:
-            let favoritesVC = FavoritesSceneConfigurator_CN.configure(navigationContainer: navigationContainer, repositoryDIContainer: repositoryDIContainer)
+            let favoritesVC = FavoritesSceneConfigurator_CN.configure(
+                navigationContainer: navigationContainer,
+                repositoryDIContainer: repositoryDIContainer )
             navigationContainer.show(favoritesVC, sender: nil)
         }
     }

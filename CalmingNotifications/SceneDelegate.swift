@@ -19,10 +19,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        let quoteCardRepository = GatewaysRepositoryDIContainer_CN.createQuoteCardRepository()
-        let notificationRepository = GatewaysRepositoryDIContainer_CN.createNotificationRepository()
-        let repositoryDIContainer = GatewaysRepositoryDIContainer_CN(quoteCard: quoteCardRepository, notification: notificationRepository)
-        let splashVC = SplashSceneConfigurator_CN.configure(repositoryDIContainer: repositoryDIContainer)
+        let repositoryDIContainer = GatewaysRepositoryDIContainer_CN(
+            quoteCard:
+                GatewaysRepositoryDIContainer_CN.createQuoteCardRepository(),
+            notification:
+                GatewaysRepositoryDIContainer_CN.createNotificationRepository(),
+            menuItem:
+                GatewaysRepositoryDIContainer_CN.createMenuItemRepository() )
+        let splashVC = SplashSceneConfigurator_CN.configure(
+            repositoryDIContainer: repositoryDIContainer )
         window?.rootViewController = splashVC
         window?.makeKeyAndVisible()
     }

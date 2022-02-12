@@ -59,20 +59,22 @@ final class FavoritesViewModel_CN: FavoritesViewModelProtocol_CN,
     }
     
     
+    // MARK: - Interface
+
     func viewDidLoad() {
+        isLoading.value = .true
         quoteTask = Task {
             do {
                 let result = try await quoteCardRepository.fetchFavorites()
                 self.quoteCards.value = result
+//                self.quoteCards.value = []
             } catch let error {
                 let errorMessage = self.errorHandler.handle(error)
                 self.error.value = errorMessage
             }
+            self.isLoading.value = .false
         }
     }
-    
-    
-    
     
     func likeButtonTapped(cellWithIndex: Int) {
         quoteTask = Task {
