@@ -23,7 +23,7 @@ final class SplashSceneConfigurator_CN: SceneConfiguratorProtocol_CN {
     }
     
     deinit {
-        print("SplashSceneConfigurator_CN is deinit -------- ")
+//        print("SplashSceneConfigurator_CN is deinit -------- ")
     }
         
 }

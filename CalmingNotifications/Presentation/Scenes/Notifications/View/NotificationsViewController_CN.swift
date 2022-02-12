@@ -236,7 +236,7 @@ class NotificationsViewController_CN: UIViewController,
     
     
     deinit {
-        print("deinit NotificationsViewController_CN")
+//        print("deinit NotificationsViewController_CN")
     }
     
 }

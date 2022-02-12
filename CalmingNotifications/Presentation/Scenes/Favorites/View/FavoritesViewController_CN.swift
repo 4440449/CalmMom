@@ -174,7 +174,7 @@ class FavoritesViewController_CN: UIViewController,
     
     
     deinit {
-        print("deinit FavoritesViewController_CN")
+//        print("deinit FavoritesViewController_CN")
     }
     
 }

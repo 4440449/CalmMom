@@ -45,7 +45,7 @@ final class QuoteCardPersistenceRepository: QuoteCardPersistenceRepositoryProtoc
     
     
     deinit {
-        print("QuoteCardPersistenceRepository is deinit -------- ")
+//        print("QuoteCardPersistenceRepository is deinit -------- ")
     }
 }
 

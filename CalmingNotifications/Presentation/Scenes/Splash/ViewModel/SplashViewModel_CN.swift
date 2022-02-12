@@ -59,7 +59,7 @@ final class SplashViewModel_CN: SplashViewModelProtocol_CN {
     }
     
     deinit {
-        print("SplashViewModel_CN is deinit -------- ")
+//        print("SplashViewModel_CN is deinit -------- ")
     }
     
 }

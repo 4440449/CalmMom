@@ -46,12 +46,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func sceneWillEnterForeground(_ scene: UIScene) {
         sceneState.value = .foreground
-        print("foregr UIApplication.shared.applicationState == \(UIApplication.shared.applicationState.rawValue)")
+//        print("foregr UIApplication.shared.applicationState == \(UIApplication.shared.applicationState.rawValue)")
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
         sceneState.value = .background
-        print("backr UIApplication.shared.applicationState == \(UIApplication.shared.applicationState.rawValue)")
+//        print("backr UIApplication.shared.applicationState == \(UIApplication.shared.applicationState.rawValue)")
     }
 
 }

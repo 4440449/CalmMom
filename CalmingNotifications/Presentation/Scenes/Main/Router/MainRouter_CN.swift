@@ -19,13 +19,13 @@ final class MainRouter_CN: MainRouterProtocol_CN {
     
     // MARK: - Dependencies
     
-    private unowned var navigationContainer: UIViewController
+    private unowned var navigationContainer: UINavigationController
     private let repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN
     
     
     // MARK: - Init
     
-    init(navigationContainer: UIViewController,
+    init(navigationContainer: UINavigationController,
          repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN) {
         self.navigationContainer = navigationContainer
         self.repositoryDIContainer = repositoryDIContainer
@@ -48,6 +48,6 @@ final class MainRouter_CN: MainRouterProtocol_CN {
     }
     
     deinit {
-        print("CN_MainRouter")
+//        print("CN_MainRouter")
     }
 }

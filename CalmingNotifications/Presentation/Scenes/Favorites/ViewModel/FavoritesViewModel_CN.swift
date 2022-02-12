@@ -98,6 +98,6 @@ final class FavoritesViewModel_CN: FavoritesViewModelProtocol_CN,
     }
     
     deinit {
-        print("deinit FavoritesViewModel_CN")
+//        print("deinit FavoritesViewModel_CN")
     }
 }

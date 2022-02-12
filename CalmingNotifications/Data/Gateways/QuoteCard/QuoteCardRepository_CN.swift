@@ -63,6 +63,6 @@ final class QuoteCardRepository_CN: QuoteCardGateway_CN {
     }
     
     deinit {
-        print("QuoteCardRepository_CN is deinit -------- ")
+//        print("QuoteCardRepository_CN is deinit -------- ")
     }
 }

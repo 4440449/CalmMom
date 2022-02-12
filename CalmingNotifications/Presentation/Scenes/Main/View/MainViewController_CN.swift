@@ -45,11 +45,6 @@ class MainViewController_CN: UIViewController,
         viewModel.viewDidLoad()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        print("viewDidLayoutSubviews")
-    }
-    
     
     // MARK: - Input data flow
     

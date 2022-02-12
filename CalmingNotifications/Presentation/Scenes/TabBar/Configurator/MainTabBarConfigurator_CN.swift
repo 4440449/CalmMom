@@ -11,12 +11,17 @@ import UIKit
 
 final class MainTabBarConfigurator_CN {
     
-    static func configure(quoteCards: [QuoteCard_CN], repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN) -> UIViewController {
+    static func configure(
+        quoteCards: [QuoteCard_CN],
+        navigationContainer: UINavigationController,
+        repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN) -> UIViewController {
         let quotes = quoteCards.map { $0.quote }
         let view = MainTabBarViewController_CN()
         view.setupTabBarVC(quoteCards: quoteCards,
                            quotes: quotes,
+                           navigationContainer: navigationContainer,
                            repositoryDIContainer: repositoryDIContainer)
+        
         return view
     }
 }

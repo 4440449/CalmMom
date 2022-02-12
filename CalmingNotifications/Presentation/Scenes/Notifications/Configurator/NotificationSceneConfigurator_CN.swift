@@ -11,7 +11,7 @@ import UIKit
 
 final class NotificationSceneConfigurator_CN: SceneConfiguratorProtocol_CN {
     
-    static func configure(navigationContainer: UIViewController,
+    static func configure(navigationContainer: UINavigationController,
                           repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN,
                           quotes: [String]) -> UIViewController {
         let repo = repositoryDIContainer.notification

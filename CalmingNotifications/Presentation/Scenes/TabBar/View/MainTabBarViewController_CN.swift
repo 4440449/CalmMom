@@ -23,13 +23,16 @@ final class MainTabBarViewController_CN: UITabBarController {
 
     func setupTabBarVC(quoteCards: [QuoteCard_CN],
                        quotes: [String],
+                       navigationContainer: UINavigationController,
                        repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN) {
-        let mainVC = MainSceneConfigurator_CN.configure(navigationContainer: self,
-                                                        repositoryDIContainer: repositoryDIContainer,
-                                                        quoteCards: quoteCards)
-        let notificationVC = NotificationSceneConfigurator_CN.configure(navigationContainer: self,
-                                                       repositoryDIContainer: repositoryDIContainer,
-                                                       quotes: quotes)
+        let mainVC = MainSceneConfigurator_CN.configure(
+            navigationContainer: navigationContainer,
+            repositoryDIContainer: repositoryDIContainer,
+            quoteCards: quoteCards)
+        let notificationVC = NotificationSceneConfigurator_CN.configure(
+            navigationContainer: navigationContainer,
+            repositoryDIContainer: repositoryDIContainer,
+            quotes: quotes)
         mainVC.tabBarItem = UITabBarItem(title: nil,
                                          image: UIImage(systemName: "house"),
                                          selectedImage: UIImage(systemName: "house.fill"))
@@ -49,6 +52,5 @@ final class MainTabBarViewController_CN: UITabBarController {
         tabBar.shadowImage = UIImage()
         tabBar.clipsToBounds = true
     }
-    
     
 }

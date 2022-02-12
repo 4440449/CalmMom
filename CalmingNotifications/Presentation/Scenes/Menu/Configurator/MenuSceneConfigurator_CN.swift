@@ -11,7 +11,7 @@ import UIKit
 
 final class MenuSceneConfigurator_CN: SceneConfiguratorProtocol_CN {
     
-    static func configure(navigationContainer: UIViewController, repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN) -> UIViewController {
+    static func configure(navigationContainer: UINavigationController, repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN) -> UIViewController {
         let repo = repositoryDIContainer.menuItem
         let router = MenuRouter_CN(navigationContainer: navigationContainer,
                                    repositoryDIContainer: repositoryDIContainer)

@@ -33,17 +33,23 @@ final class SplashRouter_CN: SplashRouterProtocol_CN {
 
     func startMainFlow(quoteCards: [QuoteCard_CN]) {
         DispatchQueue.main.async {
-            let vc = MainTabBarConfigurator_CN.configure(quoteCards: quoteCards, repositoryDIContainer: self.repositoryDIContainer)
+            let navigationContainer = UINavigationController()
+            navigationContainer.navigationBar.isHidden = true
+            let startVC = MainTabBarConfigurator_CN.configure(
+                quoteCards: quoteCards,
+                navigationContainer: navigationContainer,
+                repositoryDIContainer: self.repositoryDIContainer )
+            navigationContainer.viewControllers = [startVC]
             if let sceneDelegate =
                 UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
-                sceneDelegate.window?.rootViewController = vc
+                sceneDelegate.window?.rootViewController = navigationContainer
                 sceneDelegate.window?.makeKeyAndVisible() // надо?
             }
         }
     }
     
     deinit {
-        print("SplashRouter_CN is deinit -------- ")
+//        print("SplashRouter_CN is deinit -------- ")
     }
     
 }

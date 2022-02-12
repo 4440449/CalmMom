@@ -11,7 +11,7 @@ import UIKit
 
 final class MainSceneConfigurator_CN: SceneConfiguratorProtocol_CN {
     
-    static func configure(navigationContainer: UIViewController,
+    static func configure(navigationContainer: UINavigationController,
                           repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN,
                           quoteCards: [QuoteCard_CN]) -> UIViewController {
         let repo = repositoryDIContainer.quoteCard

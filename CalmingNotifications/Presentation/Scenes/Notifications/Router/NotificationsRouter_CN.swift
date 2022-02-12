@@ -14,10 +14,10 @@ protocol NotificationsRouterProtocol_CN {
 
 final class NotificationsRouter_CN: NotificationsRouterProtocol_CN {
     
-    private unowned var navigationContainer: UIViewController
+    private unowned var navigationContainer: UINavigationController
     private let repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN
     
-    init(navigationContainer: UIViewController,
+    init(navigationContainer: UINavigationController,
          repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN) {
         self.navigationContainer = navigationContainer
         self.repositoryDIContainer = repositoryDIContainer
@@ -25,7 +25,7 @@ final class NotificationsRouter_CN: NotificationsRouterProtocol_CN {
     
     
     deinit {
-        print("deinit NotificationsRouter_CN")
+//        print("deinit NotificationsRouter_CN")
     }
         
 }

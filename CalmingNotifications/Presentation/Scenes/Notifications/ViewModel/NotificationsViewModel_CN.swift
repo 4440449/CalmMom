@@ -151,6 +151,6 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
     }
     
     deinit {
-        print("deinit NotificationsViewModel_CN")
+//        print("deinit NotificationsViewModel_CN")
     }
 }

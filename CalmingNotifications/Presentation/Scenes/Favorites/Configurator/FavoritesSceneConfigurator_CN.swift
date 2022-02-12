@@ -11,7 +11,7 @@ import UIKit
 
 final class FavoritesSceneConfigurator_CN: SceneConfiguratorProtocol_CN {
     
-    static func configure(navigationContainer: UIViewController, repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN) -> UIViewController {
+    static func configure(navigationContainer: UINavigationController, repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN) -> UIViewController {
         let repo = repositoryDIContainer.quoteCard
         let errorHandler = FavoritesErrorHandler_CN()
         let router = FavoritesRouter_CN(navigationContainer: navigationContainer,
@@ -26,6 +26,6 @@ final class FavoritesSceneConfigurator_CN: SceneConfiguratorProtocol_CN {
     }
     
     deinit {
-        print("deinit FavoritesSceneConfigurator_CN")
+//        print("deinit FavoritesSceneConfigurator_CN")
     }
 }

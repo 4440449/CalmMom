@@ -62,6 +62,6 @@ class SplashViewController_CN: UIViewController {
     }()
 
     deinit {
-        print("SplashViewController_CN is deinit -------- ")
+//        print("SplashViewController_CN is deinit -------- ")
     }
 }

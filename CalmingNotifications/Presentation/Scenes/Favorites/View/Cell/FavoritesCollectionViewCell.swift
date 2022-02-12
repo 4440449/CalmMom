@@ -125,7 +125,7 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
         }
     
     deinit {
-        print("deinit FavoritesCollectionViewCell")
+//        print("deinit FavoritesCollectionViewCell")
     }
             
 }
