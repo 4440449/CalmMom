@@ -101,6 +101,7 @@ class MenuViewController_CN: UIViewController,
     //MARK: - Delegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        self.dismiss(animated: true, completion: nil)
         viewModel.didSelectItemAt(index: indexPath.row)
     }
     

@@ -90,8 +90,7 @@ class FavoritesViewController_CN: UIViewController,
     }()
     
     @objc private func dismissButtonTapped() {
-        self.dismiss(animated: true, completion: nil)
-//        viewModel.dismissButtonTapped()
+        viewModel.dismissButtonTapped()
     }
     
     

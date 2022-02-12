@@ -22,6 +22,7 @@ final class MenuSceneConfigurator_CN: SceneConfiguratorProtocol_CN {
         let view = MenuViewController_CN(viewModel: viewModel,
                                          nibName: nil,
                                          bundle: nil)
+        router.view = view
         return view
     }
     

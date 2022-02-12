@@ -18,24 +18,36 @@ final class FavoritesRouter_CN: FavoritesRouterProtocol_CN {
     
     // MARK: - Dependencies
     
+    private weak var view: UIViewController?
     private unowned var navigationContainer: UINavigationController
     private let repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN
-
+    
     
     // MARK: - Init
     
-    init(navigationContainer: UINavigationController,
+    init(view: UIViewController? = nil,
+         navigationContainer: UINavigationController,
          repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN) {
+        self.view = view
         self.navigationContainer = navigationContainer
         self.repositoryDIContainer = repositoryDIContainer
     }
     
-    func dismissButtonTapped() {
-        
+    func injectView(_ view: UIViewController) {
+        self.view = view
     }
     
+    
+    // MARK: - Interface
+
+    func dismissButtonTapped() {
+        guard let view = view else { return }
+        view.dismiss(animated: true, completion: nil)
+    }
+    
+
     deinit {
-//        print("deinit FavoritesRouter_CN")
+        //        print("deinit FavoritesRouter_CN")
     }
     
 }

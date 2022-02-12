@@ -22,6 +22,7 @@ final class FavoritesSceneConfigurator_CN: SceneConfiguratorProtocol_CN {
         let view = FavoritesViewController_CN(viewModel: viewModel,
                                               nibName: nil,
                                               bundle: nil)
+        router.injectView(view)
         return view
     }
     
