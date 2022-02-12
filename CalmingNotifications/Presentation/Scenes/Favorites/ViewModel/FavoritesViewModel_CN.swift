@@ -11,6 +11,7 @@ import MommysEye
 
 protocol FavoritesViewModelProtocol_CN {
     func viewDidLoad()
+    func dismissButtonTapped()
     var quoteCards: Publisher<[QuoteCard_CN]> { get }
     var isLoading: Publisher<Loading_CN> { get }
     var error: Publisher<String> { get }
@@ -74,6 +75,10 @@ final class FavoritesViewModel_CN: FavoritesViewModelProtocol_CN,
             }
             self.isLoading.value = .false
         }
+    }
+    
+    func dismissButtonTapped() {
+        router.dismissButtonTapped()
     }
     
     func likeButtonTapped(cellWithIndex: Int) {

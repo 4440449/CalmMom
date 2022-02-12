@@ -10,7 +10,7 @@ import UIKit
 
 
 protocol FavoritesRouterProtocol_CN {
-    
+    func dismissButtonTapped()
 }
 
 
@@ -28,6 +28,10 @@ final class FavoritesRouter_CN: FavoritesRouterProtocol_CN {
          repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN) {
         self.navigationContainer = navigationContainer
         self.repositoryDIContainer = repositoryDIContainer
+    }
+    
+    func dismissButtonTapped() {
+        
     }
     
     deinit {

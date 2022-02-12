@@ -37,9 +37,11 @@ class FavoritesViewController_CN: UIViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(collectionView)
+        view.addSubview(dismissButton)
         view.addSubview(activity)
         view.addSubview(emptyScreenLabel)
         setupEmptyScreenLabelLayout()
+        setupDismissButtonLayout()
         setupObservers()
         viewModel.viewDidLoad()
     }
@@ -75,21 +77,23 @@ class FavoritesViewController_CN: UIViewController,
         return collection
     }()
     
-    //        private var menuButton: UIButton = {
-    //            let button = UIButton()
-    //            button.tintColor = .white
-    //            button.setImage(UIImage(systemName: "ellipsis"), for: .normal)
-    //            button.layer.cornerRadius = 20
-    //            button.translatesAutoresizingMaskIntoConstraints = false
-    //            button.addTarget(self,
-    //                             action: #selector(menuButtonTapped),
-    //                             for: .touchUpInside)
-    //            return button
-    //        }()
-    //
-    //        @objc private func menuButtonTapped() {
-    //            viewModel.menuButtonTapped()
-    //        }
+    private var dismissButton: UIButton = {
+        let button = UIButton()
+        button.tintColor = .white
+        button.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+        button.layer.cornerRadius = 20
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self,
+                         action: #selector(dismissButtonTapped),
+                         for: .touchUpInside)
+        return button
+    }()
+    
+    @objc private func dismissButtonTapped() {
+        self.dismiss(animated: true, completion: nil)
+//        viewModel.dismissButtonTapped()
+    }
+    
     
     private lazy var activity: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView()
@@ -105,7 +109,7 @@ class FavoritesViewController_CN: UIViewController,
         label.text = "Пока что здесь пусто, вы можете добавить понравившиеся заставки в изранное"
         label.textAlignment = .center
         label.numberOfLines = 10
-//        label.lineBreakMode = .byCharWrapping
+        //        label.lineBreakMode = .byCharWrapping
         label.isHidden = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -160,14 +164,14 @@ class FavoritesViewController_CN: UIViewController,
     }
     
     
-    //        private func setupLayout() {
-    //            menuButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
-    //            menuButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-    //            menuButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
-    //            menuButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-    //        }
+    private func setupDismissButtonLayout() {
+        dismissButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
+        dismissButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+        dismissButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        dismissButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+    }
     
-   
+    
     
     deinit {
         print("deinit FavoritesViewController_CN")

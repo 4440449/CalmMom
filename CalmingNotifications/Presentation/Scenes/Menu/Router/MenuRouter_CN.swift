@@ -34,12 +34,23 @@ final class MenuRouter_CN: MenuRouterProtocol_CN {
     // MARK: - Interface
     
     func didSelect(item: MenuItem) {
+//        guard let nav = navigationContainer as? UINavigationController else { return }
+//        nav.viewControllers.forEach {
+//            if let vc = $0 as? MenuViewController_CN {
+//                vc.dismiss(animated: true, completion: nil)
+//            }
+//        }
+        
         switch item.title {
         case .favorites:
             let favoritesVC = FavoritesSceneConfigurator_CN.configure(
                 navigationContainer: navigationContainer,
                 repositoryDIContainer: repositoryDIContainer )
+            favoritesVC.modalPresentationStyle = .overFullScreen
             navigationContainer.show(favoritesVC, sender: nil)
+            
+            
+            
         }
     }
 
