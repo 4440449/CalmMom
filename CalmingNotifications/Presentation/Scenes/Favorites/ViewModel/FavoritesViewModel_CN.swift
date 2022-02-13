@@ -61,14 +61,14 @@ final class FavoritesViewModel_CN: FavoritesViewModelProtocol_CN,
     
     
     // MARK: - Interface
-
+    
     func viewDidLoad() {
         isLoading.value = .true
         quoteTask = Task {
             do {
                 let result = try await quoteCardRepository.fetchFavorites()
                 self.quoteCards.value = result
-//                self.quoteCards.value = []
+                //                self.quoteCards.value = []
             } catch let error {
                 let errorMessage = self.errorHandler.handle(error)
                 self.error.value = errorMessage
@@ -82,15 +82,35 @@ final class FavoritesViewModel_CN: FavoritesViewModelProtocol_CN,
     }
     
     func likeButtonTapped(cellWithIndex: Int) {
-        quoteTask = Task {
-            do {
-                let quoteCard = self.quoteCards.value[cellWithIndex]
-                try await self.quoteCardRepository.saveFavorite(quoteCard)
-            } catch let error {
-                let errorMessage = self.errorHandler.handle(error)
-                self.error.value = errorMessage
+        switch quoteCards.value[cellWithIndex].isFavorite {
+        case false:
+            quoteTask = Task {
+                do {
+                    var quoteCard = self.quoteCards.value[cellWithIndex]
+                    quoteCard.isFavorite = true
+                    try await self.quoteCardRepository.saveFavorite(quoteCard)
+                    self.quoteCards.value[cellWithIndex] = quoteCard
+                } catch let error {
+                    let errorMessage = self.errorHandler.handle(error)
+                    self.error.value = errorMessage
+                }
+            }
+        case true:
+            quoteTask = Task {
+                do {
+                    var quoteCard = self.quoteCards.value[cellWithIndex]
+                    quoteCard.isFavorite = false
+                    try await self.quoteCardRepository.deleteFavorite(quoteCard)
+                    self.quoteCards.value[cellWithIndex] = quoteCard
+//                    self.quoteCards.value[cellWithIndex].isFavorite = false
+//                    self.quoteCards.value = result
+                } catch let error {
+                    let errorMessage = self.errorHandler.handle(error)
+                    self.error.value = errorMessage
+                }
             }
         }
+        
     }
     
     func shareButtonTapped(cellWithIndex: Int) {
@@ -98,6 +118,6 @@ final class FavoritesViewModel_CN: FavoritesViewModelProtocol_CN,
     }
     
     deinit {
-//        print("deinit FavoritesViewModel_CN")
+        //        print("deinit FavoritesViewModel_CN")
     }
 }

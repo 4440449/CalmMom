@@ -47,9 +47,11 @@ final class QuoteCardRepository_CN: QuoteCardGateway_CN {
         var cards = [QuoteCard_CN]()
         for i in 0...10 {
             let card = QuoteCard_CN(quote: quotes[i],
-                                 image: UIImage(named: "image\(i)")!)
+                                    image: UIImage(named: "image\(i)")!)
             cards.append(card)
         }
+        let index = [0, 2, 3]
+        index.forEach { cards[$0].isFavorite = true }
         return cards
     }
     
@@ -58,11 +60,20 @@ final class QuoteCardRepository_CN: QuoteCardGateway_CN {
         return result
     }
     
-    func saveFavorite(_ quoteCard: QuoteCard_CN) async throws {
+    func saveFavorite(_ quoteCard: QuoteCard_CN) async throws{
         try await localStorage.saveFavorite(quoteCard)
+        
+        
     }
     
+    func deleteFavorite(_ quoteCard: QuoteCard_CN) async throws {
+        try await localStorage.deleteFavorite(quoteCard)
+        
+        
+    }
+    
+    
     deinit {
-//        print("QuoteCardRepository_CN is deinit -------- ")
+        //        print("QuoteCardRepository_CN is deinit -------- ")
     }
 }

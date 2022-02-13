@@ -112,7 +112,7 @@ class MainViewController_CN: UIViewController,
         cell.setupDependencies(viewModel: viewModel, index: indexPath.row)
         cell.fillContent(quote: viewModel.quoteCards.value[indexPath.row].quote,
                          image: viewModel.quoteCards.value[indexPath.row].image)
-       
+        cell.setLikeButtonsState(isFavorite: viewModel.quoteCards.value[indexPath.row].isFavorite)
         return cell
     }
     

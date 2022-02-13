@@ -46,7 +46,6 @@ final class MenuRouter_CN: MenuRouterProtocol_CN {
                 repositoryDIContainer: repositoryDIContainer )
             favoritesVC.modalPresentationStyle = .overFullScreen
             navigationContainer.present(favoritesVC, animated: true, completion: nil)
-//                navigationContainer.show(favoritesVC, sender: nil)
         }
     }
     

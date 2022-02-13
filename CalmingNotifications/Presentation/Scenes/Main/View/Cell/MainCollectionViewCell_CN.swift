@@ -82,8 +82,15 @@ class MainCollectionViewCell_CN: UICollectionViewCell {
     
     @objc func likeButtonTapped() {
         guard let index = index else { return }
-        likeButton.isSelected = !likeButton.isSelected
+//        likeButton.isSelected = !likeButton.isSelected
         viewModel?.likeButtonTapped(cellWithIndex: index)
+    }
+    
+    func setLikeButtonsState(isFavorite: Bool) {
+        switch isFavorite {
+        case true: likeButton.isSelected = true
+        case false: likeButton.isSelected = false
+        }
     }
     
     private lazy var shareButton: UIButton = {
@@ -125,6 +132,8 @@ class MainCollectionViewCell_CN: UICollectionViewCell {
     }
         
 }
+
+
 
 
 //label.text = "Держи себя в руках... иначе пздц... dasd asd asd a sdssssddsda sd asd asdkasoia sjoia oj op jpasd jpasd p kpasodk paskd p[asdk p jkp "

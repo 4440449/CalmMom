@@ -12,6 +12,7 @@ import CoreData
 protocol QuoteCardPersistenceRepositoryProtocol_CN {
     func fetchFavorites() async throws -> [QuoteCard_CN]
     func saveFavorite(_ quoteCard: QuoteCard_CN) async throws
+    func deleteFavorite(_ quoteCard: QuoteCard_CN) async throws
 }
 
 
@@ -41,6 +42,15 @@ final class QuoteCardPersistenceRepository: QuoteCardPersistenceRepositoryProtoc
         let dbEntity = QuoteCardDBEntity.init(context: coreDataContainer.viewContext)
         try dbEntity.parseToDBEntity(domain: quoteCard)
         try coreDataContainer.viewContext.save()
+    }
+    
+    func deleteFavorite(_ quoteCard: QuoteCard_CN) async throws {
+        let request: NSFetchRequest = QuoteCardDBEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %@", quoteCard.id as NSUUID)
+        if let result = try coreDataContainer.viewContext.fetch(request).first {
+            coreDataContainer.viewContext.delete(result)
+            try coreDataContainer.viewContext.save()
+        }
     }
     
     

@@ -74,14 +74,46 @@ final class MainViewModel_CN: MainViewModelProtocol_CN,
     
     func likeButtonTapped(cellWithIndex index: Int) {
 //        UIImageWriteToSavedPhotosAlbum(quoteCard.value[index].image, nil, nil, nil)
-        quoteTask = Task {
-            do {
-                let quoteCard = self.quoteCards.value[index]
-                try await self.quoteCardRepository.saveFavorite(quoteCard)
-            } catch let error {
-                print("error == \(error)")
-//                let errorMessage = self.errorHandler.handle(error)
-//                self.error.value = errorMessage
+//        quoteTask = Task {
+//            do {
+//                var quoteCard = self.quoteCards.value[index]
+//                quoteCard.isFavorite = true
+//                try await self.quoteCardRepository.saveFavorite(quoteCard)
+//                self.quoteCards.value[index].isFavorite = true
+//            } catch let error {
+//                print("error == \(error)")
+////                let errorMessage = self.errorHandler.handle(error)
+////                self.error.value = errorMessage
+//            }
+//        }
+        
+        switch quoteCards.value[index].isFavorite {
+        case false:
+            quoteTask = Task {
+                do {
+                    var quoteCard = self.quoteCards.value[index]
+                    quoteCard.isFavorite = true
+                    try await self.quoteCardRepository.saveFavorite(quoteCard)
+                    self.quoteCards.value[index].isFavorite = true
+                } catch let error {
+                    print(error)
+//                    let errorMessage = self.errorHandler.handle(error)
+//                    self.error.value = errorMessage
+                }
+            }
+        case true:
+            quoteTask = Task {
+                do {
+                    var quoteCard = self.quoteCards.value[index]
+                    quoteCard.isFavorite = false
+                    try await self.quoteCardRepository.deleteFavorite(quoteCard)
+                    self.quoteCards.value[index].isFavorite = false
+//                    self.quoteCards.value = result
+                } catch let error {
+                    print(error)
+//                    let errorMessage = self.errorHandler.handle(error)
+//                    self.error.value = errorMessage
+                }
             }
         }
         

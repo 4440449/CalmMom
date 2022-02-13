@@ -68,10 +68,12 @@ class FavoritesViewController_CN: UIViewController,
     private lazy var collectionView: UICollectionView = {
         let collection = UICollectionView(frame: view.bounds,
                                           collectionViewLayout: setupCollectionViewLayout())
-        collection.register(MainCollectionViewCell_CN.self,
-                            forCellWithReuseIdentifier: MainCollectionViewCell_CN.identifier)
+        collection.register(FavoritesCollectionViewCell.self,
+                            forCellWithReuseIdentifier: FavoritesCollectionViewCell.identifier)
         collection.contentInsetAdjustmentBehavior = .never
         collection.alwaysBounceVertical = false
+        collection.alwaysBounceHorizontal = true
+//        collection.isScrollEnabled = true
         collection.dataSource = self
         collection.delegate = self
         return collection
@@ -122,11 +124,11 @@ class FavoritesViewController_CN: UIViewController,
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell_CN.identifier, for: indexPath) as? MainCollectionViewCell_CN else { fatalError() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavoritesCollectionViewCell.identifier, for: indexPath) as? FavoritesCollectionViewCell else { fatalError() }
         cell.setupDependencies(viewModel: viewModel, index: indexPath.row)
         cell.fillContent(quote: viewModel.quoteCards.value[indexPath.row].quote,
                          image: viewModel.quoteCards.value[indexPath.row].image)
-        
+        cell.setLikeButtonsState(isFavorite: viewModel.quoteCards.value[indexPath.row].isFavorite)
         return cell
     }
     
