@@ -24,6 +24,7 @@ protocol NotificationsViewModelProtocol_CN {
 protocol NotificationsHeaderViewModelProtocol_CN {
     // MARK: Input
     func addNewNotificationButtonTapped(date: Date)
+    func dismissButtonTapped()
 }
 
 protocol NotificationsCellViewModelProtocol_CN {
@@ -93,6 +94,10 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
             }
             self.isLoading.value = .false
         }
+    }
+    
+    func dismissButtonTapped() {
+        router.dismissButtonTapped()
     }
     
     

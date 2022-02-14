@@ -31,6 +31,7 @@ final class NotificationSceneConfigurator_CN: SceneConfiguratorProtocol_CN {
         let view = NotificationsViewController_CN(viewModel: viewModel,
                                                   nibName: nil,
                                                   bundle: nil)
+        router.injectView(view)
         return view
     }
 }

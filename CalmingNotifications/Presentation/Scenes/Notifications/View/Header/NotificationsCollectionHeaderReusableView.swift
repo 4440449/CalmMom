@@ -31,6 +31,7 @@ class NotificationsCollectionHeaderReusableView: UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubview(title)
+        self.addSubview(dismissButton)
         setupLayout()
     }
     
@@ -48,6 +49,22 @@ class NotificationsCollectionHeaderReusableView: UICollectionReusableView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
+    private lazy var dismissButton: UIButton = {
+        let button = UIButton()
+        button.tintColor = .label
+        button.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+        button.layer.cornerRadius = 20
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self,
+                         action: #selector(dismissButtonTapped),
+                         for: .touchUpInside)
+        return button
+    }()
+    
+    @objc private func dismissButtonTapped() {
+        viewModel?.dismissButtonTapped()
+    }
     
     private lazy var addNewNotificationButton: UIButton = {
         let button = UIButton()
@@ -95,6 +112,9 @@ class NotificationsCollectionHeaderReusableView: UICollectionReusableView {
     func setupLayout() {
         title.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
         title.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        
+        dismissButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        dismissButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
     }
     
     
