@@ -32,6 +32,8 @@ class NotificationsCollectionHeaderReusableView: UICollectionReusableView {
         super.init(frame: frame)
         self.addSubview(title)
         self.addSubview(dismissButton)
+        self.addSubview(addNewNotificationButton)
+        self.addSubview(notificationStatus)
         setupLayout()
     }
     
@@ -73,6 +75,7 @@ class NotificationsCollectionHeaderReusableView: UICollectionReusableView {
         button.addTarget(self,
                          action: #selector(addNewNotificationButtonTapped),
                          for: .touchUpInside)
+        button.isHidden = true
         return button
     }()
     
@@ -115,6 +118,15 @@ class NotificationsCollectionHeaderReusableView: UICollectionReusableView {
         dismissButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
         dismissButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
         dismissButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        
+        addNewNotificationButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
+        addNewNotificationButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
+        addNewNotificationButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        addNewNotificationButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        
+        notificationStatus.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30).isActive = true
+        notificationStatus.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30).isActive = true
+        notificationStatus.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 20).isActive = true
     }
     
     
@@ -123,37 +135,41 @@ class NotificationsCollectionHeaderReusableView: UICollectionReusableView {
     func manageAuthStatusMode(isAuthorized: PushNotificationsAuthStatus_CN) {
         switch isAuthorized {
         case .authorized:
-            showAddNewButton()
-            hideWarning()
+//            showAddNewButton()
+//            hideWarning()
+            addNewNotificationButton.isHidden = false
+            notificationStatus.isHidden = true
         case .notAuthorized:
-            hideAddNewButon()
-            showWarning()
+//            hideAddNewButon()
+//            showWarning()
+            addNewNotificationButton.isHidden = true
+            notificationStatus.isHidden = false
         }
     }
     
-    private func showAddNewButton() {
-        self.addSubview(addNewNotificationButton)
-        addNewNotificationButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
-        addNewNotificationButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
-        addNewNotificationButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
-        addNewNotificationButton.heightAnchor.constraint(equalToConstant: 35).isActive = true
+//    private func showAddNewButton() {
+//        self.addSubview(addNewNotificationButton)
+//        addNewNotificationButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
+//        addNewNotificationButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
+//        addNewNotificationButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
+//        addNewNotificationButton.heightAnchor.constraint(equalToConstant: 35).isActive = true
     }
     
-    private func hideAddNewButon() {
-        addNewNotificationButton.removeFromSuperview()
-    }
+//    private func hideAddNewButon() {
+//        addNewNotificationButton.removeFromSuperview()
+//    }
     
     
-    private func showWarning() {
-        self.addSubview(notificationStatus)
-        notificationStatus.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30).isActive = true
-        notificationStatus.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30).isActive = true
-        notificationStatus.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 20).isActive = true
-    }
+//    private func showWarning() {
+//        self.addSubview(notificationStatus)
+//        notificationStatus.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30).isActive = true
+//        notificationStatus.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30).isActive = true
+//        notificationStatus.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 20).isActive = true
+//    }
     
-    private func hideWarning() {
-        notificationStatus.removeFromSuperview()
-    }
+//    private func hideWarning() {
+//        notificationStatus.removeFromSuperview()
+//    }
     
     
 }

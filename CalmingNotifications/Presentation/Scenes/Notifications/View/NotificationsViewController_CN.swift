@@ -197,7 +197,6 @@ class NotificationsViewController_CN: UIViewController,
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        
         let height = viewModel.pushNotificationAuthStatus.value == .authorized ? collectionView.bounds.height / 11 : collectionView.bounds.height / 7
         return CGSize(width: collectionView.bounds.width - 60,
                       height: height)
