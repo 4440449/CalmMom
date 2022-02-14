@@ -38,8 +38,13 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.addSubview(titleButton)
+        //
+        contentView.addSubview(datePicker)
+        contentView.addSubview(saveButton)
+        contentView.addSubview(deleteButton)
+        //
         setupAppearance()
-        setupStaticViewsLayout()
+        setupLayout()
         setupObservers()
     }
     
@@ -110,6 +115,7 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
         picker.locale = Locale(identifier: "ru_RU")
         picker.translatesAutoresizingMaskIntoConstraints = false
         picker.alpha = 0
+        picker.isHidden = true
         return picker
     }()
     
@@ -120,6 +126,7 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
         button.setTitleColor(.label, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.alpha = 0
+        button.isHidden = true
         button.isUserInteractionEnabled = true
         button.addTarget(self,
                          action: #selector(saveButtonTapped),
@@ -140,6 +147,7 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.isUserInteractionEnabled = true
         button.alpha = 0
+        button.isHidden = true
         button.addTarget(self,
                          action: #selector(deleteButtonTapped),
                          for: .touchUpInside)
@@ -173,43 +181,14 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
             dark: .init(radius: 12, opacity: 0.5) )
     }
     
-    private func setupStaticViewsLayout() {
+    private func setupLayout() {
         NSLayoutConstraint.activate(
             [titleButton.topAnchor.constraint(equalTo: contentView.topAnchor,
                                               constant: 10),
              titleButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,
                                                   constant: 20),
              titleButton.heightAnchor.constraint(equalToConstant: (contentView.bounds.height / 2.5))] )
-    }
-    
-    
-    // MARK: - Dynamic views animation
-    
-    func animateAddingDynamicViews() {
-        contentView.addSubview(datePicker)
-        contentView.addSubview(saveButton)
-        contentView.addSubview(deleteButton)
-        setupDynamicViewsLayout()
-        UIView.animate(withDuration: 0.4, delay: 0.05, options: .curveEaseIn) {
-            self.datePicker.alpha = 1
-            self.saveButton.alpha = 1
-            self.deleteButton.alpha = 1
-        }
-    }
-    
-    func animateRemovingDynamicViews(duration: TimeInterval) {
-        UIView.animate(withDuration: duration, delay: 0, options: .curveLinear) {
-            self.datePicker.alpha = 0
-            self.saveButton.alpha = 0
-            self.deleteButton.alpha = 0
-        } completion: { _ in
-            self.saveButton.removeFromSuperview()
-            self.deleteButton.removeFromSuperview()
-            self.datePicker.removeFromSuperview()
-        }
-    }
-    
-    private func setupDynamicViewsLayout() {
+        
         NSLayoutConstraint.activate(
             [datePicker.topAnchor.constraint(equalTo: titleButton.bottomAnchor,
                                              constant: 20),
@@ -228,5 +207,61 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
             ]
         )
     }
+    
+    
+    // MARK: - Dynamic views animation
+    
+    func animateAddingDynamicViews() {
+//        contentView.addSubview(datePicker)
+//        contentView.addSubview(saveButton)
+//        contentView.addSubview(deleteButton)
+        
+//        setupDynamicViewsLayout()
+        
+        self.saveButton.isHidden = false
+        self.deleteButton.isHidden = false
+        self.datePicker.isHidden = false
+        UIView.animate(withDuration: 0.4, delay: 0.05, options: .curveEaseIn) {
+            self.datePicker.alpha = 1
+            self.saveButton.alpha = 1
+            self.deleteButton.alpha = 1
+        }
+    }
+    
+    func animateRemovingDynamicViews(duration: TimeInterval) {
+        UIView.animate(withDuration: duration, delay: 0, options: .curveLinear) {
+            self.datePicker.alpha = 0
+            self.saveButton.alpha = 0
+            self.deleteButton.alpha = 0
+        } completion: { _ in
+            self.saveButton.isHidden = true
+            self.deleteButton.isHidden = true
+            self.datePicker.isHidden = true
+            
+//            self.saveButton.removeFromSuperview()
+//            self.deleteButton.removeFromSuperview()
+//            self.datePicker.removeFromSuperview()
+        }
+    }
+    
+//    private func setupDynamicViewsLayout() {
+//        NSLayoutConstraint.activate(
+//            [datePicker.topAnchor.constraint(equalTo: titleButton.bottomAnchor,
+//                                             constant: 20),
+//             datePicker.widthAnchor.constraint(equalToConstant: (contentView.bounds.width / 1.3)),
+//             datePicker.heightAnchor.constraint(equalToConstant: (contentView.bounds.height * 2.3)),
+//             datePicker.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+//
+//             saveButton.topAnchor.constraint(equalTo: contentView.topAnchor,
+//                                             constant: 10),
+//             saveButton.trailingAnchor.constraint(equalTo: deleteButton.leadingAnchor,
+//                                                  constant: -20),
+//             saveButton.heightAnchor.constraint(equalToConstant: (contentView.bounds.height / 2.5)),
+//             deleteButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+//             deleteButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+//             deleteButton.heightAnchor.constraint(equalToConstant: contentView.bounds.height / 2.5)
+//            ]
+//        )
+//    }
     
 }
