@@ -49,7 +49,7 @@ final class SplashViewModel_CN: SplashViewModelProtocol_CN {
         quoteTask = Task {
             do {
 //                let result = try await quoteCardRepository.fetch()
-                try await quoteCardRepository.fetch()
+                try await quoteCardRepository.setState()
                 self.quotesLoaded()
                 self.isLoading.value = .false
             } catch let error {

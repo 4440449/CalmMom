@@ -102,8 +102,6 @@ final class FavoritesViewModel_CN: FavoritesViewModelProtocol_CN,
                     quoteCard.isFavorite = false
                     try await self.quoteCardRepository.deleteFavorite(quoteCard)
                     self.quoteCards.value[cellWithIndex] = quoteCard
-//                    self.quoteCards.value[cellWithIndex].isFavorite = false
-//                    self.quoteCards.value = result
                 } catch let error {
                     let errorMessage = self.errorHandler.handle(error)
                     self.error.value = errorMessage

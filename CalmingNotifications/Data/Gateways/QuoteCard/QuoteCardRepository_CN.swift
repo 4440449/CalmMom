@@ -37,8 +37,12 @@ final class QuoteCardRepository_CN: QuoteCardGateway_CN {
     }
     
     
-    func fetch() async throws {
+    func setState() async throws {
         // Stub! there is no backend yet
+        // С бэека могут приходить картинки вообще без поля isFavorite. В момент прихода фронт сам синхронизирует состояние isFavorite сравнивая id
+        // let task = { network.connect(url...) { result in
+//        switch result { case .success (let cards): let favorites = localStorage.fetchFavorites() ...
+//    } } }
         sleep(1)
         let favorites = try await localStorage.fetchFavorites()
         var cards = quoteCardState.quoteCards.value

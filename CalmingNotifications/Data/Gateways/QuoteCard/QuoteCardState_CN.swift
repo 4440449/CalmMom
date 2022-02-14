@@ -14,7 +14,6 @@ import UIKit
 protocol QuoteCardStateProtocol_CN {
     var quotes: Publisher<[String]> { get }
     var quoteCards: Publisher<[QuoteCard_CN]> { get }
-    var favoritesQuoteCards: Publisher<[QuoteCard_CN]> { get }
 }
 
 
@@ -51,6 +50,5 @@ final class QuoteCardState_CN: QuoteCardStateProtocol_CN {
         QuoteCard_CN(quote: quotes.value[10], image: UIImage(named: "image\(10)")!, id: UUID(uuidString: "2bc5b7cc-3a4f-48df-99b6-60cbaf392f91")!, isFavorite: false)
     ])
     
-    var favoritesQuoteCards = Publisher(value: [QuoteCard_CN]())
 }
 

@@ -19,6 +19,7 @@
 		94057F1E27973A32009B5A2B /* NotificationsCollectionViewCell_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94057F1D27973A32009B5A2B /* NotificationsCollectionViewCell_CN.swift */; };
 		94057F2027975249009B5A2B /* NotificationsCollectionHeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94057F1F27975249009B5A2B /* NotificationsCollectionHeaderReusableView.swift */; };
 		943D160527B9A5190071F054 /* QuoteCardState_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943D160427B9A5190071F054 /* QuoteCardState_CN.swift */; };
+		943D160727BA97710071F054 /* MainErrorHandler_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943D160627BA97710071F054 /* MainErrorHandler_CN.swift */; };
 		9441818627AD83B300AD9FDD /* SplashViewController_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9441818527AD83B300AD9FDD /* SplashViewController_CN.swift */; };
 		9441818A27AD83F500AD9FDD /* SplashViewModel_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9441818927AD83F500AD9FDD /* SplashViewModel_CN.swift */; };
 		9441818D27AD842B00AD9FDD /* SplashRouter_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9441818C27AD842B00AD9FDD /* SplashRouter_CN.swift */; };
@@ -88,6 +89,7 @@
 		94057F1D27973A32009B5A2B /* NotificationsCollectionViewCell_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsCollectionViewCell_CN.swift; sourceTree = "<group>"; };
 		94057F1F27975249009B5A2B /* NotificationsCollectionHeaderReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsCollectionHeaderReusableView.swift; sourceTree = "<group>"; };
 		943D160427B9A5190071F054 /* QuoteCardState_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCardState_CN.swift; sourceTree = "<group>"; };
+		943D160627BA97710071F054 /* MainErrorHandler_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainErrorHandler_CN.swift; sourceTree = "<group>"; };
 		9441818527AD83B300AD9FDD /* SplashViewController_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController_CN.swift; sourceTree = "<group>"; };
 		9441818927AD83F500AD9FDD /* SplashViewModel_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel_CN.swift; sourceTree = "<group>"; };
 		9441818C27AD842B00AD9FDD /* SplashRouter_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashRouter_CN.swift; sourceTree = "<group>"; };
@@ -182,6 +184,14 @@
 				50A1CB94278CCC6F000F9BFC /* Info.plist */,
 			);
 			path = CalmingNotifications;
+			sourceTree = "<group>";
+		};
+		943D160827BA97970071F054 /* ErrorHandler */ = {
+			isa = PBXGroup;
+			children = (
+				943D160627BA97710071F054 /* MainErrorHandler_CN.swift */,
+			);
+			path = ErrorHandler;
 			sourceTree = "<group>";
 		};
 		9441818327AC45F100AD9FDD /* Cell */ = {
@@ -540,6 +550,7 @@
 			isa = PBXGroup;
 			children = (
 				94EFC9A227923C5500CC6B47 /* MainViewModel_CN.swift */,
+				943D160827BA97970071F054 /* ErrorHandler */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -842,6 +853,7 @@
 				946B140B27B2F77500AF3BBB /* QuoteCardDBEntity+CoreDataProperties.swift in Sources */,
 				946B140D27B3045B00AF3BBB /* FavoritesErrorHandler_CN.swift in Sources */,
 				94057F1E27973A32009B5A2B /* NotificationsCollectionViewCell_CN.swift in Sources */,
+				943D160727BA97710071F054 /* MainErrorHandler_CN.swift in Sources */,
 				946B142227B6FC1200AF3BBB /* MenuItemGateway_CN.swift in Sources */,
 				94EFC9D42792500F00CC6B47 /* SceneConfigurator_CN.swift in Sources */,
 				943D160527B9A5190071F054 /* QuoteCardState_CN.swift in Sources */,

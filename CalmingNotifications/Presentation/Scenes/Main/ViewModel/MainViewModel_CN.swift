@@ -12,7 +12,6 @@ import UIKit
 
 protocol MainViewModelProtocol_CN {
     func viewDidLoad()
-    func viewWillAppear()
     func menuButtonTapped()
     var quoteCards: Publisher<[QuoteCard_CN]> { get }
     var isLoading: Publisher<Loading_CN> { get }
@@ -31,15 +30,18 @@ final class MainViewModel_CN: MainViewModelProtocol_CN,
     
     private let quoteCardRepository: QuoteCardGateway_CN
     private let router: MainRouterProtocol_CN
+    private let errorHandler: MainErrorHandlerProtocol_CN
     
     init(
         quoteCardRepository: QuoteCardGateway_CN,
-         router: MainRouterProtocol_CN) {
-//         quoteCards: [QuoteCard_CN]) {
-        self.quoteCardRepository = quoteCardRepository
-//        self.quoteCards.value = quoteCards
-        self.router = router
-    }
+        router: MainRouterProtocol_CN,
+        errorHandler: MainErrorHandlerProtocol_CN) {
+            //         quoteCards: [QuoteCard_CN]) {
+            self.quoteCardRepository = quoteCardRepository
+            //        self.quoteCards.value = quoteCards
+            self.router = router
+            self.errorHandler = errorHandler
+        }
     
     // MARK: - State
     
@@ -61,23 +63,9 @@ final class MainViewModel_CN: MainViewModelProtocol_CN,
     func viewDidLoad() {
         let state = quoteCardRepository.getState()
         quoteCards.value = state.quoteCards.value
-        
-        state.quoteCards.subscribe(observer: self) { cards in
-            self.quoteCards.value = cards
-    }
-//        state.quoteCards.notify()
-//        quoteCards.notify()
-//        isLoading.value = .true
-//        quoteTask = Task {
-//            let result = await quoteCardRepository.fetch()
-//            self.quoteCard.value = result
-//            self.isLoading.value = .false
-//        }
+        setupObservers()
     }
     
-    func viewWillAppear() {
-            //updateQuotesCards
-    }
     
     func menuButtonTapped() {
         router.menuButtonTapped()
@@ -85,20 +73,6 @@ final class MainViewModel_CN: MainViewModelProtocol_CN,
     
     
     func likeButtonTapped(cellWithIndex index: Int) {
-//        UIImageWriteToSavedPhotosAlbum(quoteCard.value[index].image, nil, nil, nil)
-//        quoteTask = Task {
-//            do {
-//                var quoteCard = self.quoteCards.value[index]
-//                quoteCard.isFavorite = true
-//                try await self.quoteCardRepository.saveFavorite(quoteCard)
-//                self.quoteCards.value[index].isFavorite = true
-//            } catch let error {
-//                print("error == \(error)")
-////                let errorMessage = self.errorHandler.handle(error)
-////                self.error.value = errorMessage
-//            }
-//        }
-        
         switch quoteCards.value[index].isFavorite {
         case false:
             quoteTask = Task {
@@ -109,8 +83,8 @@ final class MainViewModel_CN: MainViewModelProtocol_CN,
                     self.quoteCards.value[index].isFavorite = true
                 } catch let error {
                     print(error)
-//                    let errorMessage = self.errorHandler.handle(error)
-//                    self.error.value = errorMessage
+                    //                    let errorMessage = self.errorHandler.handle(error)
+                    //                    self.error.value = errorMessage
                 }
             }
         case true:
@@ -120,11 +94,11 @@ final class MainViewModel_CN: MainViewModelProtocol_CN,
                     quoteCard.isFavorite = false
                     try await self.quoteCardRepository.deleteFavorite(quoteCard)
                     self.quoteCards.value[index].isFavorite = false
-//                    self.quoteCards.value = result
+                    //                    self.quoteCards.value = result
                 } catch let error {
                     print(error)
-//                    let errorMessage = self.errorHandler.handle(error)
-//                    self.error.value = errorMessage
+                    //                    let errorMessage = self.errorHandler.handle(error)
+                    //                    self.error.value = errorMessage
                 }
             }
         }
@@ -144,6 +118,14 @@ final class MainViewModel_CN: MainViewModelProtocol_CN,
     
     // MARK: - Private
     
+    private func setupObservers() {
+        let state = quoteCardRepository.getState()
+        state.quoteCards.subscribe(observer: self) { [weak self] cards in
+            self?.quoteCards.value = cards
+        }
+    }
+    
+    
     // To extension UIImage
     private func textToImage(drawText text: String,
                              inImage image: UIImage) -> UIImage? {
@@ -153,7 +135,7 @@ final class MainViewModel_CN: MainViewModelProtocol_CN,
         let textFont = UIFont(name: "Helvetica Bold", size: 18)!
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = .center
-//        paragraphStyle.lineBreakMode = .byTruncatingTail
+        //        paragraphStyle.lineBreakMode = .byTruncatingTail
         let scale = UIScreen.main.scale
         UIGraphicsBeginImageContextWithOptions(image.size,
                                                false,
@@ -162,7 +144,7 @@ final class MainViewModel_CN: MainViewModelProtocol_CN,
             .font: textFont,
             .foregroundColor: textColor,
             .paragraphStyle: paragraphStyle
-            ]
+        ]
         image.draw(in: CGRect(origin: CGPoint.zero,
                               size: image.size))
         let edgeOffset: CGFloat = 20

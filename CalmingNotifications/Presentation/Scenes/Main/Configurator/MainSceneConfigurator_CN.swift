@@ -19,8 +19,10 @@ final class MainSceneConfigurator_CN: SceneConfiguratorProtocol_CN {
         let repo = repositoryDIContainer.quoteCard
         let router = MainRouter_CN(navigationContainer: navigationContainer,
                                    repositoryDIContainer: repositoryDIContainer)
+        let errorHandler = MainErrorHandler_CN()
         let viewModel = MainViewModel_CN(quoteCardRepository: repo,
-                                         router: router)
+                                         router: router,
+                                         errorHandler: errorHandler)
 //                                         ,
 //                                         quoteCards: quoteCards)
         let view = MainViewController_CN(viewModel: viewModel,
