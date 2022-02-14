@@ -18,6 +18,7 @@
 		50A1CBA3278F6C92000F9BFC /* MenuViewController_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A1CBA2278F6C92000F9BFC /* MenuViewController_CN.swift */; };
 		94057F1E27973A32009B5A2B /* NotificationsCollectionViewCell_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94057F1D27973A32009B5A2B /* NotificationsCollectionViewCell_CN.swift */; };
 		94057F2027975249009B5A2B /* NotificationsCollectionHeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94057F1F27975249009B5A2B /* NotificationsCollectionHeaderReusableView.swift */; };
+		943D160527B9A5190071F054 /* QuoteCardState_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943D160427B9A5190071F054 /* QuoteCardState_CN.swift */; };
 		9441818627AD83B300AD9FDD /* SplashViewController_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9441818527AD83B300AD9FDD /* SplashViewController_CN.swift */; };
 		9441818A27AD83F500AD9FDD /* SplashViewModel_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9441818927AD83F500AD9FDD /* SplashViewModel_CN.swift */; };
 		9441818D27AD842B00AD9FDD /* SplashRouter_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9441818C27AD842B00AD9FDD /* SplashRouter_CN.swift */; };
@@ -86,6 +87,7 @@
 		50A1CBA2278F6C92000F9BFC /* MenuViewController_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController_CN.swift; sourceTree = "<group>"; };
 		94057F1D27973A32009B5A2B /* NotificationsCollectionViewCell_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsCollectionViewCell_CN.swift; sourceTree = "<group>"; };
 		94057F1F27975249009B5A2B /* NotificationsCollectionHeaderReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsCollectionHeaderReusableView.swift; sourceTree = "<group>"; };
+		943D160427B9A5190071F054 /* QuoteCardState_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCardState_CN.swift; sourceTree = "<group>"; };
 		9441818527AD83B300AD9FDD /* SplashViewController_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController_CN.swift; sourceTree = "<group>"; };
 		9441818927AD83F500AD9FDD /* SplashViewModel_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel_CN.swift; sourceTree = "<group>"; };
 		9441818C27AD842B00AD9FDD /* SplashRouter_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashRouter_CN.swift; sourceTree = "<group>"; };
@@ -593,6 +595,7 @@
 			isa = PBXGroup;
 			children = (
 				94EFC9AC27923F7C00CC6B47 /* QuoteCardRepository_CN.swift */,
+				943D160427B9A5190071F054 /* QuoteCardState_CN.swift */,
 				94EFC9B02792405A00CC6B47 /* Network */,
 				94EFC9B12792406100CC6B47 /* LocalStorage */,
 			);
@@ -841,6 +844,7 @@
 				94057F1E27973A32009B5A2B /* NotificationsCollectionViewCell_CN.swift in Sources */,
 				946B142227B6FC1200AF3BBB /* MenuItemGateway_CN.swift in Sources */,
 				94EFC9D42792500F00CC6B47 /* SceneConfigurator_CN.swift in Sources */,
+				943D160527B9A5190071F054 /* QuoteCardState_CN.swift in Sources */,
 				94057F2027975249009B5A2B /* NotificationsCollectionHeaderReusableView.swift in Sources */,
 				946B13E527AF398E00AF3BBB /* SceneState.swift in Sources */,
 				946B140A27B2F77500AF3BBB /* QuoteCardDBEntity+CoreDataClass.swift in Sources */,

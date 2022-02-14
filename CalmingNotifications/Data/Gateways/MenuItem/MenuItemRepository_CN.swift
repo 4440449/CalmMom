@@ -13,7 +13,8 @@ final class MenuItemRepository_CN: MenuItemGateway_CN {
     
     func fetch() async throws -> [MenuItem] {
 //        sleep(1)
-        return [MenuItem(title: .favorites)]
+        return [MenuItem(title: .favorites),
+                MenuItem(title: .notifications)]
     }
     
 }

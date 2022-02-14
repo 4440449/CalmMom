@@ -44,8 +44,15 @@ final class MenuRouter_CN: MenuRouterProtocol_CN {
             let favoritesVC = FavoritesSceneConfigurator_CN.configure(
                 navigationContainer: navigationContainer,
                 repositoryDIContainer: repositoryDIContainer )
-            favoritesVC.modalPresentationStyle = .overFullScreen
+            favoritesVC.modalPresentationStyle = .fullScreen
+//                .overFullScreen
             navigationContainer.present(favoritesVC, animated: true, completion: nil)
+        case .notifications:
+            let notificationsVC = NotificationSceneConfigurator_CN.configure(
+                navigationContainer: navigationContainer,
+                repositoryDIContainer: repositoryDIContainer)
+            notificationsVC.modalPresentationStyle = .fullScreen
+            navigationContainer.present(notificationsVC, animated: true, completion: nil)
         }
     }
     

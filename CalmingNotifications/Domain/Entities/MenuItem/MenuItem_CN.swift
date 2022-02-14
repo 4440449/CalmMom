@@ -11,6 +11,7 @@ struct MenuItem {
     
     enum Title: String {
         case favorites = "Favorites"
+        case notifications = "Notifications"
     }
     
     let title: Title

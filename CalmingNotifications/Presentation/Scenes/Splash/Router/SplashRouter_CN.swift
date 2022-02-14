@@ -11,34 +11,39 @@ import UIKit
 
 
 protocol SplashRouterProtocol_CN {
-    func startMainFlow(quoteCards: [QuoteCard_CN])
+//    func startMainFlow(quoteCards: [QuoteCard_CN])
+    func startMainFlow()
 }
 
 
 final class SplashRouter_CN: SplashRouterProtocol_CN {
     
     // MARK: - Dependencies
-
+    
     private let repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN
     
     
     // MARK: - Init
-
+    
     init(repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN) {
         self.repositoryDIContainer = repositoryDIContainer
     }
     
     
     // MARK: - Interface
-
-    func startMainFlow(quoteCards: [QuoteCard_CN]) {
+    
+    //    func startMainFlow(quoteCards: [QuoteCard_CN]) {
+    func startMainFlow() {
         DispatchQueue.main.async {
             let navigationContainer = UINavigationController()
             navigationContainer.navigationBar.isHidden = true
-            let startVC = MainTabBarConfigurator_CN.configure(
-                quoteCards: quoteCards,
+//            let startVC = MainTabBarConfigurator_CN.configure(
+//                quoteCards: quoteCards,
+//                navigationContainer: navigationContainer,
+//                repositoryDIContainer: self.repositoryDIContainer )
+            let startVC = MainSceneConfigurator_CN.configure(
                 navigationContainer: navigationContainer,
-                repositoryDIContainer: self.repositoryDIContainer )
+                repositoryDIContainer: self.repositoryDIContainer)
             navigationContainer.viewControllers = [startVC]
             if let sceneDelegate =
                 UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
@@ -49,7 +54,7 @@ final class SplashRouter_CN: SplashRouterProtocol_CN {
     }
     
     deinit {
-//        print("SplashRouter_CN is deinit -------- ")
+        //        print("SplashRouter_CN is deinit -------- ")
     }
     
 }

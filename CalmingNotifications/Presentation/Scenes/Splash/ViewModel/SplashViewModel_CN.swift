@@ -47,15 +47,25 @@ final class SplashViewModel_CN: SplashViewModelProtocol_CN {
     func viewDidLoad() {
         isLoading.value = .true
         quoteTask = Task {
-            //do {}catch{}
-            let result = await quoteCardRepository.fetch()
-            self.quotesLoaded(quoteCards: result)
-            self.isLoading.value = .false
+            do {
+//                let result = try await quoteCardRepository.fetch()
+                try await quoteCardRepository.fetch()
+                self.quotesLoaded()
+                self.isLoading.value = .false
+            } catch let error {
+                print(error)
+            }
         }
     }
     
-    private func quotesLoaded(quoteCards: [QuoteCard_CN]) {
-        router.startMainFlow(quoteCards: quoteCards)
+//    private func quotesLoaded(quoteCards: [QuoteCard_CN]) {
+//        router.startMainFlow(quoteCards: quoteCards)
+//    }
+    
+    private func quotesLoaded() {
+//        router.startMainFlow(quoteCards: quoteCards)
+        router.startMainFlow()
+
     }
     
     deinit {

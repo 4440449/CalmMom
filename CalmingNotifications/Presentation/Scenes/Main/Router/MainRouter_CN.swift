@@ -37,14 +37,12 @@ final class MainRouter_CN: MainRouterProtocol_CN {
     func menuButtonTapped() {
         let menuVC = MenuSceneConfigurator_CN.configure(navigationContainer: navigationContainer, repositoryDIContainer: repositoryDIContainer)
         navigationContainer.present(menuVC, animated: true, completion: nil)
-//        let favoritesVC = FavoritesSceneConfigurator_CN.configure(navigationContainer: navContainer, repositoryDIContainer: repositoryDIContainer)
-//        navContainer.present(favoritesVC, animated: true, completion: nil)
     }
     
     func shareButtonTapped(with content: UIImage) {
         let activityVC = UIActivityViewController(activityItems: [content],
                                                   applicationActivities: nil)
-        navigationContainer.show(activityVC, sender: nil)
+        navigationContainer.present(activityVC, animated: true, completion: nil)
     }
     
     deinit {

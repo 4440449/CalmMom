@@ -12,6 +12,7 @@ import UIKit
 
 protocol MainViewModelProtocol_CN {
     func viewDidLoad()
+    func viewWillAppear()
     func menuButtonTapped()
     var quoteCards: Publisher<[QuoteCard_CN]> { get }
     var isLoading: Publisher<Loading_CN> { get }
@@ -33,10 +34,10 @@ final class MainViewModel_CN: MainViewModelProtocol_CN,
     
     init(
         quoteCardRepository: QuoteCardGateway_CN,
-         router: MainRouterProtocol_CN,
-         quoteCards: [QuoteCard_CN]) {
+         router: MainRouterProtocol_CN) {
+//         quoteCards: [QuoteCard_CN]) {
         self.quoteCardRepository = quoteCardRepository
-        self.quoteCards.value = quoteCards
+//        self.quoteCards.value = quoteCards
         self.router = router
     }
     
@@ -58,13 +59,24 @@ final class MainViewModel_CN: MainViewModelProtocol_CN,
     // MARK: - Interface impl
     
     func viewDidLoad() {
-        quoteCards.notify()
+        let state = quoteCardRepository.getState()
+        quoteCards.value = state.quoteCards.value
+        
+        state.quoteCards.subscribe(observer: self) { cards in
+            self.quoteCards.value = cards
+    }
+//        state.quoteCards.notify()
+//        quoteCards.notify()
 //        isLoading.value = .true
 //        quoteTask = Task {
 //            let result = await quoteCardRepository.fetch()
 //            self.quoteCard.value = result
 //            self.isLoading.value = .false
 //        }
+    }
+    
+    func viewWillAppear() {
+            //updateQuotesCards
     }
     
     func menuButtonTapped() {

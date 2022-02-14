@@ -16,43 +16,41 @@ final class QuoteCardRepository_CN: QuoteCardGateway_CN {
     
     private let network: QuoteCardNetworkRepositoryProtocol_CN
     private let localStorage: QuoteCardPersistenceRepositoryProtocol_CN
-    private let quotes = ["Цель нашей жизни - быть счастливыми",
-                          "Жизнь - это то, что происходит с вами, пока вы строите другие планы",
-                          "Я думаю, что любознательность к жизни во всех ее аспектах все же является секретом великих творческих людей.",
-                          "Жизнь - это не проблема, которую нужно решить, а реальность, которую нужно пережить",
-                          "Неисследованная жизнь не стоит того, чтобы жить",
-                          "Превратите свои раны в мудрость",
-                          "Как я это вижу, если вы хотите радугу, вам нужно примириться с дождем",
-                          "Пережить все, что положено судьбой - значит всецело ее принять",
-                          "Не соглашайтесь на то, что дает вам жизнь, сделайте жизнь лучше и стройте что-нибудь",
-                          "Вы никогда не научитесь многому, слушая, как вы говорите",
-                          "Жизнь навязывает вам вещи, которые вы не можете контролировать, но у вас все еще есть выбор, как это пережить",
-                          "Жизнь никогда не бывает легкой. Есть работа, которую нужно сделать, и обязательства, которые нужно выполнить, обязательства перед правдой, справедливостью и свободой",
-                          " Жизнь, на самом деле, проста, но люди настойчиво ее усложняют",
-                          " Жизнь - как вождение велосипеда. Чтобы сохранять равновесие, нужно продолжать двигаться",
-                          "Моя мама всегда говорила: жизнь - как коробка шоколадных конфет. Никогда не знаешь, что попадется",
-                          " Жизнь - это череда уроков, которые нужно прожить, чтобы понять"]
+    private let quoteCardState: QuoteCardStateProtocol_CN
+    
+    
+    // MARK: - Init
     
     init(network: QuoteCardNetworkRepositoryProtocol_CN,
-         localStorage: QuoteCardPersistenceRepositoryProtocol_CN) {
+         localStorage: QuoteCardPersistenceRepositoryProtocol_CN,
+         quoteCardState: QuoteCardStateProtocol_CN) {
         self.network = network
         self.localStorage = localStorage
+        self.quoteCardState = quoteCardState
     }
     
     
     // MARK: - Interface
     
-    func fetch() async -> [QuoteCard_CN] { // throw if Empty!!
+    func getState() -> QuoteCardStateProtocol_CN {
+        return quoteCardState
+    }
+    
+    
+    func fetch() async throws {
+        // Stub! there is no backend yet
         sleep(1)
-        var cards = [QuoteCard_CN]()
-        for i in 0...10 {
-            let card = QuoteCard_CN(quote: quotes[i],
-                                    image: UIImage(named: "image\(i)")!)
-            cards.append(card)
+        let favorites = try await localStorage.fetchFavorites()
+        var cards = quoteCardState.quoteCards.value
+        for favorite in favorites {
+            for (index, quoteCard) in cards.enumerated() {
+                if favorite.id == quoteCard.id {
+                    cards.remove(at: index)
+                    cards.insert(favorite, at: index)
+                }
+            }
         }
-        let index = [0, 2, 3]
-        index.forEach { cards[$0].isFavorite = true }
-        return cards
+        quoteCardState.quoteCards.value = cards
     }
     
     func fetchFavorites() async throws -> [QuoteCard_CN] {
@@ -62,14 +60,20 @@ final class QuoteCardRepository_CN: QuoteCardGateway_CN {
     
     func saveFavorite(_ quoteCard: QuoteCard_CN) async throws{
         try await localStorage.saveFavorite(quoteCard)
-        
-        
+        for (index, card) in quoteCardState.quoteCards.value.enumerated() {
+            if card.id == quoteCard.id {
+                quoteCardState.quoteCards.value[index].isFavorite = true
+            }
+        }
     }
     
     func deleteFavorite(_ quoteCard: QuoteCard_CN) async throws {
         try await localStorage.deleteFavorite(quoteCard)
-        
-        
+        for (index, card) in quoteCardState.quoteCards.value.enumerated() {
+            if card.id == quoteCard.id {
+                quoteCardState.quoteCards.value[index].isFavorite = false
+            }
+        }
     }
     
     
@@ -77,3 +81,4 @@ final class QuoteCardRepository_CN: QuoteCardGateway_CN {
         //        print("QuoteCardRepository_CN is deinit -------- ")
     }
 }
+

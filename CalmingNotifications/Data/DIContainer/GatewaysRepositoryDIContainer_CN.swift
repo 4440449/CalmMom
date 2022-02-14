@@ -40,7 +40,8 @@ final class GatewaysRepositoryDIContainer_CN: GatewaysRepositoryDIContainerProto
         let network = QuoteCardNetworkRepository()
         let localStorage = QuoteCardPersistenceRepository()
         let repo = QuoteCardRepository_CN(network: network,
-                                          localStorage: localStorage)
+                                          localStorage: localStorage,
+                                          quoteCardState: QuoteCardState_CN())
         return repo
     }
     
