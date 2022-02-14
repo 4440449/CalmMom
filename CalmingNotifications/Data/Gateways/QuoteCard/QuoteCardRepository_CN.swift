@@ -43,7 +43,7 @@ final class QuoteCardRepository_CN: QuoteCardGateway_CN {
         // let task = { network.connect(url...) { result in
 //        switch result { case .success (let cards): let favorites = localStorage.fetchFavorites() ...
 //    } } }
-        sleep(1)
+        sleep(1) // Имитация нетворк реквеста
         let favorites = try await localStorage.fetchFavorites()
         var cards = quoteCardState.quoteCards.value
         for favorite in favorites {

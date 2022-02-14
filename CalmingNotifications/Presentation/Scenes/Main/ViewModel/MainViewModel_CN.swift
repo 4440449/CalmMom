@@ -108,10 +108,11 @@ final class MainViewModel_CN: MainViewModelProtocol_CN,
     
     func shareButtonTapped(cellWithIndex index: Int) {
         let quoteCard = quoteCards.value[index]
-        guard let quoteCardImage = textToImage(drawText: quoteCard.quote,
-                                               inImage: quoteCard.image) else {
-            return
-        }
+        let setup = QuoteCardWallPaperDrawSetup_CN.standart.setup(for: quoteCard.image)
+        guard let quoteCardImage = quoteCard.image.drawTextOnImage(
+            text: quoteCard.quote,
+            textAttributes: setup.textAttributes,
+            textFrame: setup.textFrame) else { return }
         router.shareButtonTapped(with: quoteCardImage)
     }
     
@@ -123,44 +124,6 @@ final class MainViewModel_CN: MainViewModelProtocol_CN,
         state.quoteCards.subscribe(observer: self) { [weak self] cards in
             self?.quoteCards.value = cards
         }
-    }
-    
-    
-    // To extension UIImage
-    private func textToImage(drawText text: String,
-                             inImage image: UIImage) -> UIImage? {
-        print("image.size == \(image.size)")
-        print("UIScreen.main.bounds == \(UIScreen.main.bounds)")
-        let textColor = UIColor.white
-        let textFont = UIFont(name: "Helvetica Bold", size: 18)!
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.alignment = .center
-        //        paragraphStyle.lineBreakMode = .byTruncatingTail
-        let scale = UIScreen.main.scale
-        UIGraphicsBeginImageContextWithOptions(image.size,
-                                               false,
-                                               scale)
-        let textFontAttributes: [NSAttributedString.Key : Any] = [
-            .font: textFont,
-            .foregroundColor: textColor,
-            .paragraphStyle: paragraphStyle
-        ]
-        image.draw(in: CGRect(origin: CGPoint.zero,
-                              size: image.size))
-        let edgeOffset: CGFloat = 20
-        let point = CGPoint(x: edgeOffset,
-                            y: image.size.height / 2)
-        let size = CGSize(width: image.size.width - (edgeOffset * 2),
-                          height: image.size.height)
-        let rect = CGRect(origin: point,
-                          size: size)
-        text.draw(in: rect,
-                  withAttributes: textFontAttributes)
-        guard let newImage = UIGraphicsGetImageFromCurrentImageContext() else {
-            return nil
-        }
-        UIGraphicsEndImageContext()
-        return newImage
     }
     
 }

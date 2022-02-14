@@ -20,6 +20,7 @@
 		94057F2027975249009B5A2B /* NotificationsCollectionHeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94057F1F27975249009B5A2B /* NotificationsCollectionHeaderReusableView.swift */; };
 		943D160527B9A5190071F054 /* QuoteCardState_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943D160427B9A5190071F054 /* QuoteCardState_CN.swift */; };
 		943D160727BA97710071F054 /* MainErrorHandler_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943D160627BA97710071F054 /* MainErrorHandler_CN.swift */; };
+		943D160A27BA9AAF0071F054 /* DrawTextOnImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943D160927BA9AAF0071F054 /* DrawTextOnImage.swift */; };
 		9441818627AD83B300AD9FDD /* SplashViewController_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9441818527AD83B300AD9FDD /* SplashViewController_CN.swift */; };
 		9441818A27AD83F500AD9FDD /* SplashViewModel_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9441818927AD83F500AD9FDD /* SplashViewModel_CN.swift */; };
 		9441818D27AD842B00AD9FDD /* SplashRouter_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9441818C27AD842B00AD9FDD /* SplashRouter_CN.swift */; };
@@ -90,6 +91,7 @@
 		94057F1F27975249009B5A2B /* NotificationsCollectionHeaderReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsCollectionHeaderReusableView.swift; sourceTree = "<group>"; };
 		943D160427B9A5190071F054 /* QuoteCardState_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCardState_CN.swift; sourceTree = "<group>"; };
 		943D160627BA97710071F054 /* MainErrorHandler_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainErrorHandler_CN.swift; sourceTree = "<group>"; };
+		943D160927BA9AAF0071F054 /* DrawTextOnImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawTextOnImage.swift; sourceTree = "<group>"; };
 		9441818527AD83B300AD9FDD /* SplashViewController_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController_CN.swift; sourceTree = "<group>"; };
 		9441818927AD83F500AD9FDD /* SplashViewModel_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel_CN.swift; sourceTree = "<group>"; };
 		9441818C27AD842B00AD9FDD /* SplashRouter_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashRouter_CN.swift; sourceTree = "<group>"; };
@@ -449,6 +451,7 @@
 				946B13E627B0014C00AF3BBB /* PushNotificationsAuthStatus_CN.swift */,
 				946B13E827B1D5F000AF3BBB /* AppColors_CN.swift */,
 				946B141D27B6DD8A00AF3BBB /* InterfaceStyleManagement_CN.swift */,
+				943D160927BA9AAF0071F054 /* DrawTextOnImage.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -847,6 +850,7 @@
 				94EFC9D227924EF500CC6B47 /* NotificationSceneConfigurator_CN.swift in Sources */,
 				9441818A27AD83F500AD9FDD /* SplashViewModel_CN.swift in Sources */,
 				94EFC9D8279252AD00CC6B47 /* MenuViewModel_CN.swift in Sources */,
+				943D160A27BA9AAF0071F054 /* DrawTextOnImage.swift in Sources */,
 				946B141827B5C41600AF3BBB /* MenuCollectionViewCell.swift in Sources */,
 				9441818627AD83B300AD9FDD /* SplashViewController_CN.swift in Sources */,
 				9441819027AD848000AD9FDD /* SplashSceneConfigurator_CN.swift in Sources */,
