@@ -30,7 +30,8 @@ final class QuoteCardPersistenceRepository: QuoteCardPersistenceRepositoryProtoc
 //        request.predicate = NSPredicate(format: "isFavorite == true")
 //        do {
             let fetchResult = try coreDataContainer.viewContext.fetch(request)
-            let domain = try fetchResult.map { try $0.parseToDomainEntity() }
+            let sortedDetchResult = fetchResult.sorted { $0.date! > $1.date! }
+            let domain = try sortedDetchResult.map { try $0.parseToDomainEntity() }
                 // TODO: Чекнуть ошибку если выдам ее здесь в маппинге. Как она будет выглядеть? Ошибка маппинга обернутая ошибкой фетча?
             return domain
 //        } catch let error {

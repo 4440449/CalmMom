@@ -54,7 +54,6 @@ class NotificationsCollectionHeaderReusableView: UICollectionReusableView {
         let button = UIButton()
         button.tintColor = .label
         button.setImage(UIImage(systemName: "chevron.down"), for: .normal)
-        button.layer.cornerRadius = 20
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self,
                          action: #selector(dismissButtonTapped),
@@ -70,7 +69,6 @@ class NotificationsCollectionHeaderReusableView: UICollectionReusableView {
         let button = UIButton()
         button.tintColor = .label
         button.setImage(UIImage(systemName: "plus"), for: .normal)
-        button.layer.cornerRadius = 20
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self,
                          action: #selector(addNewNotificationButtonTapped),
@@ -113,8 +111,10 @@ class NotificationsCollectionHeaderReusableView: UICollectionReusableView {
         title.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
         title.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         
-        dismissButton.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        dismissButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
         dismissButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20).isActive = true
+        dismissButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        dismissButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
     }
     
     
@@ -133,8 +133,10 @@ class NotificationsCollectionHeaderReusableView: UICollectionReusableView {
     
     private func showAddNewButton() {
         self.addSubview(addNewNotificationButton)
-        addNewNotificationButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
         addNewNotificationButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
+        addNewNotificationButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
+        addNewNotificationButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        addNewNotificationButton.heightAnchor.constraint(equalToConstant: 35).isActive = true
     }
     
     private func hideAddNewButon() {

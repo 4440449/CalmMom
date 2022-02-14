@@ -22,6 +22,7 @@ extension QuoteCardDBEntity {
     @NSManaged public var quote: String?
     @NSManaged public var id: UUID?
     @NSManaged public var isFavorite: Bool
+    @NSManaged public var date: Date?
 
 }
 
@@ -39,6 +40,7 @@ extension QuoteCardDBEntity {
         quote = domain.quote
         id = domain.id
         isFavorite = domain.isFavorite
+        date = Date()
     }
     
     func parseToDomainEntity() throws -> QuoteCard_CN  {
