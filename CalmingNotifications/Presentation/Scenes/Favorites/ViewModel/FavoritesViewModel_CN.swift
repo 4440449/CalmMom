@@ -111,8 +111,14 @@ final class FavoritesViewModel_CN: FavoritesViewModelProtocol_CN,
         
     }
     
-    func shareButtonTapped(cellWithIndex: Int) {
-        
+    func shareButtonTapped(cellWithIndex index: Int) {
+        let quoteCard = quoteCards.value[index]
+        let setup = QuoteCardWallPaperDrawSetup_CN.standart.setup(for: quoteCard.image)
+        guard let quoteCardImage = quoteCard.image.drawTextOnImage(
+            text: quoteCard.quote,
+            textAttributes: setup.textAttributes,
+            textFrame: setup.textFrame) else { return }
+        router.shareButtonTapped(with: quoteCardImage)
     }
     
     deinit {

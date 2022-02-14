@@ -11,6 +11,7 @@ import UIKit
 
 protocol FavoritesRouterProtocol_CN {
     func dismissButtonTapped()
+    func shareButtonTapped(with content: UIImage)
 }
 
 
@@ -43,6 +44,12 @@ final class FavoritesRouter_CN: FavoritesRouterProtocol_CN {
     func dismissButtonTapped() {
         guard let view = view else { return }
         view.dismiss(animated: true, completion: nil)
+    }
+    
+    func shareButtonTapped(with content: UIImage) {
+        let activityVC = UIActivityViewController(activityItems: [content],
+                                                  applicationActivities: nil)
+        view?.present(activityVC, animated: true, completion: nil)
     }
     
 

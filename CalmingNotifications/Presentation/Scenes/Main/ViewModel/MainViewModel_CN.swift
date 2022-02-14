@@ -15,6 +15,7 @@ protocol MainViewModelProtocol_CN {
     func menuButtonTapped()
     var quoteCards: Publisher<[QuoteCard_CN]> { get }
     var isLoading: Publisher<Loading_CN> { get }
+    var error: Publisher<String> { get }
 }
 
 protocol MainCellViewModelProtocol_CN {
@@ -47,6 +48,7 @@ final class MainViewModel_CN: MainViewModelProtocol_CN,
     
     var quoteCards = Publisher(value: [QuoteCard_CN]())
     var isLoading = Publisher(value: Loading_CN.false)
+    var error = Publisher(value: String())
     
     
     // MARK: - Private state
@@ -82,9 +84,8 @@ final class MainViewModel_CN: MainViewModelProtocol_CN,
                     try await self.quoteCardRepository.saveFavorite(quoteCard)
                     self.quoteCards.value[index].isFavorite = true
                 } catch let error {
-                    print(error)
-                    //                    let errorMessage = self.errorHandler.handle(error)
-                    //                    self.error.value = errorMessage
+                    let errorMessage = self.errorHandler.handle(error)
+                    self.error.value = errorMessage
                 }
             }
         case true:
@@ -96,14 +97,11 @@ final class MainViewModel_CN: MainViewModelProtocol_CN,
                     self.quoteCards.value[index].isFavorite = false
                     //                    self.quoteCards.value = result
                 } catch let error {
-                    print(error)
-                    //                    let errorMessage = self.errorHandler.handle(error)
-                    //                    self.error.value = errorMessage
+                    let errorMessage = self.errorHandler.handle(error)
+                    self.error.value = errorMessage
                 }
             }
         }
-        
-        
     }
     
     func shareButtonTapped(cellWithIndex index: Int) {
