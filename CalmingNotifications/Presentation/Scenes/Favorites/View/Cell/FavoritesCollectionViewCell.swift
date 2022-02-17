@@ -35,8 +35,6 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        //        contentView.backgroundColor = .systemTeal
         [logoLabel, quoteLabel, likeButton, shareButton].forEach { self.contentView.addSubview($0) }
         setupLayout()
     }
@@ -64,7 +62,7 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
     private var quoteLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.numberOfLines = 10
+        label.numberOfLines = 0
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -82,7 +80,6 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
     
     @objc func favoritelikeButtonTapped() {
         guard let index = index else { return }
-//        likeButton.isSelected = !likeButton.isSelected
         viewModel?.likeButtonTapped(cellWithIndex: index)
     }
     

@@ -36,8 +36,8 @@ final class NotificationRepository_CN: NotificationGateway_CN {
 //        sleep(2)
         // TODO: Перенести маппинг на уровень ниже?
         let requests = await localPushNotificationsService.fetchNotifications()
-        var domainEntities = [Notification_CN]()
-        try requests.forEach { try domainEntities.append($0.parseToDomain()) }
+        var domainEntities = try requests.map { try $0.parseToDomain() }
+//        try requests.forEach { try domainEntities.append($0.parseToDomain()) }
         domainEntities.sort { $0.time < $1.time }
         return domainEntities
     }

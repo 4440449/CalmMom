@@ -17,4 +17,10 @@ extension Date {
         let formatDate = formatter.string(from: self)
         return formatDate
     }
+    
+    func hh_mm() -> Date? {
+        let components = Calendar.current.dateComponents([.hour, .minute], from: self)
+        let time = Calendar.current.date(from: components)
+        return time
+    }
 }

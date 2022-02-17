@@ -46,11 +46,13 @@ final class QuoteCardRepository_CN: QuoteCardGateway_CN {
         sleep(1) // Имитация нетворк реквеста
         let favorites = try await localStorage.fetchFavorites()
         var cards = quoteCardState.quoteCards.value
+        
         for favorite in favorites {
             for (index, quoteCard) in cards.enumerated() {
                 if favorite.id == quoteCard.id {
-                    cards.remove(at: index)
-                    cards.insert(favorite, at: index)
+                    cards[index] = favorite
+//                    cards.remove(at: index)
+//                    cards.insert(favorite, at: index)
                 }
             }
         }

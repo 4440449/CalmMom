@@ -46,6 +46,11 @@ class NotificationsViewController_CN: UIViewController,
         viewModel.viewDidLoad()
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+//        print("viewWillLayoutSubviews")
+    }
+    
     
     // MARK: - Input data flow
     
@@ -68,13 +73,20 @@ class NotificationsViewController_CN: UIViewController,
 //            guard let strongSelf = self else { return }
             self?.selectedIndex = -1
             self?.collectionView.reloadData()
-//            UIView.transition(with: strongSelf.collectionView,
-//                              duration: 0.3,
-//                              options: .transitionCrossDissolve,
-//                              animations: {
-//                strongSelf.collectionView.reloadData()
-////                strongSelf.collectionView.performBatchUpdates(nil, completion: nil)
+            
+//            self?.collectionView.performBatchUpdates({
+//                self?.collectionView.reloadSections(IndexSet(integer: 0))
+//            }, completion: { _ in
+//
 //            })
+//                UIView.transition(with: self!.collectionView,
+//                                  duration: 0.3,
+//                                  options: .transitionCrossDissolve,
+//                                  animations: {
+//                    self?.collectionView.reloadSections(IndexSet(integer: 0))
+//                    self?.collectionView.reloadData()
+//                                    self?.collectionView.performBatchUpdates(nil, completion: nil)
+//                })
         }
         
         viewModel.pushNotificationAuthStatus.subscribe(observer: self) { [weak self] _ in

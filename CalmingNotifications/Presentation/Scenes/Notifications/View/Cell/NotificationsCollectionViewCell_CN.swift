@@ -38,11 +38,9 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.addSubview(titleButton)
-        //
         contentView.addSubview(datePicker)
         contentView.addSubview(saveButton)
         contentView.addSubview(deleteButton)
-        //
         setupAppearance()
         setupLayout()
         setupObservers()

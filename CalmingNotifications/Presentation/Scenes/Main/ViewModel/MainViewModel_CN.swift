@@ -15,6 +15,7 @@ protocol MainViewModelProtocol_CN {
     func menuButtonTapped()
     var quoteCards: Publisher<[QuoteCard_CN]> { get }
     var isLoading: Publisher<Loading_CN> { get }
+    var successAnimation: Publisher<Bool> { get }
     var error: Publisher<String> { get }
 }
 
@@ -48,6 +49,7 @@ final class MainViewModel_CN: MainViewModelProtocol_CN,
     
     var quoteCards = Publisher(value: [QuoteCard_CN]())
     var isLoading = Publisher(value: Loading_CN.false)
+    var successAnimation = Publisher(value: false)
     var error = Publisher(value: String())
     
     
@@ -60,7 +62,7 @@ final class MainViewModel_CN: MainViewModelProtocol_CN,
     }
     
     
-    // MARK: - Interface impl
+    // MARK: - Interface
     
     func viewDidLoad() {
         let state = quoteCardRepository.getState()
@@ -111,7 +113,9 @@ final class MainViewModel_CN: MainViewModelProtocol_CN,
             text: quoteCard.quote,
             textAttributes: setup.textAttributes,
             textFrame: setup.textFrame) else { return }
-        router.shareButtonTapped(with: quoteCardImage)
+        router.shareButtonTapped(with: quoteCardImage) { [weak self] isDismissed in
+            self?.successAnimation.value = isDismissed
+        }
     }
     
     

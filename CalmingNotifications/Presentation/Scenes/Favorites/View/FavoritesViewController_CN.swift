@@ -40,10 +40,13 @@ class FavoritesViewController_CN: UIViewController,
         view.addSubview(dismissButton)
         view.addSubview(activity)
         view.addSubview(emptyScreenLabel)
-        setupEmptyScreenLabelLayout()
-        setupDismissButtonLayout()
+        setupLayout()
         setupObservers()
         viewModel.viewDidLoad()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
     }
     
     
@@ -109,7 +112,7 @@ class FavoritesViewController_CN: UIViewController,
         let label = UILabel()
         label.text = "Пока что здесь пусто, вы можете добавить понравившиеся заставки в изранное"
         label.textAlignment = .center
-        label.numberOfLines = 10
+        label.numberOfLines = 0
         //        label.lineBreakMode = .byCharWrapping
         label.isHidden = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -149,11 +152,22 @@ class FavoritesViewController_CN: UIViewController,
         return UICollectionViewCompositionalLayout(section: section)
     }
     
-    private func setupEmptyScreenLabelLayout() {
+    private func setupLayout() {
         emptyScreenLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         emptyScreenLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         emptyScreenLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        
+        dismissButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
+        dismissButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+        dismissButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        dismissButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
+    
+//    private func setupEmptyScreenLabelLayout() {
+//        emptyScreenLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+//        emptyScreenLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+//        emptyScreenLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+//    }
     
     private func manageEmptyScreenSetup(favoritesIsEmpty: Bool) {
         switch favoritesIsEmpty {
@@ -164,13 +178,12 @@ class FavoritesViewController_CN: UIViewController,
         }
     }
     
-    
-    private func setupDismissButtonLayout() {
-        dismissButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
-        dismissButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
-        dismissButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        dismissButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-    }
+//    private func setupDismissButtonLayout() {
+//        dismissButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
+//        dismissButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+//        dismissButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+//        dismissButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+//    }
     
     
     

@@ -37,7 +37,6 @@ class MainViewController_CN: UIViewController,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("viewDidLoad")
         view.addSubview(collectionView)
         view.addSubview(menuButton)
         view.addSubview(activity)
@@ -46,20 +45,9 @@ class MainViewController_CN: UIViewController,
         viewModel.viewDidLoad()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        print("viewWillAppear")
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        print("viewDidAppear")
-    }
-    
-    override func loadView() {
-         super.loadView()
-        print("loadView")
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+//        print("viewWillLayoutSubviews")
     }
     
     

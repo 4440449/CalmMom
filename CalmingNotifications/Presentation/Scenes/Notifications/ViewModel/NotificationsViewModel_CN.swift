@@ -8,12 +8,14 @@
 
 import Foundation
 import MommysEye
+import CloudKit
 
 
 protocol NotificationsViewModelProtocol_CN {
     // MARK: Input
     func viewDidLoad()
     func sceneWillEnterForeground()
+    func example() -> ((Int) -> ())
     // MARK: Output
     var notifications: Publisher<[Notification_CN]> { get }
     var pushNotificationAuthStatus: Publisher<PushNotificationsAuthStatus_CN> { get }
@@ -38,6 +40,12 @@ protocol NotificationsCellViewModelProtocol_CN {
 final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
                                        NotificationsHeaderViewModelProtocol_CN,
                                        NotificationsCellViewModelProtocol_CN {
+    func example() -> ((Int) -> ()) {
+        return { number in
+            print(number)
+        }
+    }
+    
     
     // MARK: - Dependencies
     
@@ -83,6 +91,8 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
     // MARK: - Header interface
     
     func addNewNotificationButtonTapped(date: Date) {
+        guard let time = date.hh_mm() else { return }
+        guard !notifications.value.contains(where: { $0.time == time }) else { return }
         isLoading.value = .true
         task = Task(priority: nil) {
             do {
@@ -103,11 +113,13 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
     
     // MARK: - Cell interface
     
-    func saveButtonTapped(cellWithIndex index: Int, new time: Date) {
+    func saveButtonTapped(cellWithIndex index: Int, new date: Date) {
+        guard let time = date.hh_mm() else { return }
+        guard notifications.value[index].time != time else { return }
         isLoading.value = .true
         task = Task(priority: nil) {
             do {
-                let result = try await self.repository.change(with: notifications.value[index].id, new: time)
+                let result = try await self.repository.change(with: notifications.value[index].id, new: date)
                 self.notifications.value = result
             } catch let error {
                 self.error.value = self.errorHandler.handle(error: error)
