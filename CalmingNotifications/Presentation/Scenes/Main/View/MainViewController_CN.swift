@@ -19,7 +19,7 @@ class MainViewController_CN: UIViewController,
     
     
     // MARK: - Init
-
+    
     init(viewModel: MainViewModelProtocol_CN,
          nibName nibNameOrNil: String?,
          bundle nibBundleOrNil: Bundle?) {
@@ -40,14 +40,16 @@ class MainViewController_CN: UIViewController,
         view.addSubview(collectionView)
         view.addSubview(menuButton)
         view.addSubview(activity)
+        view.addSubview(dummyView)
         setupLayout()
         setupObservers()
         viewModel.viewDidLoad()
+        //        view.layer.addSublayer(pathLayer)
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-//        print("viewWillLayoutSubviews")
+        //        print("viewWillLayoutSubviews")
     }
     
     
@@ -62,6 +64,12 @@ class MainViewController_CN: UIViewController,
             switch isLoading {
             case .true: self?.activity.startAnimating()
             case .false: self?.activity.stopAnimating()
+            }
+        }
+        viewModel.showSuccessAnimation.subscribe(observer: self) { [weak self] toShow in
+            switch toShow {
+            case true: self?.successAnimation()
+            case false: return
             }
         }
     }
@@ -94,15 +102,47 @@ class MainViewController_CN: UIViewController,
     
     @objc private func menuButtonTapped() {
         viewModel.menuButtonTapped()
+        
     }
     
     private lazy var activity: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView()
-        indicator.center = view.center
+        indicator.center = self.view.center
         indicator.hidesWhenStopped = true
         indicator.style = .large
         indicator.color = .systemGray
         return indicator
+    }()
+    
+    private lazy var dummyView: UIView = {
+        let view = UIView()
+        view.frame = self.view.frame
+        view.backgroundColor = .black
+        view.alpha = 0
+        view.isHidden = true
+        return view
+    }()
+    
+    private var feedbackGenerator = UINotificationFeedbackGenerator()
+    
+    private lazy var checkMarkLayer: CAShapeLayer = {
+        CATransaction.begin()
+        let layer = CAShapeLayer()
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: self.view.bounds.midX - 20,
+                              y: self.view.bounds.midY - 20))
+        path.addLine(to: CGPoint(x: self.view.bounds.midX,
+                                 y: self.view.bounds.midY))
+        path.addLine(to: CGPoint(x: self.view.bounds.midX + 25,
+                                 y: self.view.bounds.midY - 50))
+        layer.frame = self.view.bounds
+        layer.path = path.cgPath
+        layer.strokeColor = UIColor.white.cgColor
+        layer.fillColor = nil
+        layer.lineCap = .round
+        layer.lineWidth = 5
+        layer.lineJoin = .round
+        return layer
     }()
     
     
@@ -125,21 +165,21 @@ class MainViewController_CN: UIViewController,
     //MARK: - Layout
     
     private func setupCollectionViewLayout() -> UICollectionViewCompositionalLayout {
-            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                  heightDimension: .fractionalHeight(1))
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-    //        item.contentInsets = .init(top: 1, leading: 1, bottom: 1, trailing: 1)
-    
-            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                   heightDimension: .fractionalHeight(1))
-            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
-                                                           subitems: [item])
-    
-            let section = NSCollectionLayoutSection(group: group)
-            section.orthogonalScrollingBehavior = .paging
-    
-            return UICollectionViewCompositionalLayout(section: section)
-        }
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                              heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        //        item.contentInsets = .init(top: 1, leading: 1, bottom: 1, trailing: 1)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                               heightDimension: .fractionalHeight(1))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+                                                       subitems: [item])
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .paging
+        
+        return UICollectionViewCompositionalLayout(section: section)
+    }
     
     
     private func setupLayout() {
@@ -148,5 +188,61 @@ class MainViewController_CN: UIViewController,
         menuButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
         menuButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
-      
+    
+    
+    // MARK: - Animation
+    
+    private func successAnimation() {
+        feedbackGenerator.prepare()
+        view.layer.addSublayer(checkMarkLayer)
+        dimAnimation()
+        strokeCheckMarkAnimation()
+        feedbackGenerator.notificationOccurred(.success)
+    }
+    
+    private func strokeCheckMarkAnimation() {
+        let pathAnimation = CABasicAnimation(keyPath:"strokeEnd")
+        pathAnimation.duration = 0.35
+        pathAnimation.fromValue = 0
+        pathAnimation.toValue = 1
+        pathAnimation.isRemovedOnCompletion = true
+        CATransaction.setCompletionBlock {
+            self.hideCheckMarkAnimation()
+        }
+        checkMarkLayer.add(pathAnimation, forKey: "strokeEnd")
+        CATransaction.commit()
+    }
+    
+    private func hideCheckMarkAnimation() {
+        let removeAnimation = CABasicAnimation(keyPath: "opacity")
+        removeAnimation.duration = 0.2
+        removeAnimation.fromValue = 1
+        removeAnimation.toValue = 0
+        removeAnimation.isRemovedOnCompletion = false
+        removeAnimation.fillMode = .forwards
+        CATransaction.setCompletionBlock {
+            self.checkMarkLayer.removeAllAnimations()
+            self.checkMarkLayer.removeFromSuperlayer()
+        }
+        checkMarkLayer.add(removeAnimation, forKey: "opacity")
+        CATransaction.commit()
+    }
+    
+    private func dimAnimation() {
+        UIView.animate(withDuration: 0.25,
+                       delay: 0,
+                       options: .curveEaseInOut) {
+            self.dummyView.isHidden = false
+            self.dummyView.alpha = 0.4
+        } completion: { _ in
+            UIView.animate(withDuration: 0.3,
+                           delay: 0,
+                           options: .curveEaseOut) {
+                self.dummyView.alpha = 0
+            } completion: { _ in
+                self.dummyView.isHidden = true
+            }
+        }
+    }
+    
 }

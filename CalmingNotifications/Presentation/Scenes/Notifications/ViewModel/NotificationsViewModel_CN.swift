@@ -91,8 +91,10 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
     // MARK: - Header interface
     
     func addNewNotificationButtonTapped(date: Date) {
-        guard let time = date.hh_mm() else { return }
-        guard !notifications.value.contains(where: { $0.time == time }) else { return }
+        guard let time = date.hh_mm(),
+              !notifications.value.contains(where: { $0.time == time }) else {
+                  return
+              }
         isLoading.value = .true
         task = Task(priority: nil) {
             do {

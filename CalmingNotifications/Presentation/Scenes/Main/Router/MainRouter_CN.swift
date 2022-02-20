@@ -43,8 +43,18 @@ final class MainRouter_CN: MainRouterProtocol_CN {
         let activityVC = UIActivityViewController(activityItems: [content],
                                                   applicationActivities: nil)
         activityVC.completionWithItemsHandler = { activity, success, items, error in
-            callback(success)
-            print("Activity: \(activity) Success: \(success) Items: \(items) Error: \(error)")
+            guard success else { callback(false); return }
+            guard let activity = activity else { callback(false); return }
+            switch activity {
+            case .saveToCameraRoll:
+                callback(true)
+            default:
+                if activity.rawValue == "com.apple.DocumentManagerUICore.SaveToFiles" {
+                    callback(true)
+                } else {
+                    callback(false)
+                }
+            }
         }
         navigationContainer.present(activityVC, animated: true, completion: nil)
     }
