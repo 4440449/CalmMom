@@ -15,3 +15,10 @@ struct QuoteCard_CN {
     var id: UUID
     var isFavorite: Bool = false
 }
+
+
+extension QuoteCard_CN: Equatable {
+    static func == (lhs: QuoteCard_CN, rhs: QuoteCard_CN) -> Bool {
+        return lhs.id == rhs.id
+    }
+}

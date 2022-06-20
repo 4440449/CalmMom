@@ -19,6 +19,9 @@
 		94057F1E27973A32009B5A2B /* NotificationsCollectionViewCell_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94057F1D27973A32009B5A2B /* NotificationsCollectionViewCell_CN.swift */; };
 		94057F2027975249009B5A2B /* NotificationsCollectionHeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94057F1F27975249009B5A2B /* NotificationsCollectionHeaderReusableView.swift */; };
 		9426DB9227C181520057CB68 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9426DB9127C181520057CB68 /* TestViewController.swift */; };
+		9426DB9427C1E5570057CB68 /* Animator_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9426DB9327C1E5570057CB68 /* Animator_CN.swift */; };
+		94376043285F5B2400884E5A /* BabyNet in Frameworks */ = {isa = PBXBuildFile; productRef = 94376042285F5B2400884E5A /* BabyNet */; };
+		94376046285F5BDA00884E5A /* MommysEye in Frameworks */ = {isa = PBXBuildFile; productRef = 94376045285F5BDA00884E5A /* MommysEye */; };
 		943D160527B9A5190071F054 /* QuoteCardState_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943D160427B9A5190071F054 /* QuoteCardState_CN.swift */; };
 		943D160727BA97710071F054 /* MainErrorHandler_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943D160627BA97710071F054 /* MainErrorHandler_CN.swift */; };
 		943D160A27BA9AAF0071F054 /* DrawTextOnImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943D160927BA9AAF0071F054 /* DrawTextOnImage.swift */; };
@@ -26,6 +29,7 @@
 		9441818A27AD83F500AD9FDD /* SplashViewModel_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9441818927AD83F500AD9FDD /* SplashViewModel_CN.swift */; };
 		9441818D27AD842B00AD9FDD /* SplashRouter_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9441818C27AD842B00AD9FDD /* SplashRouter_CN.swift */; };
 		9441819027AD848000AD9FDD /* SplashSceneConfigurator_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9441818F27AD848000AD9FDD /* SplashSceneConfigurator_CN.swift */; };
+		9458BDC4285F353100CF3E61 /* QuoteCardNetworkEntity_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9458BDC3285F353100CF3E61 /* QuoteCardNetworkEntity_CN.swift */; };
 		946B13E527AF398E00AF3BBB /* SceneState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B13E427AF398E00AF3BBB /* SceneState.swift */; };
 		946B13E727B0014C00AF3BBB /* PushNotificationsAuthStatus_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B13E627B0014C00AF3BBB /* PushNotificationsAuthStatus_CN.swift */; };
 		946B13E927B1D5F000AF3BBB /* AppColors_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B13E827B1D5F000AF3BBB /* AppColors_CN.swift */; };
@@ -48,8 +52,6 @@
 		946B142227B6FC1200AF3BBB /* MenuItemGateway_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B142127B6FC1200AF3BBB /* MenuItemGateway_CN.swift */; };
 		946B142527B6FDAF00AF3BBB /* MenuErrorHandler_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B142427B6FDAF00AF3BBB /* MenuErrorHandler_CN.swift */; };
 		946B142827B6FF3500AF3BBB /* MenuItemRepository_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B142727B6FF3500AF3BBB /* MenuItemRepository_CN.swift */; };
-		947850F3279E2B3600F1EEAC /* BabyNet in Frameworks */ = {isa = PBXBuildFile; productRef = 947850F2279E2B3600F1EEAC /* BabyNet */; };
-		947850F6279E2B4A00F1EEAC /* MommysEye in Frameworks */ = {isa = PBXBuildFile; productRef = 947850F5279E2B4A00F1EEAC /* MommysEye */; };
 		947850F8279E2F7000F1EEAC /* LocalPushNotificationServiceDTOMapperWrapper_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947850F7279E2F7000F1EEAC /* LocalPushNotificationServiceDTOMapperWrapper_CN.swift */; };
 		947850FD279ECD7D00F1EEAC /* NotificationsErrorHandler_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947850FC279ECD7D00F1EEAC /* NotificationsErrorHandler_CN.swift */; };
 		9478510227A9929700F1EEAC /* LoaderState_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9478510127A9929700F1EEAC /* LoaderState_CN.swift */; };
@@ -91,6 +93,7 @@
 		94057F1D27973A32009B5A2B /* NotificationsCollectionViewCell_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsCollectionViewCell_CN.swift; sourceTree = "<group>"; };
 		94057F1F27975249009B5A2B /* NotificationsCollectionHeaderReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsCollectionHeaderReusableView.swift; sourceTree = "<group>"; };
 		9426DB9127C181520057CB68 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		9426DB9327C1E5570057CB68 /* Animator_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator_CN.swift; sourceTree = "<group>"; };
 		943D160427B9A5190071F054 /* QuoteCardState_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCardState_CN.swift; sourceTree = "<group>"; };
 		943D160627BA97710071F054 /* MainErrorHandler_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainErrorHandler_CN.swift; sourceTree = "<group>"; };
 		943D160927BA9AAF0071F054 /* DrawTextOnImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawTextOnImage.swift; sourceTree = "<group>"; };
@@ -98,6 +101,7 @@
 		9441818927AD83F500AD9FDD /* SplashViewModel_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel_CN.swift; sourceTree = "<group>"; };
 		9441818C27AD842B00AD9FDD /* SplashRouter_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashRouter_CN.swift; sourceTree = "<group>"; };
 		9441818F27AD848000AD9FDD /* SplashSceneConfigurator_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashSceneConfigurator_CN.swift; sourceTree = "<group>"; };
+		9458BDC3285F353100CF3E61 /* QuoteCardNetworkEntity_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCardNetworkEntity_CN.swift; sourceTree = "<group>"; };
 		946B13E427AF398E00AF3BBB /* SceneState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneState.swift; sourceTree = "<group>"; };
 		946B13E627B0014C00AF3BBB /* PushNotificationsAuthStatus_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationsAuthStatus_CN.swift; sourceTree = "<group>"; };
 		946B13E827B1D5F000AF3BBB /* AppColors_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors_CN.swift; sourceTree = "<group>"; };
@@ -151,8 +155,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				947850F6279E2B4A00F1EEAC /* MommysEye in Frameworks */,
-				947850F3279E2B3600F1EEAC /* BabyNet in Frameworks */,
+				94376046285F5BDA00884E5A /* MommysEye in Frameworks */,
+				94376043285F5B2400884E5A /* BabyNet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,6 +168,7 @@
 			children = (
 				50A1CB85278CCC63000F9BFC /* CalmingNotifications */,
 				50A1CB84278CCC63000F9BFC /* Products */,
+				94376041285F5B2400884E5A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -196,6 +201,13 @@
 				9426DB9127C181520057CB68 /* TestViewController.swift */,
 			);
 			path = TestScreen;
+			sourceTree = "<group>";
+		};
+		94376041285F5B2400884E5A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		943D160827BA97970071F054 /* ErrorHandler */ = {
@@ -255,6 +267,14 @@
 				9441818F27AD848000AD9FDD /* SplashSceneConfigurator_CN.swift */,
 			);
 			path = Configurator;
+			sourceTree = "<group>";
+		};
+		9458BDC5285F353600CF3E61 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				9458BDC3285F353100CF3E61 /* QuoteCardNetworkEntity_CN.swift */,
+			);
+			path = Entity;
 			sourceTree = "<group>";
 		};
 		946B13EA27B2BE2800AF3BBB /* Favorites */ = {
@@ -456,6 +476,7 @@
 			isa = PBXGroup;
 			children = (
 				946B13E427AF398E00AF3BBB /* SceneState.swift */,
+				9426DB9327C1E5570057CB68 /* Animator_CN.swift */,
 				9478510127A9929700F1EEAC /* LoaderState_CN.swift */,
 				946B141F27B6F93E00AF3BBB /* DateFormatter_CN.swift */,
 				946B13E627B0014C00AF3BBB /* PushNotificationsAuthStatus_CN.swift */,
@@ -631,6 +652,7 @@
 			isa = PBXGroup;
 			children = (
 				94EFC9B22792409100CC6B47 /* QuoteCardNetworkRepository.swift */,
+				9458BDC5285F353600CF3E61 /* Entity */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -769,8 +791,8 @@
 			);
 			name = CalmingNotifications;
 			packageProductDependencies = (
-				947850F2279E2B3600F1EEAC /* BabyNet */,
-				947850F5279E2B4A00F1EEAC /* MommysEye */,
+				94376042285F5B2400884E5A /* BabyNet */,
+				94376045285F5BDA00884E5A /* MommysEye */,
 			);
 			productName = CalmingNotifications;
 			productReference = 50A1CB83278CCC63000F9BFC /* CalmingNotifications.app */;
@@ -801,8 +823,8 @@
 			);
 			mainGroup = 50A1CB7A278CCC63000F9BFC;
 			packageReferences = (
-				947850F1279E2B3600F1EEAC /* XCRemoteSwiftPackageReference "BabyNet" */,
-				947850F4279E2B4A00F1EEAC /* XCRemoteSwiftPackageReference "MommysEye" */,
+				94376040285F594800884E5A /* XCRemoteSwiftPackageReference "BabyNet" */,
+				94376044285F5BDA00884E5A /* XCRemoteSwiftPackageReference "MommysEye" */,
 			);
 			productRefGroup = 50A1CB84278CCC63000F9BFC /* Products */;
 			projectDirPath = "";
@@ -853,6 +875,7 @@
 				94EFC9CF27924ECB00CC6B47 /* NotificationPersistenceRepository_CN.swift in Sources */,
 				94EFC9C127924CF600CC6B47 /* NotificationsRouter_CN.swift in Sources */,
 				94EFC9C627924D9800CC6B47 /* NotificationGateway_CN.swift in Sources */,
+				9426DB9427C1E5570057CB68 /* Animator_CN.swift in Sources */,
 				946B13F427B2BEE100AF3BBB /* FavoritesViewModel_CN.swift in Sources */,
 				94EFC9B82792473E00CC6B47 /* MainSceneConfigurator_CN.swift in Sources */,
 				946B141B27B5C9FC00AF3BBB /* MenuItem_CN.swift in Sources */,
@@ -872,6 +895,7 @@
 				943D160727BA97710071F054 /* MainErrorHandler_CN.swift in Sources */,
 				946B142227B6FC1200AF3BBB /* MenuItemGateway_CN.swift in Sources */,
 				94EFC9D42792500F00CC6B47 /* SceneConfigurator_CN.swift in Sources */,
+				9458BDC4285F353100CF3E61 /* QuoteCardNetworkEntity_CN.swift in Sources */,
 				943D160527B9A5190071F054 /* QuoteCardState_CN.swift in Sources */,
 				94057F2027975249009B5A2B /* NotificationsCollectionHeaderReusableView.swift in Sources */,
 				946B13E527AF398E00AF3BBB /* SceneState.swift in Sources */,
@@ -1088,17 +1112,17 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		947850F1279E2B3600F1EEAC /* XCRemoteSwiftPackageReference "BabyNet" */ = {
+		94376040285F594800884E5A /* XCRemoteSwiftPackageReference "BabyNet" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:4440449/BabyNet.git";
+			repositoryURL = "https://github.com/4440449/BabyNet";
 			requirement = {
 				branch = master;
 				kind = branch;
 			};
 		};
-		947850F4279E2B4A00F1EEAC /* XCRemoteSwiftPackageReference "MommysEye" */ = {
+		94376044285F5BDA00884E5A /* XCRemoteSwiftPackageReference "MommysEye" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:4440449/MommysEye.git";
+			repositoryURL = "https://github.com/4440449/MommysEye";
 			requirement = {
 				branch = master;
 				kind = branch;
@@ -1107,14 +1131,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		947850F2279E2B3600F1EEAC /* BabyNet */ = {
+		94376042285F5B2400884E5A /* BabyNet */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 947850F1279E2B3600F1EEAC /* XCRemoteSwiftPackageReference "BabyNet" */;
+			package = 94376040285F594800884E5A /* XCRemoteSwiftPackageReference "BabyNet" */;
 			productName = BabyNet;
 		};
-		947850F5279E2B4A00F1EEAC /* MommysEye */ = {
+		94376045285F5BDA00884E5A /* MommysEye */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 947850F4279E2B4A00F1EEAC /* XCRemoteSwiftPackageReference "MommysEye" */;
+			package = 94376044285F5BDA00884E5A /* XCRemoteSwiftPackageReference "MommysEye" */;
 			productName = MommysEye;
 		};
 /* End XCSwiftPackageProductDependency section */

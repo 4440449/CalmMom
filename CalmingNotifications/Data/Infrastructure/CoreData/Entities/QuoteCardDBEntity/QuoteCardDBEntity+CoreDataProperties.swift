@@ -46,7 +46,8 @@ extension QuoteCardDBEntity {
     func parseToDomainEntity() throws -> QuoteCard_CN  {
         guard let data = self.image,
               let image = UIImage(data: data),
-              let scaleImage = image.scale(toSize: CGSize(width: 414, height: 896)),
+              let scaleImage = image.scale(toSize: CGSize(width: UIScreen.main.bounds.width,
+                                                          height: UIScreen.main.bounds.height)),
               let quote = self.quote,
               let id = self.id else {
                   throw QuoteCardLocalStorageError.failureToDomainEntityMapping("Invalid entity data --> \(self.debugDescription)")

@@ -35,7 +35,7 @@ class MainCollectionViewCell_CN: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        [logoLabel, quoteLabel, likeButton, shareButton].forEach { self.contentView.addSubview($0) }
+        [mainImage, logoLabel, quoteLabel, likeButton, shareButton].forEach { self.contentView.addSubview($0) }
         setupLayout()
     }
     
@@ -48,8 +48,20 @@ class MainCollectionViewCell_CN: UICollectionViewCell {
     
     func fillContent(quote: String, image: UIImage) {
         quoteLabel.text = quote
-        contentView.backgroundColor = UIColor(patternImage: image)
+        mainImage.image = image
+//        resize image ?
+//        let v = UIImageView(image: image)
+//        v.contentMode = .scaleAspectFit
+//        contentView.addSubview(v)
+//        contentView.backgroundColor = UIColor(patternImage: image)
     }
+    
+    private var mainImage: UIImageView = {
+        let image = UIImageView()
+        image.contentMode = .scaleAspectFill
+        image.translatesAutoresizingMaskIntoConstraints = false
+        return image
+    }()
     
     private var logoLabel: UILabel = {
         let label = UILabel()
@@ -72,6 +84,7 @@ class MainCollectionViewCell_CN: UICollectionViewCell {
         let button = UIButton()
         button.setImage(UIImage(systemName: "heart"), for: .normal)
         button.setImage(UIImage(systemName: "heart.fill"), for: .selected)
+    
         button.tintColor = .systemRed
         button.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -108,6 +121,11 @@ class MainCollectionViewCell_CN: UICollectionViewCell {
     
     
     private func setupLayout() {
+        mainImage.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        mainImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        mainImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        mainImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+        
         logoLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
         logoLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
         logoLabel.bottomAnchor.constraint(equalTo: quoteLabel.topAnchor, constant: -40).isActive = true

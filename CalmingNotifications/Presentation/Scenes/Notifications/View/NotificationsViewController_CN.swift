@@ -42,14 +42,15 @@ class NotificationsViewController_CN: UIViewController,
             light: AppColors_CN.light.color(),
             dark: AppColors_CN.dark.color() )
         setupObservers()
-//        setNeedsStatusBarAppearanceUpdate()
+        //        setNeedsStatusBarAppearanceUpdate()
         viewModel.viewDidLoad()
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-//        print("viewWillLayoutSubviews")
+        //        print("viewWillLayoutSubviews")
     }
+    
     
     
     // MARK: - Input data flow
@@ -70,23 +71,24 @@ class NotificationsViewController_CN: UIViewController,
         }
         
         viewModel.notifications.subscribe(observer: self) { [weak self] _ in
-//            guard let strongSelf = self else { return }
+            //            guard let strongSelf = self else { return }
             self?.selectedIndex = -1
             self?.collectionView.reloadData()
             
-//            self?.collectionView.performBatchUpdates({
-//                self?.collectionView.reloadSections(IndexSet(integer: 0))
-//            }, completion: { _ in
-//
-//            })
-//                UIView.transition(with: self!.collectionView,
-//                                  duration: 0.3,
-//                                  options: .transitionCrossDissolve,
-//                                  animations: {
-//                    self?.collectionView.reloadSections(IndexSet(integer: 0))
-//                    self?.collectionView.reloadData()
-//                                    self?.collectionView.performBatchUpdates(nil, completion: nil)
-//                })
+            //            self?.collectionView.performBatchUpdates({
+            //                self?.collectionView.reloadSections(IndexSet(integer: 0))
+            //            }, completion: { _ in
+            //
+            //            })
+            //                UIView.transition(with: self!.collectionView,
+            //                                  duration: 0.3,
+            //                                  options: [.transitionCrossDissolve, .allowAnimatedContent],
+            //                                  animations: {
+            //                    self?.collectionView.layoutIfNeeded()
+            //                    self?.collectionView.reloadSections(IndexSet(integer: 0))
+            //                    self?.collectionView.reloadData()
+            //                                    self?.collectionView.performBatchUpdates(nil, completion: nil)
+            //                })
         }
         
         viewModel.pushNotificationAuthStatus.subscribe(observer: self) { [weak self] _ in
@@ -110,16 +112,16 @@ class NotificationsViewController_CN: UIViewController,
     // MARK: - UI -
     
     
-//    override var prefersStatusBarHidden: Bool {
-//        return false
-//    }
+    //    override var prefersStatusBarHidden: Bool {
+    //        return false
+    //    }
     
     
-//    override var preferredStatusBarStyle: UIStatusBarStyle { return .default }
+    //    override var preferredStatusBarStyle: UIStatusBarStyle { return .default }
     
     private lazy var collectionView: UICollectionView = {
         let collection = UICollectionView(frame: view.bounds,
-                                          collectionViewLayout: UICollectionViewFlowLayout())
+                                            collectionViewLayout: UICollectionViewFlowLayout())
         collection.register(NotificationsCollectionViewCell_CN.self,
                             forCellWithReuseIdentifier: NotificationsCollectionViewCell_CN.identifier)
         collection.register(NotificationsCollectionHeaderReusableView.self,
@@ -143,7 +145,7 @@ class NotificationsViewController_CN: UIViewController,
         return indicator
     }()
     
- 
+    
     //MARK: - Header
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -164,10 +166,10 @@ class NotificationsViewController_CN: UIViewController,
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NotificationsCollectionViewCell_CN.identifier, for: indexPath) as? NotificationsCollectionViewCell_CN else { fatalError() }
         cell.setupDependencies(viewModel: viewModel, index: indexPath.row)
         cell.reloadData(time: viewModel.notifications.value[indexPath.row].time)
-//        cell.manageInterfaceStyle()
+        //        cell.manageInterfaceStyle()
         return cell
     }
-      
+    
     
     //MARK: - Delegate
     
@@ -213,7 +215,7 @@ class NotificationsViewController_CN: UIViewController,
         return CGSize(width: collectionView.bounds.width - 60,
                       height: height)
     }
-  
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return CGFloat(20)
     }
@@ -232,7 +234,7 @@ class NotificationsViewController_CN: UIViewController,
             return
         }
     }
-
+    
     private func setupLightMode() {
         let lightColor = AppColors_CN.light.color()
         guard collectionView.backgroundColor != lightColor else { return }
@@ -247,9 +249,33 @@ class NotificationsViewController_CN: UIViewController,
     
     
     deinit {
-//        print("deinit NotificationsViewController_CN")
+        //        print("deinit NotificationsViewController_CN")
     }
     
 }
 
 
+//final class TestCollectionView: UICollectionView {
+    
+//    override func layoutIfNeeded() {
+//        UIView.animate(withDuration: 0.5) {
+//            super.layoutIfNeeded()
+//        }
+//    }
+//
+//    override func layoutSubviews() {
+//        UIView.transition(with: self,
+//                          duration: 0.3,
+//                          options: [.transitionCrossDissolve],
+//                          animations: {
+//            super.layoutSubviews()
+//        })
+//    }
+    
+//    override func setNeedsLayout() {
+//        UIView.animate(withDuration: 0.5) {
+//            super.setNeedsLayout()
+//        }
+//    }
+    
+//}

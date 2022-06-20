@@ -37,9 +37,11 @@ final class SplashViewModel_CN: SplashViewModelProtocol_CN {
     var isLoading = Publisher(value: Loading_CN.false)
     
     
+    
     // MARK: - Private state
     
     private var quoteTask: Task<Void, Error>?
+//    private var prgrs: Doubl
     
     
     // MARK: - Interface
@@ -50,6 +52,7 @@ final class SplashViewModel_CN: SplashViewModelProtocol_CN {
             do {
 //                let result = try await quoteCardRepository.fetch()
                 try await quoteCardRepository.setState()
+//                print(quoteCardRepository.getState().networkProgress?.fractionCompleted)
                 self.quotesLoaded()
                 self.isLoading.value = .false
             } catch let error {

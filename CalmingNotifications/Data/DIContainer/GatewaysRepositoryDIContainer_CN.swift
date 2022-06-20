@@ -6,6 +6,8 @@
 //  Copyright © 2022 Max. All rights reserved.
 //
 
+import BabyNet
+
 
 protocol GatewaysRepositoryDIContainerProtocol_CN {
     var quoteCard: QuoteCardGateway_CN { get }
@@ -37,7 +39,10 @@ final class GatewaysRepositoryDIContainer_CN: GatewaysRepositoryDIContainerProto
     // MARK: - Default internal injection
 
     static func createQuoteCardRepository() -> QuoteCardGateway_CN {
-        let network = QuoteCardNetworkRepository()
+        let client = BabyNetRepository()
+        let apiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNydXZtZ3V1YWRyaWt4amdscml3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTQ3ODgyMzgsImV4cCI6MTk3MDM2NDIzOH0.udc8nAU84lOWCgJChCCq815w0oBoXh6zrceObzg8Z1Q"
+        let network = QuoteCardNetworkRepository(client: client,
+                                                 apiKey: apiKey)
         let localStorage = QuoteCardPersistenceRepository()
         let repo = QuoteCardRepository_CN(network: network,
                                           localStorage: localStorage,
