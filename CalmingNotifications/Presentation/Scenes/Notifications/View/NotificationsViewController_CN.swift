@@ -38,7 +38,6 @@ class NotificationsViewController_CN: UIViewController,
         super.viewDidLoad()
         view.addSubview(collectionView)
         view.addSubview(activity)
-//        collectionView.backgroundColor = UIColor(named: "backgroundColor")
         setupObservers()
         //        setNeedsStatusBarAppearanceUpdate()
         viewModel.viewDidLoad()
@@ -54,6 +53,17 @@ class NotificationsViewController_CN: UIViewController,
     // MARK: - Input data flow
     
     private func setupObservers() {
+        if let sceneDelegate =
+            UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
+            sceneDelegate.sceneState.subscribe(observer: self) { [weak self] sceneState in
+                switch sceneState {
+                case .foreground:
+                    self?.viewModel.sceneWillEnterForeground()
+                case .background: return
+                }
+            }
+        }
+            
         viewModel.notifications.subscribe(observer: self) { [weak self] _ in
             //            guard let strongSelf = self else { return }
             self?.selectedIndex = -1
