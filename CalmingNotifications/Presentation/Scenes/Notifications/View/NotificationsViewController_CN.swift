@@ -38,9 +38,7 @@ class NotificationsViewController_CN: UIViewController,
         super.viewDidLoad()
         view.addSubview(collectionView)
         view.addSubview(activity)
-        collectionView.manageInterfaceStyleBackgroundColor(
-            light: AppColors_CN.light.color(),
-            dark: AppColors_CN.dark.color() )
+//        collectionView.backgroundColor = UIColor(named: "backgroundColor")
         setupObservers()
         //        setNeedsStatusBarAppearanceUpdate()
         viewModel.viewDidLoad()
@@ -56,20 +54,6 @@ class NotificationsViewController_CN: UIViewController,
     // MARK: - Input data flow
     
     private func setupObservers() {
-        if let sceneDelegate =
-            UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
-            sceneDelegate.sceneState.subscribe(observer: self) { [weak self] sceneState in
-                switch sceneState {
-                case .foreground:
-                    self?.collectionView.manageInterfaceStyleBackgroundColor(
-                        light: AppColors_CN.light.color(),
-                        dark: AppColors_CN.dark.color() )
-                    self?.viewModel.sceneWillEnterForeground()
-                case .background: return
-                }
-            }
-        }
-        
         viewModel.notifications.subscribe(observer: self) { [weak self] _ in
             //            guard let strongSelf = self else { return }
             self?.selectedIndex = -1
@@ -111,17 +95,10 @@ class NotificationsViewController_CN: UIViewController,
     
     // MARK: - UI -
     
-    
-    //    override var prefersStatusBarHidden: Bool {
-    //        return false
-    //    }
-    
-    
-    //    override var preferredStatusBarStyle: UIStatusBarStyle { return .default }
-    
     private lazy var collectionView: UICollectionView = {
         let collection = UICollectionView(frame: view.bounds,
                                             collectionViewLayout: UICollectionViewFlowLayout())
+        collection.backgroundColor = UIColor(named: "backgroundColor")
         collection.register(NotificationsCollectionViewCell_CN.self,
                             forCellWithReuseIdentifier: NotificationsCollectionViewCell_CN.identifier)
         collection.register(NotificationsCollectionHeaderReusableView.self,
@@ -218,33 +195,6 @@ class NotificationsViewController_CN: UIViewController,
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return CGFloat(20)
-    }
-    
-    
-    // MARK: - Dark/Light mode management
-    
-    private func manageInterfaceStyle() {
-        let interfaceStyle = traitCollection.userInterfaceStyle
-        switch interfaceStyle {
-        case .light:
-            setupLightMode()
-        case .dark:
-            setupDarkMode()
-        default:
-            return
-        }
-    }
-    
-    private func setupLightMode() {
-        let lightColor = AppColors_CN.light.color()
-        guard collectionView.backgroundColor != lightColor else { return }
-        collectionView.backgroundColor = lightColor
-    }
-    
-    private func setupDarkMode() {
-        let darkColor = AppColors_CN.dark.color()
-        guard collectionView.backgroundColor != darkColor else { return }
-        collectionView.backgroundColor = darkColor
     }
     
     

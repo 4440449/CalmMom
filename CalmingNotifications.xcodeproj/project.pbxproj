@@ -24,7 +24,7 @@
 		94376046285F5BDA00884E5A /* MommysEye in Frameworks */ = {isa = PBXBuildFile; productRef = 94376045285F5BDA00884E5A /* MommysEye */; };
 		943D160527B9A5190071F054 /* QuoteCardState_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943D160427B9A5190071F054 /* QuoteCardState_CN.swift */; };
 		943D160727BA97710071F054 /* MainErrorHandler_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943D160627BA97710071F054 /* MainErrorHandler_CN.swift */; };
-		943D160A27BA9AAF0071F054 /* DrawTextOnImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943D160927BA9AAF0071F054 /* DrawTextOnImage.swift */; };
+		943D160A27BA9AAF0071F054 /* DrawTextOnImage_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943D160927BA9AAF0071F054 /* DrawTextOnImage_CN.swift */; };
 		9441818627AD83B300AD9FDD /* SplashViewController_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9441818527AD83B300AD9FDD /* SplashViewController_CN.swift */; };
 		9441818A27AD83F500AD9FDD /* SplashViewModel_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9441818927AD83F500AD9FDD /* SplashViewModel_CN.swift */; };
 		9441818D27AD842B00AD9FDD /* SplashRouter_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9441818C27AD842B00AD9FDD /* SplashRouter_CN.swift */; };
@@ -47,7 +47,7 @@
 		946B141427B470A000AF3BBB /* MainTabBarConfigurator_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B141327B470A000AF3BBB /* MainTabBarConfigurator_CN.swift */; };
 		946B141827B5C41600AF3BBB /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B141727B5C41600AF3BBB /* MenuCollectionViewCell.swift */; };
 		946B141B27B5C9FC00AF3BBB /* MenuItem_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B141A27B5C9FC00AF3BBB /* MenuItem_CN.swift */; };
-		946B141E27B6DD8A00AF3BBB /* InterfaceStyleManagement_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B141D27B6DD8A00AF3BBB /* InterfaceStyleManagement_CN.swift */; };
+		946B141E27B6DD8A00AF3BBB /* ShadowSetup_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B141D27B6DD8A00AF3BBB /* ShadowSetup_CN.swift */; };
 		946B142027B6F93E00AF3BBB /* DateFormatter_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B141F27B6F93E00AF3BBB /* DateFormatter_CN.swift */; };
 		946B142227B6FC1200AF3BBB /* MenuItemGateway_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B142127B6FC1200AF3BBB /* MenuItemGateway_CN.swift */; };
 		946B142527B6FDAF00AF3BBB /* MenuErrorHandler_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B142427B6FDAF00AF3BBB /* MenuErrorHandler_CN.swift */; };
@@ -96,7 +96,7 @@
 		9426DB9327C1E5570057CB68 /* Animator_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator_CN.swift; sourceTree = "<group>"; };
 		943D160427B9A5190071F054 /* QuoteCardState_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCardState_CN.swift; sourceTree = "<group>"; };
 		943D160627BA97710071F054 /* MainErrorHandler_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainErrorHandler_CN.swift; sourceTree = "<group>"; };
-		943D160927BA9AAF0071F054 /* DrawTextOnImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawTextOnImage.swift; sourceTree = "<group>"; };
+		943D160927BA9AAF0071F054 /* DrawTextOnImage_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawTextOnImage_CN.swift; sourceTree = "<group>"; };
 		9441818527AD83B300AD9FDD /* SplashViewController_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController_CN.swift; sourceTree = "<group>"; };
 		9441818927AD83F500AD9FDD /* SplashViewModel_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel_CN.swift; sourceTree = "<group>"; };
 		9441818C27AD842B00AD9FDD /* SplashRouter_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashRouter_CN.swift; sourceTree = "<group>"; };
@@ -119,7 +119,7 @@
 		946B141327B470A000AF3BBB /* MainTabBarConfigurator_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarConfigurator_CN.swift; sourceTree = "<group>"; };
 		946B141727B5C41600AF3BBB /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		946B141A27B5C9FC00AF3BBB /* MenuItem_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem_CN.swift; sourceTree = "<group>"; };
-		946B141D27B6DD8A00AF3BBB /* InterfaceStyleManagement_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceStyleManagement_CN.swift; sourceTree = "<group>"; };
+		946B141D27B6DD8A00AF3BBB /* ShadowSetup_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowSetup_CN.swift; sourceTree = "<group>"; };
 		946B141F27B6F93E00AF3BBB /* DateFormatter_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter_CN.swift; sourceTree = "<group>"; };
 		946B142127B6FC1200AF3BBB /* MenuItemGateway_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemGateway_CN.swift; sourceTree = "<group>"; };
 		946B142427B6FDAF00AF3BBB /* MenuErrorHandler_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuErrorHandler_CN.swift; sourceTree = "<group>"; };
@@ -481,8 +481,8 @@
 				946B141F27B6F93E00AF3BBB /* DateFormatter_CN.swift */,
 				946B13E627B0014C00AF3BBB /* PushNotificationsAuthStatus_CN.swift */,
 				946B13E827B1D5F000AF3BBB /* AppColors_CN.swift */,
-				946B141D27B6DD8A00AF3BBB /* InterfaceStyleManagement_CN.swift */,
-				943D160927BA9AAF0071F054 /* DrawTextOnImage.swift */,
+				946B141D27B6DD8A00AF3BBB /* ShadowSetup_CN.swift */,
+				943D160927BA9AAF0071F054 /* DrawTextOnImage_CN.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -885,7 +885,7 @@
 				94EFC9D227924EF500CC6B47 /* NotificationSceneConfigurator_CN.swift in Sources */,
 				9441818A27AD83F500AD9FDD /* SplashViewModel_CN.swift in Sources */,
 				94EFC9D8279252AD00CC6B47 /* MenuViewModel_CN.swift in Sources */,
-				943D160A27BA9AAF0071F054 /* DrawTextOnImage.swift in Sources */,
+				943D160A27BA9AAF0071F054 /* DrawTextOnImage_CN.swift in Sources */,
 				946B141827B5C41600AF3BBB /* MenuCollectionViewCell.swift in Sources */,
 				9441818627AD83B300AD9FDD /* SplashViewController_CN.swift in Sources */,
 				9441819027AD848000AD9FDD /* SplashSceneConfigurator_CN.swift in Sources */,
@@ -901,7 +901,7 @@
 				946B13E527AF398E00AF3BBB /* SceneState.swift in Sources */,
 				946B140A27B2F77500AF3BBB /* QuoteCardDBEntity+CoreDataClass.swift in Sources */,
 				946B13F827B2C1A100AF3BBB /* FavoritesCollectionViewCell.swift in Sources */,
-				946B141E27B6DD8A00AF3BBB /* InterfaceStyleManagement_CN.swift in Sources */,
+				946B141E27B6DD8A00AF3BBB /* ShadowSetup_CN.swift in Sources */,
 				94EFC9DB279252F100CC6B47 /* MenuRouter_CN.swift in Sources */,
 				50A1CBA1278F6C50000F9BFC /* NotificationsViewController_CN.swift in Sources */,
 				94EFC9C427924D7C00CC6B47 /* Notification_CN.swift in Sources */,

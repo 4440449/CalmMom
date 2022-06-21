@@ -20,37 +20,12 @@ class MenuCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(title)
         setupAppearance()
         setupLayout()
-        setupObservers()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    // MARK: - Input data flow
-    
-    private func setupObservers() {
-        if let sceneDelegate =
-            UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
-            sceneDelegate.sceneState.subscribe(observer: self) { [weak self] sceneState in
-                guard let strongSelf = self else { return }
-                switch sceneState {
-                case .foreground:
-                    strongSelf.contentView.manageInterfaceStyleBackgroundColor(
-                        light: AppColors_CN.light.color(),
-                        dark: AppColors_CN.dark.color() )
-                    strongSelf.contentView.manageInterfaceStyleShadows(
-                        light: .init(radius: 15, opacity: 0.8),
-                        dark: .init(radius: 15, opacity: 0.1) )
-                    strongSelf.manageInterfaceStyleShadows(
-                        light: .init(radius: 7, opacity: 0.15),
-                        dark: .init(radius: 12, opacity: 0.5) )
-                case .background: return
-                }
-            }
-        }
-    }
     
     // MARK: - UI -
     
@@ -66,23 +41,31 @@ class MenuCollectionViewCell: UICollectionViewCell {
         title.text = text
     }
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+            contentView.layer.borderColor = UIColor(named: "borderColor")?.cgColor
+            contentView.layer.shadowColor = UIColor(named: "topShadowColor")?.cgColor
+            self.layer.shadowColor = UIColor(named: "bottomShadowColor")?.cgColor
+        }
+    }
+    
     private func setupAppearance() {
+        contentView.backgroundColor = UIColor(named: "backgroundColor")
+        
         contentView.layer.cornerRadius = 15
-        contentView.manageInterfaceStyleBackgroundColor(
-            light: AppColors_CN.light.color(),
-            dark: AppColors_CN.dark.color() )
-        contentView.setupShadows(color: .white,
+        contentView.layer.borderColor = UIColor(named: "borderColor")?.cgColor
+        contentView.layer.borderWidth = 0.5
+        contentView.setupShadows(color: UIColor(named: "topShadowColor"),
                                  offset: CGSize(width: -10, height: -10),
+                                 radius: 7,
+                                 opacity: 1,
                                  rasterize: true)
-        contentView.manageInterfaceStyleShadows(
-            light: .init(radius: 15, opacity: 0.8),
-            dark: .init(radius: 15, opacity: 0.1) )
-        self.setupShadows(color: .black,
+        self.setupShadows(color: UIColor(named: "bottomShadowColor"),
                           offset: CGSize(width: 10, height: 10),
+                          radius: 7,
+                          opacity: 1,
                           rasterize: true)
-        self.manageInterfaceStyleShadows(
-            light: .init(radius: 7, opacity: 0.15),
-            dark: .init(radius: 12, opacity: 0.5) )
     }
     
     

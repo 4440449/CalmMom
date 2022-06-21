@@ -9,17 +9,17 @@
 import UIKit
 
 
-enum AppColors_CN {
-    case light
-    case dark
-    
-    func color() -> UIColor {
-        switch self {
-        case .light: return #colorLiteral(red: 0.8531659245, green: 0.8806496263, blue: 0.9216062427, alpha: 1)
-        case .dark: return #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.1740000079)
-        }
-    }
-}
+//enum AppColors_CN {
+//    case light
+//    case dark
+//    
+//    func color() -> UIColor {
+//        switch self {
+//        case .light: return #colorLiteral(red: 0.8531659245, green: 0.8806496263, blue: 0.9216062427, alpha: 1)
+//        case .dark: return #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.1740000079)
+//        }
+//    }
+//}
 
 
 //enum AppColors_CN2 {

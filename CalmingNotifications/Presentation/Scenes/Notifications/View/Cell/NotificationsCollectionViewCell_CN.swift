@@ -43,7 +43,6 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
         contentView.addSubview(deleteButton)
         setupAppearance()
         setupLayout()
-        setupObservers()
     }
     
     required init?(coder: NSCoder) {
@@ -53,32 +52,11 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
     
     // MARK: - Input data flow
     
-    private func setupObservers() {
-        if let sceneDelegate =
-            UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
-            sceneDelegate.sceneState.subscribe(observer: self) { [weak self] sceneState in
-                switch sceneState {
-                case .foreground:
-                    self?.contentView.manageInterfaceStyleBackgroundColor(
-                        light: AppColors_CN.light.color(),
-                        dark: AppColors_CN.dark.color() )
-                    self?.contentView.manageInterfaceStyleShadows(
-                        light: .init(radius: 15, opacity: 0.8),
-                        dark: .init(radius: 15, opacity: 0.1) )
-                    self?.manageInterfaceStyleShadows(
-                        light: .init(radius: 7, opacity: 0.15),
-                        dark: .init(radius: 12, opacity: 0.5) )
-                case .background: return
-                }
-            }
-        }
-    }
-    
     func reloadData(time: Date) {
         animateRemovingDynamicViews(duration: 0.0)
         titleButton.setTitle(" \(time.hh_mm())", for: .normal)
         resetDatePickerTime(time)
-//        datePicker.date = date
+        //        datePicker.date = date
     }
     
     func resetDatePickerTime(_ time: Date) {
@@ -160,23 +138,31 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
     
     // MARK: - Cell's UI
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+            contentView.layer.borderColor = UIColor(named: "borderColor")?.cgColor
+            contentView.layer.shadowColor = UIColor(named: "topShadowColor")?.cgColor
+            self.layer.shadowColor = UIColor(named: "bottomShadowColor")?.cgColor
+        }
+    }
+    
     private func setupAppearance() {
+        contentView.backgroundColor = UIColor(named: "backgroundColor")
+        
         contentView.layer.cornerRadius = 15
-        contentView.manageInterfaceStyleBackgroundColor(
-            light: AppColors_CN.light.color(),
-            dark: AppColors_CN.dark.color() )
-        contentView.setupShadows(color: .white,
+        contentView.layer.borderColor = UIColor(named: "borderColor")?.cgColor
+        contentView.layer.borderWidth = 0.5
+        contentView.setupShadows(color: UIColor(named: "topShadowColor"),
                                  offset: CGSize(width: -10, height: -10),
+                                 radius: 7,
+                                 opacity: 1,
                                  rasterize: true)
-        contentView.manageInterfaceStyleShadows(
-            light: .init(radius: 15, opacity: 0.8),
-            dark: .init(radius: 15, opacity: 0.1) )
-        self.setupShadows(color: .black,
+        self.setupShadows(color: UIColor(named: "bottomShadowColor"),
                           offset: CGSize(width: 10, height: 10),
+                          radius: 7,
+                          opacity: 1,
                           rasterize: true)
-        self.manageInterfaceStyleShadows(
-            light: .init(radius: 7, opacity: 0.15),
-            dark: .init(radius: 12, opacity: 0.5) )
     }
     
     private func setupLayout() {
@@ -210,11 +196,11 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
     // MARK: - Dynamic views animation
     
     func animateAddingDynamicViews() {
-//        contentView.addSubview(datePicker)
-//        contentView.addSubview(saveButton)
-//        contentView.addSubview(deleteButton)
+        //        contentView.addSubview(datePicker)
+        //        contentView.addSubview(saveButton)
+        //        contentView.addSubview(deleteButton)
         
-//        setupDynamicViewsLayout()
+        //        setupDynamicViewsLayout()
         
         self.saveButton.isHidden = false
         self.deleteButton.isHidden = false
@@ -236,30 +222,30 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
             self.deleteButton.isHidden = true
             self.datePicker.isHidden = true
             
-//            self.saveButton.removeFromSuperview()
-//            self.deleteButton.removeFromSuperview()
-//            self.datePicker.removeFromSuperview()
+            //            self.saveButton.removeFromSuperview()
+            //            self.deleteButton.removeFromSuperview()
+            //            self.datePicker.removeFromSuperview()
         }
     }
     
-//    private func setupDynamicViewsLayout() {
-//        NSLayoutConstraint.activate(
-//            [datePicker.topAnchor.constraint(equalTo: titleButton.bottomAnchor,
-//                                             constant: 20),
-//             datePicker.widthAnchor.constraint(equalToConstant: (contentView.bounds.width / 1.3)),
-//             datePicker.heightAnchor.constraint(equalToConstant: (contentView.bounds.height * 2.3)),
-//             datePicker.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-//
-//             saveButton.topAnchor.constraint(equalTo: contentView.topAnchor,
-//                                             constant: 10),
-//             saveButton.trailingAnchor.constraint(equalTo: deleteButton.leadingAnchor,
-//                                                  constant: -20),
-//             saveButton.heightAnchor.constraint(equalToConstant: (contentView.bounds.height / 2.5)),
-//             deleteButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-//             deleteButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-//             deleteButton.heightAnchor.constraint(equalToConstant: contentView.bounds.height / 2.5)
-//            ]
-//        )
-//    }
+    //    private func setupDynamicViewsLayout() {
+    //        NSLayoutConstraint.activate(
+    //            [datePicker.topAnchor.constraint(equalTo: titleButton.bottomAnchor,
+    //                                             constant: 20),
+    //             datePicker.widthAnchor.constraint(equalToConstant: (contentView.bounds.width / 1.3)),
+    //             datePicker.heightAnchor.constraint(equalToConstant: (contentView.bounds.height * 2.3)),
+    //             datePicker.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+    //
+    //             saveButton.topAnchor.constraint(equalTo: contentView.topAnchor,
+    //                                             constant: 10),
+    //             saveButton.trailingAnchor.constraint(equalTo: deleteButton.leadingAnchor,
+    //                                                  constant: -20),
+    //             saveButton.heightAnchor.constraint(equalToConstant: (contentView.bounds.height / 2.5)),
+    //             deleteButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+    //             deleteButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+    //             deleteButton.heightAnchor.constraint(equalToConstant: contentView.bounds.height / 2.5)
+    //            ]
+    //        )
+    //    }
     
 }

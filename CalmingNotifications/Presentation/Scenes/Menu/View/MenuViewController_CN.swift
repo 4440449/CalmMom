@@ -37,9 +37,6 @@ class MenuViewController_CN: UIViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(collectionView)
-        collectionView.manageInterfaceStyleBackgroundColor(
-            light: AppColors_CN.light.color(),
-            dark: AppColors_CN.dark.color())
         setupObservers()
         viewModel.viewDidLoad()
     }
@@ -48,22 +45,9 @@ class MenuViewController_CN: UIViewController,
     // MARK: - Input data flow
 
     private func setupObservers() {
-        if let sceneDelegate =
-            UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
-            sceneDelegate.sceneState.subscribe(observer: self) { [weak self] sceneState in
-                switch sceneState {
-                case .foreground:
-                    self?.collectionView.manageInterfaceStyleBackgroundColor(
-                        light: AppColors_CN.light.color(),
-                        dark: AppColors_CN.dark.color())
-                case .background: return
-                }
-            }
-        }
         viewModel.menuItems.subscribe(observer: self) { [weak self] _ in
             self?.collectionView.reloadData()
         }
-        
     }
     
     
@@ -72,6 +56,7 @@ class MenuViewController_CN: UIViewController,
     private lazy var collectionView: UICollectionView = {
         let collection = UICollectionView(frame: view.bounds,
                                           collectionViewLayout: UICollectionViewFlowLayout())
+        collection.backgroundColor = UIColor(named: "backgroundColor")
         collection.register(MenuCollectionViewCell.self,
                             forCellWithReuseIdentifier: MenuCollectionViewCell.identifier)
         collection.dataSource = self
