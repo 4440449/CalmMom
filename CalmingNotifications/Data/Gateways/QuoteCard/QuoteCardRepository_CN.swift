@@ -8,8 +8,6 @@
 
 import UIKit
 import Foundation
-//import XCTest
-//import XCTest
 
 
 final class QuoteCardRepository_CN: QuoteCardGateway_CN {

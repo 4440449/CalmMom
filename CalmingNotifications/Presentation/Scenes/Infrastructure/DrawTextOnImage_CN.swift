@@ -46,7 +46,7 @@ enum QuoteCardWallPaperDrawSetup_CN {
         switch self {
         case .standart:
             let textColor = UIColor.white
-            let textFont = UIFont(name: "Helvetica Bold", size: 18)!
+            let textFont = UIFont(name: "Montserrat-Regular", size: 18)!
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.alignment = .center
             let textAtr: [NSAttributedString.Key : Any] = [

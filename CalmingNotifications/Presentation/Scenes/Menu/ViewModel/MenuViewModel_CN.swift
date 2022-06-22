@@ -39,6 +39,7 @@ final class MenuViewModel_CN: MenuViewModelProtocol_CN {
     
     // MARK: - State
 
+//    var menuItems = Publisher(value: [MenuItem]())
     var menuItems = Publisher(value: [MenuItem]())
     var error = Publisher(value: "")
     
@@ -51,6 +52,8 @@ final class MenuViewModel_CN: MenuViewModelProtocol_CN {
     // MARK: - Interface
 
     func viewDidLoad() {
+        menuItems.value = [MenuItem(item: .favorites),
+                     MenuItem(item: .notifications)]
         menuItems.notify()
         task = Task {
             do {
@@ -64,7 +67,7 @@ final class MenuViewModel_CN: MenuViewModelProtocol_CN {
     }
     
     func didSelectItemAt(index: Int) {
-        router.didSelect(item: menuItems.value[index])
+        router.didSelect(menuItem: menuItems.value[index])
     }
 
 }

@@ -59,7 +59,8 @@ class NotificationsViewController_CN: UIViewController,
                 switch sceneState {
                 case .foreground:
                     self?.viewModel.sceneWillEnterForeground()
-                case .background: return
+                case .background:
+                    return
                 }
             }
         }
@@ -198,7 +199,7 @@ class NotificationsViewController_CN: UIViewController,
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        let height = viewModel.pushNotificationAuthStatus.value == .authorized ? collectionView.bounds.height / 11 : collectionView.bounds.height / 7
+        let height = viewModel.pushNotificationAuthStatus.value == .authorized ? collectionView.bounds.height / 11 : collectionView.bounds.height / 4
         return CGSize(width: collectionView.bounds.width - 60,
                       height: height)
     }

@@ -46,7 +46,8 @@ class NotificationsCollectionHeaderReusableView: UICollectionReusableView {
     
     private var title: UILabel = {
         let label = UILabel()
-        label.text = "Notifications"
+        label.text = "Уведомления"
+        label.font = UIFont(name: "Montserrat-Regular", size: 17)!
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -56,6 +57,7 @@ class NotificationsCollectionHeaderReusableView: UICollectionReusableView {
         let button = UIButton()
         button.tintColor = .label
         button.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+        button.imageView?.layer.transform = CATransform3DMakeScale(1.1, 1.1, 0)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self,
                          action: #selector(dismissButtonTapped),
@@ -71,6 +73,7 @@ class NotificationsCollectionHeaderReusableView: UICollectionReusableView {
         let button = UIButton()
         button.tintColor = .label
         button.setImage(UIImage(systemName: "plus"), for: .normal)
+        button.imageView?.layer.transform = CATransform3DMakeScale(1.1, 1.1, 0)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self,
                          action: #selector(addNewNotificationButtonTapped),
@@ -84,7 +87,7 @@ class NotificationsCollectionHeaderReusableView: UICollectionReusableView {
     }
     
     private var notificationStatus: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         let text = "Уведомления отключены. Разрешите их получение в настройках"
         let atrText = NSMutableAttributedString(string: text,
                                                 attributes: [:])
@@ -93,14 +96,21 @@ class NotificationsCollectionHeaderReusableView: UICollectionReusableView {
                               range: NSRange(location: 48, length: 10))
         button.setAttributedTitle(atrText, for: .normal)
         button.titleLabel?.lineBreakMode = .byWordWrapping
+        button.titleLabel?.font = UIFont(name: "Montserrat-Regular", size: 16)!
+        button.tintColor = .label
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self,
                          action: #selector(notificationStatusButtonTapped),
                          for: .touchUpInside)
+        button.contentEdgeInsets = .init(top: 0,
+                                         left: 0,
+                                         bottom: 30,
+                                         right: 0)
         return button
     }()
     
     @objc func notificationStatusButtonTapped() {
+        print(notificationStatusButtonTapped)
         if let appSettings = URL(string: UIApplication.openSettingsURLString),
            UIApplication.shared.canOpenURL(appSettings) {
             UIApplication.shared.open(appSettings)
@@ -126,7 +136,7 @@ class NotificationsCollectionHeaderReusableView: UICollectionReusableView {
         
         notificationStatus.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30).isActive = true
         notificationStatus.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30).isActive = true
-        notificationStatus.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 20).isActive = true
+        notificationStatus.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 50).isActive = true
     }
     
     

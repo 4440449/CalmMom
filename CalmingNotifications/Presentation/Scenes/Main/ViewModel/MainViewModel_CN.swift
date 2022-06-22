@@ -34,8 +34,7 @@ final class MainViewModel_CN: MainViewModelProtocol_CN,
     private let router: MainRouterProtocol_CN
     private let errorHandler: MainErrorHandlerProtocol_CN
     
-    init(
-        quoteCardRepository: QuoteCardGateway_CN,
+    init(quoteCardRepository: QuoteCardGateway_CN,
         router: MainRouterProtocol_CN,
         errorHandler: MainErrorHandlerProtocol_CN) {
             //         quoteCards: [QuoteCard_CN]) {

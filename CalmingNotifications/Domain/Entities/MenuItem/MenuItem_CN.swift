@@ -6,13 +6,35 @@
 //  Copyright © 2022 Max. All rights reserved.
 //
 
+import UIKit
+
+
+//struct MenuItem {
+//
+//    enum Title: String {
+//        case favorites = "Favorites"
+//        case notifications = "Notifications"
+//    }
+//
+//    let title: Title
+//}
+
 
 struct MenuItem {
     
-    enum Title: String {
-        case favorites = "Favorites"
-        case notifications = "Notifications"
+    enum Item {
+        case favorites
+        case notifications
+        
+        func get() -> (String, UIImage) {
+            switch self {
+            case .favorites:
+                return ("Избранное", UIImage(systemName: "heart.fill")!)
+            case .notifications:
+                return ("Уведомления", UIImage(systemName: "bell.fill")!)
+            }
+        }
     }
     
-    let title: Title
+    let item: Item
 }

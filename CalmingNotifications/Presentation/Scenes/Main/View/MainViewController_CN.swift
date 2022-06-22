@@ -83,6 +83,7 @@ class MainViewController_CN: UIViewController,
     private lazy var collectionView: UICollectionView = {
         let collection = UICollectionView(frame: view.bounds,
                                           collectionViewLayout: setupCollectionViewLayout())
+        collection.backgroundColor = UIColor(named: "backgroundColor")
         collection.register(MainCollectionViewCell_CN.self,
                             forCellWithReuseIdentifier: MainCollectionViewCell_CN.identifier)
         collection.contentInsetAdjustmentBehavior = .never
@@ -96,6 +97,7 @@ class MainViewController_CN: UIViewController,
         let button = UIButton()
         button.tintColor = .white
         button.setImage(UIImage(systemName: "ellipsis"), for: .normal)
+        button.imageView?.layer.transform = CATransform3DMakeScale(1.3, 1.3, 0)
         button.layer.cornerRadius = 20
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self,

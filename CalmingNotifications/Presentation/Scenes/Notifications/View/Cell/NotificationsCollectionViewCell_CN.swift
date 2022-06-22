@@ -73,6 +73,7 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
         let button = UIButton()
         button.setTitle("", for: .normal)
         button.setTitleColor(.label, for: .normal)
+        button.titleLabel?.font = UIFont(name: "Montserrat-Bold", size: 18)!
         button.setImage(UIImage(systemName: "bell.fill"),
                         for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -100,6 +101,7 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
         let button = UIButton()
         button.setTitle("Сохранить", for: .normal)
         button.setTitleColor(.label, for: .normal)
+        button.titleLabel?.font = UIFont(name: "Montserrat-Regular", size: 17)!
         button.translatesAutoresizingMaskIntoConstraints = false
         button.alpha = 0
         button.isHidden = true

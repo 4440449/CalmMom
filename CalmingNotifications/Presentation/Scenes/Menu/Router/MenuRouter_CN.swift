@@ -10,7 +10,7 @@ import UIKit
 
 
 protocol MenuRouterProtocol_CN {
-    func didSelect(item: MenuItem)
+    func didSelect(menuItem: MenuItem)
 }
 
 
@@ -36,10 +36,10 @@ final class MenuRouter_CN: MenuRouterProtocol_CN {
     
     // MARK: - Interface
     
-    func didSelect(item: MenuItem) {
+    func didSelect(menuItem: MenuItem) {
         guard let view = view else { return }
         view.dismiss(animated: true, completion: nil)
-        switch item.title {
+        switch menuItem.item {
         case .favorites:
             let favoritesVC = FavoritesSceneConfigurator_CN.configure(
                 navigationContainer: navigationContainer,

@@ -71,11 +71,12 @@ class FavoritesViewController_CN: UIViewController,
     private lazy var collectionView: UICollectionView = {
         let collection = UICollectionView(frame: view.bounds,
                                           collectionViewLayout: setupCollectionViewLayout())
+        collection.backgroundColor = UIColor(named: "backgroundColor")
         collection.register(FavoritesCollectionViewCell.self,
                             forCellWithReuseIdentifier: FavoritesCollectionViewCell.identifier)
         collection.contentInsetAdjustmentBehavior = .never
         collection.alwaysBounceVertical = false
-        collection.alwaysBounceHorizontal = true
+//        collection.alwaysBounceHorizontal = true
 //        collection.isScrollEnabled = true
         collection.dataSource = self
         collection.delegate = self
@@ -86,6 +87,7 @@ class FavoritesViewController_CN: UIViewController,
         let button = UIButton()
         button.tintColor = .white
         button.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+        button.imageView?.layer.transform = CATransform3DMakeScale(1.3, 1.3, 0)
         button.layer.cornerRadius = 20
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self,

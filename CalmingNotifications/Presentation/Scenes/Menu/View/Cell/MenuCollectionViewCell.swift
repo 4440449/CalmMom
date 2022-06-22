@@ -29,16 +29,43 @@ class MenuCollectionViewCell: UICollectionViewCell {
     
     // MARK: - UI -
     
-    private var title: UILabel = {
-        let label = UILabel()
-        label.text = "Mom's Exhale"
-        label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+//    var t: UIButton(type: .system) = { }()
+    
+    private lazy var title: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "heart.fill"), for: .disabled)
+//        button.imageView?.layer.transform = CATransform3DMakeScale(1.3, 1.3, 0)
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -15, bottom: 0, right: 0)
+        button.setTitleColor(.label, for: .disabled)
+        button.titleLabel?.font = UIFont(name: "Montserrat-Regular", size: 16)!
+        button.tintColor = .label
+        button.isEnabled = false
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
     
-    func setupTitleText(_ text: String) {
-        title.text = text
+    
+//    private var title: UILabel = {
+//        let label = UILabel()
+//
+//        let attachment = NSTextAttachment()
+//        attachment.image = UIImage(systemName: "heart.fill")
+//        let attachmentString = NSAttributedString(attachment: attachment)
+////        let myString = NSMutableAttributedString(string: price)
+////        myString.append(attachmentString)
+//        label.attributedText = attachmentString
+//
+////        label.text = "Mom's Exhale"
+//        label.font = UIFont(name: "Montserrat-Regular", size: 17)!
+//        label.textAlignment = .center
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//        return label
+//    }()
+    
+    func setupTitleButton(_ text: String, image: UIImage) {
+//        title.text = text
+        title.setTitle(text, for: .disabled)
+        title.setImage(image, for: .disabled)
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -73,7 +100,7 @@ class MenuCollectionViewCell: UICollectionViewCell {
     
     private func setupLayout() {
         title.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        title.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+        title.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 40).isActive = true //20
     }
     
 }

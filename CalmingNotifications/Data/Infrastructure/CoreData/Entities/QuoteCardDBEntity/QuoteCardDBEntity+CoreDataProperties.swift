@@ -13,21 +13,21 @@ import UIKit
 
 
 extension QuoteCardDBEntity {
-
+    
     @nonobjc public class func fetchRequest() -> NSFetchRequest<QuoteCardDBEntity> {
         return NSFetchRequest<QuoteCardDBEntity>(entityName: "QuoteCardDBEntity")
     }
-
+    
     @NSManaged public var image: Data?
     @NSManaged public var quote: String?
     @NSManaged public var id: UUID?
     @NSManaged public var isFavorite: Bool
     @NSManaged public var date: Date?
-
+    
 }
 
 extension QuoteCardDBEntity : Identifiable {
-
+    
 }
 
 extension QuoteCardDBEntity {
