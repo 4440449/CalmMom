@@ -22,18 +22,21 @@ final class QuoteCardNetworkRepository: QuoteCardNetworkRepositoryProtocol_CN {
     // MARK: - Dependencies
     private let client: BabyNetRepositoryProtocol
     private let apiKey: String
+    private var sessionDelegate: URLSessionDataDelegate?
+    private var progressObservation: NSKeyValueObservation?
     
     // MARK: - Init
     init(client: BabyNetRepositoryProtocol,
-         apiKey: String) {
+         apiKey: String,
+         sessionDelegate: URLSessionDataDelegate?) {
         self.client = client
         self.apiKey = apiKey
+        self.sessionDelegate = sessionDelegate
     }
     
     // MARK: - Interface
     
-    func fetch(callback: @escaping (Result<[QuoteCardNetworkEntity_CN], Error>) -> (),
-               taskProgressCallback: ((Progress) -> ())?) -> URLSessionTask? {
+    func fetch(callback: @escaping (Result<[QuoteCardNetworkEntity_CN], Error>) -> (),taskProgressCallback: ((Progress) -> ())?) -> URLSessionTask? {
         let url = BabyNetURL(scheme: .https,
                              host: "sruvmguuadrikxjglriw.supabase.co",
                              path: "/rest/v1/QuoteCard",
@@ -47,13 +50,14 @@ final class QuoteCardNetworkRepository: QuoteCardNetworkRepositoryProtocol_CN {
                               request: request,
                               session: session,
                               decoderType: decoderType,
-                              responseCallback: callback,
-                              taskProgressCallback: taskProgressCallback)
+                              observationCallback: { [weak self] observation in self?.progressObservation = observation },
+                              taskProgressCallback: taskProgressCallback,
+                              responseCallback: callback)
     }
     
     
     deinit {
-//        print("QuoteCardNetworkRepository is deinit -------- ")
+        //        print("QuoteCardNetworkRepository is deinit -------- ")
     }
 }
 

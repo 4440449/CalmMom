@@ -6,10 +6,12 @@
 //  Copyright © 2022 Max. All rights reserved.
 //
 
+import Foundation
+
 
 protocol QuoteCardGateway_CN {
     func getState() -> QuoteCardStateProtocol_CN
-    func setState() async throws
+    func setState(taskProgressCallback: @escaping (Progress) -> ()) async throws
 
     func fetchFavorites() async throws -> [QuoteCard_CN]
     func saveFavorite(_ quoteCard: QuoteCard_CN) async throws

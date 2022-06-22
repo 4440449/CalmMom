@@ -35,31 +35,45 @@ class SplashViewController_CN: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(patternImage: UIImage(named: "SplashScreen")!)
-        view.addSubview(activity)
+//        view.addSubview(activity)
+        view.addSubview(progress)
         setupObservers()
         viewModel.viewDidLoad()
     }
     
     private func setupObservers() {
-        viewModel.isLoading.subscribe(observer: self) { [weak self] isLoading in
-            switch isLoading {
-            case .true: self?.activity.startAnimating()
-            case .false: self?.activity.stopAnimating()
-            }
+//        viewModel.isLoading.subscribe(observer: self) { [weak self] isLoading in
+//            switch isLoading {
+//            case .true: self?.activity.startAnimating()
+//            case .false: self?.activity.stopAnimating()
+//            }
+//        }
+        viewModel.progress.subscribe(observer: self) { [weak self] progressValue in
+            self?.progress.progress = Float(progressValue)
         }
     }
     
     
     // MARK: - UI -
-
-    private lazy var activity: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView()
-        indicator.center = view.center
-        indicator.hidesWhenStopped = true
-        indicator.style = .large
-        indicator.color = .black
-        return indicator
+    
+    private lazy var progress: UIProgressView = {
+        let progress = UIProgressView(progressViewStyle: .bar)
+        progress.center = view.center
+        progress.setProgress(0, animated: true)
+        progress.trackTintColor = .black
+        progress.tintColor = .red
+        return progress
     }()
+    
+    
+//    private lazy var activity: UIActivityIndicatorView = {
+//        let indicator = UIActivityIndicatorView()
+//        indicator.center = view.center
+//        indicator.hidesWhenStopped = true
+//        indicator.style = .large
+//        indicator.color = .black
+//        return indicator
+//    }()
 
     deinit {
 //        print("SplashViewController_CN is deinit -------- ")

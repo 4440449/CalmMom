@@ -11,6 +11,7 @@ import MommysEye
 
 protocol SplashViewModelProtocol_CN {
     var isLoading: Publisher<Loading_CN> { get }
+    var progress: Publisher<Float> { get }
     func viewDidLoad()
 }
 
@@ -35,13 +36,13 @@ final class SplashViewModel_CN: SplashViewModelProtocol_CN {
     // MARK: - State
     
     var isLoading = Publisher(value: Loading_CN.false)
-    
+    var progress = Publisher(value: Float(0))
     
     
     // MARK: - Private state
     
     private var quoteTask: Task<Void, Error>?
-//    private var prgrs: Doubl
+    
     
     
     // MARK: - Interface
@@ -50,9 +51,9 @@ final class SplashViewModel_CN: SplashViewModelProtocol_CN {
         isLoading.value = .true
         quoteTask = Task {
             do {
-//                let result = try await quoteCardRepository.fetch()
-                try await quoteCardRepository.setState()
-//                print(quoteCardRepository.getState().networkProgress?.fractionCompleted)
+                try await quoteCardRepository.setState(taskProgressCallback: { [weak self] progress in
+                    self?.progress.value = Float(progress.fractionCompleted)
+                })
                 self.quotesLoaded()
                 self.isLoading.value = .false
             } catch let error {

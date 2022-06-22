@@ -42,7 +42,8 @@ final class GatewaysRepositoryDIContainer_CN: GatewaysRepositoryDIContainerProto
         let client = BabyNetRepository()
         let apiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNydXZtZ3V1YWRyaWt4amdscml3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTQ3ODgyMzgsImV4cCI6MTk3MDM2NDIzOH0.udc8nAU84lOWCgJChCCq815w0oBoXh6zrceObzg8Z1Q"
         let network = QuoteCardNetworkRepository(client: client,
-                                                 apiKey: apiKey)
+                                                 apiKey: apiKey,
+                                                 sessionDelegate: nil)
         let localStorage = QuoteCardPersistenceRepository()
         let repo = QuoteCardRepository_CN(network: network,
                                           localStorage: localStorage,

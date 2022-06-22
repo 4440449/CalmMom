@@ -36,14 +36,7 @@ final class QuoteCardRepository_CN: QuoteCardGateway_CN {
         return quoteCardState
     }
     
-    
-    func setState() async throws {
-        // Stub! there is no backend yet
-        // С бэека могут приходить картинки вообще без поля isFavorite. В момент прихода фронт сам синхронизирует состояние isFavorite сравнивая id
-        // let task = { network.connect(url...) { result in
-        //        switch result { case .success (let cards): let favorites = localStorage.fetchFavorites() ...
-        //    } } }
-        
+    func setState(taskProgressCallback: @escaping (Progress) -> ()) async throws {
         let networkCards = try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<[QuoteCardNetworkEntity_CN], Error>) -> Void in
             let _ = self.network.fetch (callback: { result in //networkTask
                 switch result {
@@ -52,11 +45,7 @@ final class QuoteCardRepository_CN: QuoteCardGateway_CN {
                 case let .failure(networkError):
                     continuation.resume(throwing: networkError)
                 }
-            }, taskProgressCallback: nil)
-            //        taskProgressCallback: { progress in
-            //                print("CalmingNotifications progress == \(progress)")
-            //                self.quoteCardState.networkProgress.value = progress.fractionCompleted
-            //            }
+            }, taskProgressCallback: taskProgressCallback)
         }
         var domains = try networkCards.map { try $0.parseToDomain() }
         let favorites = try await localStorage.fetchFavorites()
