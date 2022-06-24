@@ -10,11 +10,6 @@ import Foundation
 import BabyNet
 
 
-enum NotificationsError_CN: Error {
-    case nativeServiceError
-    case unknownError
-}
-
 
 protocol NotificationsErrorHandlerProtocol_CN: DataLayerErrorHandlerProtocol_CN { }
 
@@ -25,24 +20,10 @@ final class NotificationsErrorHandler_CN: NotificationsErrorHandlerProtocol_CN {
     func handle(_ error: Error) -> Error {
         print(" *+*- \(error) *+*-")
         if let _ = error as? LocalPushNotificationCenterError {
-            return NotificationsError_CN.nativeServiceError
+            return NotificationError_CN.nativeServiceError
         } else {
-            return NotificationsError_CN.unknownError
+            return NotificationError_CN.unknownError
         }
     }
 }
 
-
-
-
-
-//final class NotificationsErrorHandler_CN: ErrorHandlerProtocol_CN {
-//    func handle(_ error: Error) -> String {
-//        print(error) //log
-//        if let _ = error as? LocalPushNotificationCenterError {
-//            return "Внутренняя ошибка хранилища"
-//        } else {
-//            return "Неизвестная ошибка"
-//        }
-//    }
-//}

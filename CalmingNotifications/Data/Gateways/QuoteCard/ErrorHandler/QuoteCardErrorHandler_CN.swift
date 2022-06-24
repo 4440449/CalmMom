@@ -10,15 +10,6 @@ import Foundation
 import BabyNet
 
 
-enum QuoteCardError_CN: Error {
-    case noInternetConnection
-    case networkError
-    case internalLogicError
-    case localStorageError
-    case unknownError
-    //    case nativeServiceError
-}
-
 
 protocol QuoteCardErrorHandlerProtocol_CN: DataLayerErrorHandlerProtocol_CN { }
 

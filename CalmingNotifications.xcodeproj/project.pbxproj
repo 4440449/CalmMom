@@ -34,6 +34,8 @@
 		9437605E2865FBA800884E5A /* SplashErrorHandler_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9437605D2865FBA800884E5A /* SplashErrorHandler_CN.swift */; };
 		943760602865FFEC00884E5A /* PresentationLayerErrorHandlerProtocol_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9437605F2865FFEC00884E5A /* PresentationLayerErrorHandlerProtocol_CN.swift */; };
 		9437606328661BB900884E5A /* NotificationsSceneErrorHandler_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9437606228661BB900884E5A /* NotificationsSceneErrorHandler_CN.swift */; };
+		943760662866501D00884E5A /* QuoteCardError_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943760652866501D00884E5A /* QuoteCardError_CN.swift */; };
+		9437606A2866507B00884E5A /* NotificationError_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943760692866507B00884E5A /* NotificationError_CN.swift */; };
 		943D160527B9A5190071F054 /* QuoteCardState_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943D160427B9A5190071F054 /* QuoteCardState_CN.swift */; };
 		943D160727BA97710071F054 /* MainErrorHandler_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943D160627BA97710071F054 /* MainErrorHandler_CN.swift */; };
 		943D160A27BA9AAF0071F054 /* DrawTextOnImage_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943D160927BA9AAF0071F054 /* DrawTextOnImage_CN.swift */; };
@@ -117,6 +119,8 @@
 		9437605D2865FBA800884E5A /* SplashErrorHandler_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashErrorHandler_CN.swift; sourceTree = "<group>"; };
 		9437605F2865FFEC00884E5A /* PresentationLayerErrorHandlerProtocol_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationLayerErrorHandlerProtocol_CN.swift; sourceTree = "<group>"; };
 		9437606228661BB900884E5A /* NotificationsSceneErrorHandler_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSceneErrorHandler_CN.swift; sourceTree = "<group>"; };
+		943760652866501D00884E5A /* QuoteCardError_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCardError_CN.swift; sourceTree = "<group>"; };
+		943760692866507B00884E5A /* NotificationError_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationError_CN.swift; sourceTree = "<group>"; };
 		943D160427B9A5190071F054 /* QuoteCardState_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCardState_CN.swift; sourceTree = "<group>"; };
 		943D160627BA97710071F054 /* MainErrorHandler_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainErrorHandler_CN.swift; sourceTree = "<group>"; };
 		943D160927BA9AAF0071F054 /* DrawTextOnImage_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawTextOnImage_CN.swift; sourceTree = "<group>"; };
@@ -277,6 +281,38 @@
 				9437606228661BB900884E5A /* NotificationsSceneErrorHandler_CN.swift */,
 			);
 			path = ErrorHandler;
+			sourceTree = "<group>";
+		};
+		943760672866502C00884E5A /* Gateway */ = {
+			isa = PBXGroup;
+			children = (
+				94EFC9A927923E5600CC6B47 /* QuoteCardGateway_CN.swift */,
+			);
+			path = Gateway;
+			sourceTree = "<group>";
+		};
+		943760682866503600884E5A /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				943760652866501D00884E5A /* QuoteCardError_CN.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		9437606B2866509500884E5A /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				943760692866507B00884E5A /* NotificationError_CN.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		9437606C286650B700884E5A /* Gateway */ = {
+			isa = PBXGroup;
+			children = (
+				946B142127B6FC1200AF3BBB /* MenuItemGateway_CN.swift */,
+			);
+			path = Gateway;
 			sourceTree = "<group>";
 		};
 		943D160827BA97970071F054 /* ErrorHandler */ = {
@@ -472,7 +508,7 @@
 			isa = PBXGroup;
 			children = (
 				946B141A27B5C9FC00AF3BBB /* MenuItem_CN.swift */,
-				946B142127B6FC1200AF3BBB /* MenuItemGateway_CN.swift */,
+				9437606C286650B700884E5A /* Gateway */,
 			);
 			path = MenuItem;
 			sourceTree = "<group>";
@@ -671,8 +707,8 @@
 		94EFC9A727923DF300CC6B47 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				94EFC9C227924D6600CC6B47 /* Notofocation */,
 				94EFC9A827923E4800CC6B47 /* QuoteCard */,
+				94EFC9C227924D6600CC6B47 /* Notofocation */,
 				946B141927B5C9CD00AF3BBB /* MenuItem */,
 			);
 			path = Entities;
@@ -682,7 +718,8 @@
 			isa = PBXGroup;
 			children = (
 				94EFC9A527923D6F00CC6B47 /* QuoteCard_CN.swift */,
-				94EFC9A927923E5600CC6B47 /* QuoteCardGateway_CN.swift */,
+				943760672866502C00884E5A /* Gateway */,
+				943760682866503600884E5A /* Error */,
 			);
 			path = QuoteCard;
 			sourceTree = "<group>";
@@ -775,6 +812,7 @@
 			children = (
 				94EFC9C327924D7C00CC6B47 /* Notification_CN.swift */,
 				947850F9279E353C00F1EEAC /* Gateway */,
+				9437606B2866509500884E5A /* Error */,
 			);
 			path = Notofocation;
 			sourceTree = "<group>";
@@ -942,6 +980,7 @@
 				946B13F027B2BE8800AF3BBB /* FavoritesSceneConfigurator_CN.swift in Sources */,
 				94EFC9BC27924B3900CC6B47 /* MainRouter_CN.swift in Sources */,
 				9441818D27AD842B00AD9FDD /* SplashRouter_CN.swift in Sources */,
+				943760662866501D00884E5A /* QuoteCardError_CN.swift in Sources */,
 				50A1CB9F278F63B0000F9BFC /* MainTabBarViewController_CN.swift in Sources */,
 				943760552865D1E100884E5A /* QuoteCardErrorHandler_CN.swift in Sources */,
 				9478510227A9929700F1EEAC /* LoaderState_CN.swift in Sources */,
@@ -992,6 +1031,7 @@
 				94EFC9BF27924C0F00CC6B47 /* NotificationsViewModel_CN.swift in Sources */,
 				94800868279631B500D34D4B /* LocalPushNotificationsService_CN.swift in Sources */,
 				50A1CB89278CCC63000F9BFC /* SceneDelegate.swift in Sources */,
+				9437606A2866507B00884E5A /* NotificationError_CN.swift in Sources */,
 				9437606328661BB900884E5A /* NotificationsSceneErrorHandler_CN.swift in Sources */,
 				94EFC9CD27924EA200CC6B47 /* NotificationNetworkRepository_CN.swift in Sources */,
 				946B140227B2D73E00AF3BBB /* CalmingNotifications.xcdatamodeld in Sources */,

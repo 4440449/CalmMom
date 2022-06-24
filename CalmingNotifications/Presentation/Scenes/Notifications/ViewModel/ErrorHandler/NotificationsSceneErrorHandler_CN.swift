@@ -15,7 +15,7 @@ protocol NotificationsSceneErrorHandlerProtocol_CN: PresentationLayerErrorHandle
 final class NotificationsSceneErrorHandler_CN: NotificationsSceneErrorHandlerProtocol_CN {
     
     func handle(_ error: Error) -> String {
-        if let error = error as? NotificationsError_CN {
+        if let error = error as? NotificationError_CN {
             switch error {
             case .nativeServiceError:
                 return "Ой, какая-то внутренняя проблема, пожалуйста отправьте нам отчет"

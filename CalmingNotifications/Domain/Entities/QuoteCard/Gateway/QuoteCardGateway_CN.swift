@@ -17,3 +17,4 @@ protocol QuoteCardGateway_CN {
     func saveFavorite(_ quoteCard: QuoteCard_CN) async throws
     func deleteFavorite(_ quoteCard: QuoteCard_CN) async throws
 }
+
