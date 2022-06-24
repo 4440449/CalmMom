@@ -13,7 +13,7 @@ protocol MenuViewModelProtocol_CN {
     func viewDidLoad()
     func didSelectItemAt(index: Int)
     var menuItems: Publisher<[MenuItem]> { get }
-    var error: Publisher<String> { get }
+//    var error: Publisher<String> { get }
 }
 
 
@@ -22,7 +22,7 @@ final class MenuViewModel_CN: MenuViewModelProtocol_CN {
     // MARK: - Dependencies
 
     private let router: MenuRouterProtocol_CN
-    private let errorHandler: MenuErrorHandlerProtocol_CN
+//    private let errorHandler: MenuErrorHandlerProtocol_CN
     private let repository: MenuItemGateway_CN
     
     
@@ -32,7 +32,7 @@ final class MenuViewModel_CN: MenuViewModelProtocol_CN {
          errorHandler: MenuErrorHandlerProtocol_CN,
          repository: MenuItemGateway_CN) {
         self.router = router
-        self.errorHandler = errorHandler
+//        self.errorHandler = errorHandler
         self.repository = repository
     }
     
@@ -41,7 +41,7 @@ final class MenuViewModel_CN: MenuViewModelProtocol_CN {
 
 //    var menuItems = Publisher(value: [MenuItem]())
     var menuItems = Publisher(value: [MenuItem]())
-    var error = Publisher(value: "")
+//    var error = Publisher(value: "")
     
     
     // MARK: - Private state / Task
@@ -56,13 +56,8 @@ final class MenuViewModel_CN: MenuViewModelProtocol_CN {
                      MenuItem(item: .notifications)]
         menuItems.notify()
         task = Task {
-            do {
-                let result = try await self.repository.fetch()
+                let result = await repository.fetch()
                 self.menuItems.value = result
-            } catch let error {
-                let message = self.errorHandler.handle(error)
-                self.error.value = message
-            }
         }
     }
     

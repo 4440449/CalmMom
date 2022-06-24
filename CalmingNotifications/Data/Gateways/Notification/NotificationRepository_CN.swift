@@ -10,21 +10,20 @@ import Foundation
 
 
 final class NotificationRepository_CN: NotificationGateway_CN {
-     
+    
     private let network: NotificationNetworkRepositoryProtocol_CN
     private let localStorage: NotificationPersistenceRepositoryProtocol_CN
     private let localPushNotificationsService: LocalPushNotificationsServiceProtocol_CN
-//    private let dtoMapper: LocalPushNotificationsDTOMapperProtocol_CN
+    private let errorHandler: NotificationsErrorHandlerProtocol_CN
     
     init(network: NotificationNetworkRepositoryProtocol_CN,
          localStorage: NotificationPersistenceRepositoryProtocol_CN,
-         localPushNotificatiosnService: LocalPushNotificationsServiceProtocol_CN
-//         dtoMapper: LocalPushNotificationsDTOMapperProtocol_CN
-    ) {
+         localPushNotificatiosnService: LocalPushNotificationsServiceProtocol_CN,
+         errorHandler: NotificationsErrorHandlerProtocol_CN) {
         self.network = network
         self.localStorage = localStorage
         self.localPushNotificationsService = localPushNotificatiosnService
-//        self.dtoMapper = dtoMapper
+        self.errorHandler = errorHandler
     }
     
     
@@ -33,32 +32,49 @@ final class NotificationRepository_CN: NotificationGateway_CN {
     }
     
     func fetch() async throws -> [Notification_CN] {
-//        sleep(2)
-        // TODO: Перенести маппинг на уровень ниже?
+        //        sleep(2)
         let requests = await localPushNotificationsService.fetchNotifications()
-        var domainEntities = try requests.map { try $0.parseToDomain() }
-//        try requests.forEach { try domainEntities.append($0.parseToDomain()) }
-        domainEntities.sort { $0.time < $1.time }
-        return domainEntities
+        do {
+            var domainEntities = try requests.map { try $0.parseToDomain() }
+            domainEntities.sort { $0.time < $1.time }
+            return domainEntities
+        } catch let error {
+            let domainError = errorHandler.handle(error)
+            throw domainError
+        }
     }
     
     func addNew(at time: Date, quote: String) async throws -> [Notification_CN] {
-        try await localPushNotificationsService.addNewNotification(at: time, quote: quote)
-        let result = try await fetch()
-        return result
+        do {
+            try await localPushNotificationsService.addNewNotification(at: time, quote: quote)
+            let result = try await fetch()
+            return result
+        } catch let error {
+            let domainError = errorHandler.handle(error)
+            throw domainError
+        }
     }
     
     func change(with identifier: String, new time: Date) async throws -> [Notification_CN] {
-        try await localPushNotificationsService.changeNotification(with: identifier, new: time)
-        let result = try await fetch()
-        return result
+        do {
+            try await localPushNotificationsService.changeNotification(with: identifier, new: time)
+            let result = try await fetch()
+            return result
+        } catch let error {
+            let domainError = errorHandler.handle(error)
+            throw domainError
+        }
     }
     
     func remove(with identifire: String) async throws -> [Notification_CN] {
-        try await localPushNotificationsService.removeNotification(with: identifire)
-        let result = try await fetch()
-        return result
+        do {
+            try await localPushNotificationsService.removeNotification(with: identifire)
+            let result = try await fetch()
+            return result
+        } catch let error {
+            let domainError = errorHandler.handle(error)
+            throw domainError
+        }
     }
-    
     
 }

@@ -1,19 +1,20 @@
 //
-//  MainErrorHandler_CN.swift
+//  SplashErrorHandler_CN.swift
 //  CalmingNotifications
 //
-//  Created by Maxim on 14.02.2022.
+//  Created by Maxim on 24.06.2022.
 //  Copyright © 2022 Max. All rights reserved.
 //
 
 import Foundation
 
 
-protocol MainErrorHandlerProtocol_CN: PresentationLayerErrorHandlerProtocol_CN { }
+
+protocol SplashErrorHandlerProtocol_CN: PresentationLayerErrorHandlerProtocol_CN { }
 
 
-final class MainErrorHandler_CN: MainErrorHandlerProtocol_CN {
-
+final class SplashErrorHandler_CN: SplashErrorHandlerProtocol_CN {
+    
     func handle(_ error: Error) -> String {
         if let error = error as? QuoteCardError_CN {
             switch error {

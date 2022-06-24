@@ -50,6 +50,7 @@ class SplashViewController_CN: UIViewController {
 //        }
         viewModel.progress.subscribe(observer: self) { [weak self] progressValue in
             self?.progress.progress = Float(progressValue)
+//            self?.progress.setProgress(progressValue, animated: true)
         }
     }
     

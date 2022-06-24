@@ -9,13 +9,13 @@
 import Foundation
 
 
-protocol MenuErrorHandlerProtocol_CN {
-    func handle(_ error: Error) -> String
-}
+// TODO: - FIX THE ERROR HANDLER !
+
+protocol MenuErrorHandlerProtocol_CN: PresentationLayerErrorHandlerProtocol_CN { }
 
 
 final class MenuErrorHandler_CN: MenuErrorHandlerProtocol_CN {
-    
+
     func handle(_ error: Error) -> String {
         print("error notif --> \(error)")
         return ""

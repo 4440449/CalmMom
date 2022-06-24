@@ -16,6 +16,7 @@ final class QuoteCardRepository_CN: QuoteCardGateway_CN {
     
     private let network: QuoteCardNetworkRepositoryProtocol_CN
     private let localStorage: QuoteCardPersistenceRepositoryProtocol_CN
+    private let errorHandler: QuoteCardErrorHandlerProtocol_CN
     private var quoteCardState: QuoteCardStateProtocol_CN
     
     
@@ -23,9 +24,11 @@ final class QuoteCardRepository_CN: QuoteCardGateway_CN {
     
     init(network: QuoteCardNetworkRepositoryProtocol_CN,
          localStorage: QuoteCardPersistenceRepositoryProtocol_CN,
+         errorHandler: QuoteCardErrorHandlerProtocol_CN,
          quoteCardState: QuoteCardStateProtocol_CN) {
         self.network = network
         self.localStorage = localStorage
+        self.errorHandler = errorHandler
         self.quoteCardState = quoteCardState
     }
     
@@ -43,22 +46,28 @@ final class QuoteCardRepository_CN: QuoteCardGateway_CN {
                 case let .success(networkCards):
                     continuation.resume(returning: networkCards)
                 case let .failure(networkError):
-                    continuation.resume(throwing: networkError)
+                    let domainError = self.errorHandler.handle(networkError)
+                    continuation.resume(throwing: domainError)
                 }
             }, taskProgressCallback: taskProgressCallback)
         }
-        var domains = try networkCards.map { try $0.parseToDomain() }
-        let favorites = try await localStorage.fetchFavorites()
-        for favorite in favorites {
-            for (index, domain) in domains.enumerated() {
-                if favorite == domain {
-                    domains[index].isFavorite = favorite.isFavorite
+        do {
+            var domains = try networkCards.map { try $0.parseToDomain() }
+            let favorites = try await localStorage.fetchFavorites()
+            for favorite in favorites {
+                for (index, domain) in domains.enumerated() {
+                    if favorite == domain {
+                        domains[index].isFavorite = favorite.isFavorite
+                    }
                 }
             }
+            quoteCardState.quoteCards.value = domains
+            let quotes = domains.map { $0.quote }
+            quoteCardState.quotes.value = quotes
+        } catch let error {
+            let domainError = errorHandler.handle(error)
+            throw domainError
         }
-        quoteCardState.quoteCards.value = domains
-        let quotes = domains.map { $0.quote }
-        quoteCardState.quotes.value = quotes
     }
     
     func fetchFavorites() async throws -> [QuoteCard_CN] {

@@ -14,7 +14,9 @@ final class SplashSceneConfigurator_CN: SceneConfiguratorProtocol_CN {
     static func configure(repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN) -> UIViewController {
         let repo = repositoryDIContainer.quoteCard
         let router = SplashRouter_CN(repositoryDIContainer: repositoryDIContainer)
+        let errorHandler = SplashErrorHandler_CN()
         let viewModel = SplashViewModel_CN(quoteCardRepository: repo,
+                                           errorHandler: errorHandler,
                                            router: router)
         let view = SplashViewController_CN(viewModel: viewModel,
                                            nibName: nil,

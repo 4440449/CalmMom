@@ -11,7 +11,7 @@ import Foundation
 
 final class MenuItemRepository_CN: MenuItemGateway_CN {
     
-    func fetch() async throws -> [MenuItem] {
+    func fetch() async -> [MenuItem] {
 //        sleep(2)
         return [MenuItem(item: .favorites),
                 MenuItem(item: .notifications)]

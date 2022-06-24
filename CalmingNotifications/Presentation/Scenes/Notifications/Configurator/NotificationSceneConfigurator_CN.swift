@@ -23,7 +23,7 @@ final class NotificationSceneConfigurator_CN: SceneConfiguratorProtocol_CN {
         let router = NotificationsRouter_CN(
             navigationContainer: navigationContainer,
             repositoryDIContainer: repositoryDIContainer )
-        let errorHandler = NotificationsErrorHandler_CN()
+        let errorHandler = NotificationsSceneErrorHandler_CN()
         let viewModel = NotificationsViewModel_CN(repository: repo,
                                                   router: router,
                                                   errorHandler: errorHandler,

@@ -7,5 +7,5 @@
 //
 
 protocol MenuItemGateway_CN {
-    func fetch() async throws -> [MenuItem]
+    func fetch() async -> [MenuItem]
 }

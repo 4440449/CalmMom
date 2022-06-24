@@ -51,11 +51,11 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
     
     private let repository: NotificationGateway_CN
     private let router: NotificationsRouterProtocol_CN
-    private let errorHandler: NotificationsErrorHandlerProtocol_CN
+    private let errorHandler: NotificationsSceneErrorHandlerProtocol_CN
     
     init(repository: NotificationGateway_CN,
          router: NotificationsRouterProtocol_CN,
-         errorHandler: NotificationsErrorHandlerProtocol_CN,
+         errorHandler: NotificationsSceneErrorHandlerProtocol_CN,
          quotes: [String]) {
         self.repository = repository
         self.router = router
@@ -102,7 +102,7 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
                 let result = try await self.repository.addNew(at: date, quote: rndmQuote)
                 self.notifications.value = result
             } catch let error {
-                self.error.value = self.errorHandler.handle(error: error)
+                self.error.value = self.errorHandler.handle(error)
             }
             self.isLoading.value = .false
         }
@@ -124,7 +124,7 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
                 let result = try await self.repository.change(with: notifications.value[index].id, new: date)
                 self.notifications.value = result
             } catch let error {
-                self.error.value = self.errorHandler.handle(error: error)
+                self.error.value = self.errorHandler.handle(error)
             }
             self.isLoading.value = .false
         }
@@ -137,7 +137,7 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
                 let result = try await repository.remove(with: self.notifications.value[index].id)
                 self.notifications.value = result
             } catch let error {
-                self.error.value = self.errorHandler.handle(error: error)
+                self.error.value = self.errorHandler.handle(error)
             }
             self.isLoading.value = .false
         }
@@ -161,7 +161,7 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
                 let result = try await self.repository.fetch()
                 self.notifications.value = result
             } catch let error {
-                self.error.value = self.errorHandler.handle(error: error)
+                self.error.value = self.errorHandler.handle(error)
             }
             let result = await self.repository.getAuthorizationStatus()
             self.pushNotificationAuthStatus.value = result

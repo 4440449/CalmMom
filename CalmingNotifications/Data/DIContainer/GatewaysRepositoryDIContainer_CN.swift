@@ -45,8 +45,10 @@ final class GatewaysRepositoryDIContainer_CN: GatewaysRepositoryDIContainerProto
                                                  apiKey: apiKey,
                                                  sessionDelegate: nil)
         let localStorage = QuoteCardPersistenceRepository()
+        let errorHandler = QuoteCardErrorHandler_CN()
         let repo = QuoteCardRepository_CN(network: network,
                                           localStorage: localStorage,
+                                          errorHandler: errorHandler,
                                           quoteCardState: QuoteCardState_CN())
         return repo
     }
@@ -55,9 +57,11 @@ final class GatewaysRepositoryDIContainer_CN: GatewaysRepositoryDIContainerProto
         let network = NotificationNetworkRepository_CN()
         let localStorage = NotificationPersistenceRepository_CN()
         let localPushNotificationService = LocalPushNotificationsService_CN()
+        let errorHandler = NotificationsErrorHandler_CN()
         let repo = NotificationRepository_CN(network: network,
                                              localStorage: localStorage,
-                                             localPushNotificatiosnService: localPushNotificationService)
+                                             localPushNotificatiosnService: localPushNotificationService,
+                                             errorHandler: errorHandler)
         return repo
     }
     
