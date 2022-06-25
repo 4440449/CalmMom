@@ -54,8 +54,10 @@ final class QuoteCardRepository_CN: QuoteCardGateway_CN {
         }
         do {
             var domains = try networkCards.map { try $0.parseToDomain() }
+            
             let favorites = try await localStorage.fetchFavorites()
-            for favorite in favorites {
+            let favoriteDomains = try favorites.map { try $0.parseToDomainEntity() }
+            for favorite in favoriteDomains {
                 for (index, domain) in domains.enumerated() {
                     if favorite == domain {
                         domains[index].isFavorite = favorite.isFavorite
@@ -65,8 +67,9 @@ final class QuoteCardRepository_CN: QuoteCardGateway_CN {
             quoteCardState.quoteCards.value = domains
             let quotes = domains.map { $0.quote }
             quoteCardState.quotes.value = quotes
-            throw BabyNetError.badResponse("hello")
+//            throw BabyNetError.badResponse("hello")
 //            throw BabyNetError.badRequest(URLError.init(.notConnectedToInternet))
+//            throw QuoteCardLocalStorageError.failureToDBEntityMapping("")
         } catch let dataError {
             let domainError = errorHandler.handle(dataError)
             throw domainError
@@ -75,7 +78,8 @@ final class QuoteCardRepository_CN: QuoteCardGateway_CN {
     
     func fetchFavorites() async throws -> [QuoteCard_CN] {
         let result = try await localStorage.fetchFavorites()
-        return result
+        let domain = try result.map { try $0.parseToDomainEntity() }
+        return domain
     }
     
     func saveFavorite(_ quoteCard: QuoteCard_CN) async throws{

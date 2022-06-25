@@ -10,59 +10,63 @@ import CoreData
 
 
 protocol QuoteCardPersistenceRepositoryProtocol_CN {
-    func fetchFavorites() async throws -> [QuoteCard_CN]
+    func fetchFavorites() async throws -> [QuoteCardDBEntity]
     func saveFavorite(_ quoteCard: QuoteCard_CN) async throws
     func deleteFavorite(_ quoteCard: QuoteCard_CN) async throws
 }
 
 
 final class QuoteCardPersistenceRepository: QuoteCardPersistenceRepositoryProtocol_CN {
-   
+    
     // MARK: - Dependencies
-
+    
     private let coreDataContainer = CoreDataStack_CN.shared.persistentContainer
     
     
     // MARK: - Interface
-
-    func fetchFavorites() async throws -> [QuoteCard_CN] {
+    
+    func fetchFavorites() async throws -> [QuoteCardDBEntity] {
         let request: NSFetchRequest = QuoteCardDBEntity.fetchRequest()
-//        request.predicate = NSPredicate(format: "isFavorite == true")
-//        do {
+        do {
             let fetchResult = try coreDataContainer.viewContext.fetch(request)
-            let sortedDetchResult = fetchResult.sorted { $0.date! > $1.date! }
-            let domain = try sortedDetchResult.map { try $0.parseToDomainEntity() }
-                // TODO: Чекнуть ошибку если выдам ее здесь в маппинге. Как она будет выглядеть? Ошибка маппинга обернутая ошибкой фетча?
-            return domain
-//        } catch let error {
-//            throw QuoteCardLocalStorageError.failureFetching(error)
-//        }
+            return fetchResult
+        } catch let error {
+            throw QuoteCardLocalStorageError.generic(error)
+        }
     }
     
     func saveFavorite(_ quoteCard: QuoteCard_CN) async throws {
         let dbEntity = QuoteCardDBEntity.init(context: coreDataContainer.viewContext)
         try dbEntity.parseToDBEntity(domain: quoteCard)
-        try coreDataContainer.viewContext.save()
+        do {
+            try coreDataContainer.viewContext.save()
+        } catch let error {
+            throw QuoteCardLocalStorageError.generic(error)
+        }
     }
     
     func deleteFavorite(_ quoteCard: QuoteCard_CN) async throws {
         let request: NSFetchRequest = QuoteCardDBEntity.fetchRequest()
         request.predicate = NSPredicate(format: "id == %@", quoteCard.id as NSUUID)
-        if let result = try coreDataContainer.viewContext.fetch(request).first {
-            coreDataContainer.viewContext.delete(result)
-            try coreDataContainer.viewContext.save()
+        do {
+            if let fetchResult = try coreDataContainer.viewContext.fetch(request).first {
+                coreDataContainer.viewContext.delete(fetchResult)
+                try coreDataContainer.viewContext.save()
+            }
+        } catch let error {
+            throw QuoteCardLocalStorageError.generic(error)
         }
     }
     
     
     deinit {
-//        print("QuoteCardPersistenceRepository is deinit -------- ")
+        //        print("QuoteCardPersistenceRepository is deinit -------- ")
     }
 }
 
 
 enum QuoteCardLocalStorageError: Error {
-//    case failureFetching(Error)
+    case generic(Error)
     case failureToDBEntityMapping(String)
     case failureToDomainEntityMapping(String)
 }

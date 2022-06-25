@@ -449,7 +449,6 @@
 			isa = PBXGroup;
 			children = (
 				946B13FD27B2D5D800AF3BBB /* CoreDataStack_CN.swift */,
-				946B13FF27B2D69E00AF3BBB /* Entities */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -770,6 +769,7 @@
 			isa = PBXGroup;
 			children = (
 				94EFC9B4279240B900CC6B47 /* QuoteCardPersistenceRepository.swift */,
+				946B13FF27B2D69E00AF3BBB /* Entities */,
 			);
 			path = LocalStorage;
 			sourceTree = "<group>";
