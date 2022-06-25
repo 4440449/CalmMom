@@ -37,8 +37,10 @@ class SplashViewController_CN: UIViewController {
         view.backgroundColor = UIColor(patternImage: UIImage(named: "SplashScreen")!)
 //        view.addSubview(activity)
         view.addSubview(progress)
+        view.addSubview(reloadButton)
+        setupLayout()
         setupObservers()
-        viewModel.viewDidLoad()
+        viewModel.downloadInitialData()
     }
     
     private func setupObservers() {
@@ -52,6 +54,23 @@ class SplashViewController_CN: UIViewController {
             self?.progress.progress = Float(progressValue)
 //            self?.progress.setProgress(progressValue, animated: true)
         }
+        
+        viewModel.error.subscribe(observer: self) { [weak self] message in
+            guard !message.isEmpty else { return }
+            guard let strongSelf = self else { return }
+            strongSelf.present(strongSelf.alert,
+                          animated: true,
+                          completion: nil)
+        }
+        
+        viewModel.isHiddenProgressBar.subscribe(observer: self) { [weak self] isHidden in
+            if isHidden { self?.progress.setProgress(0, animated: false) }
+            self?.progress.isHidden = isHidden
+        }
+        
+        viewModel.isHiddenReloadButton.subscribe(observer: self) { [weak self] isHidden in
+            self?.reloadButton.isHidden = isHidden
+        }
     }
     
     
@@ -60,11 +79,49 @@ class SplashViewController_CN: UIViewController {
     private lazy var progress: UIProgressView = {
         let progress = UIProgressView(progressViewStyle: .bar)
         progress.center = view.center
-        progress.setProgress(0, animated: true)
+        progress.setProgress(0, animated: false)
         progress.trackTintColor = .black
         progress.tintColor = .red
         return progress
     }()
+    
+    private lazy var alert: UIAlertController = {
+        let alert = UIAlertController(title: "Ошибка",
+                                      message: viewModel.error.value,
+                                      preferredStyle: .alert)
+        let action = UIAlertAction(title: "Закрыть",
+                                   style: .cancel) { [weak self] _ in
+            self?.viewModel.closeAlert()
+        }
+        alert.addAction(action)
+        return alert
+    }()
+    
+    
+    private lazy var reloadButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.tintColor = .white
+        button.setImage(UIImage(systemName: "arrow.clockwise"), for: .normal)
+        button.imageView?.layer.transform = CATransform3DMakeScale(1.3, 1.3, 0)
+//        button.layer.cornerRadius = 20
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.isHidden = true
+        button.addTarget(self,
+                         action: #selector(reloadButtonTapped),
+                         for: .touchUpInside)
+        return button
+    }()
+    
+    
+    @objc private func reloadButtonTapped() {
+        viewModel.downloadInitialData()
+    }
+    
+    func setupLayout() {
+        reloadButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        reloadButton.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    }
+    
     
     
 //    private lazy var activity: UIActivityIndicatorView = {

@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import BabyNet
 
 
 final class QuoteCardRepository_CN: QuoteCardGateway_CN {
@@ -16,7 +17,7 @@ final class QuoteCardRepository_CN: QuoteCardGateway_CN {
     
     private let network: QuoteCardNetworkRepositoryProtocol_CN
     private let localStorage: QuoteCardPersistenceRepositoryProtocol_CN
-    private let errorHandler: QuoteCardErrorHandlerProtocol_CN
+    private let errorHandler: DomainErrorHandlerProtocol_CN
     private var quoteCardState: QuoteCardStateProtocol_CN
     
     
@@ -24,7 +25,7 @@ final class QuoteCardRepository_CN: QuoteCardGateway_CN {
     
     init(network: QuoteCardNetworkRepositoryProtocol_CN,
          localStorage: QuoteCardPersistenceRepositoryProtocol_CN,
-         errorHandler: QuoteCardErrorHandlerProtocol_CN,
+         errorHandler: DomainErrorHandlerProtocol_CN,
          quoteCardState: QuoteCardStateProtocol_CN) {
         self.network = network
         self.localStorage = localStorage
@@ -64,8 +65,10 @@ final class QuoteCardRepository_CN: QuoteCardGateway_CN {
             quoteCardState.quoteCards.value = domains
             let quotes = domains.map { $0.quote }
             quoteCardState.quotes.value = quotes
-        } catch let error {
-            let domainError = errorHandler.handle(error)
+            throw BabyNetError.badResponse("hello")
+//            throw BabyNetError.badRequest(URLError.init(.notConnectedToInternet))
+        } catch let dataError {
+            let domainError = errorHandler.handle(dataError)
             throw domainError
         }
     }

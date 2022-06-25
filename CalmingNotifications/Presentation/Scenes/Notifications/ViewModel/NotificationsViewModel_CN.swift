@@ -101,8 +101,9 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
                 guard let rndmQuote = self.quotes.randomElement() else { return }
                 let result = try await self.repository.addNew(at: date, quote: rndmQuote)
                 self.notifications.value = result
-            } catch let error {
-                self.error.value = self.errorHandler.handle(error)
+            } catch let domainError {
+                let sceneError = self.errorHandler.handle(domainError)
+                self.handle(sceneError)
             }
             self.isLoading.value = .false
         }
@@ -123,8 +124,9 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
             do {
                 let result = try await self.repository.change(with: notifications.value[index].id, new: date)
                 self.notifications.value = result
-            } catch let error {
-                self.error.value = self.errorHandler.handle(error)
+            } catch let domainError {
+                let sceneError = self.errorHandler.handle(domainError)
+                self.handle(sceneError)
             }
             self.isLoading.value = .false
         }
@@ -136,8 +138,9 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
             do {
                 let result = try await repository.remove(with: self.notifications.value[index].id)
                 self.notifications.value = result
-            } catch let error {
-                self.error.value = self.errorHandler.handle(error)
+            } catch let domainError {
+                let sceneError = self.errorHandler.handle(domainError)
+                self.handle(sceneError)
             }
             self.isLoading.value = .false
         }
@@ -160,13 +163,21 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
             do {
                 let result = try await self.repository.fetch()
                 self.notifications.value = result
-            } catch let error {
-                self.error.value = self.errorHandler.handle(error)
+            } catch let domainError {
+                let sceneError = self.errorHandler.handle(domainError)
+                self.handle(sceneError)
             }
             let result = await self.repository.getAuthorizationStatus()
             self.pushNotificationAuthStatus.value = result
             self.isLoading.value = .false
         }
+    }
+    
+    private func handle(_ sceneError: NotificationsSceneError_CN) {
+        let errorMessage = sceneError.message
+        error.value = errorMessage
+        // there are no action cases yet
+        guard let _ = sceneError.action else { return }
     }
     
     deinit {

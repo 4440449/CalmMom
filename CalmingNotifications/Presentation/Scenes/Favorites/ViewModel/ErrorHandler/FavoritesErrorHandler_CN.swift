@@ -9,29 +9,43 @@
 import Foundation
 
 
-protocol FavoritesErrorHandlerProtocol_CN: PresentationLayerErrorHandlerProtocol_CN { }
+struct FavoritesSceneError_CN: SceneError_CN {
+    enum FavoritesSceneErrorrAction_CN { }
+    
+    let message: String
+    var action: FavoritesSceneErrorrAction_CN?
+}
+
+protocol FavoritesErrorHandlerProtocol_CN: SceneErrorHandlerProtocol_CN {
+    func handle(_ domainError: Error) -> FavoritesSceneError_CN
+}
 
 
 final class FavoritesErrorHandler_CN: FavoritesErrorHandlerProtocol_CN {
     
-    func handle(_ error: Error) -> String {
-        if let error = error as? QuoteCardError_CN {
+    func handle(_ domainError: Error) -> FavoritesSceneError_CN {
+        if let error = domainError as? QuoteCardError_CN {
             switch error {
             case .noInternetConnection:
-                return "Отсутствует интернет соединение, проверьте подключение и попробуйте еще раз"
+                return FavoritesSceneError_CN(message: "Отсутствует интернет соединение, проверьте подключение и попробуйте еще раз",
+                                              action: nil)
             case .networkError:
-                return "Ой, какая-то внешняя проблема, простите! Мы уже все чиним, попробуйте зайти позднее"
-                
-                // TODO: - Как передать разные экшены в алерт?
+                return FavoritesSceneError_CN(message: "Ой, какая-то внешняя проблема, простите! Мы уже все чиним, попробуйте зайти позднее",
+                                              action: nil)
             case .internalLogicError:
-                return "Ой, какая-то внутренняя проблема, пожалуйста отправьте отчет разработчикам"
+                return FavoritesSceneError_CN(message: "Ой, какая-то внутренняя проблема, пожалуйста отправьте отчет разработчикам",
+                                              action: nil)
             case .localStorageError:
-                return "Ошибка хранилища, попробуйте переустановить приложение"
+                return FavoritesSceneError_CN(message: "Ошибка хранилища, попробуйте переустановить приложение",
+                                              action: nil)
             case .unknownError:
-                return "Неизвестная ошибка"
+                return FavoritesSceneError_CN(message: "Неизвестная ошибка",
+                                              action: nil)
             }
         } else {
-            return "Unknown error"
+            return FavoritesSceneError_CN(message: "Unknown error",
+                                          action: nil)
+            
         }
     }
 }

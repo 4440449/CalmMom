@@ -84,9 +84,9 @@ final class MainViewModel_CN: MainViewModelProtocol_CN,
                     quoteCard.isFavorite = true
                     try await self.quoteCardRepository.saveFavorite(quoteCard)
                     self.quoteCards.value[index].isFavorite = true
-                } catch let error {
-                    let errorMessage = self.errorHandler.handle(error)
-                    self.error.value = errorMessage
+                } catch let domainError {
+                    let sceneError = self.errorHandler.handle(domainError)
+                    self.handle(sceneError)
                 }
             }
         case true:
@@ -97,9 +97,9 @@ final class MainViewModel_CN: MainViewModelProtocol_CN,
                     try await self.quoteCardRepository.deleteFavorite(quoteCard)
                     self.quoteCards.value[index].isFavorite = false
                     //                    self.quoteCards.value = result
-                } catch let error {
-                    let errorMessage = self.errorHandler.handle(error)
-                    self.error.value = errorMessage
+                } catch let domainError {
+                    let sceneError = self.errorHandler.handle(domainError)
+                    self.handle(sceneError)
                 }
             }
         }
@@ -125,6 +125,13 @@ final class MainViewModel_CN: MainViewModelProtocol_CN,
         state.quoteCards.subscribe(observer: self) { [weak self] cards in
             self?.quoteCards.value = cards
         }
+    }
+    
+    private func handle(_ sceneError: MainSceneError_CN) {
+        let errorMessage = sceneError.message
+        error.value = errorMessage
+        // there are no action cases yet
+        guard let _ = sceneError.action else { return }
     }
     
 }

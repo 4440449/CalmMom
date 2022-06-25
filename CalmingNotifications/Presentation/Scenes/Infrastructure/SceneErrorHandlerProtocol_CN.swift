@@ -6,9 +6,11 @@
 //  Copyright © 2022 Max. All rights reserved.
 //
 
-import Foundation
 
 
-protocol PresentationLayerErrorHandlerProtocol_CN {
-    func handle(_ error: Error) -> String
+protocol SceneError_CN { }
+
+
+protocol SceneErrorHandlerProtocol_CN {
+//    func handle(_ domainError: Error) -> SceneError_CN
 }

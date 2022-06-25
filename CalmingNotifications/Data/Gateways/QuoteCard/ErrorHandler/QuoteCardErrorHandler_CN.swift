@@ -10,16 +10,12 @@ import Foundation
 import BabyNet
 
 
-
-protocol QuoteCardErrorHandlerProtocol_CN: DataLayerErrorHandlerProtocol_CN { }
-
-
-final class QuoteCardErrorHandler_CN: QuoteCardErrorHandlerProtocol_CN {
+final class QuoteCardErrorHandler_CN: DomainErrorHandlerProtocol_CN {
     
-    func handle(_ error: Error) -> Error {
-        print(" *+*- \(error) *+*-")
-        if let error = error as? BabyNetError {
-            switch error {
+    func handle(_ dataError: Error) -> DomainError_CN {
+        print(" *+*- \(dataError) *+*-")
+        if let domainError = dataError as? BabyNetError {
+            switch domainError {
             case .badRequest(let err):
                 if let err = err as? URLError, (err.code == .notConnectedToInternet || err.code == .dataNotAllowed) {
                     return QuoteCardError_CN.noInternetConnection
@@ -29,9 +25,9 @@ final class QuoteCardErrorHandler_CN: QuoteCardErrorHandlerProtocol_CN {
             default:
                 return QuoteCardError_CN.networkError
             }
-        } else if let _ = error as? QuoteCardNetworkEntityError_CN {
+        } else if let _ = dataError as? QuoteCardNetworkEntityError_CN {
             return QuoteCardError_CN.internalLogicError
-        } else if let _ = error as? QuoteCardLocalStorageError {
+        } else if let _ = dataError as? QuoteCardLocalStorageError {
             return QuoteCardError_CN.localStorageError
         } else {
             return QuoteCardError_CN.unknownError

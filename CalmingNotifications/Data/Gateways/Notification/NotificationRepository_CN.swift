@@ -14,12 +14,12 @@ final class NotificationRepository_CN: NotificationGateway_CN {
     private let network: NotificationNetworkRepositoryProtocol_CN
     private let localStorage: NotificationPersistenceRepositoryProtocol_CN
     private let localPushNotificationsService: LocalPushNotificationsServiceProtocol_CN
-    private let errorHandler: NotificationsErrorHandlerProtocol_CN
+    private let errorHandler: DomainErrorHandlerProtocol_CN
     
     init(network: NotificationNetworkRepositoryProtocol_CN,
          localStorage: NotificationPersistenceRepositoryProtocol_CN,
          localPushNotificatiosnService: LocalPushNotificationsServiceProtocol_CN,
-         errorHandler: NotificationsErrorHandlerProtocol_CN) {
+         errorHandler: DomainErrorHandlerProtocol_CN) {
         self.network = network
         self.localStorage = localStorage
         self.localPushNotificationsService = localPushNotificatiosnService
@@ -38,8 +38,8 @@ final class NotificationRepository_CN: NotificationGateway_CN {
             var domainEntities = try requests.map { try $0.parseToDomain() }
             domainEntities.sort { $0.time < $1.time }
             return domainEntities
-        } catch let error {
-            let domainError = errorHandler.handle(error)
+        } catch let dataError {
+            let domainError = errorHandler.handle(dataError)
             throw domainError
         }
     }
@@ -49,8 +49,8 @@ final class NotificationRepository_CN: NotificationGateway_CN {
             try await localPushNotificationsService.addNewNotification(at: time, quote: quote)
             let result = try await fetch()
             return result
-        } catch let error {
-            let domainError = errorHandler.handle(error)
+        } catch let dataError {
+            let domainError = errorHandler.handle(dataError)
             throw domainError
         }
     }
@@ -60,8 +60,8 @@ final class NotificationRepository_CN: NotificationGateway_CN {
             try await localPushNotificationsService.changeNotification(with: identifier, new: time)
             let result = try await fetch()
             return result
-        } catch let error {
-            let domainError = errorHandler.handle(error)
+        } catch let dataError {
+            let domainError = errorHandler.handle(dataError)
             throw domainError
         }
     }
@@ -71,8 +71,8 @@ final class NotificationRepository_CN: NotificationGateway_CN {
             try await localPushNotificationsService.removeNotification(with: identifire)
             let result = try await fetch()
             return result
-        } catch let error {
-            let domainError = errorHandler.handle(error)
+        } catch let dataError {
+            let domainError = errorHandler.handle(dataError)
             throw domainError
         }
     }

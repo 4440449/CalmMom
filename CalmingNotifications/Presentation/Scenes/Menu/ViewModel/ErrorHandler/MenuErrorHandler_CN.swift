@@ -11,7 +11,7 @@ import Foundation
 
 // TODO: - FIX THE ERROR HANDLER !
 
-protocol MenuErrorHandlerProtocol_CN: PresentationLayerErrorHandlerProtocol_CN { }
+protocol MenuErrorHandlerProtocol_CN: SceneErrorHandlerProtocol_CN { }
 
 
 final class MenuErrorHandler_CN: MenuErrorHandlerProtocol_CN {

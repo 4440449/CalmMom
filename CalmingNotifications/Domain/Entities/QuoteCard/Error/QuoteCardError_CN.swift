@@ -6,10 +6,9 @@
 //  Copyright © 2022 Max. All rights reserved.
 //
 
-import Foundation
 
 
-enum QuoteCardError_CN: Error {
+enum QuoteCardError_CN: DomainError_CN {
     case noInternetConnection
     case networkError
     case internalLogicError

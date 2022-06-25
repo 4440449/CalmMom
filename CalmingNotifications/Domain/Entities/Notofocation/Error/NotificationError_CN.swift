@@ -9,7 +9,7 @@
 import Foundation
 
 
-enum NotificationError_CN: Error {
+enum NotificationError_CN: DomainError_CN {
     case nativeServiceError
     case unknownError
 }

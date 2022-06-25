@@ -69,9 +69,9 @@ final class FavoritesViewModel_CN: FavoritesViewModelProtocol_CN,
                 let result = try await quoteCardRepository.fetchFavorites()
                 self.quoteCards.value = result
                 //                self.quoteCards.value = []
-            } catch let error {
-                let errorMessage = self.errorHandler.handle(error)
-                self.error.value = errorMessage
+            } catch let domainError {
+                let sceneError = self.errorHandler.handle(domainError)
+                self.handle(sceneError)
             }
             self.isLoading.value = .false
         }
@@ -90,9 +90,9 @@ final class FavoritesViewModel_CN: FavoritesViewModelProtocol_CN,
                     quoteCard.isFavorite = true
                     try await self.quoteCardRepository.saveFavorite(quoteCard)
                     self.quoteCards.value[cellWithIndex] = quoteCard
-                } catch let error {
-                    let errorMessage = self.errorHandler.handle(error)
-                    self.error.value = errorMessage
+                } catch let domainError {
+                    let sceneError = self.errorHandler.handle(domainError)
+                    self.handle(sceneError)
                 }
             }
         case true:
@@ -102,9 +102,9 @@ final class FavoritesViewModel_CN: FavoritesViewModelProtocol_CN,
                     quoteCard.isFavorite = false
                     try await self.quoteCardRepository.deleteFavorite(quoteCard)
                     self.quoteCards.value[cellWithIndex] = quoteCard
-                } catch let error {
-                    let errorMessage = self.errorHandler.handle(error)
-                    self.error.value = errorMessage
+                } catch let domainError {
+                    let sceneError = self.errorHandler.handle(domainError)
+                    self.handle(sceneError)
                 }
             }
         }
@@ -120,6 +120,17 @@ final class FavoritesViewModel_CN: FavoritesViewModelProtocol_CN,
             textFrame: setup.textFrame) else { return }
         router.shareButtonTapped(with: quoteCardImage)
     }
+    
+    
+    // MARK: - Private
+
+    private func handle(_ sceneError: FavoritesSceneError_CN) {
+        let errorMessage = sceneError.message
+        error.value = errorMessage
+        // there are no action cases yet
+        guard let _ = sceneError.action else { return }
+    }
+    
     
     deinit {
         //        print("deinit FavoritesViewModel_CN")
