@@ -56,7 +56,7 @@ enum QuoteCardWallPaperDrawSetup_CN {
             ]
             let edgeOffset: CGFloat = 20
             let point = CGPoint(x: edgeOffset,
-                                y: image.size.height / 2)
+                                y: image.size.height / 2.5)
             let size = CGSize(width: image.size.width - (edgeOffset * 2),
                               height: image.size.height)
             let rect = CGRect(origin: point,
