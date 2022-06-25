@@ -83,7 +83,7 @@ class MainViewController_CN: UIViewController,
     private lazy var collectionView: UICollectionView = {
         let collection = UICollectionView(frame: view.bounds,
                                           collectionViewLayout: setupCollectionViewLayout())
-        collection.backgroundColor = UIColor(named: "backgroundColor")
+//        collection.backgroundColor = UIColor(named: "backgroundColor")
         collection.register(MainCollectionViewCell_CN.self,
                             forCellWithReuseIdentifier: MainCollectionViewCell_CN.identifier)
         collection.contentInsetAdjustmentBehavior = .never

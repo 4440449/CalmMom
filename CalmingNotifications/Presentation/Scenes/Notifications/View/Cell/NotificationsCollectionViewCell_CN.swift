@@ -72,10 +72,11 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
     private var titleButton: UIButton = {
         let button = UIButton()
         button.setTitle("", for: .normal)
-        button.setTitleColor(.label, for: .normal)
+        button.setTitleColor(.label, for: .disabled)
         button.titleLabel?.font = UIFont(name: "Montserrat-Bold", size: 18)!
         button.setImage(UIImage(systemName: "bell.fill"),
-                        for: .normal)
+                        for: .disabled)
+        button.isEnabled = false
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -98,7 +99,7 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
     
     
     private lazy var saveButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.setTitle("Сохранить", for: .normal)
         button.setTitleColor(.label, for: .normal)
         button.titleLabel?.font = UIFont(name: "Montserrat-Regular", size: 17)!

@@ -54,7 +54,7 @@ class NotificationsCollectionHeaderReusableView: UICollectionReusableView {
     }()
     
     private lazy var dismissButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.tintColor = .label
         button.setImage(UIImage(systemName: "chevron.down"), for: .normal)
         button.imageView?.layer.transform = CATransform3DMakeScale(1.1, 1.1, 0)
@@ -70,7 +70,7 @@ class NotificationsCollectionHeaderReusableView: UICollectionReusableView {
     }
     
     private lazy var addNewNotificationButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.tintColor = .label
         button.setImage(UIImage(systemName: "plus"), for: .normal)
         button.imageView?.layer.transform = CATransform3DMakeScale(1.1, 1.1, 0)

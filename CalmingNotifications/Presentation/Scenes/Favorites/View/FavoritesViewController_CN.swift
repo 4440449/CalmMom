@@ -71,7 +71,7 @@ class FavoritesViewController_CN: UIViewController,
     private lazy var collectionView: UICollectionView = {
         let collection = UICollectionView(frame: view.bounds,
                                           collectionViewLayout: setupCollectionViewLayout())
-        collection.backgroundColor = UIColor(named: "backgroundColor")
+//        collection.backgroundColor = UIColor(named: "backgroundColor")
         collection.register(FavoritesCollectionViewCell.self,
                             forCellWithReuseIdentifier: FavoritesCollectionViewCell.identifier)
         collection.contentInsetAdjustmentBehavior = .never
