@@ -86,7 +86,7 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
     func sceneWillEnterForeground() {
         loadData()
     }
-
+    
     
     // MARK: - Header interface
     
@@ -148,7 +148,7 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
     
     
     // MARK: - Private
-
+    
     private func loadData() {
         isLoading.value = .true
         task = Task(priority: nil) {
@@ -181,6 +181,6 @@ final class NotificationsViewModel_CN: NotificationsViewModelProtocol_CN,
     }
     
     deinit {
-//        print("deinit NotificationsViewModel_CN")
+        //        print("deinit NotificationsViewModel_CN")
     }
 }

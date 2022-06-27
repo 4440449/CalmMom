@@ -39,15 +39,12 @@ class NotificationsViewController_CN: UIViewController,
         view.addSubview(collectionView)
         view.addSubview(activity)
         setupObservers()
-        //        setNeedsStatusBarAppearanceUpdate()
         viewModel.viewDidLoad()
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        //        print("viewWillLayoutSubviews")
     }
-    
     
     
     // MARK: - Input data flow
@@ -64,26 +61,10 @@ class NotificationsViewController_CN: UIViewController,
                 }
             }
         }
-            
+        
         viewModel.notifications.subscribe(observer: self) { [weak self] _ in
-            //            guard let strongSelf = self else { return }
             self?.selectedIndex = -1
             self?.collectionView.reloadData()
-            
-            //            self?.collectionView.performBatchUpdates({
-            //                self?.collectionView.reloadSections(IndexSet(integer: 0))
-            //            }, completion: { _ in
-            //
-            //            })
-            //                UIView.transition(with: self!.collectionView,
-            //                                  duration: 0.3,
-            //                                  options: [.transitionCrossDissolve, .allowAnimatedContent],
-            //                                  animations: {
-            //                    self?.collectionView.layoutIfNeeded()
-            //                    self?.collectionView.reloadSections(IndexSet(integer: 0))
-            //                    self?.collectionView.reloadData()
-            //                                    self?.collectionView.performBatchUpdates(nil, completion: nil)
-            //                })
         }
         
         viewModel.pushNotificationAuthStatus.subscribe(observer: self) { [weak self] _ in
@@ -108,7 +89,7 @@ class NotificationsViewController_CN: UIViewController,
     
     private lazy var collectionView: UICollectionView = {
         let collection = UICollectionView(frame: view.bounds,
-                                            collectionViewLayout: UICollectionViewFlowLayout())
+                                          collectionViewLayout: UICollectionViewFlowLayout())
         collection.backgroundColor = UIColor(named: "backgroundColor")
         collection.register(NotificationsCollectionViewCell_CN.self,
                             forCellWithReuseIdentifier: NotificationsCollectionViewCell_CN.identifier)
@@ -154,7 +135,6 @@ class NotificationsViewController_CN: UIViewController,
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NotificationsCollectionViewCell_CN.identifier, for: indexPath) as? NotificationsCollectionViewCell_CN else { fatalError() }
         cell.setupDependencies(viewModel: viewModel, index: indexPath.row)
         cell.reloadData(time: viewModel.notifications.value[indexPath.row].time)
-        //        cell.manageInterfaceStyle()
         return cell
     }
     
@@ -214,29 +194,3 @@ class NotificationsViewController_CN: UIViewController,
     }
     
 }
-
-
-//final class TestCollectionView: UICollectionView {
-    
-//    override func layoutIfNeeded() {
-//        UIView.animate(withDuration: 0.5) {
-//            super.layoutIfNeeded()
-//        }
-//    }
-//
-//    override func layoutSubviews() {
-//        UIView.transition(with: self,
-//                          duration: 0.3,
-//                          options: [.transitionCrossDissolve],
-//                          animations: {
-//            super.layoutSubviews()
-//        })
-//    }
-    
-//    override func setNeedsLayout() {
-//        UIView.animate(withDuration: 0.5) {
-//            super.setNeedsLayout()
-//        }
-//    }
-    
-//}

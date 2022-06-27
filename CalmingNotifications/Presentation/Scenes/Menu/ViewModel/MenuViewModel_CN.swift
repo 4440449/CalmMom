@@ -39,7 +39,6 @@ final class MenuViewModel_CN: MenuViewModelProtocol_CN {
     
     // MARK: - State
 
-//    var menuItems = Publisher(value: [MenuItem]())
     var menuItems = Publisher(value: [MenuItem]())
 //    var error = Publisher(value: "")
     

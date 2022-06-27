@@ -61,7 +61,6 @@ class MenuViewController_CN: UIViewController,
                             forCellWithReuseIdentifier: MenuCollectionViewCell.identifier)
         collection.dataSource = self
         collection.delegate = self
-        //        collection.contentInsetAdjustmentBehavior = .never
         collection.showsVerticalScrollIndicator = false
         collection.alwaysBounceVertical = true
         collection.contentInset.top = 70
@@ -77,8 +76,6 @@ class MenuViewController_CN: UIViewController,
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MenuCollectionViewCell.identifier, for: indexPath) as? MenuCollectionViewCell else { fatalError() }
-//        let text = viewModel.menuItems.value[indexPath.row].title.rawValue
-//        cell.setupTitleText(text)
         let item = viewModel.menuItems.value[indexPath.row].item.get()
         cell.setupTitleButton(item.0, image: item.1)
         return cell

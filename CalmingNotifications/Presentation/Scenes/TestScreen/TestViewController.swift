@@ -64,3 +64,29 @@ class ViewController: UIViewController {
         }
     }
 }
+
+
+//final class TestCollectionView: UICollectionView {
+    
+//    override func layoutIfNeeded() {
+//        UIView.animate(withDuration: 0.5) {
+//            super.layoutIfNeeded()
+//        }
+//    }
+//
+//    override func layoutSubviews() {
+//        UIView.transition(with: self,
+//                          duration: 0.3,
+//                          options: [.transitionCrossDissolve],
+//                          animations: {
+//            super.layoutSubviews()
+//        })
+//    }
+    
+//    override func setNeedsLayout() {
+//        UIView.animate(withDuration: 0.5) {
+//            super.setNeedsLayout()
+//        }
+//    }
+    
+//}

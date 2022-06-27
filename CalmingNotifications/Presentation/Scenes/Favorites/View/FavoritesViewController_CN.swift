@@ -71,13 +71,11 @@ class FavoritesViewController_CN: UIViewController,
     private lazy var collectionView: UICollectionView = {
         let collection = UICollectionView(frame: view.bounds,
                                           collectionViewLayout: setupCollectionViewLayout())
-//        collection.backgroundColor = UIColor(named: "backgroundColor")
         collection.register(FavoritesCollectionViewCell.self,
                             forCellWithReuseIdentifier: FavoritesCollectionViewCell.identifier)
         collection.contentInsetAdjustmentBehavior = .never
         collection.alwaysBounceVertical = false
 //        collection.alwaysBounceHorizontal = true
-//        collection.isScrollEnabled = true
         collection.dataSource = self
         collection.delegate = self
         return collection
@@ -165,12 +163,6 @@ class FavoritesViewController_CN: UIViewController,
         dismissButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
     
-//    private func setupEmptyScreenLabelLayout() {
-//        emptyScreenLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
-//        emptyScreenLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-//        emptyScreenLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-//    }
-    
     private func manageEmptyScreenSetup(favoritesIsEmpty: Bool) {
         switch favoritesIsEmpty {
         case true:
@@ -179,13 +171,6 @@ class FavoritesViewController_CN: UIViewController,
             emptyScreenLabel.isHidden = true
         }
     }
-    
-//    private func setupDismissButtonLayout() {
-//        dismissButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
-//        dismissButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
-//        dismissButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
-//        dismissButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-//    }
     
     
     

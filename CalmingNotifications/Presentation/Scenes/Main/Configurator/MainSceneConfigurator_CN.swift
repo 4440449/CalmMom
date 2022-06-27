@@ -11,9 +11,6 @@ import UIKit
 
 final class MainSceneConfigurator_CN: SceneConfiguratorProtocol_CN {
     
-    //    static func configure(navigationContainer: UINavigationController,
-    //                          repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN,
-    //                          quoteCards: [QuoteCard_CN]) -> UIViewController {
     static func configure(navigationContainer: UINavigationController,
                           repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN) -> UIViewController {
         let repo = repositoryDIContainer.quoteCard
@@ -23,8 +20,6 @@ final class MainSceneConfigurator_CN: SceneConfiguratorProtocol_CN {
         let viewModel = MainViewModel_CN(quoteCardRepository: repo,
                                          router: router,
                                          errorHandler: errorHandler)
-        //                                         ,
-        //                                         quoteCards: quoteCards)
         let animator = Animator_CN()
         let view = MainViewController_CN(viewModel: viewModel,
                                          animator: animator,

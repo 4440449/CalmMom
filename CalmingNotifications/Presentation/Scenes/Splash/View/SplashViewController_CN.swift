@@ -35,7 +35,6 @@ class SplashViewController_CN: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(patternImage: UIImage(named: "SplashScreen")!)
-//        view.addSubview(activity)
         view.addSubview(progress)
         view.addSubview(reloadButton)
         setupLayout()
@@ -44,15 +43,8 @@ class SplashViewController_CN: UIViewController {
     }
     
     private func setupObservers() {
-//        viewModel.isLoading.subscribe(observer: self) { [weak self] isLoading in
-//            switch isLoading {
-//            case .true: self?.activity.startAnimating()
-//            case .false: self?.activity.stopAnimating()
-//            }
-//        }
         viewModel.progress.subscribe(observer: self) { [weak self] progressValue in
             self?.progress.progress = Float(progressValue)
-//            self?.progress.setProgress(progressValue, animated: true)
         }
         
         viewModel.error.subscribe(observer: self) { [weak self] message in
@@ -103,7 +95,6 @@ class SplashViewController_CN: UIViewController {
         button.tintColor = .white
         button.setImage(UIImage(systemName: "arrow.clockwise"), for: .normal)
         button.imageView?.layer.transform = CATransform3DMakeScale(1.3, 1.3, 0)
-//        button.layer.cornerRadius = 20
         button.translatesAutoresizingMaskIntoConstraints = false
         button.isHidden = true
         button.addTarget(self,
@@ -123,15 +114,6 @@ class SplashViewController_CN: UIViewController {
     }
     
     
-    
-//    private lazy var activity: UIActivityIndicatorView = {
-//        let indicator = UIActivityIndicatorView()
-//        indicator.center = view.center
-//        indicator.hidesWhenStopped = true
-//        indicator.style = .large
-//        indicator.color = .black
-//        return indicator
-//    }()
 
     deinit {
 //        print("SplashViewController_CN is deinit -------- ")

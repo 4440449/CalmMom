@@ -27,7 +27,8 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
     // MARK: - Cell's setup
     
     func setupDependencies<VM>(viewModel: VM, index: Int) {
-        guard let vm = viewModel as? NotificationsCellViewModelProtocol_CN else { return }
+        guard let vm = viewModel as? NotificationsCellViewModelProtocol_CN else { return
+        }
         self.viewModel = vm
         self.index = index
     }
@@ -56,7 +57,6 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
         animateRemovingDynamicViews(duration: 0.0)
         titleButton.setTitle(" \(time.hh_mm())", for: .normal)
         resetDatePickerTime(time)
-        //        datePicker.date = date
     }
     
     func resetDatePickerTime(_ time: Date) {
@@ -199,12 +199,6 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
     // MARK: - Dynamic views animation
     
     func animateAddingDynamicViews() {
-        //        contentView.addSubview(datePicker)
-        //        contentView.addSubview(saveButton)
-        //        contentView.addSubview(deleteButton)
-        
-        //        setupDynamicViewsLayout()
-        
         self.saveButton.isHidden = false
         self.deleteButton.isHidden = false
         self.datePicker.isHidden = false
@@ -224,31 +218,7 @@ class NotificationsCollectionViewCell_CN: UICollectionViewCell {
             self.saveButton.isHidden = true
             self.deleteButton.isHidden = true
             self.datePicker.isHidden = true
-            
-            //            self.saveButton.removeFromSuperview()
-            //            self.deleteButton.removeFromSuperview()
-            //            self.datePicker.removeFromSuperview()
         }
     }
-    
-    //    private func setupDynamicViewsLayout() {
-    //        NSLayoutConstraint.activate(
-    //            [datePicker.topAnchor.constraint(equalTo: titleButton.bottomAnchor,
-    //                                             constant: 20),
-    //             datePicker.widthAnchor.constraint(equalToConstant: (contentView.bounds.width / 1.3)),
-    //             datePicker.heightAnchor.constraint(equalToConstant: (contentView.bounds.height * 2.3)),
-    //             datePicker.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-    //
-    //             saveButton.topAnchor.constraint(equalTo: contentView.topAnchor,
-    //                                             constant: 10),
-    //             saveButton.trailingAnchor.constraint(equalTo: deleteButton.leadingAnchor,
-    //                                                  constant: -20),
-    //             saveButton.heightAnchor.constraint(equalToConstant: (contentView.bounds.height / 2.5)),
-    //             deleteButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-    //             deleteButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-    //             deleteButton.heightAnchor.constraint(equalToConstant: contentView.bounds.height / 2.5)
-    //            ]
-    //        )
-    //    }
     
 }

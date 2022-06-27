@@ -12,7 +12,7 @@ import UIKit
 final class MainTabBarViewController_CN: UITabBarController {
     
     // MARK: - View's lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTabBarUI()
@@ -20,26 +20,11 @@ final class MainTabBarViewController_CN: UITabBarController {
     
     
     // MARK: - Setup VC
-
+    
     func setupTabBarVC(quoteCards: [QuoteCard_CN],
                        quotes: [String],
                        navigationContainer: UINavigationController,
                        repositoryDIContainer: GatewaysRepositoryDIContainerProtocol_CN) {
-//        let mainVC = MainSceneConfigurator_CN.configure(
-//            navigationContainer: navigationContainer,
-//            repositoryDIContainer: repositoryDIContainer,
-//            quoteCards: quoteCards)
-//        let notificationVC = NotificationSceneConfigurator_CN.configure(
-//            navigationContainer: navigationContainer,
-//            repositoryDIContainer: repositoryDIContainer,
-//            quotes: quotes)
-//        mainVC.tabBarItem = UITabBarItem(title: nil,
-//                                         image: UIImage(systemName: "house"),
-//                                         selectedImage: UIImage(systemName: "house.fill"))
-//        notificationVC.tabBarItem = UITabBarItem(title: nil,
-//                                                 image: UIImage(systemName: "bell"),
-//                                                 selectedImage: UIImage(systemName: "bell.fill"))
-//        viewControllers = [mainVC, notificationVC]
     }
     
     

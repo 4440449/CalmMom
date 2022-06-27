@@ -6,10 +6,5 @@
 //  Copyright © 2022 Max. All rights reserved.
 //
 
-import UIKit
 
-
-protocol SceneConfiguratorProtocol_CN {
-    
-    //static func configure(navigationContainer: UIViewController) -> UIViewController
-}
+protocol SceneConfiguratorProtocol_CN { }

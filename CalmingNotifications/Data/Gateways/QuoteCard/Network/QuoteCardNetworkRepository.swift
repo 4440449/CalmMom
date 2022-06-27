@@ -61,7 +61,4 @@ final class QuoteCardNetworkRepository: QuoteCardNetworkRepositoryProtocol_CN {
     }
 }
 
-//
-// 'https://sruvmguuadrikxjglriw.supabase.co/rest/v1/QuoteCard?select=id' \
-
 
