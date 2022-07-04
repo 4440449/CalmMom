@@ -9,14 +9,14 @@
 import UIKit
 
 class SplashViewController_CN: UIViewController {
-
+    
     // MARK: - Dependencies
-
+    
     private let viewModel: SplashViewModelProtocol_CN
     
     
     // MARK: - Init
-
+    
     init(viewModel: SplashViewModelProtocol_CN,
          nibName nibNameOrNil: String?,
          bundle nibBundleOrNil: Bundle?) {
@@ -31,7 +31,7 @@ class SplashViewController_CN: UIViewController {
     
     
     // MARK: - View's lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(patternImage: UIImage(named: "SplashScreen")!)
@@ -51,8 +51,8 @@ class SplashViewController_CN: UIViewController {
             guard !message.isEmpty else { return }
             guard let strongSelf = self else { return }
             strongSelf.present(strongSelf.alert,
-                          animated: true,
-                          completion: nil)
+                               animated: true,
+                               completion: nil)
         }
         
         viewModel.isHiddenProgressBar.subscribe(observer: self) { [weak self] isHidden in
@@ -114,8 +114,8 @@ class SplashViewController_CN: UIViewController {
     }
     
     
-
+    
     deinit {
-//        print("SplashViewController_CN is deinit -------- ")
+        //        print("SplashViewController_CN is deinit -------- ")
     }
 }
