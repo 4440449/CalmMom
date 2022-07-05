@@ -35,7 +35,6 @@
 		9437606328661BB900884E5A /* NotificationsSceneErrorHandler_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9437606228661BB900884E5A /* NotificationsSceneErrorHandler_CN.swift */; };
 		943760662866501D00884E5A /* QuoteCardError_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943760652866501D00884E5A /* QuoteCardError_CN.swift */; };
 		9437606A2866507B00884E5A /* NotificationError_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943760692866507B00884E5A /* NotificationError_CN.swift */; };
-		9437606E28672C3A00884E5A /* DomainErrorProtocol_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9437606D28672C3A00884E5A /* DomainErrorProtocol_CN.swift */; };
 		943D160527B9A5190071F054 /* QuoteCardState_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943D160427B9A5190071F054 /* QuoteCardState_CN.swift */; };
 		943D160727BA97710071F054 /* MainErrorHandler_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943D160627BA97710071F054 /* MainErrorHandler_CN.swift */; };
 		943D160A27BA9AAF0071F054 /* DrawTextOnImage_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943D160927BA9AAF0071F054 /* DrawTextOnImage_CN.swift */; };
@@ -44,6 +43,8 @@
 		9441818D27AD842B00AD9FDD /* SplashRouter_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9441818C27AD842B00AD9FDD /* SplashRouter_CN.swift */; };
 		9441819027AD848000AD9FDD /* SplashSceneConfigurator_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9441818F27AD848000AD9FDD /* SplashSceneConfigurator_CN.swift */; };
 		9458BDC4285F353100CF3E61 /* QuoteCardNetworkEntity_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9458BDC3285F353100CF3E61 /* QuoteCardNetworkEntity_CN.swift */; };
+		946AF5BF2871DEC70047E508 /* DomainErrorProtocol_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946AF5BE2871DEC70047E508 /* DomainErrorProtocol_CN.swift */; };
+		946AF5D428730B680047E508 /* MenuTransitionDelegate_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946AF5D328730B680047E508 /* MenuTransitionDelegate_CN.swift */; };
 		946B13E527AF398E00AF3BBB /* SceneState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B13E427AF398E00AF3BBB /* SceneState.swift */; };
 		946B13E727B0014C00AF3BBB /* PushNotificationsAuthStatus_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B13E627B0014C00AF3BBB /* PushNotificationsAuthStatus_CN.swift */; };
 		946B13E927B1D5F000AF3BBB /* AppColors_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B13E827B1D5F000AF3BBB /* AppColors_CN.swift */; };
@@ -120,7 +121,6 @@
 		9437606228661BB900884E5A /* NotificationsSceneErrorHandler_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSceneErrorHandler_CN.swift; sourceTree = "<group>"; };
 		943760652866501D00884E5A /* QuoteCardError_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCardError_CN.swift; sourceTree = "<group>"; };
 		943760692866507B00884E5A /* NotificationError_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationError_CN.swift; sourceTree = "<group>"; };
-		9437606D28672C3A00884E5A /* DomainErrorProtocol_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainErrorProtocol_CN.swift; sourceTree = "<group>"; };
 		943D160427B9A5190071F054 /* QuoteCardState_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCardState_CN.swift; sourceTree = "<group>"; };
 		943D160627BA97710071F054 /* MainErrorHandler_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainErrorHandler_CN.swift; sourceTree = "<group>"; };
 		943D160927BA9AAF0071F054 /* DrawTextOnImage_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawTextOnImage_CN.swift; sourceTree = "<group>"; };
@@ -129,6 +129,8 @@
 		9441818C27AD842B00AD9FDD /* SplashRouter_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashRouter_CN.swift; sourceTree = "<group>"; };
 		9441818F27AD848000AD9FDD /* SplashSceneConfigurator_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashSceneConfigurator_CN.swift; sourceTree = "<group>"; };
 		9458BDC3285F353100CF3E61 /* QuoteCardNetworkEntity_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCardNetworkEntity_CN.swift; sourceTree = "<group>"; };
+		946AF5BE2871DEC70047E508 /* DomainErrorProtocol_CN.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainErrorProtocol_CN.swift; sourceTree = "<group>"; };
+		946AF5D328730B680047E508 /* MenuTransitionDelegate_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTransitionDelegate_CN.swift; sourceTree = "<group>"; };
 		946B13E427AF398E00AF3BBB /* SceneState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneState.swift; sourceTree = "<group>"; };
 		946B13E627B0014C00AF3BBB /* PushNotificationsAuthStatus_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationsAuthStatus_CN.swift; sourceTree = "<group>"; };
 		946B13E827B1D5F000AF3BBB /* AppColors_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors_CN.swift; sourceTree = "<group>"; };
@@ -381,6 +383,22 @@
 				9458BDC3285F353100CF3E61 /* QuoteCardNetworkEntity_CN.swift */,
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		946AF5BD2871DEC70047E508 /* DomainErrorsGateway */ = {
+			isa = PBXGroup;
+			children = (
+				946AF5BE2871DEC70047E508 /* DomainErrorProtocol_CN.swift */,
+			);
+			path = DomainErrorsGateway;
+			sourceTree = "<group>";
+		};
+		946AF5D528737CD80047E508 /* CustomTransition */ = {
+			isa = PBXGroup;
+			children = (
+				946AF5D328730B680047E508 /* MenuTransitionDelegate_CN.swift */,
+			);
+			path = CustomTransition;
 			sourceTree = "<group>";
 		};
 		946B13EA27B2BE2800AF3BBB /* Favorites */ = {
@@ -680,6 +698,7 @@
 			isa = PBXGroup;
 			children = (
 				50A1CBA2278F6C92000F9BFC /* MenuViewController_CN.swift */,
+				946AF5D528737CD80047E508 /* CustomTransition */,
 				946B141627B5C3FE00AF3BBB /* Cell */,
 			);
 			path = View;
@@ -698,7 +717,7 @@
 			isa = PBXGroup;
 			children = (
 				94EFC9A727923DF300CC6B47 /* Entities */,
-				9437606D28672C3A00884E5A /* DomainErrorProtocol_CN.swift */,
+				946AF5BD2871DEC70047E508 /* DomainErrorsGateway */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -980,6 +999,7 @@
 				946B13F027B2BE8800AF3BBB /* FavoritesSceneConfigurator_CN.swift in Sources */,
 				94EFC9BC27924B3900CC6B47 /* MainRouter_CN.swift in Sources */,
 				9441818D27AD842B00AD9FDD /* SplashRouter_CN.swift in Sources */,
+				946AF5BF2871DEC70047E508 /* DomainErrorProtocol_CN.swift in Sources */,
 				943760662866501D00884E5A /* QuoteCardError_CN.swift in Sources */,
 				50A1CB9F278F63B0000F9BFC /* MainTabBarViewController_CN.swift in Sources */,
 				943760552865D1E100884E5A /* QuoteCardErrorHandler_CN.swift in Sources */,
@@ -1002,6 +1022,7 @@
 				946B142027B6F93E00AF3BBB /* DateFormatter_CN.swift in Sources */,
 				94EFC9D227924EF500CC6B47 /* NotificationSceneConfigurator_CN.swift in Sources */,
 				9441818A27AD83F500AD9FDD /* SplashViewModel_CN.swift in Sources */,
+				946AF5D428730B680047E508 /* MenuTransitionDelegate_CN.swift in Sources */,
 				94EFC9D8279252AD00CC6B47 /* MenuViewModel_CN.swift in Sources */,
 				943D160A27BA9AAF0071F054 /* DrawTextOnImage_CN.swift in Sources */,
 				946B141827B5C41600AF3BBB /* MenuCollectionViewCell.swift in Sources */,
@@ -1038,7 +1059,6 @@
 				946B13F627B2BEF200AF3BBB /* FavoritesRouter_CN.swift in Sources */,
 				94EFC9B32792409100CC6B47 /* QuoteCardNetworkRepository.swift in Sources */,
 				947850F8279E2F7000F1EEAC /* LocalPushNotificationServiceDTOMapperWrapper_CN.swift in Sources */,
-				9437606E28672C3A00884E5A /* DomainErrorProtocol_CN.swift in Sources */,
 				50A1CBA3278F6C92000F9BFC /* MenuViewController_CN.swift in Sources */,
 				946B142827B6FF3500AF3BBB /* MenuItemRepository_CN.swift in Sources */,
 			);
