@@ -45,22 +45,12 @@ class NotificationsViewController_CN: UIViewController,
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
     }
+
     
-    
-    // MARK: - Input data flow
+    // MARK: - Observing
     
     private func setupObservers() {
-        if let sceneDelegate =
-            UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
-            sceneDelegate.sceneState.subscribe(observer: self) { [weak self] sceneState in
-                switch sceneState {
-                case .foreground:
-                    self?.viewModel.sceneWillEnterForeground()
-                case .background:
-                    return
-                }
-            }
-        }
+        NotificationCenter.default.addObserver(self, selector: #selector(sceneWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
         
         viewModel.notifications.subscribe(observer: self) { [weak self] _ in
             self?.selectedIndex = -1
@@ -77,6 +67,10 @@ class NotificationsViewController_CN: UIViewController,
             case .false: self?.activity.stopAnimating()
             }
         }
+    }
+    
+    @objc private func sceneWillEnterForeground() {
+        viewModel.sceneWillEnterForeground()
     }
     
     
