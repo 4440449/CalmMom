@@ -35,7 +35,11 @@ class MainCollectionViewCell_CN: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        [mainImage, quoteLabel, likeButton, shareButton].forEach { self.contentView.addSubview($0) }
+        self.contentView.addSubview(mainImage)
+        self.contentView.addSubview(quoteLabel)
+        self.contentView.addSubview(likeButton)
+        self.contentView.addSubview(shareButton)
+//        [mainImage, quoteLabel, likeButton, shareButton].forEach { self.contentView.addSubview($0) }
         setupLayout()
     }
     
@@ -69,10 +73,10 @@ class MainCollectionViewCell_CN: UICollectionViewCell {
     }()
     
     private lazy var likeButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "heart"), for: .normal)
-        button.setImage(UIImage(systemName: "heart.fill"), for: .selected)
-        button.imageView?.layer.transform = CATransform3DMakeScale(1.4, 1.4, 0)
+        let button = LikeButton_CN()
+        button.setImage(UIImage(named: "heart"), for: .normal)
+        button.setImage(UIImage(named: "heart.fill"), for: .selected)
+        button.imageView?.layer.transform = CATransform3DMakeScale(1.2, 1.2, 0)
         button.tintColor = .systemRed
         button.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -86,15 +90,19 @@ class MainCollectionViewCell_CN: UICollectionViewCell {
     
     func setLikeButtonsState(isFavorite: Bool) {
         switch isFavorite {
-        case true: likeButton.isSelected = true
-        case false: likeButton.isSelected = false
+        case true:
+            likeButton.isSelected = true
+        case false:
+            likeButton.isSelected = false
         }
     }
     
     private lazy var shareButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "square.and.arrow.down"), for: .normal)
-        button.imageView?.layer.transform = CATransform3DMakeScale(1.4, 1.4, 0)
+//        button.setImage(UIImage(systemName: "square.and.arrow.down"), for: .normal)
+//        button.imageView?.transform = CGAffineTransform(scaleX: 1.4, y: 1.4)
+        button.setImage(UIImage(named: "square.and.arrow.down"), for: .normal)
+        button.imageView?.layer.transform = CATransform3DMakeScale(1.2, 1.2, 0)
         button.tintColor = .white
         button.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -121,10 +129,46 @@ class MainCollectionViewCell_CN: UICollectionViewCell {
         likeButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
         likeButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        shareButton.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -43).isActive = true
+        shareButton.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -41).isActive = true // -43
         shareButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor, constant: 33).isActive = true
         shareButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
         shareButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+    }
+    
+    // Animation
+    func discardPreparingAnimation() {
+        self.quoteLabel.alpha = 1
+        self.likeButton.alpha = 1
+        self.shareButton.alpha = 1
+    }
+    
+    func prepareFadeAnimation() {
+        self.quoteLabel.alpha = 0.01
+        self.likeButton.alpha = 0.01
+        self.shareButton.alpha = 0.01
+    }
+    
+    func startFadeAnimation() {
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 1,
+                           delay: 0.5,
+                           usingSpringWithDamping: 1,
+                           initialSpringVelocity: 0,
+                           options: .curveEaseInOut) {
+                self.quoteLabel.alpha = 1
+            } completion: { _ in
+                UIView.animate(withDuration: 0.7,
+                               delay: 0,
+                               usingSpringWithDamping: 1,
+                               initialSpringVelocity: 0.2,
+                               options: .curveEaseIn,
+                               animations: {
+                    self.likeButton.alpha = 1
+                    self.shareButton.alpha = 1
+                },
+                               completion: nil)
+            }
+        }
     }
     
 }
