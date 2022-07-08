@@ -15,7 +15,7 @@ protocol SplashViewModelProtocol_CN {
     var isHiddenProgressBar: Publisher<Bool> { get }
     var isHiddenReloadButton: Publisher<Bool> { get }
     var error: Publisher<String> { get }
-    func downloadInitialData()
+    func reloadButtonTapped()
     func closeAlert()
 }
 
@@ -56,7 +56,7 @@ final class SplashViewModel_CN: SplashViewModelProtocol_CN {
     
     // MARK: - Interface
     
-    func downloadInitialData() {
+    func reloadButtonTapped() {
         isHiddenProgressBar.value = false
         isHiddenReloadButton.value = true
         quoteTask = Task {
