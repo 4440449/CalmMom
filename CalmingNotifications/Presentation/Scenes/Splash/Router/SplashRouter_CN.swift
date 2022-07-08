@@ -35,21 +35,36 @@ final class SplashRouter_CN: SplashRouterProtocol_CN {
     //    func startMainFlow(quoteCards: [QuoteCard_CN]) {
     func startMainFlow() {
         DispatchQueue.main.async {
-            let navigationContainer = UINavigationController()
-            navigationContainer.navigationBar.isHidden = true
+//            let navigationContainer = UINavigationController()
+//            navigationContainer.navigationBar.isHidden = true
 //            let startVC = MainTabBarConfigurator_CN.configure(
 //                quoteCards: quoteCards,
 //                navigationContainer: navigationContainer,
 //                repositoryDIContainer: self.repositoryDIContainer )
-            let startVC = MainSceneConfigurator_CN.configure(
-                navigationContainer: navigationContainer,
-                repositoryDIContainer: self.repositoryDIContainer)
-            navigationContainer.viewControllers = [startVC]
-            if let sceneDelegate =
-                UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
-                sceneDelegate.window?.rootViewController = navigationContainer
-                sceneDelegate.window?.makeKeyAndVisible() // надо?
-            }
+            guard let sceneDelegate =
+                    UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
+            guard let root = sceneDelegate.window?.rootViewController as? UINavigationController else { return }
+            let startVC = MainSceneConfigurator_CN.configure(navigationContainer: root,
+                                                             repositoryDIContainer: self.repositoryDIContainer)
+            root.pushViewController(startVC, animated: true)
+            root.viewControllers = [startVC]
+//            let startVC = MainSceneConfigurator_CN.configure(
+//                navigationContainer: navigationContainer,
+//                repositoryDIContainer: self.repositoryDIContainer)
+//            if let sceneDelegate =
+//                UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
+//                let root = sceneDelegate.window?.rootViewController
+//                guard let root = root as? UINavigationController else { return }
+//                root.viewControllers = [startVC]
+//                root.pushViewController(startVC, animated: true)
+//            }
+//            navigationContainer.viewControllers = [startVC]
+            
+//            if let sceneDelegate =
+//                UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
+//                sceneDelegate.window?.rootViewController = navigationContainer
+//                sceneDelegate.window?.makeKeyAndVisible() // надо?
+//            }
         }
     }
     
