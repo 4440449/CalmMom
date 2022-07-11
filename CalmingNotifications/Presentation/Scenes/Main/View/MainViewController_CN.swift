@@ -55,8 +55,6 @@ class MainViewController_CN: UIViewController,
     private func setupObservers() {
         viewModel.quoteCards.subscribe(observer: self) { [weak self] _ in
             guard let strongSelf = self else { return }
-            //            guard let visibleIndexes = self?.collectionView.indexPathsForVisibleItems else { return }
-            //            self?.collectionView.reloadItems(at: visibleIndexes)
             strongSelf.collectionView.reloadItems(at: strongSelf.collectionView.cachedIndexPaths())
             
         }
@@ -84,6 +82,7 @@ class MainViewController_CN: UIViewController,
                             forCellWithReuseIdentifier: MainCollectionViewCell_CN.identifier)
         collection.contentInsetAdjustmentBehavior = .never
         collection.alwaysBounceVertical = false
+        collection.alwaysBounceHorizontal = true
         collection.dataSource = self
         collection.delegate = self
         return collection
@@ -92,6 +91,7 @@ class MainViewController_CN: UIViewController,
     private var menuButton: UIButton = {
         let button = UIButton()
         button.tintColor = .white
+        button.alpha = 0.01
         button.setImage(UIImage(systemName: "ellipsis"), for: .normal)
         button.imageView?.layer.transform = CATransform3DMakeScale(1.3, 1.3, 0)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -108,6 +108,7 @@ class MainViewController_CN: UIViewController,
     private var closeButton: UIButton = {
         let button = UIButton()
         button.tintColor = .white
+        button.alpha = 0.01
         button.setImage(UIImage(systemName: "chevron.down"), for: .normal)
         button.imageView?.layer.transform = CATransform3DMakeScale(1.3, 1.3, 0)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -136,8 +137,6 @@ class MainViewController_CN: UIViewController,
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.quoteCards.value.count
     }
-    
-    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell_CN.identifier, for: indexPath) as? MainCollectionViewCell_CN else { fatalError() }
@@ -182,25 +181,50 @@ class MainViewController_CN: UIViewController,
     }
     
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //        print("did select item at --> \(indexPath.row)")
-    }
-    
-    
     // MARK: - Animation
     
-    // Checkmark
-    private func successAnimation() {
-        animator.checkMarkAnimation(for: view)
+    // Collection items fade
+    private var collectionItemsWasHide = true
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionItemsWasHide ? showAnimation() : hideAnimation()
+    }
+
+    private func showAnimation() {
+        UIView.animate(withDuration: 1,
+                       delay: 0.1,
+                       usingSpringWithDamping: 1,
+                       initialSpringVelocity: 0,
+                       options: .curveEaseInOut,
+                       animations: {
+            self.closeButton.alpha = 1
+            self.menuButton.alpha = 1
+        },
+                       completion: { _ in
+            self.collectionItemsWasHide = false
+        })
     }
     
-    // Fade
+    private func hideAnimation() {
+        UIView.animate(withDuration: 1,
+                       delay: 0.1,
+                       usingSpringWithDamping: 1,
+                       initialSpringVelocity: 0,
+                       options: .curveEaseInOut,
+                       animations: {
+            self.closeButton.alpha = 0.01
+            self.menuButton.alpha = 0.01
+        },
+                       completion: { _ in
+            self.collectionItemsWasHide = true
+        })
+    }
+    
+    // Cells fade
     private var cellIndexWasAnimated = -1
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-//        print("willDisplay == \(indexPath.row)")
         guard let cell = cell as? MainCollectionViewCell_CN else { return }
-        // Если подготавливаемая ячейка (indexPath.row) равна ячейке, на которой уже показывал анимацию (cellIndexWasAnimated), тогда подготовку отменяю. Отменяющая магия нужна для случая, когда ячейку дергаю, индексы приходят следующей ячейки, но фактически видимая ячейка остается прежняя, и когда после этого нажимаю что-то, что вызывает метод коллекшн релоад дата, происходит отработка метода подготовки как бы для следующей ячейки, но фактически все применяется для текущей и происходит баг - альфа элементов сетится в 0.01.
         if indexPath.row != cellIndexWasAnimated {
             cell.prepareFadeAnimation()
         } else {
@@ -209,32 +233,20 @@ class MainViewController_CN: UIViewController,
     }
     
     func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-//        print("didEndDisplaying == \(indexPath.row)")
         guard let visibleCell = collectionView.visibleCells[0] as? MainCollectionViewCell_CN else { return }
         let visibleIndex = collectionView.indexPathsForVisibleItems[0].row
         // Проверяю показывал ли я уже анимацию для этого индекса ячейки
-        guard cellIndexWasAnimated != visibleIndex else { return }
+        guard visibleIndex != cellIndexWasAnimated else { return }
         // Если индексы не совпадают (не показывал) - показываю
         visibleCell.startFadeAnimation()
         // Записываю индекс ячейки у которой показал анимацию
         cellIndexWasAnimated = visibleIndex
     }
     
-}
-
-
-extension UICollectionView {
-    func cachedIndexPaths() -> [IndexPath] {
-        var cachedIndexPaths = [IndexPath]()
-        for s in 0..<self.numberOfSections {
-            for i in 0..<self.numberOfItems(inSection: s) {
-                let indexPath = IndexPath(item: i, section: s)
-                if let _ = self.cellForItem(at: indexPath) {
-                    cachedIndexPaths.append(indexPath)
-                }
-            }
-        }
-        print(cachedIndexPaths)
-        return cachedIndexPaths
+    // Checkmark
+    private func successAnimation() {
+        animator.checkMarkAnimation(for: view)
     }
+    
 }
+

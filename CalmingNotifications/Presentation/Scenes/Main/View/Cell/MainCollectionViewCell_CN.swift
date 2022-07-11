@@ -39,7 +39,6 @@ class MainCollectionViewCell_CN: UICollectionViewCell {
         self.contentView.addSubview(quoteLabel)
         self.contentView.addSubview(likeButton)
         self.contentView.addSubview(shareButton)
-//        [mainImage, quoteLabel, likeButton, shareButton].forEach { self.contentView.addSubview($0) }
         setupLayout()
     }
     
@@ -47,14 +46,14 @@ class MainCollectionViewCell_CN: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    // MARK: - UI
-    
     func fillContent(quote: String, image: UIImage) {
         quoteLabel.text = quote
         mainImage.image = image
     }
     
+    // MARK: - UI
+
+    // Properties
     private var mainImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
@@ -76,8 +75,9 @@ class MainCollectionViewCell_CN: UICollectionViewCell {
         let button = LikeButton_CN()
         button.setImage(UIImage(named: "heart"), for: .normal)
         button.setImage(UIImage(named: "heart.fill"), for: .selected)
+        button.setImage(UIImage(named: "heart.transparent"), for: [.normal, .highlighted])
+        button.setImage(UIImage(named: "heart.fill.transparent"), for: [.selected, .highlighted])
         button.imageView?.layer.transform = CATransform3DMakeScale(1.2, 1.2, 0)
-        button.tintColor = .systemRed
         button.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -99,11 +99,8 @@ class MainCollectionViewCell_CN: UICollectionViewCell {
     
     private lazy var shareButton: UIButton = {
         let button = UIButton()
-//        button.setImage(UIImage(systemName: "square.and.arrow.down"), for: .normal)
-//        button.imageView?.transform = CGAffineTransform(scaleX: 1.4, y: 1.4)
-        button.setImage(UIImage(named: "square.and.arrow.down"), for: .normal)
+        button.setImage(UIImage(named: "square.and.arrow.up"), for: .normal)
         button.imageView?.layer.transform = CATransform3DMakeScale(1.2, 1.2, 0)
-        button.tintColor = .white
         button.addTarget(self, action: #selector(shareButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -114,6 +111,7 @@ class MainCollectionViewCell_CN: UICollectionViewCell {
         viewModel?.shareButtonTapped(cellWithIndex: index)
     }
     
+    // Layout
     private func setupLayout() {
         mainImage.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         mainImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
@@ -150,18 +148,18 @@ class MainCollectionViewCell_CN: UICollectionViewCell {
     
     func startFadeAnimation() {
         DispatchQueue.main.async {
-            UIView.animate(withDuration: 1,
+            UIView.animate(withDuration: 1.5,
                            delay: 0.5,
                            usingSpringWithDamping: 1,
                            initialSpringVelocity: 0,
                            options: .curveEaseInOut) {
                 self.quoteLabel.alpha = 1
             } completion: { _ in
-                UIView.animate(withDuration: 0.7,
-                               delay: 0,
+                UIView.animate(withDuration: 1.3,
+                               delay: 0.1,
                                usingSpringWithDamping: 1,
-                               initialSpringVelocity: 0.2,
-                               options: .curveEaseIn,
+                               initialSpringVelocity: 0,
+                               options: .curveEaseInOut,
                                animations: {
                     self.likeButton.alpha = 1
                     self.shareButton.alpha = 1
