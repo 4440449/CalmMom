@@ -54,8 +54,15 @@ class FavoritesViewController_CN: UIViewController,
     
     private func setupObservers() {
         viewModel.quoteCards.subscribe(observer: self) { [weak self] cards in
-            self?.collectionView.reloadData()
-            self?.manageEmptyScreenSetup(favoritesIsEmpty: cards.isEmpty)
+            guard let strongSelf = self else { return }
+            strongSelf.manageEmptyScreenSetup(favoritesIsEmpty: cards.isEmpty)
+            //  Обновляю закэшированную секцию, т.к. начальные данные приходят асинхронно после инициализации коллекции.
+            for s in 0..<strongSelf.collectionView.numberOfSections {
+                if strongSelf.collectionView.numberOfItems(inSection: s) == 0 {
+                    strongSelf.collectionView.reloadSections(IndexSet(integer: s))
+                }
+            }
+            strongSelf.collectionView.reloadItems(at: strongSelf.collectionView.cachedIndexPaths())
         }
         
         viewModel.isLoading.subscribe(observer: self) { [weak self] isLoading in
@@ -75,7 +82,7 @@ class FavoritesViewController_CN: UIViewController,
                             forCellWithReuseIdentifier: FavoritesCollectionViewCell.identifier)
         collection.contentInsetAdjustmentBehavior = .never
         collection.alwaysBounceVertical = false
-//        collection.alwaysBounceHorizontal = true
+        collection.alwaysBounceHorizontal = true
         collection.dataSource = self
         collection.delegate = self
         return collection
@@ -83,7 +90,7 @@ class FavoritesViewController_CN: UIViewController,
     
     private var dismissButton: UIButton = {
         let button = UIButton()
-        button.tintColor = .white
+        button.tintColor = .label
         button.setImage(UIImage(systemName: "chevron.down"), for: .normal)
         button.imageView?.layer.transform = CATransform3DMakeScale(1.3, 1.3, 0)
         button.layer.cornerRadius = 20
@@ -172,10 +179,72 @@ class FavoritesViewController_CN: UIViewController,
         }
     }
     
+    // MARK: - Animation
+    
+    // Collection items fade
+    private var collectionItemsWasHide = true
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionItemsWasHide ? showAnimation() : hideAnimation()
+    }
+    
+    private func showAnimation() {
+        UIView.animate(withDuration: 1,
+                       delay: 0.1,
+                       usingSpringWithDamping: 1,
+                       initialSpringVelocity: 0,
+                       options: .curveEaseInOut,
+                       animations: {
+            self.dismissButton.alpha = 1
+        },
+                       completion: { _ in
+            self.collectionItemsWasHide = false
+        })
+    }
+    
+    private func hideAnimation() {
+        UIView.animate(withDuration: 1,
+                       delay: 0.1,
+                       usingSpringWithDamping: 1,
+                       initialSpringVelocity: 0,
+                       options: .curveEaseInOut,
+                       animations: {
+            self.dismissButton.alpha = 0.01
+        },
+                       completion: { _ in
+            self.collectionItemsWasHide = true
+        })
+    }
+    
+    // Cells fade
+    private var cellIndexWasAnimated = -1
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard let cell = cell as? FavoritesCollectionViewCell else { return }
+        if indexPath.row != cellIndexWasAnimated {
+            cell.prepareFadeAnimation()
+        } else {
+            cell.discardPreparingAnimation()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard let visibleCell = collectionView.visibleCells[0] as? FavoritesCollectionViewCell else { return }
+        let visibleIndex = collectionView.indexPathsForVisibleItems[0].row
+        // Проверяю показывал ли я уже анимацию для этого индекса ячейки
+        guard visibleIndex != cellIndexWasAnimated else { return }
+        // Если индексы не совпадают (не показывал) - показываю
+        visibleCell.startFadeAnimation()
+        // Записываю индекс ячейки у которой показал анимацию
+        cellIndexWasAnimated = visibleIndex
+    }
+    
+    
+    
     
     
     deinit {
-//        print("deinit FavoritesViewController_CN")
+        //        print("deinit FavoritesViewController_CN")
     }
     
 }

@@ -41,6 +41,7 @@ final class FavoritesViewModel_CN: FavoritesViewModelProtocol_CN,
         self.router = router
         self.quoteCardRepository = quoteCardRepository
         self.errorHandler = errorHandler
+//        loadInitialState()
     }
     
     
@@ -68,12 +69,19 @@ final class FavoritesViewModel_CN: FavoritesViewModelProtocol_CN,
             do {
                 let result = try await quoteCardRepository.fetchFavorites()
                 self.quoteCards.value = result
-                //                self.quoteCards.value = []
             } catch let domainError {
                 let sceneError = self.errorHandler.handle(domainError)
                 self.handle(sceneError)
             }
             self.isLoading.value = .false
+        }
+    }
+    
+    private func loadInitialState() {
+        quoteTask = Task {
+            let result = try await quoteCardRepository.fetchFavorites()
+    //        print(result.count)
+            self.quoteCards.value = result
         }
     }
     
