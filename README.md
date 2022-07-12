@@ -2,7 +2,7 @@
 #### Модуль проекта [#мамавыдохни](https://github.com/4440449/Mom_Exhale)
 
 
-## Tech spec
+## Tech specs
 - MVVM + R + State(два экрана синхронят данные между собой). Элементы Clean architecture
 - Каждый экран выделен в отдельную сцену со своим окружением (Configurator, VM, Router)
 - DI для каждой сцены со сбокрой через static объект
@@ -39,21 +39,20 @@
 Начиная с возникновения ошибки в Репозитории далее происходит ее [маппинг в Ошибку бизнес слоя](https://github.com/4440449/CalmMom/blob/master/CalmingNotifications/Data/Gateways/QuoteCard/ErrorHandler/QuoteCardErrorHandler_CN.swift), которая далее передается в Презентейшн слой, в котором, *в зависимости от сцены* могут быть [добавлены дополнительные действия (Actions)](https://github.com/4440449/CalmMom/blob/master/CalmingNotifications/Presentation/Scenes/Splash/ViewModel/ErrorHandler/SplashErrorHandler_CN.swift), например - предложить пользователю загрузить данные снова, линк в настройки и т.п.
         
 * Финальный продукт [запакован в SPM](https://github.com/4440449/CalmingNotificationsModule) и инъектися в основной проект, как обычный пакет.  
-Практически вся реализация модуля остается приватной для изменений и вызовов из основного проекта. Точка входа - единственный публичный static метод, который возвращает готовый UIViewController.  
+Практически вся реализация модуля остается приватной для изменений и вызовов из основного проекта. Точка входа - единственный публичный static метод, который возвращает готовый UIViewController  
 
 
-
-## TODO:
+## TODO
 - Возможность работать полностью оффлайн
 - Апнуть нотификации до Remote
 - In app handling dark mode
 
 
 
-# HOW TO USE APP:
+# HOW TO USE APP
 
 
 
-# MARKETING: 
+# MARKETING 
 
 
