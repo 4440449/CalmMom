@@ -2,7 +2,7 @@
 #### Модуль проекта [#мамавыдохни](https://github.com/4440449/Mom_Exhale)
 
 
-##Tech spec
+## Tech spec
 - MVVM + R + State(два экрана синхронят данные между собой). Элементы Clean architecture
 - Каждый экран выделен в отдельную сцену со своим окружением (Configurator, VM, Router)
 - DI для каждой сцены со сбокрой через static объект
@@ -17,9 +17,9 @@
 - Custom navigation transitions
  
  
-##Features 
+## Features 
 * Плоский Navigation Flow, **по схеме:**
-![Alt text](README_ASSETS/NavigationFlow.png "Navigation flow")
+![Alt text](README_ASSETS/NavigationFlow.png "Navigation flow")  
 Роутер 1 дергает Конфигуратор 2 и передает:
     1. **Navigation container**  
     Обычный рут навигейшн контроллер.
@@ -41,17 +41,17 @@
 
 
 
-##TODO:
+## TODO:
 - Возможность работать полностью оффлайн;
 - Апнуть нотификации до Remote;
 - In app handling dark mode
 
 
 
-#HOW TO USE APP:
+# HOW TO USE APP:
 
 
 
-#MARKETING: 
+# MARKETING: 
 
 
