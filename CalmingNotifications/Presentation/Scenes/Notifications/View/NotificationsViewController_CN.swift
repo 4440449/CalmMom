@@ -45,7 +45,7 @@ class NotificationsViewController_CN: UIViewController,
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
     }
-
+    
     
     // MARK: - Observing
     
@@ -54,11 +54,11 @@ class NotificationsViewController_CN: UIViewController,
         
         viewModel.notifications.subscribe(observer: self) { [weak self] _ in
             self?.selectedIndex = -1
-            self?.collectionView.reloadData()
+            self?.collectionView.reloadSections(IndexSet(integer: 0))
         }
         
         viewModel.pushNotificationAuthStatus.subscribe(observer: self) { [weak self] _ in
-            self?.collectionView.reloadData()
+            self?.collectionView.reloadSections(IndexSet(integer: 0))
         }
         
         viewModel.isLoading.subscribe(observer: self) { [weak self] isLoading in
@@ -92,7 +92,6 @@ class NotificationsViewController_CN: UIViewController,
                             withReuseIdentifier: NotificationsCollectionHeaderReusableView.identifier)
         collection.dataSource = self
         collection.delegate = self
-        //        collection.contentInsetAdjustmentBehavior = .never
         collection.showsVerticalScrollIndicator = false
         collection.alwaysBounceVertical = true
         collection.contentInset.bottom = 40
