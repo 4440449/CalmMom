@@ -20,7 +20,6 @@
 		94057F2027975249009B5A2B /* NotificationsCollectionHeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94057F1F27975249009B5A2B /* NotificationsCollectionHeaderReusableView.swift */; };
 		9426DB9227C181520057CB68 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9426DB9127C181520057CB68 /* TestViewController.swift */; };
 		9426DB9427C1E5570057CB68 /* Animator_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9426DB9327C1E5570057CB68 /* Animator_CN.swift */; };
-		94376043285F5B2400884E5A /* BabyNet in Frameworks */ = {isa = PBXBuildFile; productRef = 94376042285F5B2400884E5A /* BabyNet */; };
 		9437604C2861F94900884E5A /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 943760472861F74300884E5A /* Montserrat-Regular.ttf */; };
 		9437604D2861F94900884E5A /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 943760492861F74300884E5A /* Montserrat-Thin.ttf */; };
 		9437604E2861F94900884E5A /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9437604B2861F74300884E5A /* Montserrat-Bold.ttf */; };
@@ -41,6 +40,8 @@
 		9441818A27AD83F500AD9FDD /* SplashViewModel_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9441818927AD83F500AD9FDD /* SplashViewModel_CN.swift */; };
 		9441818D27AD842B00AD9FDD /* SplashRouter_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9441818C27AD842B00AD9FDD /* SplashRouter_CN.swift */; };
 		9441819027AD848000AD9FDD /* SplashSceneConfigurator_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9441818F27AD848000AD9FDD /* SplashSceneConfigurator_CN.swift */; };
+		944AF5E02881A4B800EE0EA0 /* MommysEye in Frameworks */ = {isa = PBXBuildFile; productRef = 944AF5DF2881A4B800EE0EA0 /* MommysEye */; };
+		945793ED288191EE0063FC2D /* BabyNet in Frameworks */ = {isa = PBXBuildFile; productRef = 945793EC288191EE0063FC2D /* BabyNet */; };
 		9458BDC4285F353100CF3E61 /* QuoteCardNetworkEntity_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9458BDC3285F353100CF3E61 /* QuoteCardNetworkEntity_CN.swift */; };
 		946AF5BF2871DEC70047E508 /* DomainErrorProtocol_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946AF5BE2871DEC70047E508 /* DomainErrorProtocol_CN.swift */; };
 		946AF5D428730B680047E508 /* MenuTransitionDelegate_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946AF5D328730B680047E508 /* MenuTransitionDelegate_CN.swift */; };
@@ -69,7 +70,6 @@
 		947850F8279E2F7000F1EEAC /* LocalPushNotificationServiceDTOMapperWrapper_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947850F7279E2F7000F1EEAC /* LocalPushNotificationServiceDTOMapperWrapper_CN.swift */; };
 		9478510227A9929700F1EEAC /* LoaderState_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9478510127A9929700F1EEAC /* LoaderState_CN.swift */; };
 		94800868279631B500D34D4B /* LocalPushNotificationsService_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94800867279631B500D34D4B /* LocalPushNotificationsService_CN.swift */; };
-		94E119F12876DE4E0010C122 /* MommysEye in Frameworks */ = {isa = PBXBuildFile; productRef = 94E119F02876DE4E0010C122 /* MommysEye */; };
 		94E119F32878549E0010C122 /* LikeButton_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E119F22878549E0010C122 /* LikeButton_CN.swift */; };
 		94E119F528786C470010C122 /* CachedCollectionIndexPaths_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E119F428786C470010C122 /* CachedCollectionIndexPaths_CN.swift */; };
 		94EFC9A327923C5500CC6B47 /* MainViewModel_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EFC9A227923C5500CC6B47 /* MainViewModel_CN.swift */; };
@@ -158,7 +158,6 @@
 		947850F7279E2F7000F1EEAC /* LocalPushNotificationServiceDTOMapperWrapper_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPushNotificationServiceDTOMapperWrapper_CN.swift; sourceTree = "<group>"; };
 		9478510127A9929700F1EEAC /* LoaderState_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderState_CN.swift; sourceTree = "<group>"; };
 		94800867279631B500D34D4B /* LocalPushNotificationsService_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPushNotificationsService_CN.swift; sourceTree = "<group>"; };
-		94E119EF2876DDEB0010C122 /* MommysEye */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = MommysEye; path = ../MommysEye; sourceTree = "<group>"; };
 		94E119F22878549E0010C122 /* LikeButton_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButton_CN.swift; sourceTree = "<group>"; };
 		94E119F428786C470010C122 /* CachedCollectionIndexPaths_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedCollectionIndexPaths_CN.swift; sourceTree = "<group>"; };
 		94EFC9A227923C5500CC6B47 /* MainViewModel_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel_CN.swift; sourceTree = "<group>"; };
@@ -188,8 +187,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94E119F12876DE4E0010C122 /* MommysEye in Frameworks */,
-				94376043285F5B2400884E5A /* BabyNet in Frameworks */,
+				944AF5E02881A4B800EE0EA0 /* MommysEye in Frameworks */,
+				945793ED288191EE0063FC2D /* BabyNet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,7 +198,6 @@
 		50A1CB7A278CCC63000F9BFC = {
 			isa = PBXGroup;
 			children = (
-				94E119EE2876DDEB0010C122 /* Packages */,
 				50A1CB85278CCC63000F9BFC /* CalmingNotifications */,
 				50A1CB84278CCC63000F9BFC /* Products */,
 				94376041285F5B2400884E5A /* Frameworks */,
@@ -626,14 +624,6 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
-		94E119EE2876DDEB0010C122 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				94E119EF2876DDEB0010C122 /* MommysEye */,
-			);
-			name = Packages;
-			sourceTree = "<group>";
-		};
 		94EFC9992792398400CC6B47 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -937,8 +927,8 @@
 			);
 			name = CalmingNotifications;
 			packageProductDependencies = (
-				94376042285F5B2400884E5A /* BabyNet */,
-				94E119F02876DE4E0010C122 /* MommysEye */,
+				945793EC288191EE0063FC2D /* BabyNet */,
+				944AF5DF2881A4B800EE0EA0 /* MommysEye */,
 			);
 			productName = CalmingNotifications;
 			productReference = 50A1CB83278CCC63000F9BFC /* CalmingNotifications.app */;
@@ -970,6 +960,7 @@
 			mainGroup = 50A1CB7A278CCC63000F9BFC;
 			packageReferences = (
 				94376040285F594800884E5A /* XCRemoteSwiftPackageReference "BabyNet" */,
+				944AF5DE2881A4B800EE0EA0 /* XCRemoteSwiftPackageReference "MommysEye" */,
 			);
 			productRefGroup = 50A1CB84278CCC63000F9BFC /* Products */;
 			projectDirPath = "";
@@ -1281,17 +1272,26 @@
 				kind = branch;
 			};
 		};
+		944AF5DE2881A4B800EE0EA0 /* XCRemoteSwiftPackageReference "MommysEye" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/4440449/MommysEye";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		94376042285F5B2400884E5A /* BabyNet */ = {
+		944AF5DF2881A4B800EE0EA0 /* MommysEye */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 944AF5DE2881A4B800EE0EA0 /* XCRemoteSwiftPackageReference "MommysEye" */;
+			productName = MommysEye;
+		};
+		945793EC288191EE0063FC2D /* BabyNet */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 94376040285F594800884E5A /* XCRemoteSwiftPackageReference "BabyNet" */;
 			productName = BabyNet;
-		};
-		94E119F02876DE4E0010C122 /* MommysEye */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = MommysEye;
 		};
 /* End XCSwiftPackageProductDependency section */
 

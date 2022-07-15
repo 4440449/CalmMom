@@ -9,6 +9,15 @@
           "revision": "006d1d0e4a8beabd60bb4390971d9204139ce0d4",
           "version": null
         }
+      },
+      {
+        "package": "MommysEye",
+        "repositoryURL": "https://github.com/4440449/MommysEye",
+        "state": {
+          "branch": "master",
+          "revision": "fe9a4c92482e7336bf851662a97f6b789b5081dd",
+          "version": null
+        }
       }
     ]
   },
