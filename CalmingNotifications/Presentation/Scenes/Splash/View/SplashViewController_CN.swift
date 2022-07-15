@@ -35,6 +35,7 @@ class SplashViewController_CN: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(patternImage: UIImage(named: "SplashScreen")!)
+        view.addSubview(closeButton)
         view.addSubview(loadingLabel)
         view.addSubview(progress)
         view.addSubview(logoStack)
@@ -66,10 +67,32 @@ class SplashViewController_CN: UIViewController {
         viewModel.isHiddenReloadButton.subscribe(observer: self) { [weak self] isHidden in
             self?.reloadButton.isHidden = isHidden
         }
+        
+        viewModel.isHiddenCloseButton.subscribe(observer: self) { [weak self] isHidden in
+            self?.closeButton.isHidden = isHidden
+        }
     }
     
     
     // MARK: - UI -
+    
+    
+    private lazy var closeButton: UIButton = {
+        let button = UIButton()
+        button.tintColor = .white
+        button.isHidden = true
+        button.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+        button.imageView?.layer.transform = CATransform3DMakeScale(1.3, 1.3, 0)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self,
+                         action: #selector(closeButtonTapped),
+                         for: .touchUpInside)
+        return button
+    }()
+    
+    @objc private func closeButtonTapped() {
+        presentingViewController?.dismiss(animated: true, completion: nil)
+    }
     
     private lazy var loadingLabel: UILabel = {
         let label = UILabel()
@@ -114,7 +137,7 @@ class SplashViewController_CN: UIViewController {
     }()
     
     private lazy var logoStack: UIStackView = {
-       let stack = UIStackView()
+        let stack = UIStackView()
         stack.axis = .horizontal
         stack.alignment = .center
         stack.spacing = 3
@@ -156,6 +179,11 @@ class SplashViewController_CN: UIViewController {
     }
     
     func setupLayout() {
+        closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
+        closeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+        closeButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        closeButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
         loadingLabel.bottomAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         loadingLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         loadingLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
@@ -163,7 +191,6 @@ class SplashViewController_CN: UIViewController {
         progress.topAnchor.constraint(equalTo: loadingLabel.bottomAnchor, constant: 20).isActive = true
         progress.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         progress.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-        
         
         logoStack.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         logoStack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30).isActive = true
