@@ -12,25 +12,12 @@ import MommysEye
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-//    let sceneState = Publisher(value: SceneState.background)
-
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        let repositoryDIContainer = GatewaysRepositoryDIContainer_CN(
-            quoteCard:
-                GatewaysRepositoryDIContainer_CN.createQuoteCardRepository(),
-            notification:
-                GatewaysRepositoryDIContainer_CN.createNotificationRepository(),
-            menuItem:
-                GatewaysRepositoryDIContainer_CN.createMenuItemRepository() )
-        let splashVC = SplashSceneConfigurator_CN.configure(
-            repositoryDIContainer: repositoryDIContainer)
-        let navigationVC = UINavigationController(rootViewController: splashVC)
-        navigationVC.navigationBar.isHidden = true
-        window?.rootViewController = navigationVC
+        let splashVC = SplashSceneConfigurator_CN.configure()
+        window?.rootViewController = splashVC
         window?.makeKeyAndVisible()
     }
 
@@ -47,12 +34,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
-//        sceneState.value = .foreground
 //        print("foregr UIApplication.shared.applicationState == \(UIApplication.shared.applicationState.rawValue)")
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
-//        sceneState.value = .background
 //        print("backr UIApplication.shared.applicationState == \(UIApplication.shared.applicationState.rawValue)")
     }
 
