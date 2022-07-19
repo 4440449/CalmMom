@@ -48,6 +48,10 @@
 - In app handling dark mode
 
 
+## Requirements
+**iOS 13.0 +
+Xcode 13.2.1 +
+
 
 
 
