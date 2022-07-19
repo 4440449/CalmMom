@@ -15,14 +15,16 @@ class FavoritesViewController_CN: UIViewController,
     // MARK: - Dependencies
     
     private let viewModel: FavoritesViewModelProtocol_CN
-    
+    private let animator: CheckMarkAnimatableProtocol_CN
     
     // MARK: - Init
     
     init(viewModel: FavoritesViewModelProtocol_CN,
+         animator: CheckMarkAnimatableProtocol_CN,
          nibName nibNameOrNil: String?,
          bundle nibBundleOrNil: Bundle?) {
         self.viewModel = viewModel
+        self.animator = animator
         super.init(nibName: nibNameOrNil,
                    bundle: nibBundleOrNil)
     }
@@ -69,6 +71,13 @@ class FavoritesViewController_CN: UIViewController,
             switch isLoading {
             case .true: self?.activity.startAnimating()
             case .false: self?.activity.stopAnimating()
+            }
+        }
+        
+        viewModel.showSuccessAnimation.subscribe(observer: self) { [weak self] toShow in
+            switch toShow {
+            case true: self?.successAnimation()
+            case false: return
             }
         }
     }
@@ -240,6 +249,11 @@ class FavoritesViewController_CN: UIViewController,
         visibleCell.startFadeAnimation()
         // Записываю индекс ячейки у которой показал анимацию
         cellIndexWasAnimated = visibleIndex
+    }
+    
+    // Checkmark
+    private func successAnimation() {
+        animator.checkMarkAnimation(for: view)
     }
     
     

@@ -14,6 +14,7 @@ protocol FavoritesViewModelProtocol_CN {
     func dismissButtonTapped()
     var quoteCards: Publisher<[QuoteCard_CN]> { get }
     var isLoading: Publisher<Loading_CN> { get }
+    var showSuccessAnimation: Publisher<Bool> { get }
     var error: Publisher<String> { get }
 }
 
@@ -49,6 +50,7 @@ final class FavoritesViewModel_CN: FavoritesViewModelProtocol_CN,
     
     var quoteCards = Publisher(value: [QuoteCard_CN]())
     var isLoading = Publisher(value: Loading_CN.false)
+    var showSuccessAnimation = Publisher(value: false)
     var error = Publisher(value: "")
     
     
@@ -126,7 +128,9 @@ final class FavoritesViewModel_CN: FavoritesViewModelProtocol_CN,
             text: quoteCard.quote,
             textAttributes: setup.textAttributes,
             textFrame: setup.textFrame) else { return }
-        router.shareButtonTapped(with: quoteCardImage)
+        router.shareButtonTapped(with: quoteCardImage) { [weak self] toAnimate in
+            self?.showSuccessAnimation.value = toAnimate
+        }
     }
     
     
