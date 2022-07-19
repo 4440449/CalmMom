@@ -221,7 +221,7 @@ class FavoritesViewController_CN: UIViewController,
                        initialSpringVelocity: 0,
                        options: .curveEaseInOut,
                        animations: {
-            self.dismissButton.alpha = 0.01
+            self.dismissButton.alpha = 0
         },
                        completion: { _ in
             self.collectionItemsWasHide = true

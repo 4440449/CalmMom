@@ -126,9 +126,9 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
     }
     
     func prepareFadeAnimation() {
-        self.quoteLabel.alpha = 0.01
-        self.likeButton.alpha = 0.01
-        self.shareButton.alpha = 0.01
+        self.quoteLabel.alpha = 0
+        self.likeButton.alpha = 0
+        self.shareButton.alpha = 0
     }
     
     func startFadeAnimation() {

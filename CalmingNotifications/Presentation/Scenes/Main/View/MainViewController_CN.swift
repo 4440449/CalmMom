@@ -65,6 +65,7 @@ class MainViewController_CN: UIViewController,
             case .false: self?.activity.stopAnimating()
             }
         }
+        
         viewModel.showSuccessAnimation.subscribe(observer: self) { [weak self] toShow in
             switch toShow {
             case true: self?.successAnimation()
@@ -92,7 +93,7 @@ class MainViewController_CN: UIViewController,
     private var menuButton: UIButton = {
         let button = UIButton()
         button.tintColor = .white
-        button.alpha = 0.01
+        button.alpha = 0
         button.setImage(UIImage(systemName: "ellipsis"), for: .normal)
         button.imageView?.layer.transform = CATransform3DMakeScale(1.3, 1.3, 0)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -109,7 +110,7 @@ class MainViewController_CN: UIViewController,
     private var closeButton: UIButton = {
         let button = UIButton()
         button.tintColor = .white
-        button.alpha = 0.01
+        button.alpha = 0
         button.setImage(UIImage(systemName: "chevron.down"), for: .normal)
         button.imageView?.layer.transform = CATransform3DMakeScale(1.3, 1.3, 0)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -213,8 +214,8 @@ class MainViewController_CN: UIViewController,
                        initialSpringVelocity: 0,
                        options: .curveEaseInOut,
                        animations: {
-            self.closeButton.alpha = 0.01
-            self.menuButton.alpha = 0.01
+            self.closeButton.alpha = 0
+            self.menuButton.alpha = 0
         },
                        completion: { _ in
             self.collectionItemsWasHide = true

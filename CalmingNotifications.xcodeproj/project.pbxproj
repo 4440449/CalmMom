@@ -45,7 +45,6 @@
 		9458BDC4285F353100CF3E61 /* QuoteCardNetworkEntity_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9458BDC3285F353100CF3E61 /* QuoteCardNetworkEntity_CN.swift */; };
 		946AF5BF2871DEC70047E508 /* DomainErrorProtocol_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946AF5BE2871DEC70047E508 /* DomainErrorProtocol_CN.swift */; };
 		946AF5D428730B680047E508 /* MenuTransitionDelegate_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946AF5D328730B680047E508 /* MenuTransitionDelegate_CN.swift */; };
-		946B13E527AF398E00AF3BBB /* SceneState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B13E427AF398E00AF3BBB /* SceneState.swift */; };
 		946B13E727B0014C00AF3BBB /* PushNotificationsAuthStatus_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B13E627B0014C00AF3BBB /* PushNotificationsAuthStatus_CN.swift */; };
 		946B13E927B1D5F000AF3BBB /* AppColors_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B13E827B1D5F000AF3BBB /* AppColors_CN.swift */; };
 		946B13F027B2BE8800AF3BBB /* FavoritesSceneConfigurator_CN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946B13EF27B2BE8800AF3BBB /* FavoritesSceneConfigurator_CN.swift */; };
@@ -133,7 +132,6 @@
 		9458BDC3285F353100CF3E61 /* QuoteCardNetworkEntity_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCardNetworkEntity_CN.swift; sourceTree = "<group>"; };
 		946AF5BE2871DEC70047E508 /* DomainErrorProtocol_CN.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainErrorProtocol_CN.swift; sourceTree = "<group>"; };
 		946AF5D328730B680047E508 /* MenuTransitionDelegate_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTransitionDelegate_CN.swift; sourceTree = "<group>"; };
-		946B13E427AF398E00AF3BBB /* SceneState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneState.swift; sourceTree = "<group>"; };
 		946B13E627B0014C00AF3BBB /* PushNotificationsAuthStatus_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationsAuthStatus_CN.swift; sourceTree = "<group>"; };
 		946B13E827B1D5F000AF3BBB /* AppColors_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors_CN.swift; sourceTree = "<group>"; };
 		946B13EF27B2BE8800AF3BBB /* FavoritesSceneConfigurator_CN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesSceneConfigurator_CN.swift; sourceTree = "<group>"; };
@@ -200,7 +198,6 @@
 			children = (
 				50A1CB85278CCC63000F9BFC /* CalmingNotifications */,
 				50A1CB84278CCC63000F9BFC /* Products */,
-				94376041285F5B2400884E5A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -215,12 +212,11 @@
 		50A1CB85278CCC63000F9BFC /* CalmingNotifications */ = {
 			isa = PBXGroup;
 			children = (
-				50A1CB86278CCC63000F9BFC /* AppDelegate.swift */,
-				50A1CB88278CCC63000F9BFC /* SceneDelegate.swift */,
+				9478418B2886D3CF0043C326 /* Source */,
 				94EFC9A427923D5200CC6B47 /* Domain */,
 				94EFC9AB27923F5400CC6B47 /* Data */,
 				94EFC99D279239D500CC6B47 /* Presentation */,
-				50A1CB91278CCC6F000F9BFC /* LaunchScreen.storyboard */,
+				9478418A2886D3130043C326 /* Resources */,
 				50A1CB94278CCC6F000F9BFC /* Info.plist */,
 			);
 			path = CalmingNotifications;
@@ -232,13 +228,6 @@
 				9426DB9127C181520057CB68 /* TestViewController.swift */,
 			);
 			path = TestScreen;
-			sourceTree = "<group>";
-		};
-		94376041285F5B2400884E5A /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		943760532863229000884E5A /* SessionDelegate */ = {
@@ -558,6 +547,29 @@
 			path = MenuItem;
 			sourceTree = "<group>";
 		};
+		9478418A2886D3130043C326 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				50A1CB91278CCC6F000F9BFC /* LaunchScreen.storyboard */,
+				943760482861F74300884E5A /* Montserrat-Black.ttf */,
+				9437604B2861F74300884E5A /* Montserrat-Bold.ttf */,
+				9437604A2861F74300884E5A /* Montserrat-ExtraBold.ttf */,
+				943760472861F74300884E5A /* Montserrat-Regular.ttf */,
+				943760492861F74300884E5A /* Montserrat-Thin.ttf */,
+				50A1CB8F278CCC6F000F9BFC /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		9478418B2886D3CF0043C326 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				50A1CB86278CCC63000F9BFC /* AppDelegate.swift */,
+				50A1CB88278CCC63000F9BFC /* SceneDelegate.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 		947850EC279E166900F1EEAC /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -594,7 +606,7 @@
 		9478510327A992C000F1EEAC /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
-				946B13E427AF398E00AF3BBB /* SceneState.swift */,
+				94EFC9D32792500F00CC6B47 /* SceneConfigurator_CN.swift */,
 				9437605F2865FFEC00884E5A /* SceneErrorHandlerProtocol_CN.swift */,
 				9426DB9327C1E5570057CB68 /* Animator_CN.swift */,
 				9478510127A9929700F1EEAC /* LoaderState_CN.swift */,
@@ -605,12 +617,6 @@
 				943D160927BA9AAF0071F054 /* DrawTextOnImage_CN.swift */,
 				94E119F22878549E0010C122 /* LikeButton_CN.swift */,
 				94E119F428786C470010C122 /* CachedCollectionIndexPaths_CN.swift */,
-				943760482861F74300884E5A /* Montserrat-Black.ttf */,
-				9437604B2861F74300884E5A /* Montserrat-Bold.ttf */,
-				9437604A2861F74300884E5A /* Montserrat-ExtraBold.ttf */,
-				943760472861F74300884E5A /* Montserrat-Regular.ttf */,
-				943760492861F74300884E5A /* Montserrat-Thin.ttf */,
-				50A1CB8F278CCC6F000F9BFC /* Assets.xcassets */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -675,7 +681,6 @@
 		94EFC99D279239D500CC6B47 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				94EFC9D52792502800CC6B47 /* SceneConfigurator */,
 				94EFC99C279239CC00CC6B47 /* Scenes */,
 			);
 			path = Presentation;
@@ -877,14 +882,6 @@
 			path = Configurator;
 			sourceTree = "<group>";
 		};
-		94EFC9D52792502800CC6B47 /* SceneConfigurator */ = {
-			isa = PBXGroup;
-			children = (
-				94EFC9D32792500F00CC6B47 /* SceneConfigurator_CN.swift */,
-			);
-			path = SceneConfigurator;
-			sourceTree = "<group>";
-		};
 		94EFC9D62792529800CC6B47 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1048,7 +1045,6 @@
 				943D160527B9A5190071F054 /* QuoteCardState_CN.swift in Sources */,
 				94057F2027975249009B5A2B /* NotificationsCollectionHeaderReusableView.swift in Sources */,
 				9437605E2865FBA800884E5A /* SplashErrorHandler_CN.swift in Sources */,
-				946B13E527AF398E00AF3BBB /* SceneState.swift in Sources */,
 				946B140A27B2F77500AF3BBB /* QuoteCardDBEntity+CoreDataClass.swift in Sources */,
 				946B13F827B2C1A100AF3BBB /* FavoritesCollectionViewCell.swift in Sources */,
 				946B141E27B6DD8A00AF3BBB /* ShadowSetup_CN.swift in Sources */,
