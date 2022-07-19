@@ -80,6 +80,7 @@ class MainViewController_CN: UIViewController,
                                           collectionViewLayout: setupCollectionViewLayout())
         collection.register(MainCollectionViewCell_CN.self,
                             forCellWithReuseIdentifier: MainCollectionViewCell_CN.identifier)
+        collection.backgroundColor = .black
         collection.contentInsetAdjustmentBehavior = .never
         collection.alwaysBounceVertical = false
         collection.alwaysBounceHorizontal = true

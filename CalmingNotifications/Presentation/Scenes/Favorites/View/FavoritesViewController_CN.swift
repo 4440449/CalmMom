@@ -80,6 +80,7 @@ class FavoritesViewController_CN: UIViewController,
                                           collectionViewLayout: setupCollectionViewLayout())
         collection.register(FavoritesCollectionViewCell.self,
                             forCellWithReuseIdentifier: FavoritesCollectionViewCell.identifier)
+        collection.backgroundColor = .black
         collection.contentInsetAdjustmentBehavior = .never
         collection.alwaysBounceVertical = false
         collection.alwaysBounceHorizontal = true
@@ -90,7 +91,7 @@ class FavoritesViewController_CN: UIViewController,
     
     private var dismissButton: UIButton = {
         let button = UIButton()
-        button.tintColor = .label
+        button.tintColor = .white
         button.setImage(UIImage(systemName: "chevron.down"), for: .normal)
         button.imageView?.layer.transform = CATransform3DMakeScale(1.3, 1.3, 0)
         button.layer.cornerRadius = 20
@@ -117,7 +118,9 @@ class FavoritesViewController_CN: UIViewController,
     
     private var emptyScreenLabel: UILabel = {
         let label = UILabel()
-        label.text = "Пока что здесь пусто, вы можете добавить понравившиеся заставки в изранное"
+        label.textColor = .white
+        label.font = UIFont(name: "Montserrat-Regular", size: 18)!
+        label.text = "Пока что здесь пусто, вы можете добавить понравившиеся изображения в изранное"
         label.textAlignment = .center
         label.numberOfLines = 0
         //        label.lineBreakMode = .byCharWrapping
