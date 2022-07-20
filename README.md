@@ -18,7 +18,7 @@
  
  
 ## Features 
-* Плоский Navigation Flow, **по схеме:**
+* Плоский Navigation Flow, **по схеме:**  
 ![Alt text](README_ASSETS/NavigationFlow.png "Navigation flow")  
 Роутер 1 дергает Конфигуратор 2 и передает:
     1. **Navigation container**  
@@ -49,7 +49,7 @@
 
 
 ## Requirements
-**iOS 13.0 +
+iOS 13.0 +  
 Xcode 13.2.1 +
 
 
